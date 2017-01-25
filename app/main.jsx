@@ -6,8 +6,8 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import App from './components/App'
-import Login from './components/Login'
-import WhoAmI from './components/WhoAmI'
+// import Login from './components/Login'
+// import WhoAmI from './components/WhoAmI'
 import Translate from './components/Translate'
 
 const ExampleApp = connect(
@@ -26,7 +26,7 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/" />
+        <IndexRedirect to="/translate" />
         <Route path="/translate" component={Translate} />
       </Route>
     </Router>
