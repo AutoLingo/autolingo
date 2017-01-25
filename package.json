@@ -1,5 +1,5 @@
 {
-  "name": "__BONES_NEEDS_A_NAME__",
+  "name": "autolingo",
   "version": "0.0.1",
   "description": "A happy little skeleton.",
   "main": "index.js",
@@ -11,7 +11,8 @@
     "build-branch": "bin/build-branch.sh",
     "deploy-heroku": "bin/deploy-heroku.sh",
     "start": "check-node-version --node '>= 6.7.0' && bin/setup && nodemon server/start.js",
-    "seed": "node db/seed.js"
+    "seed": "node db/seed.js",
+    "build-css": "node-sass -w public/stylesheets/style.scss -o public/stylesheets"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "cookie-session": "^2.0.0-alpha.1",
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
+    "node-sass": "^4.3.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
