@@ -18,33 +18,31 @@ class Translate extends Component {
 
   handleChange(e) {
     let input = e.target.value
-    console.log('INPUT', input)
-    this.setState (
-      {
-        text: input
-      }
-    )
-
-    let googleTranslate = this.props.googleTranslate
-    let text = this.state.text
-
-
-    googleTranslate(1, 'en', text)
+    this.setState ({ text: input })
   }
+
+
+
 
   render () {
     let text = this.state.text
     let handleChange = this.handleChange
-    console.log('STATE', this.state.text)
-    return (
-      <input name="input" type='textarea' value={text} onChange={handleChange}></input>
+    let googleTranslate = this.props.googleTranslate
+    googleTranslate(1, 'en', text)
 
+    return (
+      <div>
+        <input name="input" type='textarea' value={text} onChange={handleChange}></input>
+
+        <h2> {text}</h2>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {}
+  return {
+  }
 }
 const mapDispatchToProps = (dispatch) => {
   return {

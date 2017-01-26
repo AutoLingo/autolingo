@@ -20,7 +20,6 @@ const addTranslation = (id, translation, language) => {
 
 // **************************************************
 export const googleTranslate = (id, translateFrom, text) => {
-  console.log('TEXT', text)
   let allLanguages = ['en', 'fr', 'ko']
 
   let translateToLanguages = allLanguages.filter(translateTo => {
@@ -42,9 +41,10 @@ export const googleTranslate = (id, translateFrom, text) => {
 
     Promise.all([translation1, translation2])
     .spread((translation1, translation2) => {
-      console.log('TRANSLATION2', translation2)
-      console.log('TRANSLATION1', translation1)
-      return ([translation1.data, translation2.data])
+      return ([
+        translation1.data.data.translations[0].translatedText,
+        translation2.data.data.translations[0].translatedText
+      ])
     })
     .spread((translation1, translation2) => {
       dispatch(addTranslation(id, text, translateFrom))
@@ -59,18 +59,21 @@ export const googleTranslate = (id, translateFrom, text) => {
 // **************************************************
 
 export default function translateReducer(initialState = {}, action) {
+  let newState;
 
   switch (action.type) {
     case ADD_TRANSLATION:
-      let id = action.id
       let newTranslation = {
         [action.id]: {
           [action.language]: action.translation
         }
-      }
-      return Object.assign({}, initialState, newTranslation)
-
+      };
+       newState = Object.assign({}, initialState, newTranslation)
+       console.log('NEWSTATE', newState)
+       break;
     default:
+    console.log('INITIALSTATE', initialState)
       return initialState
   }
+    return newState
 }
