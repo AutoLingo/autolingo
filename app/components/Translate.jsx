@@ -21,9 +21,6 @@ class Translate extends Component {
     this.setState ({ text: input })
   }
 
-
-
-
   render () {
     let text = this.state.text
     let handleChange = this.handleChange
@@ -33,7 +30,6 @@ class Translate extends Component {
     return (
       <div>
         <input name="input" type='textarea' value={text} onChange={handleChange}></input>
-
         <h2> {this.props.en}</h2>
         <h2> {this.props.fr}</h2>
         <h2> {this.props.ko}</h2>
