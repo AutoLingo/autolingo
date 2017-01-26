@@ -59,20 +59,23 @@ export const googleTranslate = (id, translateFrom, text) => {
 // **************************************************
 
 export default function translateReducer(initialState = {}, action) {
+  console.log('INITIALSTATE', initialState)
   let newState;
-
   switch (action.type) {
     case ADD_TRANSLATION:
-      let newTranslation = {
-        [action.id]: {
-          [action.language]: action.translation
-        }
-      };
+      let id = action.id;
+      let messageObject = initialState.id || {}
+      console.log('MESSAGEOBJECT', messageObject)
+
+      let newTranslation = Object.assign(messageObject, {
+        [action.language]: action.translation
+      });
+      console.log('NEWTRANSLATION', newTranslation)
        newState = Object.assign({}, initialState, newTranslation)
        console.log('NEWSTATE', newState)
        break;
+
     default:
-    console.log('INITIALSTATE', initialState)
       return initialState
   }
     return newState

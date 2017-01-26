@@ -34,7 +34,9 @@ class Translate extends Component {
       <div>
         <input name="input" type='textarea' value={text} onChange={handleChange}></input>
 
-        <h2> {text}</h2>
+        <h2> {this.props.en}</h2>
+        <h2> {this.props.fr}</h2>
+        <h2> {this.props.ko}</h2>
       </div>
     )
   }
@@ -42,6 +44,9 @@ class Translate extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    en: state.translations.en,
+    fr: state.translations.fr,
+    ko: state.translations.ko
   }
 }
 const mapDispatchToProps = (dispatch) => {
