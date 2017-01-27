@@ -19,7 +19,7 @@ class Translate extends Component {
   handleChange(e) {
     let input = e.target.value
     this.props.translateActionCreator(1, 'en', input)
-    // this.setState ({ text: input })
+    this.setState ({ text: input })
   }
 
 
@@ -29,25 +29,28 @@ class Translate extends Component {
     let text = this.state.text
     let handleChange = this.handleChange
     let googleTranslate = this.props.googleTranslate
+    let fr = this.props.translations[1] ? this.props.translations[1].fr : null
+    console.log('THIS.PROPS.TRANSLATIONS', this.props.translations)
 
+
+    console.log('FR', fr)
 
     return (
       <div>
-        <input name="input" type='textarea' value={text} onChange={handleChange}></input>
+        <input name="input" type='textarea' onChange={handleChange}></input>
 
-        <h2> {this.props.en}</h2>
-        <h2> {this.props.fr}</h2>
-        <h2> {this.props.ko}</h2>
+        <h2> {fr}</h2>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  let translations = state.translations
+  console.log('TRANSLATIONS', translations)
+
   return {
-    en: state.translations.en,
-    fr: state.translations.fr,
-    ko: state.translations.ko
+    translations
   }
 }
 
