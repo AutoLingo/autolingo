@@ -18,7 +18,8 @@ class Translate extends Component {
 
   handleChange(e) {
     let input = e.target.value
-    this.setState ({ text: input })
+    this.props.translateActionCreator(1, 'en', input)
+    // this.setState ({ text: input })
   }
 
 
@@ -28,7 +29,7 @@ class Translate extends Component {
     let text = this.state.text
     let handleChange = this.handleChange
     let googleTranslate = this.props.googleTranslate
-    googleTranslate(1, 'en', text)
+
 
     return (
       <div>
@@ -49,12 +50,7 @@ const mapStateToProps = (state) => {
     ko: state.translations.ko
   }
 }
-const mapDispatchToProps = (dispatch) => {
-  return {
-    googleTranslate: (id, translateFrom, text) => dispatch(googleTranslate(id, translateFrom, text))
-  }
 
+import { translateActionCreator } from '../reducers/translate'
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Translate)
+export default connect(mapStateToProps, {translateActionCreator})(Translate)

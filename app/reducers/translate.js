@@ -2,11 +2,25 @@
 import axios from 'axios';
 import Promise  from 'bluebird'
 const API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w'
+import { Observable } from 'rxjs'
 
 // **************************************************
 
 const ADD_TRANSLATION = "ADD_TRANSLATION"
+const TRANSLATE = "TRANSLATE"
 
+// Fed into the googleTranslateEpic
+export const translateActionCreator = (id, language, originalText) => {
+  return (
+    {
+      type: TRANSLATE,
+      originalText,
+      id
+    }
+  )
+}
+
+// Dispatched from the epic to store
 const addTranslation = (id, translation, language) => {
   return (
     {
@@ -18,42 +32,29 @@ const addTranslation = (id, translation, language) => {
   )
 }
 
+
 // **************************************************
-export const googleTranslate = (id, translateFrom, text) => {
-  let allLanguages = ['en', 'fr', 'ko']
+export const googleTranslateEpic = (action$) => {
+  console.log('ACTION$', action$)
 
-  let translateToLanguages = allLanguages.filter(translateTo => {
-      return (translateTo !== translateFrom)
+  return action$.ofType(TRANSLATE)
+    .map(action => {
+      let text = action.originalText
+      return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: 1}
+
+    // return Observable.from(
+    //   axios.get(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
+    //   .then(response => {
+    //     console.log(response)
+    //     return "testing this"
+    //   })
+    //   // .then(response => response.data.translations[0].translatedText))
+    //   .then(translatedText => addTranslation(1, translatedText, 'fr'))
+    // )
   })
-
-  let translation1, translation2
-
-  return dispatch => {
-    // for (let i = 0; i < translateToLanguages.length; i++) {
-      // let translateTo = translateTo[i]
-
-      // let translation[i] =  axios.get(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${translateFrom}&target=${translateTo}&q=${text}`)
-      let translation1 =  axios.get(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
-      let translation2 =  axios.get(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=ko&q=${text}`)
-    // }
-
-    // Promise.map([allLanguages], language => axios.get(``))
-
-    Promise.all([translation1, translation2])
-    .spread((translation1, translation2) => {
-      return ([
-        translation1.data.data.translations[0].translatedText,
-        translation2.data.data.translations[0].translatedText
-      ])
-    })
-    .spread((translation1, translation2) => {
-      dispatch(addTranslation(id, text, translateFrom))
-      dispatch(addTranslation(id, translation1, translateToLanguages[0]))
-      dispatch(addTranslation(id, translation2, translateToLanguages[1]))
-    })
-  }
-
 }
+
+
 
 
 // **************************************************
