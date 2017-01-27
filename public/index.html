@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
     <head>
@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
 
         <style>
-            audio, video {
+/*            audio, video {
                 -moz-transition: all 1s ease;
                 -ms-transition: all 1s ease;
 
@@ -29,7 +29,7 @@
                 transition: all 1s ease;
                 vertical-align: top;
             }
-
+*/
             input {
                 border: 1px solid #d9d9d9;
                 border-radius: 1px;
@@ -57,6 +57,26 @@
             }
 
             .highlight { color: rgb(0, 8, 189); }
+
+            #start_button {
+            	display: block !important;
+            	margin: auto;
+            }
+
+            #videos-container {
+	    	    position: relative;
+            }
+
+            #videos-container video:first-child {
+            	width: 100%;
+            }
+
+            #videos-container video:nth-child(2) {
+            	width: 200px;
+            	position: absolute;
+            	right: 0;
+            	bottom: 0;
+            }
         </style>
         <script>
             document.createElement('article');
@@ -82,7 +102,7 @@
                     <span>
                         Private ?? <a href="/socket.io/" target="_blank" title="Setup Private Room!"><code><strong id="unique-token">#123456789</strong></code></a>
                     </span>
-                    <input type="text" id="your-name" placeholder="your-name">
+                    <input type="text" id="your-name" placeholder="your-name" style="opacity: 0">
                     <button id="start-broadcasting" class="setup">Start Video Chat</button>
                 </section>
 
@@ -537,7 +557,7 @@ function showButtons(style) {
                     videosContainer.insertBefore(video, videosContainer.firstChild);
 
                     video.play();
-                    rotateVideo(video);
+                    // rotateVideo(video);
                     scaleVideos();
                 };
 
@@ -545,7 +565,7 @@ function showButtons(style) {
                     var video = e.mediaElement;
                     if (video) {
                         video.style.opacity = 0;
-                        rotateVideo(video);
+                        // rotateVideo(video);
                         setTimeout(function() {
                             video.parentNode.removeChild(video);
                             scaleVideos();
@@ -571,12 +591,12 @@ function showButtons(style) {
 
                 if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
 
-                function rotateVideo(video) {
-                    video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-                    setTimeout(function() {
-                        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-                    }, 1000);
-                }
+                // function rotateVideo(video) {
+                //     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+                //     setTimeout(function() {
+                //         video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+                //     }, 1000);
+                // }
 
                 function scaleVideos() {
                     var videos = document.querySelectorAll('video'),
