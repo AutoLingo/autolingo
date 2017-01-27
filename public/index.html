@@ -1,76 +1,102 @@
 <!doctype html>
 <html>
-  <head>
-      <style>
-  #info {
-      font-size: 20px;
-      }
-      #div_start {
-      float: right;
-      }
-      #headline {
-      text-decoration: none
-      }
-      #results {
-      font-size: 14px;
-      font-weight: bold;
-      border: 1px solid #ddd;
-      padding: 15px;
-      text-align: left;
-      min-height: 150px;
-      }
-      #start_button {
-      border: 0;
-      background-color:transparent;
-      padding: 0;
-      }
-      .interim {
-      color: gray;
-      }
-      .final {
-      color: black;
-      padding-right: 3px;
-      }
-      .button {
-      display: none;
-      }
-      .marquee {
-      margin: 20px auto;
-      }
 
-      #buttons {
-      margin: 10px 0;
-      position: relative;
-      top: -50px;
-      }
+    <head>
+        <title>Socket.io | WebRTC One-to-One Video Chat</title>
 
-      #copy {
-      margin-top: 20px;
-      }
+        <script>
+            if(!location.hash.replace('#', '').length) {
+                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
+                location.reload();
+            }
+        </script>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="author" type="text/html" href="https://plus.google.com/+MuazKhan">
+        <meta name="author" content="Muaz Khan">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
 
-      #copy > div {
-      display: none;
-      margin: 0 70px;
-      }
-      </style>
-      <style>
-  a.c1 {font-weight: normal;}
-      </style>
+        <style>
+            audio, video {
+                -moz-transition: all 1s ease;
+                -ms-transition: all 1s ease;
+
+                -o-transition: all 1s ease;
+                -webkit-transition: all 1s ease;
+                transition: all 1s ease;
+                vertical-align: top;
+            }
+
+            input {
+                border: 1px solid #d9d9d9;
+                border-radius: 1px;
+                font-size: 2em;
+                margin: .2em;
+                width: 30%;
+            }
+
+            .setup {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                font-size: 102%;
+                height: 47px;
+                margin-left: -9px;
+                margin-top: 8px;
+                position: absolute;
+            }
+
+            p { padding: 1em; }
+
+            li {
+                border-bottom: 1px solid rgb(189, 189, 189);
+                border-left: 1px solid rgb(189, 189, 189);
+                padding: .5em;
+            }
+
+            .highlight { color: rgb(0, 8, 189); }
+        </style>
+        <script>
+            document.createElement('article');
+            document.createElement('footer');
+        </script>
+
+        <!-- scripts used for peers connection -->
+        <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
+        <script src="https://cdn.webrtc-experiment.com/socket.io/PeerConnection.js"> </script>
+    </head>
+
+    <body>
+        <article>
+            <header style="text-align: center;">
+                <h1>
+                    AutoLingo
+                </h1>
+            </header>
+
+            <!-- just copy this <section> and next script -->
+            <section class="experiment">
+                <section>
+                    <span>
+                        Private ?? <a href="/socket.io/" target="_blank" title="Setup Private Room!"><code><strong id="unique-token">#123456789</strong></code></a>
+                    </span>
+                    <input type="text" id="your-name" placeholder="your-name">
+                    <button id="start-broadcasting" class="setup">Start Video Chat</button>
+                </section>
+
+                <!-- list of all available conferencing rooms -->
+                <table id="rooms-list" style="width: 100%;"></table>
+
+                <!-- local/remote videos container -->
+                <div id="videos-container"></div>
+            </section>
 
 
-  </head>
-    <!-- <div id=main></div> -->
 
-  <body class="" id="grid">
+
     <div class="browser-landing" id="main">
-      <div class="compact marquee-stacked" id="marquee">
-        <div class="marquee-copy">
-          <h1>
-            <a class="c1" href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web
-            Speech API</a> Demonstration
-          </h1>
-        </div>
-      </div>
       <div class="compact marquee">
         <div id="info">
           <p id="info_start">
@@ -106,13 +132,13 @@
         </div>
         <div id="div_start">
           <button id="start_button" onclick="startButton(event)"><img alt="Start" id="start_img"
-          src="/intl/en/chrome/assets/common/images/content/mic.gif"></button>
+          src="./mic.gif"></button>
         </div>
         <div id="results">
           <span class="final" id="final_span"></span> <span class="interim" id=
           "interim_span"></span>
         </div>
-        <div id="copy">
+<!--         <div id="copy">
           <button class="button" id="copy_button" onclick="copyButton()">Copy and Paste</button>
           <div id="copy_info">
             <p>
@@ -131,7 +157,7 @@
               (See chrome://settings/handlers to change.)
             </p>
           </div>
-        </div>
+        </div> -->
         <div class="compact marquee" id="div_language">
           <select id="select_language" onchange="updateCountry()">
             </select>&nbsp;&nbsp; <select id="select_dialect">
@@ -275,17 +301,17 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
-    start_img.src = '/intl/en/chrome/assets/common/images/content/mic-animate.gif';
+    start_img.src = './mic-animate.gif';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+      start_img.src = './mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+      start_img.src = './mic.gif';
       showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -304,7 +330,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = '/intl/en/chrome/assets/common/images/content/mic.gif';
+    start_img.src = './mic.gif';
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -406,7 +432,7 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = '/intl/en/chrome/assets/common/images/content/mic-slash.gif';
+  start_img.src = './mic-slash.gif';
   showInfo('info_allow');
   showButtons('none');
   start_timestamp = event.timeStamp;
@@ -438,6 +464,189 @@ function showButtons(style) {
 }
     </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <script>
+
+                var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
+                var sender = Math.round(Math.random() * 999999999) + 999999999;
+
+                var SIGNALING_SERVER = 'https://webrtcweb.com:9559/';
+                io.connect(SIGNALING_SERVER).emit('new-channel', {
+                    channel: channel,
+                    sender: sender
+                });
+
+                var socket = io.connect(SIGNALING_SERVER + channel);
+                socket.on('connect', function () {
+                    // setup peer connection & pass socket object over the constructor!
+                });
+
+                socket.send = function (message) {
+                    socket.emit('message', {
+                        sender: sender,
+                        data: message
+                    });
+                };
+
+                // var peer = new PeerConnection('http://socketio-signaling.jit.su:80');
+                var peer = new PeerConnection(socket);
+                peer.onUserFound = function(userid) {
+                    if (document.getElementById(userid)) return;
+                    var tr = document.createElement('tr');
+
+                    var td1 = document.createElement('td');
+                    var td2 = document.createElement('td');
+
+                    td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
+
+                    var button = document.createElement('button');
+                    button.innerHTML = 'Join';
+                    button.id = userid;
+                    button.style.float = 'right';
+                    button.onclick = function() {
+                        button = this;
+                        getUserMedia(function(stream) {
+                            peer.addStream(stream);
+                            peer.sendParticipationRequest(button.id);
+                        });
+                        button.disabled = true;
+                    };
+                    td2.appendChild(button);
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    roomsList.appendChild(tr);
+                };
+
+                peer.onStreamAdded = function(e) {
+                    var video = e.mediaElement;
+                    video.setAttribute('width', 600);
+                    videosContainer.insertBefore(video, videosContainer.firstChild);
+
+                    video.play();
+                    rotateVideo(video);
+                    scaleVideos();
+                };
+
+                peer.onStreamEnded = function(e) {
+                    var video = e.mediaElement;
+                    if (video) {
+                        video.style.opacity = 0;
+                        rotateVideo(video);
+                        setTimeout(function() {
+                            video.parentNode.removeChild(video);
+                            scaleVideos();
+                        }, 1000);
+                    }
+                };
+
+                document.querySelector('#start-broadcasting').onclick = function() {
+                    this.disabled = true;
+                    getUserMedia(function(stream) {
+                        peer.addStream(stream);
+                        peer.startBroadcasting();
+                    });
+                };
+
+                document.querySelector('#your-name').onchange = function() {
+                    peer.userid = this.value;
+                };
+
+                var videosContainer = document.getElementById('videos-container') || document.body;
+                var btnSetupNewRoom = document.getElementById('setup-new-room');
+                var roomsList = document.getElementById('rooms-list');
+
+                if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
+
+                function rotateVideo(video) {
+                    video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+                    setTimeout(function() {
+                        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+                    }, 1000);
+                }
+
+                function scaleVideos() {
+                    var videos = document.querySelectorAll('video'),
+                        length = videos.length, video;
+
+                    var minus = 130;
+                    var windowHeight = 700;
+                    var windowWidth = 600;
+                    var windowAspectRatio = windowWidth / windowHeight;
+                    var videoAspectRatio = 4 / 3;
+                    var blockAspectRatio;
+                    var tempVideoWidth = 0;
+                    var maxVideoWidth = 0;
+
+                    for (var i = length; i > 0; i--) {
+                        blockAspectRatio = i * videoAspectRatio / Math.ceil(length / i);
+                        if (blockAspectRatio <= windowAspectRatio) {
+                            tempVideoWidth = videoAspectRatio * windowHeight / Math.ceil(length / i);
+                        } else {
+                            tempVideoWidth = windowWidth / i;
+                        }
+                        if (tempVideoWidth > maxVideoWidth)
+                            maxVideoWidth = tempVideoWidth;
+                    }
+                    for (var i = 0; i < length; i++) {
+                        video = videos[i];
+                        if (video)
+                            video.width = maxVideoWidth - minus;
+                    }
+                }
+
+                window.onresize = scaleVideos;
+
+                // you need to capture getUserMedia yourself!
+                function getUserMedia(callback) {
+                    var hints = {audio:true,video:{
+                        optional: [],
+                        mandatory: {}
+                    }};
+                    navigator.getUserMedia(hints,function(stream) {
+                        var video = document.createElement('video');
+                        video.src = URL.createObjectURL(stream);
+                        video.controls = true;
+                        video.muted = true;
+
+                        peer.onStreamAdded({
+                            mediaElement: video,
+                            userid: 'self',
+                            stream: stream
+                        });
+
+                        callback(stream);
+                    });
+                }
+
+                (function() {
+                    var uniqueToken = document.getElementById('unique-token');
+                    if (uniqueToken)
+                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+                })();
+
+            </script>
+
+
+
+        </article>
+
+        <footer>
+        </footer>
 
     <!-- <script async defer src=/bundle.js></script>     -->
   </body>
