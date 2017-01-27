@@ -36,7 +36,8 @@ export const googleTranslateEpic = (action$) => {
   return action$.ofType(TRANSLATE)
     .mergeMap(action => {
         let text = action.originalText
-       return ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
+      //  return Observable.merge(
+        return ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
     })
     .map(response => {
       console.log('RESPONSE', response)
