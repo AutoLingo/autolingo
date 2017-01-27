@@ -6,6 +6,7 @@ import {connect, Provider} from 'react-redux'
 
 import store from './store'
 import App from './components/App'
+import 'rxjs';
 // import Login from './components/Login'
 // import WhoAmI from './components/WhoAmI'
 import Translate from './components/Translate'
