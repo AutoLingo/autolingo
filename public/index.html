@@ -39,13 +39,15 @@
             }
 
             .setup {
-                border-bottom-left-radius: 0;
+/*                border-bottom-left-radius: 0;
                 border-top-left-radius: 0;
                 font-size: 102%;
                 height: 47px;
                 margin-left: -9px;
                 margin-top: 8px;
-                position: absolute;
+                position: absolute;*/
+                float:right;
+                margin: 20px;
             }
 
             p { padding: 1em; }
@@ -60,7 +62,9 @@
 
             #start_button {
             	display: block !important;
-            	margin: auto;
+            	margin: 20px auto;
+            	background: white;
+            	border: 1px solid red;
             }
 
             #videos-container {
@@ -76,6 +80,15 @@
             	position: absolute;
             	right: 0;
             	bottom: 0;
+            }
+
+            #share-link {
+            	line-height: 3em;
+            	margin-left: 20px;
+            }
+
+            .results {
+            	margin: 20px auto;
             }
         </style>
         <script>
@@ -655,7 +668,7 @@ function showButtons(style) {
                 (function() {
                     var uniqueToken = document.getElementById('unique-token');
                     if (uniqueToken)
-                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;border-bottom:0px"><a href="' + location.href + '" target="_blank" id="share-link">Share this link</a></h2>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
                 })();
 
