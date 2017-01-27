@@ -23,11 +23,11 @@ Message transfer. Needs refactoring to React/Redux.
 
 ## Open / unresolved questions
 
-
+Setting up Redux observable middleware to allow controlled dispatches by manipulating event streams.
 
 ## Particular parts of the code you'd like us to look at
 
-
+Not yet.
 
 ## Instructions for building and using the project
 ```
