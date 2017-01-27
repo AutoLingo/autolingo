@@ -60,9 +60,7 @@
     "rxjs": "^5.0.3",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
-  },
-  "devDependencies": {
+    "sinon-chai": "^2.8.0",
     "babel": "^6.5.2",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
@@ -74,5 +72,7 @@
     "supertest-as-promised": "^4.0.1",
     "volleyball": "^1.4.1",
     "webpack": "^1.13.3"
+  },
+  "devDependencies": {
   }
 }
