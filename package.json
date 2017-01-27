@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/queerviolet/bones#readme",
   "dependencies": {
+    "@google-cloud/speech": "^0.5.1",
     "axios": "^0.15.2",
     "babel-preset-stage-2": "^6.18.0",
     "bcryptjs": "^2.4.0",
@@ -40,7 +41,9 @@
     "cookie-session": "^2.0.0-alpha.1",
     "enzyme": "^2.5.1",
     "express": "^4.14.0",
+    "google-cloud": "^0.45.2",
     "google-speech-api": "^1.2.0",
+    "node-record-lpcm16": "^0.2.0",
     "node-sass": "^4.3.0",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
@@ -59,7 +62,8 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "^3.24.6",
     "sinon": "^1.17.6",
-    "sinon-chai": "^2.8.0"
+    "sinon-chai": "^2.8.0",
+    "yargs": "^6.6.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
