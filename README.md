@@ -16,14 +16,14 @@ Build one-on-one video chat component with following features: video chat, speec
 ## Which parts work
 
 Video streaming and speech recognition. Translation working on pending component.
+Replaced redux-thunk with redux-observables.  API dispatches are now in the form of an Observable stream. Still need to figure out how to throttle api requests, but the basic framework is working.
 
 ## Which parts don't work yet
 
 Message transfer. Needs refactoring to React/Redux.
-
+X
 ## Open / unresolved questions
 
-Setting up Redux observable middleware to allow controlled dispatches by manipulating event streams.
 
 ## Particular parts of the code you'd like us to look at
 
