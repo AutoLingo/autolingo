@@ -38,7 +38,6 @@ export const googleTranslateEpic = (action$) => {
     .debounceTime(500)
     .mergeMap(action => {
         let originalLanguage = action.language
-        console.log('ORIGINALLANGUAGE', originalLanguage)
         let text = action.originalText
 
         let french = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`)
@@ -49,7 +48,6 @@ export const googleTranslateEpic = (action$) => {
           case 'en':
             return Observable.combineLatest(french, korean, (fr, ko) => [{en: text}, {fr}, {ko}])
           case 'fr':
-          console.log('SWITCH CASE WORKING')
             return Observable.combineLatest(english, korean, (en, ko) => [{fr: text}, {en}, {ko}])
           case 'ko':
             return Observable.combineLatest(english, french, (en, fr) => [{ko: text}, {en}, {fr}])
@@ -57,14 +55,16 @@ export const googleTranslateEpic = (action$) => {
             return []
         }
     })
-    .map(responseArray => {
-      console.log('RESPONSEARRAY', responseArray)
-      for (var i = 0; i < responseArray.length; i++) {
-        return responseArray[i]
-      }
+    .mergeMap(responseArray => Observable.from(responseArray))
+    .map(singleTranslation => {
+      console.log('SINGLETRANSLATION', singleTranslation)
+      let language = Object.keys(singleTranslation)[0]
+      let translatedData = singleTranslation[language]
+      let translatedText = translatedData.data ?
+        translatedData.data.translations[0].translatedText : translatedData
 
-      let convertedText = response[0].data.translations[0].translatedText
-      return addTranslation(1, convertedText, 'fr')
+      return addTranslation(1, translatedText, language)
+
     })
       // return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: action.id}
 
@@ -81,16 +81,13 @@ export default function translateReducer(initialState = {}, action) {
   switch (action.type) {
     case ADD_TRANSLATION:
       let id = action.id;
-      let messageObject = initialState.id || {}
-      console.log('MESSAGEOBJECT', messageObject)
+      let messageObject = initialState[id] || {}
 
-      let newTranslation = Object.assign(messageObject, {
+      let newTranslation = Object.assign({}, messageObject, {
         [action.language]: action.translation
       });
-      console.log('NEWTRANSLATION', newTranslation)
 
        newState = Object.assign({}, initialState, { [id]: newTranslation} )
-       console.log('NEWSTATE', newState)
        break;
 
     default:
