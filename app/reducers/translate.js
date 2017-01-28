@@ -68,7 +68,7 @@ export default function translateReducer(initialState = {}, action) {
       });
       console.log('NEWTRANSLATION', newTranslation)
 
-       newState = Object.assign(initialState, { [id]: newTranslation} )
+       newState = Object.assign({}, initialState, { [id]: newTranslation} )
        console.log('NEWSTATE', newState)
        break;
 
