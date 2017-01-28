@@ -15,6 +15,7 @@ export const translateActionCreator = (id, language, originalText) => {
     {
       type: TRANSLATE,
       originalText,
+      language,
       id
     }
   )
@@ -37,8 +38,8 @@ export const googleTranslateEpic = (action$) => {
     .debounceTime(500)
     .mergeMap(action => {
         let originalLanguage = action.language
+        console.log('ORIGINALLANGUAGE', originalLanguage)
         let text = action.originalText
-
 
         let french = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`)
         let korean = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`)
@@ -46,21 +47,22 @@ export const googleTranslateEpic = (action$) => {
 
         switch (originalLanguage) {
           case 'en':
-            return Observable.combineLatest(french, korean, (fr, ko) => [text, fr, ko])
+            return Observable.combineLatest(french, korean, (fr, ko) => [{en: text}, {fr}, {ko}])
           case 'fr':
-            return Observable.combineLatest(english, korean, (en, ko) => [text, en, ko])
+          console.log('SWITCH CASE WORKING')
+            return Observable.combineLatest(english, korean, (en, ko) => [{fr: text}, {en}, {ko}])
           case 'ko':
-            return Observable.combineLatest(english, french, (en, fr) => [text, en, fr])
+            return Observable.combineLatest(english, french, (en, fr) => [{ko: text}, {en}, {fr}])
           default:
             return []
         }
     })
     .map(responseArray => {
-
-      for (var i = 1; i < responseArray.length; i++) {
+      console.log('RESPONSEARRAY', responseArray)
+      for (var i = 0; i < responseArray.length; i++) {
         return responseArray[i]
       }
-      responseArray.forEach(translation => )
+
       let convertedText = response[0].data.translations[0].translatedText
       return addTranslation(1, convertedText, 'fr')
     })

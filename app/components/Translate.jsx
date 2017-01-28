@@ -18,7 +18,7 @@ class Translate extends Component {
 
   handleChange(e) {
     let input = e.target.value
-    this.props.translateActionCreator(1, 'en', input)
+    this.props.translateActionCreator(1, 'fr', input)
     // this.setState ({ text: input })
   }
 
