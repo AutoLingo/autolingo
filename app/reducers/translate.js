@@ -34,16 +34,35 @@ const addTranslation = (id, translation, language) => {
 // **************************************************
 export const googleTranslateEpic = (action$) => {
   return action$.ofType(TRANSLATE)
+    .debounceTime(500)
     .mergeMap(action => {
+        let originalLanguage = action.language
         let text = action.originalText
-      //  return Observable.merge(
-        return ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
-    })
-    .map(response => {
-      console.log('RESPONSE', response)
-      let convertedText = response.data.translations[0].translatedText
-      return addTranslation(1, convertedText, 'fr')
 
+
+        let french = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`)
+        let korean = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`)
+        let english = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=en&q=${text}`)
+
+        switch (originalLanguage) {
+          case 'en':
+            return Observable.combineLatest(french, korean, (fr, ko) => [text, fr, ko])
+          case 'fr':
+            return Observable.combineLatest(english, korean, (en, ko) => [text, en, ko])
+          case 'ko':
+            return Observable.combineLatest(english, french, (en, fr) => [text, en, fr])
+          default:
+            return []
+        }
+    })
+    .map(responseArray => {
+
+      for (var i = 1; i < responseArray.length; i++) {
+        return responseArray[i]
+      }
+      responseArray.forEach(translation => )
+      let convertedText = response[0].data.translations[0].translatedText
+      return addTranslation(1, convertedText, 'fr')
     })
       // return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: action.id}
 
