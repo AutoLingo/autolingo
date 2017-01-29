@@ -39,7 +39,15 @@ class Translate extends Component {
       <div>
         <input name="input" type='textarea' onChange={handleChange}></input>
 
-        <h2> {this.props.translations[1] && this.props.translations[1].fr}</h2>
+        <h2> {
+                this.props.translations[1] && (
+                <div>
+                  <br /> {this.props.translations[1].en}
+                  <br /> {this.props.translations[1].fr}
+                  <br /> {this.props.translations[1].ko}
+                </div>
+              )
+            } </h2>
       </div>
     )
   }

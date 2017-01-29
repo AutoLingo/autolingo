@@ -35,7 +35,7 @@ const addTranslation = (id, translation, language) => {
 // **************************************************
 export const googleTranslateEpic = (action$) => {
   return action$.ofType(TRANSLATE)
-    .debounceTime(500)
+    .debounceTime(200)
     .mergeMap(action => {
         let originalLanguage = action.language
         let text = action.originalText
@@ -57,7 +57,6 @@ export const googleTranslateEpic = (action$) => {
     })
     .mergeMap(responseArray => Observable.from(responseArray))
     .map(singleTranslation => {
-      console.log('SINGLETRANSLATION', singleTranslation)
       let language = Object.keys(singleTranslation)[0]
       let translatedData = singleTranslation[language]
       let translatedText = translatedData.data ?
