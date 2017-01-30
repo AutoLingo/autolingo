@@ -11,7 +11,14 @@ import { googleTranslateEpic } from './reducers/translate'
 
 const epicMiddleware = createEpicMiddleware(googleTranslateEpic)
 
-const store = createStore(rootReducer, applyMiddleware(createLogger(), epicMiddleware))
+const composeEnhancers =
+    process.env.NODE_ENV !== 'production' &&
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      }) : compose;
+
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(createLogger(), epicMiddleware)))
 console.log('STORE', store)
 
 export default store

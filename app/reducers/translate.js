@@ -15,6 +15,7 @@ export const translateActionCreator = (id, language, originalText) => {
     {
       type: TRANSLATE,
       originalText,
+      language,
       id
     }
   )
@@ -34,15 +35,34 @@ const addTranslation = (id, translation, language) => {
 // **************************************************
 export const googleTranslateEpic = (action$) => {
   return action$.ofType(TRANSLATE)
+    .debounceTime(200)
     .mergeMap(action => {
+        let originalLanguage = action.language
         let text = action.originalText
-      //  return Observable.merge(
-        return ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=en&target=fr&q=${text}`)
+
+        let french = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`)
+        let korean = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`)
+        let english = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=en&q=${text}`)
+
+        switch (originalLanguage) {
+          case 'en':
+            return Observable.combineLatest(french, korean, (fr, ko) => [{en: text}, {fr}, {ko}])
+          case 'fr':
+            return Observable.combineLatest(english, korean, (en, ko) => [{fr: text}, {en}, {ko}])
+          case 'ko':
+            return Observable.combineLatest(english, french, (en, fr) => [{ko: text}, {en}, {fr}])
+          default:
+            return []
+        }
     })
-    .map(response => {
-      console.log('RESPONSE', response)
-      let convertedText = response.data.translations[0].translatedText
-      return addTranslation(1, convertedText, 'fr')
+    .mergeMap(responseArray => Observable.from(responseArray))
+    .map(singleTranslation => {
+      let language = Object.keys(singleTranslation)[0]
+      let translatedData = singleTranslation[language]
+      let translatedText = translatedData.data ?
+        translatedData.data.translations[0].translatedText : translatedData
+
+      return addTranslation(1, translatedText, language)
 
     })
       // return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: action.id}
@@ -60,16 +80,13 @@ export default function translateReducer(initialState = {}, action) {
   switch (action.type) {
     case ADD_TRANSLATION:
       let id = action.id;
-      let messageObject = initialState.id || {}
-      console.log('MESSAGEOBJECT', messageObject)
+      let messageObject = initialState[id] || {}
 
-      let newTranslation = Object.assign(messageObject, {
+      let newTranslation = Object.assign({}, messageObject, {
         [action.language]: action.translation
       });
-      console.log('NEWTRANSLATION', newTranslation)
 
-       newState = Object.assign(initialState, { [id]: newTranslation} )
-       console.log('NEWSTATE', newState)
+       newState = Object.assign({}, initialState, { [id]: newTranslation} )
        break;
 
     default:
