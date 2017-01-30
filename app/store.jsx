@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 import createLogger from 'redux-logger'
 import {whoami} from './reducers/auth'
@@ -21,7 +21,7 @@ const composeEnhancers =
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(createLogger(), epicMiddleware)))
 console.log('STORE', store)
 
-export default store 
+export default store
 
 // Set the auth info at start
 // store.dispatch(whoami())
