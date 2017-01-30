@@ -19,7 +19,6 @@ const composeEnhancers =
       }) : compose;
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(createLogger(), epicMiddleware)))
-console.log('STORE', store)
 
 export default store
 
