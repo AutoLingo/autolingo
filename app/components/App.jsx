@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Translate from './Translate'
 
 export default class App extends Component {
 
   render() {
     return (
-      <Translate />
+      {
+       this.props.children && React.cloneElement(this.props.children, this.props)
+      }
     )
   }
 }
