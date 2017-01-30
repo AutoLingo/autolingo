@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-export default class App extends Component {
-
-  render() {
+export default function (props) {
     return (
-      {
-       this.props.children && React.cloneElement(this.props.children, this.props)
-      }
+    	<div>
+	      {
+	       props.children && React.cloneElement(props.children, props)
+	      }
+    	</div>
     )
-  }
 }
