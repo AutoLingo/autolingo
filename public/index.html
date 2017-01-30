@@ -14,10 +14,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <link rel="author" type="text/html" href="https://plus.google.com/+MuazKhan">
-        <meta name="author" content="Muaz Khan">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css">
+        <!-- <link rel="stylesheet" href="https://cdn.webrtc-experiment.com/style.css"> -->
+        <link rel="stylesheet" href="webRTCstyles.css">
 
         <style>
 /*            audio, video {
@@ -97,8 +96,10 @@
         </script>
 
         <!-- scripts used for peers connection -->
-        <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script>
-        <script src="https://cdn.webrtc-experiment.com/socket.io/PeerConnection.js"> </script>
+        <!-- <script src="https://cdn.webrtc-experiment.com/socket.io.js"> </script> -->
+        <script src="socket.io.js"> </script>
+        <!-- <script src="https://cdn.webrtc-experiment.com/socket.io/PeerConnection.js"> </script> -->
+        <script src="PeerConnection.js"> </script>
     </head>
 
     <body>
@@ -200,7 +201,7 @@
     <div id="main"> </div>
 
 
-    <script src="/intl/en/chrome/assets/common/js/chrome.min.js">
+    <script src="chrome.min.js">
 </script> <script>
 var chrmMenuBar = new chrm.ui.MenuBar();
       chrmMenuBar.decorate('nav');
