@@ -28331,9 +28331,18 @@
 	    var originalLanguage = action.language;
 	    var text = action.originalText;
 	
-	    var french = _ajax.ajax.getJSON('https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=fr&q=' + text);
-	    var korean = _ajax.ajax.getJSON('https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=ko&q=' + text);
-	    var english = _ajax.ajax.getJSON('https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=en&q=' + text);
+	    var french = (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=fr&q=' + text,
+	      crossDomain: true
+	    });
+	    var korean = (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=ko&q=' + text,
+	      crossDomain: true
+	    });
+	    var english = (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=en&q=' + text,
+	      crossDomain: true
+	    });
 	
 	    switch (originalLanguage) {
 	      case 'en':
@@ -28354,9 +28363,13 @@
 	  }).mergeMap(function (responseArray) {
 	    return _rxjs.Observable.from(responseArray);
 	  }).map(function (singleTranslation) {
+	    console.log('SINGLETRANSLATION', singleTranslation);
 	    var language = Object.keys(singleTranslation)[0];
+	    console.log('LANGUAGE', language);
 	    var translatedData = singleTranslation[language];
-	    var translatedText = translatedData.data ? translatedData.data.translations[0].translatedText : translatedData;
+	    console.log('TRANSLATEDDATA', translatedData);
+	    var translatedText = translatedData.response ? translatedData.response.data.translations[0].translatedText : translatedData;
+	    console.log('TRANSLATEDTEXT', translatedText);
 	
 	    return addTranslation(1, translatedText, language);
 	  });
