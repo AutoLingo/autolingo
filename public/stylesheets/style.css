@@ -4,14 +4,18 @@ html {
 #map {
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
-  width: 100%; }
+  width: 100%;
+  z-index: 1; }
 
 /*#mapid { height: 100px; }*/
 #country-buttons {
   position: absolute;
   right: 5vw;
-  bottom: 10vh; }
+  bottom: 10vh;
+  z-index: 99; }
 
 #fit-america {
   display: inline-block;

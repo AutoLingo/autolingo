@@ -1,0 +1,1 @@
+export MAPBOX_ACCESS_TOKEN=pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw
