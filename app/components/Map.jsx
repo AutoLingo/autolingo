@@ -8,8 +8,6 @@ console.log(countriesLayer);
 export default class Map extends Component {
   constructor (props) {
     super(props);
-    // this.state + { map: {} }
-    // this.props = props;
     this.map;
     this.repositionMap = this.repositionMap.bind(this);
   }
@@ -84,10 +82,11 @@ export default class Map extends Component {
       geojson.resetStyle(e.target)
     }
 
+    let mapThis = this;
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds())
-      // const country = this.props.findCountry(e.target.getBounds());
-      // this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+      const country = mapThis.props.findCountry(e.target.getBounds());
+      mapThis.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
     }
 
     function countriesOnEachFeature(feature, layer) {

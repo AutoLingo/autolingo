@@ -11,26 +11,39 @@ function mapStateToProps (state, ownProps) {
   const france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 }
   const korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 }
   const zoomOut = { name: 'globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 }
-  // function findCountry(bounds) {
-  //   let country = {};
-  //   switch (bonds._northEast.lat) {
-  //     case 53.540307:
-  //       country = america
-  //       break;
-  //     default:
-  //       return country;
-  //   }
-  //   return country
-  // }
-  return { setCountry, america, china, spain, france, korea, zoomOut,
-    // findCountry
-  };
+
+  function findCountry(bounds) {
+    let country = {};
+    switch (bounds._northEast.lat) {
+      case 49.439556:
+        country = america;
+        break;
+      case 53.540307:
+        country = china;
+        break;
+      case 43.739352:
+        country = spain;
+        break;
+      case 51.124212:
+        country = france;
+        break;
+      case 38.634036:
+        country = korea;
+        break;
+      default:
+        return country;
+    }
+    return country
+  }
+
+  return { setCountry, america, china, spain, france, korea, zoomOut, findCountry };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
   function selectCountry(selectedCountry, mapFitBounds, zoomNum) {
     dispatch(setCountry(selectedCountry, mapFitBounds, zoomNum))
   }
+
   return { selectCountry };
 }
 
