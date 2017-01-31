@@ -1,3 +1,102 @@
 html {
   box-sizing: border-box;
 }
+
+#map { position:absolute; top:0; bottom:0; width:100%; }
+
+/*#mapid { height: 100px; }*/
+
+#country-buttons {
+  position: absolute;
+  right: 5vw;
+  bottom: 10vh;
+}
+
+#fit-america {
+  display: inline-block;
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: purple;
+}
+
+#fit-spain {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #ee8a65;
+}
+
+#fit-china {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #FF4500;
+}
+
+#fit-france {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: blue;
+}
+
+#fit-korea {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: red;
+}
+
+#zoomout {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: grey;
+}

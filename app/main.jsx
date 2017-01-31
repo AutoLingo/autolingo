@@ -11,26 +11,16 @@ import 'rxjs';
 // import WhoAmI from './components/WhoAmI'
 import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
-
-const ExampleApp = connect(
-  ({ auth }) => ({ user: auth })
-) (
-  ({ user, children }) =>
-    <div>
-      <nav>
-        {user ? <WhoAmI/> : <Login/>}
-      </nav>
-      {children}
-    </div>
-)
+import MapContainer from './containers/MapContainer'
 
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/Language" />
+        <IndexRedirect to="/map" />
         <Route path="/translate" component={Translate} />
-        <Route path="/Language" component={LanguageMessage} />
+        <Route path="/language" component={LanguageMessage} />
+        <Route path="/map" component={MapContainer} />
       </Route>
     </Router>
   </Provider>,
