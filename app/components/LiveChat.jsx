@@ -2,7 +2,9 @@ import React from 'react'
 import VideoChat from './VideoChat'
 
 const LiveChat = (props) => (
-	<VideoChat />
+	<article>
+		<VideoChat />
+	</article>
 )
 
 export default LiveChat

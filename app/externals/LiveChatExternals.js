@@ -1,6 +1,5 @@
 const LiveChatExternals = () => {
 
-	console.log('hello')
                 var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
                 var sender = Math.round(Math.random() * 999999999) + 999999999;
 
@@ -83,10 +82,10 @@ const LiveChatExternals = () => {
                     });
                 };
 
-                document.querySelector('#your-name').onchange = function() {
-                    console.log('peer.userid', this.value);
-                    peer.userid = this.value;
-                };
+                // document.querySelector('#your-name').onchange = function() {
+                //     console.log('peer.userid', this.value);
+                //     peer.userid = this.value;
+                // };
 
                 var videosContainer = document.getElementById('videos-container') || document.body;
                 var btnSetupNewRoom = document.getElementById('setup-new-room');

@@ -1,3 +1,78 @@
 html {
   box-sizing: border-box;
 }
+
+
+/**************************************************Temporary CSS*/
+/*            audio, video {
+                -moz-transition: all 1s ease;
+                -ms-transition: all 1s ease;
+
+                -o-transition: all 1s ease;
+                -webkit-transition: all 1s ease;
+                transition: all 1s ease;
+                vertical-align: top;
+            }
+*/
+            input {
+                border: 1px solid #d9d9d9;
+                border-radius: 1px;
+                font-size: 2em;
+                margin: .2em;
+                width: 30%;
+            }
+
+            .setup {
+/*                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+                font-size: 102%;
+                height: 47px;
+                margin-left: -9px;
+                margin-top: 8px;
+                position: absolute;*/
+                float:right;
+                margin: 20px;
+            }
+
+            p { padding: 1em; }
+
+            li {
+                border-bottom: 1px solid rgb(189, 189, 189);
+                border-left: 1px solid rgb(189, 189, 189);
+                padding: .5em;
+            }
+
+            .highlight { color: rgb(0, 8, 189); }
+
+            #start_button {
+            	display: block !important;
+            	margin: 20px auto;
+            	background: white;
+            	border: 1px solid red;
+            }
+
+            #videos-container {
+	    	    position: relative;
+            }
+
+            #videos-container video:first-child {
+            	width: 100%;
+            }
+
+            #videos-container video:nth-child(2) {
+            	width: 200px;
+            	position: absolute;
+            	right: 0;
+            	bottom: 0;
+            }
+
+            #share-link {
+            	line-height: 3em;
+            	margin-left: 20px;
+            }
+
+            #results {
+            	margin: 20px;
+            }
+
+/**************************************************Temporary CSS End*/
