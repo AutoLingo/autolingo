@@ -24,10 +24,17 @@ import Translate from './components/Translate'
 //     </div>
 // )
 
+const generateHash = () => {
+  if(!location.hash.replace('#', '').length) {
+      location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
+      location.reload();
+  }
+}
+
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/livechat" component={LiveChat} />
+      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
         <IndexRedirect to="/translate" />
         <Route path="/translate" component={Translate} />
