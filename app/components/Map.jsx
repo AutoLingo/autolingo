@@ -24,7 +24,6 @@ export default class Map extends Component {
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
-
     var geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {
         switch(feature.properties.title) {
@@ -111,7 +110,6 @@ export default class Map extends Component {
   }
 
   render() {
-
     return (
       <div>
         <div id="country-buttons">
