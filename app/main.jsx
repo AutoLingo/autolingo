@@ -24,13 +24,13 @@ const generateHash = () => {
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
+      {/* <Route path="/language" component={LanguageMessage} /> */}
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
-      <IndexRedirect to="/map" />
-        <Route path="/map" component={MapContainer} >
-          <Route path="/map" component={LanguageMessage} />
-        </Route>
+        <IndexRedirect to="/map" />
         <Route path="/translate" component={Translate} />
+        <Route path="/map" component={MapContainer} >
+      </Route>
       </Route>
     </Router>
   </Provider>,

@@ -116,11 +116,11 @@ export default class Map extends Component {
         <LanguageMessage />
         <div id="country-buttons">
           <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to United States of America</button>
-          <button id='fit-china' onClick={ this.repositionMap(this.props.china)}>Go to China</button>
-          <button id='fit-spain' onClick={ this.repositionMap(this.props.spain)}>Go to Spain</button>
-          <button id='fit-france' onClick={ this.repositionMap(this.props.france)}>Go to France</button>
-          <button id='fit-korea' onClick={ this.repositionMap(this.props.korea)}>Go to Korea</button>
-          <button id='zoomout' onClick={ this.repositionMap(this.props.zoomOut)}>Zoom out</button>
+          <button id='fit-china' onClick={ this.repositionMap(this.props.china) }>Go to China</button>
+          <button id='fit-spain' onClick={ this.repositionMap(this.props.spain) }>Go to Spain</button>
+          <button id='fit-france' onClick={ this.repositionMap(this.props.france) }>Go to France</button>
+          <button id='fit-korea' onClick={ this.repositionMap(this.props.korea) }>Go to Korea</button>
+          <button id='zoomout' onClick={ this.repositionMap(this.props.zoomOut) }>Zoom out</button>
         </div>
       </div>
     )
