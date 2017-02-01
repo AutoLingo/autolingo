@@ -40,9 +40,8 @@ class LanguageMessage extends React.Component {
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-    
+
   selectLanguage(language) {
-    console.log(language)
     this.setState({modalIsOpen: false})
 
     swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success")
@@ -51,7 +50,7 @@ class LanguageMessage extends React.Component {
   render() {
 
     return (
-      <div>
+      <div id="language-message" >
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -78,5 +77,3 @@ class LanguageMessage extends React.Component {
 // ReactDOM.render(<App />, appElement);
 
 export default LanguageMessage;
-
-

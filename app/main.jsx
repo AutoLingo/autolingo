@@ -26,10 +26,11 @@ render (
     <Router history={browserHistory}>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
-        <IndexRedirect to="/map" />
+      <IndexRedirect to="/map" />
+        <Route path="/map" component={MapContainer} >
+          <Route path="/map" component={LanguageMessage} />
+        </Route>
         <Route path="/translate" component={Translate} />
-        <Route path="/language" component={LanguageMessage} />
-        <Route path="/map" component={MapContainer} />
       </Route>
     </Router>
   </Provider>,
