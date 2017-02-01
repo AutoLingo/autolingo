@@ -3,15 +3,20 @@
 import React, { Component } from 'react';
 import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
-console.log(countriesLayer);
+import LanguageMessage from './LanguageMessage';
 
 export default class Map extends Component {
+  constructor (props) {
+    super(props);
+    this.map;
+    this.repositionMap = this.repositionMap.bind(this);
+  }
+
   componentDidMount() {
-    console.log(L.mapbox)
-    
+    // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
-
+    this.map = map
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/thlee1122/ciyhpbj15003d2sluqt6ylrqa').addTo(map);
 
@@ -19,12 +24,11 @@ export default class Map extends Component {
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
-
     var geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {
         switch(feature.properties.title) {
           case 'France': return {
-            color: "#3ca0d3" 
+            color: "#3ca0d3"
           };
           case 'China': return {
             color: "#f86767"
@@ -57,7 +61,7 @@ export default class Map extends Component {
 
     // //Need to change below click event when refactoring into react component
     // map.on('click', onMapClick);
-    
+
     function highlightFeature(e) {
       var layer = e.target;
       layer.setStyle(
@@ -78,8 +82,11 @@ export default class Map extends Component {
       geojson.resetStyle(e.target)
     }
 
+    let mapThis = this;
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds())
+      const country = mapThis.props.findCountry(e.target.getBounds());
+      mapThis.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
     }
 
     function countriesOnEachFeature(feature, layer) {
@@ -87,75 +94,35 @@ export default class Map extends Component {
         {
           mouseover: highlightFeature,
           mouseout: resetHighlight,
-          click: zoomToFeature  
+          click: zoomToFeature
         }
       )
     }
 
-    //functions for fit buttons
-    document.getElementById('fit-america').addEventListener('click', function() {
-          map.fitBounds([[
-              38.68551, -99.49219
-          ]], {maxZoom: 5});
-          map.dragging.enable();
-      }
-    );
-
-    document.getElementById('fit-china').addEventListener('click', function() {
-          map.fitBounds([[
-              37.23033, 105.77637
-          ]], {maxZoom: 5});
-          map.dragging.enable();
-      }
-    );
-
-    document.getElementById('fit-spain').addEventListener('click', function() {
-          map.fitBounds([[
-              40.66397, -3.40576
-          ]], {maxZoom: 6});
-          map.dragging.enable();
-      }
-    );
-
-    document.getElementById('fit-france').addEventListener('click', function() {
-          map.fitBounds([[
-              46.83013, 2.59277
-          ]], {maxZoom: 6});
-          map.dragging.enable();
-      }
-    );
-
-    document.getElementById('fit-korea').addEventListener('click', function() {
-          map.fitBounds([[
-              35.88015, 127.97974
-          ]], {maxZoom: 7});
-          map.dragging.enable();
-      }
-    );
-
-    document.getElementById('zoomout').addEventListener('click', function() {
-          map.fitBounds([[
-              16.541430, 7.558594
-          ]], {maxZoom: 3});
-          map.dragging.enable();
-      }
-    );
+  }
+  repositionMap(country) {
+    let self = this;
+    return function (event) {
+      self.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
+      self.map.dragging.enable();
+      self.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+    }
   }
 
   render() {
-    
     return (
       <div>
+        <div id='map'></div>
+        <LanguageMessage />
         <div id="country-buttons">
-          <button id="fit-america">Go to United States of America</button>
-          <button id='fit-china'>Go to China</button>
-          <button id='fit-spain'>Go to Spain</button>
-          <button id='fit-france'>Go to France</button>
-          <button id='fit-korea'>Go to Korea</button>
-          <button id='zoomout'>Zoom out</button>
+          <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to United States of America</button>
+          <button id='fit-china' onClick={ this.repositionMap(this.props.china)}>Go to China</button>
+          <button id='fit-spain' onClick={ this.repositionMap(this.props.spain)}>Go to Spain</button>
+          <button id='fit-france' onClick={ this.repositionMap(this.props.france)}>Go to France</button>
+          <button id='fit-korea' onClick={ this.repositionMap(this.props.korea)}>Go to Korea</button>
+          <button id='zoomout' onClick={ this.repositionMap(this.props.zoomOut)}>Zoom out</button>
         </div>
       </div>
     )
   }
-//
 }
