@@ -78704,11 +78704,11 @@
 	
 	var _MessageList2 = _interopRequireDefault(_MessageList);
 	
-	var _MessageForm = __webpack_require__(734);
+	var _MessageForm = __webpack_require__(733);
 	
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
-	var _ChangeNameForm = __webpack_require__(735);
+	var _ChangeNameForm = __webpack_require__(734);
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
@@ -78767,7 +78767,7 @@
 	
 			users.push(name);
 			messages.push({
-				user: "APPLICATION BOT",
+				user: "LingoBo",
 				text: name + ' Joined'
 			});
 			this.setState({ users: users, messages: messages });
@@ -78785,7 +78785,7 @@
 			var index = users.indexOf(name);
 			users.splice(index, 1);
 			messages.push({
-				user: 'APPLICATION BOT',
+				user: 'LingoBot',
 				text: name + ' Left'
 			});
 			this.setState({ users: users, messages: messages });
@@ -87228,7 +87228,7 @@
 				_react2.default.createElement(
 					"h3",
 					null,
-					"Online Users"
+					"Current Online Users"
 				),
 				_react2.default.createElement(
 					"ul",
@@ -87263,7 +87263,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Message = __webpack_require__(733);
+	var _Message = __webpack_require__(735);
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -87272,7 +87272,17 @@
 	//MessageList will render each message
 	var MessageList = _react2.default.createClass({
 		displayName: 'MessageList',
+	
+		//scroll to the bottom of the chat box as the user types in new sentences
+		scollToBottom: function scollToBottom() {
+			var node = ReactDOM.findDOMNode(this.messagesEnd);
+			node.scrollIntoView({ behavior: "smooth" });
+		},
 		render: function render() {
+			var _this = this;
+	
+			// this.scrollToBottom && this.scrollToBottom()
+	
 			return _react2.default.createElement(
 				'div',
 				{ className: 'messages' },
@@ -87296,7 +87306,11 @@
 							text: message.text
 						})
 					);
-				})
+				}),
+				_react2.default.createElement('div', { style: { float: "left", clear: "both" },
+					ref: function ref(el) {
+						_this.messagesEnd = el;
+					} })
 			);
 		}
 	});
@@ -87305,46 +87319,6 @@
 
 /***/ },
 /* 733 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//render single message with UserID and text
-	var Message = _react2.default.createClass({
-		displayName: "Message",
-		render: function render() {
-			return _react2.default.createElement(
-				"div",
-				{ className: "message" },
-				_react2.default.createElement(
-					"strong",
-					null,
-					this.props.user,
-					": "
-				),
-				_react2.default.createElement(
-					"span",
-					null,
-					this.props.text
-				)
-			);
-		}
-	});
-	
-	exports.default = Message;
-
-/***/ },
-/* 734 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87440,7 +87414,7 @@
 	exports.default = MessageForm;
 
 /***/ },
-/* 735 */
+/* 734 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87500,6 +87474,46 @@
 	});
 	
 	exports.default = ChangeNameForm;
+
+/***/ },
+/* 735 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//render single message with UserID and text
+	var Message = _react2.default.createClass({
+		displayName: "Message",
+		render: function render() {
+			return _react2.default.createElement(
+				"div",
+				{ className: "message" },
+				_react2.default.createElement(
+					"strong",
+					null,
+					this.props.user,
+					": "
+				),
+				_react2.default.createElement(
+					"span",
+					null,
+					this.props.text
+				)
+			);
+		}
+	});
+	
+	exports.default = Message;
 
 /***/ }
 /******/ ]);
