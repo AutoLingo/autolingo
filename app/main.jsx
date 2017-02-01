@@ -27,7 +27,8 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        {/* <IndexRedirect to="/" /> */}
+        <IndexRedirect to="/map" />
+        <Route path="/map" component={MapContainer} />
         <Route path="/chat" component={ChatApp} />
       </Route>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>

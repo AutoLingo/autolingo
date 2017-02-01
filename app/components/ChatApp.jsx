@@ -1,5 +1,10 @@
 import React from 'react';
 import io from 'socket.io-client';
+import UsersList from './UserList.jsx';
+import MessageList from './MessageList.jsx';
+import MessageForm from './MessageForm.jsx';
+import ChangeNameForm from './ChangeNameForm.jsx';
+
 const socket = io.connect();
 
 var ChatApp = React.createClass({
@@ -98,7 +103,7 @@ var ChatApp = React.createClass({
 
 	render() {
 		return (
-			<div>
+			<div id="chatbox-body">
 				<UsersList
 					users={this.state.users}
 				/>
@@ -109,7 +114,7 @@ var ChatApp = React.createClass({
 					onMessageSubmit={this.handleMessageSubmit}
 					user={this.state.user}
 				/>
-				<changeNameForm
+				<ChangeNameForm
 					onChangeName={this.handleChangeName}
 				/>
 			</div>

@@ -21,4 +21,4 @@ var UsersList = React.createClass({
 	}
 })
 
-export default UserList;
+export default UsersList;
