@@ -13,6 +13,7 @@ import 'rxjs';
 import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
+import NavbarContainer from './containers/NavbarContainer'
 
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
@@ -24,14 +25,10 @@ const generateHash = () => {
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/language" component={LanguageMessage} />
-      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
-        <IndexRedirect to="/map" />
-        <Route path="/translate" component={Translate} />
-        <Route path="/map" component={MapContainer} >
       </Route>
-      </Route>
+      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
+      <Route path="/translate" component={Translate} />
     </Router>
   </Provider>,
   document.getElementById('main')

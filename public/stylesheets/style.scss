@@ -1,11 +1,30 @@
+// ***************** start of <nav> and <html> styling *****************
 html {
   box-sizing: border-box;
+  background-color: lightblue;
 }
+
+nav {
+  width: 100%;
+  height: 10vh;
+  text-align: center;
+}
+
+#title {
+  font-size: 7vh;
+  display: inline;
+}
+
+.navbar-btn {
+  float: right;
+  margin-top: 3vh;
+}
+// ***************** end of <nav> and <html> styling *****************
 
 // ***************** Start of map styling *****************
 #map {
   position:absolute;
-  top:0;
+  top: 10vh;
   left: 0;
   right: 0;
   bottom:0;
@@ -113,6 +132,8 @@ html {
 
 // ***************** end of map styling *****************
 
+// ***************** start of LanguageMessage modal styling *****************
+
 #language-message {
   // position: absolute;
   // top: 50vh;
@@ -128,15 +149,8 @@ html {
 .ReactModal__Overlay {
   z-index: 1;
 }
-// #main {
-//   position:absolute;
-//   top:0;
-//   left: 0;
-//   right: 0;
-//   bottom:0;
-//   width:100%;
-//   z-index: 1;
-// }
+// ***************** end of LanguageMessage modal styling *****************
+
 
 /**************************************************Temporary CSS*/
 /*            audio, video {
