@@ -5,10 +5,11 @@ import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax';
 
 // **************************************************
-
+// Actions
 const ADD_TRANSLATION = "ADD_TRANSLATION"
 const TRANSLATE = "TRANSLATE"
 
+// Action creators
 // Fed into the googleTranslateEpic
 export const translateActionCreator = (id, language, originalText) => {
   return (
