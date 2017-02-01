@@ -5,10 +5,11 @@ import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax';
 
 // **************************************************
-
+// Actions
 const ADD_TRANSLATION = "ADD_TRANSLATION"
 const TRANSLATE = "TRANSLATE"
 
+// Action creators
 // Fed into the googleTranslateEpic
 export const translateActionCreator = (id, language, originalText) => {
   return (
@@ -40,9 +41,18 @@ export const googleTranslateEpic = (action$) => {
         let originalLanguage = action.language
         let text = action.originalText
 
-        let french = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`)
-        let korean = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`)
-        let english = ajax.getJSON(`https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=en&q=${text}`)
+        let french = ajax({
+          url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`,
+          crossDomain: true
+        })
+        let korean = ajax({
+          url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`,
+          crossDomain: true
+        })
+        let english = ajax({
+          url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=en&q=${text}`,
+          crossDomain: true
+        })
 
         switch (originalLanguage) {
           case 'en':
@@ -57,10 +67,14 @@ export const googleTranslateEpic = (action$) => {
     })
     .mergeMap(responseArray => Observable.from(responseArray))
     .map(singleTranslation => {
+      console.log('SINGLETRANSLATION', singleTranslation)
       let language = Object.keys(singleTranslation)[0]
+      console.log('LANGUAGE', language)
       let translatedData = singleTranslation[language]
-      let translatedText = translatedData.data ?
-        translatedData.data.translations[0].translatedText : translatedData
+      console.log('TRANSLATEDDATA', translatedData)
+      let translatedText = translatedData.response ?
+        translatedData.response.data.translations[0].translatedText : translatedData
+        console.log('TRANSLATEDTEXT', translatedText)
 
       return addTranslation(1, translatedText, language)
 

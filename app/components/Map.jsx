@@ -13,6 +13,7 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
+    // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
     this.map = map
@@ -124,5 +125,4 @@ export default class Map extends Component {
       </div>
     )
   }
-//
 }
