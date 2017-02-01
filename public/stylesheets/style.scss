@@ -143,6 +143,7 @@ nav {
   margin-top: 80px;
   position: absolute;
   z-index: 99;
+  background-color: white;
 }
 
 .users {
@@ -206,6 +207,18 @@ nav {
 
 // ***************** end of cat box (socket) styling *****************
 
+// ***************** end of LanguageMessage modal styling *****************
+
+main {
+  position: absolute;
+  top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  // background-color: lightgray;
+  z-index: 1;
+}
+
+// ***************** start of main styling *****************
 
 // ***************** start of LanguageMessage modal styling *****************
 
@@ -224,7 +237,11 @@ nav {
 .ReactModal__Overlay {
   z-index: 1;
 }
-// ***************** end of LanguageMessage modal styling *****************
+
+.ReactModal__Overlay {
+  z-index: 1;
+}
+// ***************** end of main styling *****************
 
 
 /**************************************************Temporary CSS*/

@@ -116,7 +116,8 @@ nav {
   border: 5px solid black;
   margin-top: 80px;
   position: absolute;
-  z-index: 99; }
+  z-index: 99;
+  background-color: white; }
 
 .users {
   float: right;
@@ -166,11 +167,21 @@ nav {
 .change_name_form h3 {
   font-size: 25px; }
 
+main {
+  position: absolute;
+  top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  z-index: 1; }
+
 #language-message {
   z-index: 100; }
 
 .ReactModal__Content--after-open {
   z-index: 99; }
+
+.ReactModal__Overlay {
+  z-index: 1; }
 
 .ReactModal__Overlay {
   z-index: 1; }

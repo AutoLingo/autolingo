@@ -1,9 +1,13 @@
 import React from 'react';
-
+import ChatApp from '../components/ChatApp'
 export default function Main (props) {
   return (
-    <div>
+    <main>
       Main page
-    </div>
+      <ChatApp/>
+      {/* {
+       props.children && React.cloneElement(props.children, props)
+      } */}
+    </main>
   );
 }

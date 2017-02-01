@@ -90,17 +90,20 @@
 	
 	var _ChatApp2 = _interopRequireDefault(_ChatApp);
 	
+	var _MainContainer = __webpack_require__(741);
+	
+	var _MainContainer2 = _interopRequireDefault(_MainContainer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// import Login from './components/Login'
+	// import WhoAmI from './components/WhoAmI'
 	var generateHash = function generateHash() {
 	  if (!location.hash.replace('#', '').length) {
 	    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
 	    location.reload();
 	  }
 	};
-	// import Login from './components/Login'
-	// import WhoAmI from './components/WhoAmI'
-	
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -111,9 +114,8 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
-	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/map' }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/map', component: _MapContainer2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/chat', component: _ChatApp2.default })
+	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/main' }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/main', component: _MainContainer2.default })
 	    ),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/translate', component: _Translate2.default })
@@ -88001,6 +88003,64 @@
 	});
 	
 	exports.default = ChangeNameForm;
+
+/***/ },
+/* 741 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(233);
+	
+	var _Main = __webpack_require__(742);
+	
+	var _Main2 = _interopRequireDefault(_Main);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function mapStateToProps(state, ownProps) {
+	  return {};
+	}
+	
+	function mapDispatchToProps(dispatch, ownProps) {
+	  return {};
+	}
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Main2.default);
+
+/***/ },
+/* 742 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = Main;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ChatApp = __webpack_require__(683);
+	
+	var _ChatApp2 = _interopRequireDefault(_ChatApp);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function Main(props) {
+	  return _react2.default.createElement(
+	    'main',
+	    null,
+	    'Main page',
+	    _react2.default.createElement(_ChatApp2.default, null)
+	  );
+	}
 
 /***/ }
 /******/ ]);

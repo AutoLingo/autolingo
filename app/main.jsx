@@ -15,6 +15,7 @@ import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
 import NavbarContainer from './containers/NavbarContainer'
 import ChatApp from './components/ChatApp'
+import MainContainer from './containers/MainContainer'
 
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
@@ -27,9 +28,10 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/map" />
-        <Route path="/map" component={MapContainer} />
-        <Route path="/chat" component={ChatApp} />
+        <IndexRedirect to="/main" />
+        <Route path="/main" component={MainContainer}>
+          {/* <Route path="/main/chat" component={ChatApp} /> */}
+        </Route>
       </Route>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/translate" component={Translate} />
