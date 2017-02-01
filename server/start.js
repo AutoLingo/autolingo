@@ -5,7 +5,62 @@ const bodyParser = require('body-parser')
 const {resolve} = require('path')
 const passport = require('passport')
 const PrettyError = require('pretty-error')
+const socketio = require('socket.io');
 
+const chalk = require('chalk');
+
+let IO = null;
+
+var userNames = (function() {
+  var names = {};
+
+  //check if the given name exists in the names object
+  var claim = function(name) {
+    if(!name || names[name]) {
+      return false;
+    } else {
+    names[name] = true;
+      return true;
+    }
+  }
+
+  //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
+  //The number will only increase if the guest username does not already exist in the names object. 
+  var getGuestName = function() {
+    var name,
+      nextUserId = 1;
+
+      do {
+        name = 'Guest ' + nextUserId;
+        nextUserId += 1;
+      } while (!claim(name));
+
+      return name
+  }
+
+  //serialize claimed names as an array
+  var get = function() {
+    var res = [];
+    for(let user in names) {
+      res.push(user)
+    }
+
+    return res;
+  }
+
+  var free = function (name) {
+    if (names[name]) {
+      delete names[name];
+    }
+  }
+
+  return {
+    claim: claim,
+    free: free,
+    get: get,
+    getGuestName: getGuestName
+  }
+}())
 
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
@@ -15,6 +70,8 @@ const PrettyError = require('pretty-error')
 const pkg = require('APP')
 
 const app = express()
+const http = require('http');
+const server = http.createServer()
 
 if (!pkg.isProduction && !pkg.isTesting) {
   // Logging middleware (dev only)
@@ -73,4 +130,75 @@ if (module === require.main) {
       console.log(`Listening on ${JSON.stringify(server.address())}`)
     }
   )
+
+  socketInit(server);
 }
+//**********************socket.io***************************//
+//Keep track of names that are being used. So that there is no duplicates
+
+
+
+
+//**********
+function socketInit (server) {
+
+  if (!IO) IO = socketio(server);
+  else return IO
+  var name = userNames.getGuestName();
+
+  IO.on('connection', function(socket) {
+    console.log('A new user has connected')
+
+    //send the new user their name and a list of users
+    socket.emit('init', {
+      name: name,
+      users: userNames.get()
+    });
+
+    //notify other users that a new user has joined
+    socket.broadcast.emit('user:join', {
+      name: name
+    });
+
+    //render/send user's message to other user
+    socket.on('send:message', function(data) {
+      socket.broadcast.emit('send:message', {
+        user: name,
+        text: data.text
+      })
+    })
+    
+    //validate user's new name and show success message
+    socket.on('change:name', function(data, fn) {
+      if(userNames.claim(data.name)) {
+        var oldName = name;
+        userNames.free(oldName);
+
+        name = data.name;
+
+        socket.broadcast.emit('change:name', {
+          oldName: oldName,
+          newName: name
+        });
+
+        fn(true)
+      } else {
+        fn(false)
+      }
+    });
+
+    //send/broadcast to user2 that user1 left the chat box
+    socket.on('disconnect', function() {
+      socket.broadcast.emit('user:left', {
+        name: name
+      })
+      userNames.free(name);
+    })
+  })
+}
+
+
+
+
+
+
