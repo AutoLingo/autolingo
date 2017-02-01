@@ -13,6 +13,7 @@ import 'rxjs';
 import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
+import ChatApp from './components/ChatApp'
 
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
@@ -31,6 +32,8 @@ render (
           <Route path="/map" component={LanguageMessage} />
         </Route>
         <Route path="/translate" component={Translate} />
+        <Route path="/language" component={LanguageMessage} />
+        <Route path="/chat" component={ChatApp} />
       </Route>
     </Router>
   </Provider>,
