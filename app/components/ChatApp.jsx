@@ -1,7 +1,8 @@
 import React from 'react';
-import socket from 'socket.io';
+import io from 'socket.io-client';
+const socket = io.connect();
 
-var chatApp = React.createClass({
+var ChatApp = React.createClass({
 	//set empty array/string for users, messages, text
 	getInitialState() {
 		return {

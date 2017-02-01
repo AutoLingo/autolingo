@@ -5,10 +5,62 @@ const bodyParser = require('body-parser')
 const {resolve} = require('path')
 const passport = require('passport')
 const PrettyError = require('pretty-error')
-const socket = require('socket.io');
+const socketio = require('socket.io');
+
 const chalk = require('chalk');
 
+let IO = null;
 
+var userNames = (function() {
+  var names = {};
+
+  //check if the given name exists in the names object
+  var claim = function(name) {
+    if(!name || names[name]) {
+      return false;
+    } else {
+    names[name] = true;
+      return true;
+    }
+  }
+
+  //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
+  //The number will only increase if the guest username does not already exist in the names object. 
+  var getGuestName = function() {
+    var name,
+      nextUserId = 1;
+
+      do {
+        name = 'Guest ' + nextUserId;
+        nextUserId += 1;
+      } while (!claim(name));
+
+      return name
+  }
+
+  //serialize claimed names as an array
+  var get = function() {
+    var res = [];
+    for(let user in names) {
+      res.push(user)
+    }
+
+    return res;
+  }
+
+  var free = function (name) {
+    if (names[name]) {
+      delete names[name];
+    }
+  }
+
+  return {
+    claim: claim,
+    free: free,
+    get: get,
+    getGuestName: getGuestName
+  }
+}())
 
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
@@ -78,65 +130,23 @@ if (module === require.main) {
       console.log(`Listening on ${JSON.stringify(server.address())}`)
     }
   )
+
+  socketInit(server);
 }
 //**********************socket.io***************************//
 //Keep track of names that are being used. So that there is no duplicates
-var userNames = (function() {
-  var names = {};
 
-  //check if the given name exists in the names object
-  var claim = function(name) {
-    if(!name || names[name]) {
-      return false;
-    } else {
-    names[name] = true;
-      return true;
-    }
-  }
 
-  //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
-  //The number will only increase if the guest username does not already exist in the names object. 
-  var getGuestName = function() {
-    var name,
-      nextUserId = 1;
 
-      do {
-        name = 'Guest ' + nextUserId;
-        nextUserId += 1;
-      } while (!claim(name));
-
-      return name
-  }
-
-  //serialize claimed names as an array
-  var get = function() {
-    var res = [];
-    for(user in names) {
-      res.push(user)
-    }
-
-    return res;
-  }
-
-  var free = function (name) {
-    if (names[name]) {
-      delete names[name];
-    }
-  }
-
-  return {
-    claim: claim,
-    free: free,
-    get: get,
-    getGuestName: getGuestName
-  }
-}())
 
 //**********
-module.exports = function(socket) {
+function socketInit (server) {
+
+  if (!IO) IO = socketio(server);
+  else return IO
   var name = userNames.getGuestName();
 
-  socket.on('connection', function(socket) {
+  IO.on('connection', function(socket) {
     console.log('A new user has connected')
 
     //send the new user their name and a list of users
