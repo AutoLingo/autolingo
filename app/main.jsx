@@ -14,6 +14,7 @@ import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
 
+// generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
       location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
