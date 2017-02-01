@@ -2,7 +2,7 @@ html {
   box-sizing: border-box;
 }
 
-
+// ***************** Start of map styling *****************
 #map {
   position:absolute;
   top:0;
@@ -110,6 +110,9 @@ html {
   color: #fff;
   background: grey;
 }
+
+// ***************** end of map styling *****************
+
 /**************************************************Temporary CSS*/
 /*            audio, video {
                 -moz-transition: all 1s ease;
