@@ -112,8 +112,8 @@ export default class Map extends Component {
   render() {
     return (
       <div>
-        <div id='map'></div>
         <LanguageMessage />
+        <div id='map'></div>
         <div id="country-buttons">
           <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to United States of America</button>
           <button id='fit-china' onClick={ this.repositionMap(this.props.china) }>Go to China</button>

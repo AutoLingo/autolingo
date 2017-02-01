@@ -24,7 +24,7 @@ const generateHash = () => {
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      {/* <Route path="/language" component={LanguageMessage} /> */}
+      <Route path="/language" component={LanguageMessage} />
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
         <IndexRedirect to="/map" />

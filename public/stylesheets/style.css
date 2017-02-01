@@ -98,6 +98,12 @@ html {
 #language-message {
   z-index: 100; }
 
+.ReactModal__Content--after-open {
+  z-index: 99; }
+
+.ReactModal__Overlay {
+  z-index: 1; }
+
 /**************************************************Temporary CSS*/
 /*            audio, video {
                 -moz-transition: all 1s ease;
