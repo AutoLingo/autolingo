@@ -131,7 +131,8 @@ nav {
   border: 5px solid black;
   padding: 1em;
   margin-left: 210px;
-  height: 400px; }
+  height: 400px;
+  overflow: scroll; }
 
 .messages h2 {
   font-size: 30px; }
