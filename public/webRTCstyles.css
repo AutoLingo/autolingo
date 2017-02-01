@@ -1,6 +1,5 @@
 @font-face {
     font-family: 'Myriad';
-    src: url('/web/20160412003200/https://www.webrtc-experiment.com/fonts/MyriadPro-Light.otf') format("opentype");
     font-weight: 400;
 }
 
@@ -500,14 +499,12 @@ li li h2 {
     position: absolute;
     top: 0;
     left: 0;
-    background: url('/web/20160412003200/https://cdn.webrtc-experiment.com/images/fork-left.png');
 }
 
 .fork-right {
     position: absolute;
     top: 0;
     right: 0;
-    background: url('/web/20160412003200/https://cdn.webrtc-experiment.com/images/fork-right.png');
 }
 
 select {
