@@ -11,18 +11,8 @@ import 'rxjs';
 // import Login from './components/Login'
 // import WhoAmI from './components/WhoAmI'
 import Translate from './components/Translate'
-
-// const ExampleApp = connect(
-//   ({ auth }) => ({ user: auth })
-// ) (
-//   ({ user, children }) =>
-//     <div>
-//       <nav>
-//         {user ? <WhoAmI/> : <Login/>}
-//       </nav>
-//       {children}
-//     </div>
-// )
+import LanguageMessage from './components/LanguageMessage'
+import MapContainer from './containers/MapContainer'
 
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
@@ -36,8 +26,10 @@ render (
     <Router history={browserHistory}>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
-        <IndexRedirect to="/translate" />
+        <IndexRedirect to="/map" />
         <Route path="/translate" component={Translate} />
+        <Route path="/language" component={LanguageMessage} />
+        <Route path="/map" component={MapContainer} />
       </Route>
     </Router>
   </Provider>,

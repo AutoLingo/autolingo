@@ -2,6 +2,116 @@ html {
   box-sizing: border-box;
 }
 
+// ***************** Start of map styling *****************
+#map {
+  position:absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom:0;
+  width:100%;
+  z-index: 1;
+}
+
+/*#mapid { height: 100px; }*/
+
+#country-buttons {
+  position: absolute;
+  right: 5vw;
+  bottom: 10vh;
+  z-index: 99;
+}
+
+#fit-america {
+  display: inline-block;
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: purple;
+}
+
+#fit-spain {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #ee8a65;
+}
+
+#fit-china {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: #FF4500;
+}
+
+#fit-france {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: blue;
+}
+
+#fit-korea {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: red;
+}
+
+#zoomout {
+  display: block;
+
+  /*margin: 0px auto;*/
+  width: 10vw;
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+  background: grey;
+}
+
+// ***************** end of map styling *****************
 
 /**************************************************Temporary CSS*/
 /*            audio, video {
