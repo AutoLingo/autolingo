@@ -1,8 +1,3 @@
-// import socketio from '../sockets';
-import websocket from '../websocket';
-
-websocket();
-
 const LiveChatExternals = () => {
 
     // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
