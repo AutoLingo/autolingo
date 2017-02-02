@@ -100,6 +100,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	// generated hash is used to match 2 users in a private chatroom for LiveChat
 	var generateHash = function generateHash() {
 	  if (!location.hash.replace('#', '').length) {
 	    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
@@ -78632,6 +78633,13 @@
 	
 	// import SpeechRecognition from './SpeechRecognition'
 	
+	//LiveChat component is the one-on-one private chat with webcam and 
+	// text input with speech-to-text and translation on receiver's end
+	// to their language
+	
+	// Need to add text chat component
+	// auto connect the users instead of buttons.
+	
 	var LiveChat = function LiveChat(props) {
 		return _react2.default.createElement(
 			'article',
@@ -78670,6 +78678,10 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	// import PeerConnection from '../externals/PeerConnection'
+	// import io from 'socket.io-client';
+	// const socket = io.connect();
+	
 	var VideoChat = function (_Component) {
 		_inherits(VideoChat, _Component);
 	
@@ -78682,6 +78694,8 @@
 		_createClass(VideoChat, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
+	
+				// PeerConnection()
 				(0, _LiveChatExternals2.default)();
 			}
 		}, {
@@ -78722,30 +78736,31 @@
 	});
 	var LiveChatExternals = function LiveChatExternals() {
 	
+	    // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
+	
 	    var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-	    var sender = Math.round(Math.random() * 999999999) + 999999999;
 	
-	    //need our own signaling server
-	    var SIGNALING_SERVER = 'https://webrtcweb.com:9559/';
-	    io.connect(SIGNALING_SERVER).emit('new-channel', {
-	        channel: channel,
-	        sender: sender
-	    });
+	    var pub = 'pub-f986077a-73bd-4c28-8e50-2e44076a84e0';
+	    var sub = 'sub-b8f4c07a-352e-11e2-bb9d-c7df1d04ae4a';
 	
-	    var socket = io.connect(SIGNALING_SERVER + channel);
-	    socket.on('connect', function () {
-	        // setup peer connection & pass socket object over the constructor!
-	    });
+	    WebSocket = PUBNUB.ws;
 	
-	    socket.send = function (message) {
-	        socket.emit('message', {
-	            sender: sender,
-	            data: message
-	        });
+	    var websocket = new WebSocket('wss://pubsub.pubnub.com/' + pub + '/' + sub + '/' + channel);
+	
+	    websocket.onerror = function () {
+	        //location.reload();
 	    };
 	
-	    // var peer = new PeerConnection('http://socketio-signaling.jit.su:80');
-	    var peer = new PeerConnection(socket);
+	    websocket.onclose = function () {
+	        //location.reload();
+	    };
+	
+	    websocket.push = websocket.send;
+	    websocket.send = function (data) {
+	        websocket.push(JSON.stringify(data));
+	    };
+	
+	    var peer = new PeerConnection(websocket);
 	    peer.onUserFound = function (userid) {
 	        if (document.getElementById(userid)) return;
 	        var tr = document.createElement('tr');
@@ -78775,12 +78790,16 @@
 	    };
 	
 	    peer.onStreamAdded = function (e) {
+	        if (e.type == 'local') document.querySelector('#start-broadcasting').disabled = false;
 	        var video = e.mediaElement;
+	
 	        video.setAttribute('width', 600);
+	        video.setAttribute('controls', true);
+	
 	        videosContainer.insertBefore(video, videosContainer.firstChild);
 	
 	        video.play();
-	        // rotateVideo(video);
+	        rotateVideo(video);
 	        scaleVideos();
 	    };
 	
@@ -78788,7 +78807,7 @@
 	        var video = e.mediaElement;
 	        if (video) {
 	            video.style.opacity = 0;
-	            // rotateVideo(video);
+	            rotateVideo(video);
 	            setTimeout(function () {
 	                video.parentNode.removeChild(video);
 	                scaleVideos();
@@ -78804,10 +78823,9 @@
 	        });
 	    };
 	
-	    // document.querySelector('#your-name').onchange = function() {
-	    //     console.log('peer.userid', this.value);
-	    //     peer.userid = this.value;
-	    // };
+	    document.querySelector('#your-name').onchange = function () {
+	        peer.userid = this.value;
+	    };
 	
 	    var videosContainer = document.getElementById('videos-container') || document.body;
 	    var btnSetupNewRoom = document.getElementById('setup-new-room');
@@ -78815,12 +78833,12 @@
 	
 	    if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
 	
-	    // function rotateVideo(video) {
-	    //     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-	    //     setTimeout(function() {
-	    //         video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-	    //     }, 1000);
-	    // }
+	    function rotateVideo(video) {
+	        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+	        setTimeout(function () {
+	            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+	        }, 1000);
+	    }
 	
 	    function scaleVideos() {
 	        var videos = document.querySelectorAll('video'),
@@ -78855,10 +78873,13 @@
 	
 	    // you need to capture getUserMedia yourself!
 	    function getUserMedia(callback) {
-	        var hints = { audio: true, video: {
+	        var hints = {
+	            audio: true,
+	            video: {
 	                optional: [],
 	                mandatory: {}
-	            } };
+	            }
+	        };
 	        navigator.getUserMedia(hints, function (stream) {
 	            var video = document.createElement('video');
 	            video.src = URL.createObjectURL(stream);
@@ -78877,7 +78898,7 @@
 	
 	    (function () {
 	        var uniqueToken = document.getElementById('unique-token');
-	        if (uniqueToken) if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;border-bottom:0px"><a href="' + location.href + '" target="_blank" id="share-link">Share this link</a></h2>';else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
+	        if (uniqueToken) if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
 	    })();
 	};
 	
@@ -79001,9 +79022,9 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _socket = __webpack_require__(695);
+	var _sockets = __webpack_require__(694);
 	
-	var _socket2 = _interopRequireDefault(_socket);
+	var _sockets2 = _interopRequireDefault(_sockets);
 	
 	var _UserList = __webpack_require__(747);
 	
@@ -79023,7 +79044,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var socket = _socket2.default.connect();
+	var socket = _sockets2.default.connect();
 	
 	var ChatApp = _react2.default.createClass({
 		displayName: 'ChatApp',
@@ -79165,7 +79186,24 @@
 	exports.default = ChatApp;
 
 /***/ },
-/* 694 */,
+/* 694 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _socket = __webpack_require__(695);
+	
+	var _socket2 = _interopRequireDefault(_socket);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _socket2.default;
+
+/***/ },
 /* 695 */
 /***/ function(module, exports, __webpack_require__) {
 
