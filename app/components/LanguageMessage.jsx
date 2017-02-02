@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 import sweetAlert from 'sweetAlert';
+import { setUser } from '../actionCreators/user';
+import store from '../store';
 
 
 
@@ -41,9 +43,18 @@ class LanguageMessage extends React.Component {
     this.setState({modalIsOpen: false});
   }
 
-  selectLanguage(language) {
+  selectLanguage(event, language, country) {
+    event.preventDefault()
+    if (!store.user) {
+      store.dispatch(setUser({
+        firstName: 'Guest',
+        lastName: (Math.random() * 10000).toString(),
+        email: 'guest@guestmail.com',
+        primaryLanguage: language,
+        country: country
+      }))
+    }
     this.setState({modalIsOpen: false})
-
     swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success")
   }
 
@@ -62,11 +73,11 @@ class LanguageMessage extends React.Component {
 
           <h1 style={{color: 'black'}}>Choose Default Language</h1>
           <form style={{'textAlign': 'center'}}>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={()=>this.selectLanguage('English')}>English</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={()=>this.selectLanguage('Chinese')}>Chinese</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={()=>this.selectLanguage('Spanish')}>Spanish</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={()=>this.selectLanguage('French')}>French</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={()=>this.selectLanguage('Korean')}>Korean</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'English', 'America')}>English</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Chinese', 'China')}>Chinese</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Spanish', 'Spain')}>Spanish</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'French', 'France')}>French</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Korean', 'Korea')}>Korean</button></div>
           </form>
         </Modal>
       </div>

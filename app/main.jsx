@@ -13,7 +13,10 @@ import 'rxjs';
 import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
+import NavbarContainer from './containers/NavbarContainer'
 import ChatApp from './components/ChatApp'
+import MainContainer from './containers/MainContainer'
+import Home from './components/Home'
 
 // generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
@@ -26,16 +29,15 @@ const generateHash = () => {
 render (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/" component={App}>
-      <IndexRedirect to="/map" />
-        <Route path="/map" component={MapContainer} >
-          <Route path="/map" component={LanguageMessage} />
+        <IndexRedirect to="/home" />
+        <Route path="/home" component={Home}/>
+        <Route path="/main" component={MainContainer}>
+          {/* <Route path="/main/chat" component={ChatApp} /> */}
         </Route>
-        <Route path="/translate" component={Translate} />
-        <Route path="/language" component={LanguageMessage} />
-        <Route path="/chat" component={ChatApp} />
       </Route>
+      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
+      <Route path="/translate" component={Translate} />
     </Router>
   </Provider>,
   document.getElementById('main')
