@@ -4,6 +4,7 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
+// import VideoChat from './VideoChat.jsx';
 
 const socket = io.connect();
 
@@ -104,6 +105,7 @@ var ChatApp = React.createClass({
 	render() {
 		return (
 			<div id="chatbox-body">
+				{/* <VideoChat /> */}
 				<UsersList
 					users={this.state.users}
 				/>
