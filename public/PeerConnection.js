@@ -1,27 +1,26 @@
-// Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/socket.io
+// Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
 
-(function() {
+(function () {
 
-    window.PeerConnection = function(socketURL, socketEvent, userid) {
+    window.PeerConnection = function (socketURL, userid) {
         this.userid = userid || getToken();
-        this.peers = { };
+        this.peers = {};
 
         if (!socketURL) throw 'Socket-URL is mandatory.';
-        if (!socketEvent) socketEvent = 'message';
 
-        new Signaler(this, socketURL, socketEvent);
-		
-		this.addStream = function(stream) {	
-			this.MediaStream = stream;
-		};
+        new Signaler(this, socketURL);
+        
+        this.addStream = function(stream) { 
+            this.MediaStream = stream;
+        };
     };
 
-    function Signaler(root, socketURL, socketEvent) {
+    function Signaler(root, socketURL) {
         var self = this;
 
-        root.startBroadcasting = function() {
-			if(!root.MediaStream) throw 'Offerer must have media stream.';
-			
+        root.startBroadcasting = function () {
+            if(!root.MediaStream) throw 'Offerer must have media stream.';
+            
             (function transmit() {
                 socket.send({
                     userid: root.userid,
@@ -33,7 +32,7 @@
             })();
         };
 
-        root.sendParticipationRequest = function(userid) {
+        root.sendParticipationRequest = function (userid) {
             socket.send({
                 participationRequest: true,
                 userid: root.userid,
@@ -42,7 +41,7 @@
         };
 
         // if someone shared SDP
-        this.onsdp = function(message) {
+        this.onsdp = function (message) {
             var sdp = message.sdp;
 
             if (sdp.type == 'offer') {
@@ -57,7 +56,7 @@
             }
         };
 
-        root.acceptRequest = function(userid) {
+        root.acceptRequest = function (userid) {
             root.peers[userid] = Offer.createOffer(merge(options, {
                 MediaStream: root.MediaStream
             }));
@@ -65,7 +64,7 @@
 
         var candidates = [];
         // if someone shared ICE
-        this.onice = function(message) {
+        this.onice = function (message) {
             var peer = root.peers[message.userid];
             if (peer) {
                 peer.addIceCandidate(message.candidate);
@@ -78,24 +77,24 @@
 
         // it is passed over Offer/Answer objects for reusability
         var options = {
-            onsdp: function(sdp) {
+            onsdp: function (sdp) {
                 socket.send({
                     userid: root.userid,
                     sdp: sdp,
                     to: root.participant
                 });
             },
-            onicecandidate: function(candidate) {
+            onicecandidate: function (candidate) {
                 socket.send({
                     userid: root.userid,
                     candidate: candidate,
                     to: root.participant
                 });
             },
-            onStreamAdded: function(stream) {
+            onStreamAdded: function (stream) {
                 console.debug('onStreamAdded', '>>>>>>', stream);
 
-                stream.onended = function() {
+                stream.onended = function () {
                     if (root.onStreamEnded) root.onStreamEnded(streamObject);
                 };
 
@@ -109,7 +108,8 @@
                 var streamObject = {
                     mediaElement: mediaElement,
                     stream: stream,
-                    participantid: root.participant
+                    userid: root.participant,
+                    type: 'remote'
                 };
 
                 function afterRemoteStreamStartedFlowing() {
@@ -128,10 +128,10 @@
             for (var userid in root.peers) {
                 root.peers[userid].peer.close();
             }
-            root.peers = { };
+            root.peers = {};
         }
 
-        root.close = function() {
+        root.close = function () {
             socket.send({
                 userLeft: true,
                 userid: root.userid,
@@ -140,21 +140,23 @@
             closePeerConnections();
         };
 
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             root.close();
         };
 
-        window.onkeyup = function(e) {
+        window.onkeyup = function (e) {
             if (e.keyCode == 116)
                 root.close();
         };
+        
+        function onmessage(e) {
+            var message = JSON.parse(e.data);
 
-		function onmessage(message) {
-			if (message.userid == root.userid) return;
+            if (message.userid == root.userid) return;
             root.participant = message.userid;
 
             // for pretty logging
-            console.debug(JSON.stringify(message, function(key, value) {
+            console.debug(JSON.stringify(message, function (key, value) {
                 if (value && value.sdp) {
                     console.log(value.sdp.type, '---', value.sdp.sdp);
                     return '';
@@ -188,17 +190,21 @@
             if (message.userLeft && message.to == root.userid) {
                 closePeerConnections();
             }
-		}
-		
-		var socket = socketURL;
-		if(typeof socketURL == 'string') {
-			var socket = io.connect(socketURL);
-			socket.send = function(data) {
-				socket.emit(socketEvent, data);
-			};
-		}
-        
-        socket.on(socketEvent, onmessage);
+        }
+
+        var socket = socketURL;
+        if(typeof socketURL == 'string') {
+            socket = new WebSocket(socketURL);
+            socket.push = socket.send;
+            socket.send = function (data) {
+                socket.push(JSON.stringify(data));
+            };
+
+            socket.onopen = function () {
+                console.log('websocket connection opened.');
+            };
+        }
+        socket.onmessage = onmessage;
     }
 
     var RTCPeerConnection = window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
@@ -225,7 +231,7 @@
     };
 
     if (isChrome) {
-        if (parseInt(navigator.userAgent.match( /Chrom(e|ium)\/([0-9]+)\./ )[2]) >= 28)
+        if (parseInt(navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./)[2]) >= 28)
             TURN = {
                 url: 'turn:turn.bistri.com:80',
                 credential: 'homeo',
@@ -252,27 +258,27 @@
     function getToken() {
         return Math.round(Math.random() * 9999999999) + 9999999999;
     }
-	
-	function onSdpError() {}
+    
+    function onSdpError() {}
 
     // var offer = Offer.createOffer(config);
     // offer.setRemoteDescription(sdp);
     // offer.addIceCandidate(candidate);
     var Offer = {
-        createOffer: function(config) {
+        createOffer: function (config) {
             var peer = new RTCPeerConnection(iceServers, optionalArgument);
 
             if (config.MediaStream) peer.addStream(config.MediaStream);
-            peer.onaddstream = function(event) {
+            peer.onaddstream = function (event) {
                 config.onStreamAdded(event.stream);
             };
 
-            peer.onicecandidate = function(event) {
+            peer.onicecandidate = function (event) {
                 if (event.candidate)
                     config.onicecandidate(event.candidate);
             };
 
-            peer.createOffer(function(sdp) {
+            peer.createOffer(function (sdp) {
                 peer.setLocalDescription(sdp);
                 config.onsdp(sdp);
             }, onSdpError, offerAnswerConstraints);
@@ -281,10 +287,10 @@
 
             return this;
         },
-        setRemoteDescription: function(sdp) {
+        setRemoteDescription: function (sdp) {
             this.peer.setRemoteDescription(new RTCSessionDescription(sdp));
         },
-        addIceCandidate: function(candidate) {
+        addIceCandidate: function (candidate) {
             this.peer.addIceCandidate(new RTCIceCandidate({
                 sdpMLineIndex: candidate.sdpMLineIndex,
                 candidate: candidate.candidate
@@ -296,21 +302,21 @@
     // answer.setRemoteDescription(sdp);
     // answer.addIceCandidate(candidate);
     var Answer = {
-        createAnswer: function(config) {
+        createAnswer: function (config) {
             var peer = new RTCPeerConnection(iceServers, optionalArgument);
 
             if (config.MediaStream) peer.addStream(config.MediaStream);
-            peer.onaddstream = function(event) {
+            peer.onaddstream = function (event) {
                 config.onStreamAdded(event.stream);
             };
 
-            peer.onicecandidate = function(event) {
+            peer.onicecandidate = function (event) {
                 if (event.candidate)
                     config.onicecandidate(event.candidate);
             };
 
             peer.setRemoteDescription(new RTCSessionDescription(config.sdp));
-            peer.createAnswer(function(sdp) {
+            peer.createAnswer(function (sdp) {
                 peer.setLocalDescription(sdp);
                 config.onsdp(sdp);
             }, onSdpError, offerAnswerConstraints);
@@ -319,7 +325,7 @@
 
             return this;
         },
-        addIceCandidate: function(candidate) {
+        addIceCandidate: function (candidate) {
             this.peer.addIceCandidate(new RTCIceCandidate({
                 sdpMLineIndex: candidate.sdpMLineIndex,
                 candidate: candidate.candidate
@@ -333,22 +339,23 @@
         }
         return mergein;
     }
-
-	window.URL = window.webkitURL || window.URL;
-	navigator.getMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
-	navigator.getUserMedia = function(hints, onsuccess, onfailure) {
-		if(!hints) hints = {audio:true,video:true};
-		if(!onsuccess) throw 'Second argument is mandatory. navigator.getUserMedia(hints,onsuccess,onfailure)';
-		
-		navigator.getMedia(hints, _onsuccess, _onfailure);
-		
-		function _onsuccess(stream) {
-			onsuccess(stream);
-		}
-		
-		function _onfailure(e) {
-			if(onfailure) onfailure(e);
-			else throw Error('getUserMedia failed: ' + JSON.stringify(e, null, '\t'));
-		}
-	};
+    
+    window.URL = window.webkitURL || window.URL;
+    navigator.getMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    navigator.getUserMedia = function(hints, onsuccess, onfailure) {
+        if(!hints) hints = {audio:true,video:true};
+        if(!onsuccess) throw 'Second argument is mandatory. navigator.getUserMedia(hints,onsuccess,onfailure)';
+        
+        navigator.getMedia(hints, _onsuccess, _onfailure);
+        
+        function _onsuccess(stream) {
+            onsuccess(stream);
+        }
+        
+        function _onfailure(e) {
+            if(onfailure) onfailure(e);
+            else throw Error('getUserMedia failed: ' + JSON.stringify(e, null, '\t'));
+        }
+    };
+    
 })();

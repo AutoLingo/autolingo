@@ -1,32 +1,35 @@
-import socketio from '../sockets';
+// import socketio from '../sockets';
+import websocket from '../websocket';
+
+websocket();
 
 const LiveChatExternals = () => {
 
+    // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
+
     var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-    var sender = Math.round(Math.random() * 999999999) + 999999999;
 
-    //need our own signaling server
-    // var SIGNALING_SERVER = 'https://webrtcweb.com:9559/';
-    var SIGNALING_SERVER = 'https://signaling.simplewebrtc.com:443/';
-    socketio.connect(SIGNALING_SERVER).emit('new-channel', {
-        channel: channel,
-        sender: sender
-    });
+    var pub = 'pub-f986077a-73bd-4c28-8e50-2e44076a84e0';
+    var sub = 'sub-b8f4c07a-352e-11e2-bb9d-c7df1d04ae4a';
 
-    var socket = socketio.connect(SIGNALING_SERVER + channel);
-    socket.on('connect', function () {
-        // setup peer connection & pass socket object over the constructor!
-    });
+    WebSocket  = PUBNUB.ws;
 
-    socket.send = function (message) {
-        socket.emit('message', {
-            sender: sender,
-            data: message
-        });
+    var websocket = new WebSocket('wss://pubsub.pubnub.com/' + pub + '/' + sub + '/' + channel);
+
+    websocket.onerror = function() {
+        //location.reload();
     };
 
-    // var peer = new PeerConnection('http://socketio-signaling.jit.su:80');
-    var peer = new PeerConnection(socket);
+    websocket.onclose = function() {
+        //location.reload();
+    };
+
+    websocket.push = websocket.send;
+    websocket.send = function(data) {
+        websocket.push(JSON.stringify(data));
+    };
+
+    var peer = new PeerConnection(websocket);
     peer.onUserFound = function(userid) {
         if (document.getElementById(userid)) return;
         var tr = document.createElement('tr');
@@ -56,12 +59,16 @@ const LiveChatExternals = () => {
     };
 
     peer.onStreamAdded = function(e) {
+        if (e.type == 'local') document.querySelector('#start-broadcasting').disabled = false;
         var video = e.mediaElement;
+
         video.setAttribute('width', 600);
+        video.setAttribute('controls', true);
+
         videosContainer.insertBefore(video, videosContainer.firstChild);
 
         video.play();
-        // rotateVideo(video);
+        rotateVideo(video);
         scaleVideos();
     };
 
@@ -69,7 +76,7 @@ const LiveChatExternals = () => {
         var video = e.mediaElement;
         if (video) {
             video.style.opacity = 0;
-            // rotateVideo(video);
+            rotateVideo(video);
             setTimeout(function() {
                 video.parentNode.removeChild(video);
                 scaleVideos();
@@ -85,10 +92,9 @@ const LiveChatExternals = () => {
         });
     };
 
-    // document.querySelector('#your-name').onchange = function() {
-    //     console.log('peer.userid', this.value);
-    //     peer.userid = this.value;
-    // };
+    document.querySelector('#your-name').onchange = function() {
+        peer.userid = this.value;
+    };
 
     var videosContainer = document.getElementById('videos-container') || document.body;
     var btnSetupNewRoom = document.getElementById('setup-new-room');
@@ -96,16 +102,17 @@ const LiveChatExternals = () => {
 
     if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
 
-    // function rotateVideo(video) {
-    //     video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-    //     setTimeout(function() {
-    //         video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-    //     }, 1000);
-    // }
+    function rotateVideo(video) {
+        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
+        setTimeout(function() {
+            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
+        }, 1000);
+    }
 
     function scaleVideos() {
         var videos = document.querySelectorAll('video'),
-            length = videos.length, video;
+            length = videos.length,
+            video;
 
         var minus = 130;
         var windowHeight = 700;
@@ -137,11 +144,14 @@ const LiveChatExternals = () => {
 
     // you need to capture getUserMedia yourself!
     function getUserMedia(callback) {
-        var hints = {audio:true,video:{
-            optional: [],
-            mandatory: {}
-        }};
-        navigator.getUserMedia(hints,function(stream) {
+        var hints = {
+            audio: true,
+            video: {
+                optional: [],
+                mandatory: {}
+            }
+        };
+        navigator.getUserMedia(hints, function(stream) {
             var video = document.createElement('video');
             video.src = URL.createObjectURL(stream);
             video.controls = true;
@@ -160,8 +170,8 @@ const LiveChatExternals = () => {
     (function() {
         var uniqueToken = document.getElementById('unique-token');
         if (uniqueToken)
-            if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;border-bottom:0px"><a href="' + location.href + '" target="_blank" id="share-link">Share this link</a></h2>';
-            else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+            if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<h2 style="text-align:center;"><a href="' + location.href + '" target="_blank">Share this link</a></h2>';
+            else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace(/\./g, '-');
     })();
 }
 
