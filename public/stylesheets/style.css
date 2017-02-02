@@ -1,9 +1,23 @@
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-color: lightblue; }
+
+nav {
+  width: 100%;
+  height: 10vh;
+  text-align: center; }
+
+#title {
+  font-size: 7vh;
+  display: inline; }
+
+.navbar-btn {
+  float: right;
+  margin-top: 3vh; }
 
 #map {
   position: absolute;
-  top: 0;
+  top: 10vh;
   left: 0;
   right: 0;
   bottom: 0;
@@ -101,7 +115,9 @@ html {
   margin: 0 auto;
   border: 5px solid black;
   border-radius: 2%;
-  margin-top: 80px; }
+  position: absolute;
+  z-index: 99;
+  background-color: white; }
 
 .users {
   float: right;
@@ -164,16 +180,23 @@ html {
 .change_name_form h3 {
   font-size: 25px; }
 
+main {
+  position: absolute;
+  top: 10vh;
+  width: 100vw;
+  height: 90vh;
+  z-index: 1; }
+
 #language-message {
   z-index: 100; }
 
-#main {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+.ReactModal__Content--after-open {
+  z-index: 99; }
+
+.ReactModal__Overlay {
+  z-index: 1; }
+
+.ReactModal__Overlay {
   z-index: 1; }
 
 /**************************************************Temporary CSS*/
