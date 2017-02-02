@@ -1,5 +1,5 @@
 import React from 'react';
-import io from 'socket.io-client';
+import io from '../sockets';
 import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';

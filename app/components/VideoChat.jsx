@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import LiveChatExternals from '../externals/LiveChatExternals' 
 
+// import PeerConnection from '../externals/PeerConnection'
+// import io from 'socket.io-client';
+// const socket = io.connect();
+
 class VideoChat extends Component {
 	componentDidMount() {
+
+		// PeerConnection()
 		LiveChatExternals()
 	}
 

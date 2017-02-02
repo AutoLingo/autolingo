@@ -18,6 +18,7 @@ import ChatApp from './components/ChatApp'
 import MainContainer from './containers/MainContainer'
 import Home from './components/Home'
 
+// generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
       location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
