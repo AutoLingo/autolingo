@@ -221,9 +221,10 @@ nav {
   font-size: 25px;
 }
 
-// ***************** end of cat box (socket) styling *****************
+// ***************** end of chat box (socket) styling *****************
 
-// ***************** end of LanguageMessage modal styling *****************
+
+// ***************** start of main styling *****************
 
 main {
   position: absolute;
@@ -234,7 +235,8 @@ main {
   z-index: 1;
 }
 
-// ***************** start of main styling *****************
+// ***************** end of main styling *****************
+
 
 // ***************** start of LanguageMessage modal styling *****************
 
@@ -257,7 +259,8 @@ main {
 .ReactModal__Overlay {
   z-index: 1;
 }
-// ***************** end of main styling *****************
+
+// ***************** end of LanguageMessage modal styling *****************
 
 
 /**************************************************Temporary CSS*/
