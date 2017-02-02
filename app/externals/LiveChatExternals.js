@@ -1,20 +1,19 @@
-// import io from 'socket.io-client';
-// const socket = io.connect();
-// console.log(io)
+import socketio from '../sockets';
 
 const LiveChatExternals = () => {
 
     var channel = location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
     var sender = Math.round(Math.random() * 999999999) + 999999999;
-// console.log('channel', channel)
-// console.log('sender', sender)
+
     //need our own signaling server
-    var SIGNALING_SERVER = 'https://webrtcweb.com:9559/';
-    io.connect(SIGNALING_SERVER).emit('new-channel', {
+    // var SIGNALING_SERVER = 'https://webrtcweb.com:9559/';
+    var SIGNALING_SERVER = 'https://signaling.simplewebrtc.com:443/';
+    socketio.connect(SIGNALING_SERVER).emit('new-channel', {
         channel: channel,
         sender: sender
     });
-    var socket = io.connect(SIGNALING_SERVER + channel);
+
+    var socket = socketio.connect(SIGNALING_SERVER + channel);
     socket.on('connect', function () {
         // setup peer connection & pass socket object over the constructor!
     });
