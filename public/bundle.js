@@ -94,16 +94,21 @@
 	
 	var _MainContainer2 = _interopRequireDefault(_MainContainer);
 	
+	var _Home = __webpack_require__(743);
+	
+	var _Home2 = _interopRequireDefault(_Home);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	// import Login from './components/Login'
-	// import WhoAmI from './components/WhoAmI'
 	var generateHash = function generateHash() {
 	  if (!location.hash.replace('#', '').length) {
 	    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
 	    location.reload();
 	  }
 	};
+	// import Login from './components/Login'
+	// import WhoAmI from './components/WhoAmI'
+	
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -114,7 +119,8 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
-	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/main' }),
+	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/home' }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _Home2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/main', component: _MainContainer2.default })
 	    ),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash }),
@@ -79101,7 +79107,7 @@
 	
 			users.push(name);
 			messages.push({
-				user: "APPLICATION BOT",
+				user: "LingoBo",
 				text: name + ' Joined'
 			});
 			this.setState({ users: users, messages: messages });
@@ -79119,7 +79125,7 @@
 			var index = users.indexOf(name);
 			users.splice(index, 1);
 			messages.push({
-				user: 'APPLICATION BOT',
+				user: 'LingoBot',
 				text: name + ' Left'
 			});
 			this.setState({ users: users, messages: messages });
@@ -87731,7 +87737,7 @@
 				_react2.default.createElement(
 					"h3",
 					null,
-					"Online Users"
+					"Current Online Users"
 				),
 				_react2.default.createElement(
 					"ul",
@@ -87775,7 +87781,17 @@
 	//MessageList will render each message
 	var MessageList = _react2.default.createClass({
 		displayName: 'MessageList',
+	
+		//scroll to the bottom of the chat box as the user types in new sentences
+		scollToBottom: function scollToBottom() {
+			var node = ReactDOM.findDOMNode(this.messagesEnd);
+			node.scrollIntoView({ behavior: "smooth" });
+		},
 		render: function render() {
+			var _this = this;
+	
+			// this.scrollToBottom && this.scrollToBottom()
+	
 			return _react2.default.createElement(
 				'div',
 				{ className: 'messages' },
@@ -87799,7 +87815,11 @@
 							text: message.text
 						})
 					);
-				})
+				}),
+				_react2.default.createElement('div', { style: { float: "left", clear: "both" },
+					ref: function ref(el) {
+						_this.messagesEnd = el;
+					} })
 			);
 		}
 	});
@@ -88057,9 +88077,33 @@
 	  return _react2.default.createElement(
 	    'main',
 	    null,
-	    'Main page',
 	    _react2.default.createElement(_ChatApp2.default, null)
 	  );
+	}
+
+/***/ },
+/* 743 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = Home;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ChatApp = __webpack_require__(683);
+	
+	var _ChatApp2 = _interopRequireDefault(_ChatApp);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function Home(props) {
+	  return _react2.default.createElement('div', null);
 	}
 
 /***/ }

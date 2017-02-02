@@ -5,7 +5,7 @@ var UsersList = React.createClass({
 	render() {
 		return (
 			<div className="users">
-				<h3>Online Users</h3>
+				<h3>Current Online Users</h3>
 				<ul>
 					{	
 						//Need to have users information in the database

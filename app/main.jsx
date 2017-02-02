@@ -16,6 +16,7 @@ import MapContainer from './containers/MapContainer'
 import NavbarContainer from './containers/NavbarContainer'
 import ChatApp from './components/ChatApp'
 import MainContainer from './containers/MainContainer'
+import Home from './components/Home'
 
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
@@ -28,7 +29,8 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/main" />
+        <IndexRedirect to="/home" />
+        <Route path="/home" component={Home}/>
         <Route path="/main" component={MainContainer}>
           {/* <Route path="/main/chat" component={ChatApp} /> */}
         </Route>
