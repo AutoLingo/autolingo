@@ -36,9 +36,9 @@ var ChatApp = React.createClass({
 	},
 
 	//push the given message into messages array
-	_messageReceive(message) {
+	_messageReceive(messageObject) {
 		var {messages} = this.state;
-		messages.push(message);
+		messages.push(message.text);
 		this.setState({messages})
 		store.dispatch(translateActionCreator(message.id, message.language, message.text))
 	},

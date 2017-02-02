@@ -14,6 +14,7 @@ class ChatApp extends Component {
 		this.state = {}
 
 		this.messageReceive = this.messageReceive.bind(this)
+		this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
 	}
 
 
@@ -25,8 +26,6 @@ class ChatApp extends Component {
 		socket.on('user:join', this._userJoined);
 		socket.on('user:left', this._userLeft);
 		socket.on('change:name', this._userChangedName);
-		console.log('THIS.PROPS',this.props)
-
 	}
 
 	//set user with given name
@@ -35,31 +34,6 @@ class ChatApp extends Component {
 		// this.setState({users, user: name});
 	}
 
-// ************************************************************
-	handleMessageSubmit(message) {
-		// var {messages} = this.state;
-		// messages.push(message);
-
-		//send message data through socket
-		socket.emit('send:message', {
-			text: message.text,
-			language: 'en',
-			id: 1
-			}
-		);
-	}
-
-	//push the given message into messages array
-	messageReceive(messageObject) {
-		let id = messageObject && messageObject.id
-		let language = messageObject && messageObject.language
-		let text = messageObject && messageObject.text
-
-		this.props.translateActionCreator(id, language, text)
-		
-	}
-
-// ************************************************************
 
 	//when the user joins the chat box, it will push the name of the user to the users array
 	//message, "name of user" joined will rendered on the chat box
@@ -115,19 +89,41 @@ class ChatApp extends Component {
 			this.setState({users, user: newName})
 		})
 	}
+// ************************************************************
+	handleMessageSubmit(message) {
+		socket.emit('send:message', {
+			text: message.text,
+			language: this.props.userLanguage,
+			id: 1
+		});
+		
+		this.props.addToMessages(message.text)
+	}
+
+	messageReceive(messageObject) {
+		let id = messageObject && messageObject.id
+		let originalLanguage = messageObject && messageObject.language
+		let userLanguage = this.props.userLanguage
+		let text = messageObject && messageObject.text
+
+		this.props.translateActionCreator(id, originalLanguage, userLanguage, text)
+		
+	}
+
+// ************************************************************
 	
 	render() {
 		
-		let messages = this.props.messages
 		let fr = this.props.translation && this.props.translation.fr
 		let en = this.props.translation && this.props.translation.en
 		let ko = this.props.translation && this.props.translation.ko
-		console.log('ko ', ko);
+		
+		let messages = this.props.messages
 		return (
 			<div id="chatbox-body">
 				
 				<MessageList
-					messages={[en, fr, ko]}
+					messages={messages}
 				/>
 				<MessageForm
 					onMessageSubmit={this.handleMessageSubmit}
@@ -148,11 +144,12 @@ import { addToMessages } from '../reducers/messagesReducer'
 
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
+	let userLanguage = state.user.selectedUser.primaryLanguage
 
 	return { 
 		translation,
+		userLanguage,
 		messages: state.messages
-
  	}
 }
 

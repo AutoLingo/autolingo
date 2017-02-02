@@ -11,9 +11,7 @@ export default function messagesReducer (initialState = [], action) {
 
     switch (action.type) {
         case ADD_TO_MESSAGES:
-            let messages = initialState
-            messages.push(message)
-            return messages
+            return initialState.concat([action.message])
         default:
             return initialState
             

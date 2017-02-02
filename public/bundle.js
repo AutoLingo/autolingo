@@ -28317,12 +28317,13 @@
 	
 	var _ajax = __webpack_require__(379);
 	
+	var _messagesReducer = __webpack_require__(745);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w';
-	
 	
 	// **************************************************
 	// Actions
@@ -28331,12 +28332,13 @@
 	
 	// Action creators
 	// Fed into the googleTranslateEpic
-	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, language, originalText) {
+	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, originalLanguage, userLanguage, originalText) {
 	  return {
 	    type: TRANSLATE,
-	    originalText: originalText,
-	    language: language,
-	    id: id
+	    id: id,
+	    originalLanguage: originalLanguage,
+	    userLanguage: userLanguage,
+	    originalText: originalText
 	  };
 	};
 	
@@ -28353,54 +28355,69 @@
 	// **************************************************
 	var googleTranslateEpic = exports.googleTranslateEpic = function googleTranslateEpic(action$) {
 	  return action$.ofType(TRANSLATE).debounceTime(200).mergeMap(function (action) {
-	    var originalLanguage = action.language;
+	    var originalLanguage = action.originalLanguage;
+	    var userLanguage = action.userLanguage;
 	    var text = action.originalText;
+	    if (originalLanguage === userLanguage) return text;
 	
-	    var french = (0, _ajax.ajax)({
-	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=fr&q=' + text,
+	    return (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
 	      crossDomain: true
 	    });
-	    var korean = (0, _ajax.ajax)({
-	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=ko&q=' + text,
-	      crossDomain: true
-	    });
-	    var english = (0, _ajax.ajax)({
-	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=en&q=' + text,
-	      crossDomain: true
-	    });
-	
-	    switch (originalLanguage) {
-	      case 'en':
-	        return _rxjs.Observable.combineLatest(french, korean, function (fr, ko) {
-	          return [{ en: text }, { fr: fr }, { ko: ko }];
-	        });
-	      case 'fr':
-	        return _rxjs.Observable.combineLatest(english, korean, function (en, ko) {
-	          return [{ fr: text }, { en: en }, { ko: ko }];
-	        });
-	      case 'ko':
-	        return _rxjs.Observable.combineLatest(english, french, function (en, fr) {
-	          return [{ ko: text }, { en: en }, { fr: fr }];
-	        });
-	      default:
-	        return [];
-	    }
-	  }).mergeMap(function (responseArray) {
-	    return _rxjs.Observable.from(responseArray);
 	  }).map(function (singleTranslation) {
-	    console.log('SINGLETRANSLATION', singleTranslation);
-	    var language = Object.keys(singleTranslation)[0];
-	    console.log('LANGUAGE', language);
-	    var translatedData = singleTranslation[language];
-	    console.log('TRANSLATEDDATA', translatedData);
-	    var translatedText = translatedData.response ? translatedData.response.data.translations[0].translatedText : translatedData;
-	    console.log('TRANSLATEDTEXT', translatedText);
+	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
 	
-	    return addTranslation(1, translatedText, language);
+	    return (0, _messagesReducer.addToMessages)(translatedText);
 	  });
-	  // return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: action.id}
-	
 	};
+	
+	// *********************USE THIS FOR MESSAGE BOARD***********************************
+	// export const googleTranslateEpic = (action$) => {
+	//   return action$.ofType(TRANSLATE)
+	//     .debounceTime(200)
+	//     .mergeMap(action => {
+	//         let originalLanguage = action.originalLanguage
+	//         let userLanguage = action.userLanguage
+	//         let text = action.originalText
+	
+	//         let translation = ajax({
+	//           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=fr&q=${text}`,
+	//           crossDomain: true
+	//         })
+	//         let korean = ajax({
+	//           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=ko&q=${text}`,
+	//           crossDomain: true
+	//         })
+	//         let english = ajax({
+	//           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=en&q=${text}`,
+	//           crossDomain: true
+	//         })
+	
+	//         switch (originalLanguage) {
+	//           case 'en':
+	//             return Observable.combineLatest(french, korean, (fr, ko) => [{en: text}, {fr}, {ko}])
+	//           case 'fr':
+	//             return Observable.combineLatest(english, korean, (en, ko) => [{fr: text}, {en}, {ko}])
+	//           case 'ko':
+	//             return Observable.combineLatest(english, french, (en, fr) => [{ko: text}, {en}, {fr}])
+	//           default:
+	//             return []
+	//         }
+	//     })
+	//     .mergeMap(responseArray => Observable.from(responseArray))
+	//     .mergeMap(singleTranslation => {
+	//       let language = Object.keys(singleTranslation)[0]
+	//       let translatedData = singleTranslation[language]
+	//       let translatedText = translatedData.response ?
+	//         translatedData.response.data.translations[0].translatedText : translatedData
+	
+	//       return [addTranslation(1, translatedText, language), addToMessages(translatedText)]
+	//     })
+	//       // return {type: ADD_TRANSLATION, translation: "testing", language: 'en', id: action.id}
+	
+	
+	// }
+	
 	
 	// **************************************************
 	
@@ -75781,7 +75798,7 @@
 	              _react2.default.createElement(
 	                'button',
 	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'English', 'America');
+	                    return _this2.selectLanguage(event, 'en', 'America');
 	                  } },
 	                'English'
 	              )
@@ -75792,7 +75809,7 @@
 	              _react2.default.createElement(
 	                'button',
 	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'Chinese', 'China');
+	                    return _this2.selectLanguage(event, 'zh-CN', 'China');
 	                  } },
 	                'Chinese'
 	              )
@@ -75803,7 +75820,7 @@
 	              _react2.default.createElement(
 	                'button',
 	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'Spanish', 'Spain');
+	                    return _this2.selectLanguage(event, 'es', 'Spain');
 	                  } },
 	                'Spanish'
 	              )
@@ -75814,7 +75831,7 @@
 	              _react2.default.createElement(
 	                'button',
 	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'French', 'France');
+	                    return _this2.selectLanguage(event, 'fr', 'France');
 	                  } },
 	                'French'
 	              )
@@ -75825,9 +75842,108 @@
 	              _react2.default.createElement(
 	                'button',
 	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'Korean', 'Korea');
+	                    return _this2.selectLanguage(event, 'ko', 'Korea');
 	                  } },
 	                'Korean'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'ru', 'Russia');
+	                  } },
+	                'Russian'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'tl', 'Philippines');
+	                  } },
+	                'Filipino'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'el', 'Greece');
+	                  } },
+	                'Greek'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'iw', 'Israel');
+	                  } },
+	                'Hebrew'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'it', 'Italy');
+	                  } },
+	                'Italian'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'ja', 'Japan');
+	                  } },
+	                'Japanese'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'sw', 'Tanzania');
+	                  } },
+	                'Swahili'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'vi', 'Vietnam');
+	                  } },
+	                'Vietnamese'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              null,
+	              _react2.default.createElement(
+	                'button',
+	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
+	                    return _this2.selectLanguage(event, 'pl', 'Poland');
+	                  } },
+	                'Polish'
 	              )
 	            )
 	          )
@@ -75839,6 +75955,8 @@
 	  return LanguageMessage;
 	}(_react2.default.Component);
 	
+	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ar', 'Saudi Arabia')}>Arabic</button></div>
+	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'eo', 'World')}>Esperanto</button></div>
 	// ReactDOM.render(<App />, appElement);
 	
 	exports.default = LanguageMessage;
@@ -78928,10 +79046,10 @@
 	
 	
 		//push the given message into messages array
-		_messageReceive: function _messageReceive(message) {
+		_messageReceive: function _messageReceive(messageObject) {
 			var messages = this.state.messages;
 	
-			messages.push(message);
+			messages.push(message.text);
 			this.setState({ messages: messages });
 			_store2.default.dispatch((0, _translate.translateActionCreator)(message.id, message.language, message.text));
 		},
@@ -87864,6 +87982,7 @@
 			_this.state = {};
 	
 			_this.messageReceive = _this.messageReceive.bind(_this);
+			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
 			return _this;
 		}
 	
@@ -87878,7 +87997,6 @@
 				socket.on('user:join', this._userJoined);
 				socket.on('user:left', this._userLeft);
 				socket.on('change:name', this._userChangedName);
-				console.log('THIS.PROPS', this.props);
 			}
 	
 			//set user with given name
@@ -87890,36 +88008,6 @@
 				    name = data.name;
 				// this.setState({users, user: name});
 			}
-	
-			// ************************************************************
-	
-		}, {
-			key: 'handleMessageSubmit',
-			value: function handleMessageSubmit(message) {
-				// var {messages} = this.state;
-				// messages.push(message);
-	
-				//send message data through socket
-				socket.emit('send:message', {
-					text: message.text,
-					language: 'en',
-					id: 1
-				});
-			}
-	
-			//push the given message into messages array
-	
-		}, {
-			key: 'messageReceive',
-			value: function messageReceive(messageObject) {
-				var id = messageObject && messageObject.id;
-				var language = messageObject && messageObject.language;
-				var text = messageObject && messageObject.text;
-	
-				this.props.translateActionCreator(id, language, text);
-			}
-	
-			// ************************************************************
 	
 			//when the user joins the chat box, it will push the name of the user to the users array
 			//message, "name of user" joined will rendered on the chat box
@@ -87997,20 +88085,46 @@
 					_this2.setState({ users: users, user: newName });
 				});
 			}
+			// ************************************************************
+	
+		}, {
+			key: 'handleMessageSubmit',
+			value: function handleMessageSubmit(message) {
+				socket.emit('send:message', {
+					text: message.text,
+					language: this.props.userLanguage,
+					id: 1
+				});
+	
+				this.props.addToMessages(message.text);
+			}
+		}, {
+			key: 'messageReceive',
+			value: function messageReceive(messageObject) {
+				var id = messageObject && messageObject.id;
+				var originalLanguage = messageObject && messageObject.language;
+				var userLanguage = this.props.userLanguage;
+				var text = messageObject && messageObject.text;
+	
+				this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+			}
+	
+			// ************************************************************
+	
 		}, {
 			key: 'render',
 			value: function render() {
 	
-				var messages = this.props.messages;
 				var fr = this.props.translation && this.props.translation.fr;
 				var en = this.props.translation && this.props.translation.en;
 				var ko = this.props.translation && this.props.translation.ko;
-				console.log('ko ', ko);
+	
+				var messages = this.props.messages;
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body' },
 					_react2.default.createElement(_MessageList2.default, {
-						messages: [en, fr, ko]
+						messages: messages
 					}),
 					_react2.default.createElement(_MessageForm2.default, {
 						onMessageSubmit: this.handleMessageSubmit
@@ -88031,11 +88145,12 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		var translation = state.translations[1] && state.translations[1];
+		var userLanguage = state.user.selectedUser.primaryLanguage;
 	
 		return {
 			translation: translation,
+			userLanguage: userLanguage,
 			messages: state.messages
-	
 		};
 	};
 	
@@ -88070,9 +88185,7 @@
 	
 	    switch (action.type) {
 	        case ADD_TO_MESSAGES:
-	            var messages = initialState;
-	            messages.push(message);
-	            return messages;
+	            return initialState.concat([action.message]);
 	        default:
 	            return initialState;
 	
