@@ -4,6 +4,7 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
+// import VideoChat from './VideoChat.jsx';
 
 import store from '../store'
 import { translateActionCreator } from '../reducers/translate'
@@ -113,6 +114,7 @@ var ChatApp = React.createClass({
 	render() {
 		return (
 			<div id="chatbox-body">
+				{/* <VideoChat /> */}
 				<UsersList
 					users={this.state.users}
 				/>
