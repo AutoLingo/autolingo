@@ -2,12 +2,15 @@
 
 import { connect } from 'react-redux';
 import VoiceRecognition from '../components/VoiceRecognition';
-import { setFinalTranscript } from '../actionCreators/speech';
+import { setInterimTranscript } from '../actionCreators/speech';
 
 function mapStateToProps (state, ownProps) {
+  return {};
+}
+
+function mapDispatchToProps (dispatch, ownProps) {
 
   // ******************* start of recognition object *******************
-  // var create_email = false;
   var final_transcript = '';
   var recognizing = false;
   var ignore_onend;
@@ -16,7 +19,6 @@ function mapStateToProps (state, ownProps) {
   if (!('webkitSpeechRecognition' in window)) {
     upgrade();
   } else {
-    // start_button.style.display = 'inline-block';
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -62,10 +64,6 @@ function mapStateToProps (state, ownProps) {
         range.selectNode(document.getElementById('final_span'));
         window.getSelection().addRange(range);
       }
-      if (create_email) {
-        create_email = false;
-        createEmail();
-      }
     };
     recognition.onresult = function(event) {
       var interim_transcript = '';
@@ -82,10 +80,15 @@ function mapStateToProps (state, ownProps) {
       if (final_transcript || interim_transcript) {
         showButtons('inline-block');
       }
+
+      //setting the interim_transcript to redux state:
+      if (interim_transcript !== '') return dispatch(setInterimTranscript(interim_transcript))
     };
   }
 
   // ******************* end of recognition object *******************
+
+  // ******************* start of speech functions object *******************
 
   var two_line = /\n\n/g;
   var one_line = /\n/g;
@@ -134,26 +137,16 @@ function mapStateToProps (state, ownProps) {
       return;
     }
     current_style = style;
-    // copy_button.style.display = style;
-    // email_button.style.display = style;
-    // copy_info.style.display = 'none';
-    // email_info.style.display = 'none';
   }
 
   function upgrade() {
-    console.log(start_button)
     start_button.style.visibility = 'hidden';
     showInfo('info_upgrade');
   }
 
+  // ******************* end of speech functions *******************
 
-
-  return { recognition, showInfo, capitalize, startButton };
-}
-
-function mapDispatchToProps (dispatch, ownProps) {
-
-  return { };
+  return { showInfo, startButton };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(VoiceRecognition);

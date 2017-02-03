@@ -28288,7 +28288,8 @@
 	var rootReducer = (0, _redux.combineReducers)({
 	  translations: __webpack_require__(263).default,
 	  map: __webpack_require__(607).default,
-	  user: __webpack_require__(609).default
+	  user: __webpack_require__(609).default,
+	  speech: __webpack_require__(749).default
 	});
 	
 	// auth: require('./auth').default,
@@ -88158,9 +88159,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function mapStateToProps(state, ownProps) {
+	  return {};
+	}
+	
+	function mapDispatchToProps(dispatch, ownProps) {
 	
 	  // ******************* start of recognition object *******************
-	  // var create_email = false;
 	  var final_transcript = '';
 	  var recognizing = false;
 	  var ignore_onend;
@@ -88169,7 +88173,6 @@
 	  if (!('webkitSpeechRecognition' in window)) {
 	    upgrade();
 	  } else {
-	    // start_button.style.display = 'inline-block';
 	    var recognition = new webkitSpeechRecognition();
 	    recognition.continuous = true;
 	    recognition.interimResults = true;
@@ -88215,10 +88218,6 @@
 	        range.selectNode(document.getElementById('final_span'));
 	        window.getSelection().addRange(range);
 	      }
-	      if (create_email) {
-	        create_email = false;
-	        createEmail();
-	      }
 	    };
 	    recognition.onresult = function (event) {
 	      var interim_transcript = '';
@@ -88235,10 +88234,15 @@
 	      if (final_transcript || interim_transcript) {
 	        showButtons('inline-block');
 	      }
+	
+	      //setting the interim_transcript to redux state:
+	      if (interim_transcript !== '') return dispatch((0, _speech.setInterimTranscript)(interim_transcript));
 	    };
 	  }
 	
 	  // ******************* end of recognition object *******************
+	
+	  // ******************* start of speech functions object *******************
 	
 	  var two_line = /\n\n/g;
 	  var one_line = /\n/g;
@@ -88289,24 +88293,16 @@
 	      return;
 	    }
 	    current_style = style;
-	    // copy_button.style.display = style;
-	    // email_button.style.display = style;
-	    // copy_info.style.display = 'none';
-	    // email_info.style.display = 'none';
 	  }
 	
 	  function upgrade() {
-	    console.log(start_button);
 	    start_button.style.visibility = 'hidden';
 	    showInfo('info_upgrade');
 	  }
 	
-	  return { recognition: recognition, showInfo: showInfo, capitalize: capitalize, startButton: startButton };
-	}
+	  // ******************* end of speech functions *******************
 	
-	function mapDispatchToProps(dispatch, ownProps) {
-	
-	  return {};
+	  return { showInfo: showInfo, startButton: startButton };
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_VoiceRecognition2.default);
@@ -88347,6 +88343,7 @@
 	
 	    _this.state = { didMount: false };
 	    _this.updateCountry = _this.updateCountry.bind(_this);
+	    _this.interimHandler = _this.interimHandler.bind(_this);
 	    return _this;
 	  }
 	
@@ -88354,9 +88351,7 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var updateCountry = this.updateCountry;
-	      var recognition = this.props.recognition;
 	      var showInfo = this.props.showInfo;
-	      var capitalize = this.props.capitalize;
 	      var final_transcript = this.props.final_transcript;
 	
 	      for (var i = 0; i < _languages.langs.length; i++) {
@@ -88366,40 +88361,6 @@
 	      updateCountry();
 	      select_dialect.selectedIndex = 6;
 	      showInfo('info_start');
-	      // function createEmail() {
-	      //   var n = final_transcript.indexOf('\n');
-	      //   if (n < 0 || n >= 80) {
-	      //     n = 40 + final_transcript.substring(40).indexOf(' ');
-	      //   }
-	      //   var subject = encodeURI(final_transcript.substring(0, n));
-	      //   var body = encodeURI(final_transcript.substring(n + 1));
-	      //   window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-	      // }
-	      // function copyButton() {
-	      //   if (recognizing) {
-	      //     recognizing = false;
-	      //     recognition.stop();
-	      //   }
-	      //   copy_button.style.display = 'none';
-	      //   copy_info.style.display = 'inline-block';
-	      //   showInfo('');
-	      // }
-	      // function emailButton() {
-	      //   if (recognizing) {
-	      //     create_email = true;
-	      //     recognizing = false;
-	      //     recognition.stop();
-	      //   } else {
-	      //     createEmail();
-	      //   }
-	      //   email_button.style.display = 'none';
-	      //   email_info.style.display = 'inline-block';
-	      //   showInfo('');
-	      // }
-	
-	      // this is done to set the startButton and updateCountry functions to "this"
-	      // the state change is made just so a re-render is triggered, that way the startButton
-	      // and updateCountry functions declared after the render() line equal a function, and aren't undefined/null
 	    }
 	  }, {
 	    key: 'updateCountry',
@@ -88414,10 +88375,16 @@
 	      select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
 	    }
 	  }, {
+	    key: 'interimHandler',
+	    value: function interimHandler(event) {
+	      console.log(event.target.value);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var startButton = this.props.startButton;
 	      var updateCountry = this.updateCountry;
+	      var interimHandler = this.interimHandler;
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -88529,10 +88496,10 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var FINAL_TRANSCRIPT = exports.FINAL_TRANSCRIPT = 'FINAL_TRANSCRIPT';
+	var INTERIM_TRANSCRIPT = exports.INTERIM_TRANSCRIPT = 'INTERIM_TRANSCRIPT';
 	
-	var setFinalTranscript = exports.setFinalTranscript = function setFinalTranscript(finalTranscript) {
-	  return { type: FINAL_TRANSCRIPT, finalTranscript: finalTranscript };
+	var setInterimTranscript = exports.setInterimTranscript = function setInterimTranscript(intermTranscript) {
+	  return { type: INTERIM_TRANSCRIPT, intermTranscript: intermTranscript };
 	};
 
 /***/ },
@@ -88545,6 +88512,36 @@
 	  value: true
 	});
 	var langs = exports.langs = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']], ['Català', ['ca-ES']], ['Čeština', ['cs-CZ']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']], ['Français', ['fr-FR']], ['Galego', ['gl-ES']], ['Hrvatski', ['hr_HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']], ['Norsk bokmål', ['nb-NO']], ['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Türkçe', ['tr-TR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['한국어', ['ko-KR']], ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'], ['cmn-Hans-HK', '普通话 (香港)'], ['cmn-Hant-TW', '中文 (台灣)'], ['yue-Hant-HK', '粵語 (香港)']], ['日本語', ['ja-JP']], ['Lingua latīna', ['la']]];
+
+/***/ },
+/* 749 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = userReducer;
+	
+	var _speech = __webpack_require__(747);
+	
+	var initialState = { interimTranscript: '' };
+	
+	function userReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+	
+	  var newState = Object.assign({}, state);
+	  switch (action.type) {
+	    case _speech.INTERIM_TRANSCRIPT:
+	      newState.interimTranscript = action.interimTranscript;
+	      break;
+	    default:
+	      return state;
+	  }
+	  return newState;
+	}
 
 /***/ }
 /******/ ]);

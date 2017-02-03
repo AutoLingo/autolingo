@@ -6,13 +6,12 @@ export default class VoiceRecognition extends Component {
     super(props);
     this.state = { didMount: false }
     this.updateCountry = this.updateCountry.bind(this);
+    this.interimHandler = this.interimHandler.bind(this);
   }
 
   componentDidMount() {
     const updateCountry = this.updateCountry;
-    const recognition = this.props.recognition;
     const showInfo = this.props.showInfo;
-    const capitalize = this.props.capitalize;
     const final_transcript = this.props.final_transcript;
 
       for (var i = 0; i < langs.length; i++) {
@@ -22,40 +21,6 @@ export default class VoiceRecognition extends Component {
       updateCountry();
       select_dialect.selectedIndex = 6;
       showInfo('info_start');
-        // function createEmail() {
-        //   var n = final_transcript.indexOf('\n');
-        //   if (n < 0 || n >= 80) {
-        //     n = 40 + final_transcript.substring(40).indexOf(' ');
-        //   }
-        //   var subject = encodeURI(final_transcript.substring(0, n));
-        //   var body = encodeURI(final_transcript.substring(n + 1));
-        //   window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
-        // }
-        // function copyButton() {
-        //   if (recognizing) {
-        //     recognizing = false;
-        //     recognition.stop();
-        //   }
-        //   copy_button.style.display = 'none';
-        //   copy_info.style.display = 'inline-block';
-        //   showInfo('');
-        // }
-        // function emailButton() {
-        //   if (recognizing) {
-        //     create_email = true;
-        //     recognizing = false;
-        //     recognition.stop();
-        //   } else {
-        //     createEmail();
-        //   }
-        //   email_button.style.display = 'none';
-        //   email_info.style.display = 'inline-block';
-        //   showInfo('');
-        // }
-
-        // this is done to set the startButton and updateCountry functions to "this"
-        // the state change is made just so a re-render is triggered, that way the startButton
-        // and updateCountry functions declared after the render() line equal a function, and aren't undefined/null
   }
 
   updateCountry() {
@@ -69,9 +34,14 @@ export default class VoiceRecognition extends Component {
     select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
   }
 
+  interimHandler (event) {
+    console.log(event.target.value)
+  }
+
   render() {
     const startButton = this.props.startButton;
     const updateCountry = this.updateCountry;
+    const interimHandler = this.interimHandler;
     return (
       <div>
         <div id="info">
@@ -102,21 +72,6 @@ export default class VoiceRecognition extends Component {
           <p></p>
         </div>
         <div className="center">
-          {/* <div className="sidebyside" style={{textAlign:"right"}}>
-            <button id="copy_button" className="button" onClick={copyButton}>
-              Copy and Paste</button>
-            <div id="copy_info" className="info">
-              Press Control-C to copy text.<br />(Command-C on Mac.)
-            </div>
-          </div> */}
-          {/* <div className="sidebyside">
-            <button id="email_button" className="button" onClick={emailButton}>
-              Create Email</button>
-            <div id="email_info" className="info">
-              Text sent to default email application.<br />
-              (See chrome://settings/handlers to change.)
-            </div>
-          </div> */}
           <p></p>
           <div id="div_language">
             <select id="select_language" onChange={updateCountry}></select>

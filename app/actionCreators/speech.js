@@ -1,7 +1,7 @@
 'use strict';
 
-export const FINAL_TRANSCRIPT = 'FINAL_TRANSCRIPT';
+export const INTERIM_TRANSCRIPT = 'INTERIM_TRANSCRIPT';
 
-export const setFinalTranscript = (finalTranscript) => {
-  return { type: FINAL_TRANSCRIPT, finalTranscript }
+export const setInterimTranscript = (intermTranscript) => {
+  return { type: INTERIM_TRANSCRIPT, intermTranscript }
 }

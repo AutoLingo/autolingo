@@ -1,14 +1,14 @@
 'use strict'
 
-import { FINAL_TRANSCRIPT } from '../actionCreators/speech';
+import { INTERIM_TRANSCRIPT } from '../actionCreators/speech';
 
-const initialState = { final_transcript: '' };
+const initialState = { interimTranscript: '' };
 
 export default function userReducer(state = initialState, action) {
   let newState = Object.assign({}, state)
   switch (action.type) {
-    case FINAL_TRANSCRIPT:
-      newState.finalTranscript = action.finalTranscript;
+    case INTERIM_TRANSCRIPT:
+      newState.interimTranscript = action.interimTranscript;
       break;
     default:
       return state;
