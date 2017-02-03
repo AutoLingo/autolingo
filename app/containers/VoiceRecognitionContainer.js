@@ -66,8 +66,12 @@ function mapDispatchToProps (dispatch, ownProps) {
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
           final_transcript += event.results[i][0].transcript;
+          socket.emit('initial_transcript', {final_transcript});
+
+          }
         } else {
           interim_transcript += event.results[i][0].transcript;
+           socket.emit('final_trans', {interim_transcript});
         }
       }
       final_transcript = capitalize(final_transcript);
