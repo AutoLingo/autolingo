@@ -62,12 +62,20 @@ function mapDispatchToProps (dispatch, ownProps) {
       }
     };
     recognition.onresult = function(event) {
+      let emitFinalTranscript = ownProps.emitFinalTranscript
+      let emitInterimTranscript = ownProps.emitInterimTranscript
+
       var interim_transcript = '';
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
-          final_transcript += event.results[i][0].transcript;
+          final_transcript = event.results[i][0].transcript;
+          emitFinalTranscript(final_transcript)
+
         } else {
           interim_transcript += event.results[i][0].transcript;
+          
+          emitInterimTranscript(interim_transcript)
+          // socket.emit('interim_transcript', {interim_transcript})
         }
       }
       final_transcript = capitalize(final_transcript);
@@ -77,8 +85,6 @@ function mapDispatchToProps (dispatch, ownProps) {
         showButtons('inline-block');
       }
 
-//setting the interim_transcript to redux state:
-      if (interim_transcript !== '') return dispatch(setInterimTranscript(interim_transcript))
     };
   }
 

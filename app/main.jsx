@@ -10,14 +10,11 @@ import LiveChat from './components/LiveChat'
 import 'rxjs';
 // import Login from './components/Login'
 // import WhoAmI from './components/WhoAmI'
-import Translate from './components/Translate'
 import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
 import NavbarContainer from './containers/NavbarContainer'
-import ChatApp from './components/ChatApp'
-import MainContainer from './containers/MainContainer'
-import Home from './components/Home'
-import VoiceRecognitionContainer from './containers/VoiceRecognitionContainer'
+import ChatAppGroup from './components/ChatAppGroup'
+import ChatAppVideo from './components/ChatAppVideo'
 
 // generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
@@ -31,15 +28,10 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRedirect to="/home" />
-        <Route path="/main/chat" component={ChatApp} />
-        <Route path="/home" component={Home}/>
-        <Route path="/main" component={MainContainer}>
-        </Route>
+        <Route path="/group-chat" component={ChatAppGroup} />
+        <Route path="/video-chat" component={ChatAppVideo} />
+        <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       </Route>
-      <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
-      <Route path="/translate" component={Translate} />
-      <Route path="/voice" component={VoiceRecognitionContainer} />
     </Router>
   </Provider>,
   document.getElementById('main')

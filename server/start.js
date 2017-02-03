@@ -167,6 +167,18 @@ function socketInit (server) {
         id: data.id
       })
     })
+
+    socket.on('interim_transcript', function(data) {
+      socket.broadcast.emit('interim_transcript', {
+       interimTranscript: data.interimTranscript
+      })
+    })
+
+    socket.on('final_transcript', function(data) {
+      socket.broadcast.emit('final_transcript', {
+       finalTranscript: data.finalTranscript
+      })
+    })
     
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {

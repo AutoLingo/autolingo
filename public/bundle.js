@@ -70,10 +70,6 @@
 	
 	__webpack_require__(267);
 	
-	var _Translate = __webpack_require__(683);
-	
-	var _Translate2 = _interopRequireDefault(_Translate);
-	
 	var _LanguageMessage = __webpack_require__(660);
 	
 	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
@@ -86,34 +82,26 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _ChatAppGroup = __webpack_require__(751);
 	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
+	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
-	var _MainContainer = __webpack_require__(742);
+	var _ChatAppVideo = __webpack_require__(752);
 	
-	var _MainContainer2 = _interopRequireDefault(_MainContainer);
-	
-	var _Home = __webpack_require__(745);
-	
-	var _Home2 = _interopRequireDefault(_Home);
-	
-	var _VoiceRecognitionContainer = __webpack_require__(748);
-	
-	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
+	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// generated hash is used to match 2 users in a private chatroom for LiveChat
-	
-	// import Login from './components/Login'
-	// import WhoAmI from './components/WhoAmI'
 	var generateHash = function generateHash() {
 	  if (!location.hash.replace('#', '').length) {
 	    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
 	    location.reload();
 	  }
 	};
+	// import Login from './components/Login'
+	// import WhoAmI from './components/WhoAmI'
+	
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -124,14 +112,10 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
-	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/home' }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/main/chat', component: _ChatApp2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _Home2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/main', component: _MainContainer2.default })
-	    ),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/translate', component: _Translate2.default }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/voice', component: _VoiceRecognitionContainer2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: '/group-chat', component: _ChatAppGroup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/video-chat', component: _ChatAppVideo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash })
+	    )
 	  )
 	), document.getElementById('main'));
 
@@ -78910,295 +78894,8 @@
 	exports.default = LiveChatExternals;
 
 /***/ },
-/* 683 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _translate = __webpack_require__(263);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Translate = function (_Component) {
-	  _inherits(Translate, _Component);
-	
-	  function Translate(props) {
-	    _classCallCheck(this, Translate);
-	
-	    var _this = _possibleConstructorReturn(this, (Translate.__proto__ || Object.getPrototypeOf(Translate)).call(this, props));
-	
-	    _this.state = {
-	      text: ""
-	    };
-	
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(Translate, [{
-	    key: 'handleChange',
-	    value: function handleChange(e) {
-	      var input = e.target.value;
-	      this.props.translateActionCreator(1, 'en', input);
-	      // this.setState ({ text: input })
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var text = this.state.text;
-	      var handleChange = this.handleChange;
-	      // let fr = this.props.translations[1] ? this.props.translations[1].fr : null
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { name: 'input', type: 'textarea', onChange: handleChange }),
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' ',
-	          this.props.translations[1] && _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].en,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].fr,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].ko
-	          ),
-	          ' '
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Translate;
-	}(_react.Component);
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  var translations = state.translations;
-	  console.log('TRANSLATIONS', translations);
-	
-	  return {
-	    translations: translations
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator })(Translate);
-
-/***/ },
-/* 684 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _sockets = __webpack_require__(685);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(737);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(738);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(740);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(741);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _store = __webpack_require__(261);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _translate = __webpack_require__(263);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// import VideoChat from './VideoChat.jsx';
-	
-	var socket = _sockets2.default.connect();
-	
-	var ChatApp = _react2.default.createClass({
-		displayName: 'ChatApp',
-	
-		//set empty array/string for users, messages, text
-		getInitialState: function getInitialState() {
-			return {
-				users: [],
-				messages: [],
-				text: ''
-			};
-		},
-	
-	
-		//run below functions after the components are mounted on the page
-		componentDidMount: function componentDidMount() {
-			socket.on('init', this._initialize);
-			socket.on('send:message', this._messageReceive);
-			socket.on('user:join', this._userJoined);
-			socket.on('user:left', this._userLeft);
-			socket.on('change:name', this._userChangedName);
-		},
-	
-	
-		//set user with given name
-		_initialize: function _initialize(data) {
-			var users = data.users,
-			    name = data.name;
-	
-			this.setState({ users: users, user: name });
-		},
-	
-	
-		//push the given message into messages array
-		_messageReceive: function _messageReceive(messageObject) {
-			var messages = this.state.messages;
-	
-			messages.push(message.text);
-			this.setState({ messages: messages });
-			_store2.default.dispatch((0, _translate.translateActionCreator)(message.id, message.language, message.text));
-		},
-	
-	
-		//when the user joins the chat box, it will push the name of the user to the users array
-		//message, "name of user" joined will rendered on the chat box
-		_userJoined: function _userJoined(data) {
-			var _state = this.state,
-			    users = _state.users,
-			    messages = _state.messages;
-			var name = data.name;
-	
-			users.push(name);
-			messages.push({
-				user: "LingoBo",
-				text: name + ' Joined'
-			});
-			this.setState({ users: users, messages: messages });
-		},
-	
-	
-		//when the user leaves the chat box, it will push the name of the user to the users array
-		//message, "name of user" left will rendered on the chat box
-		_userLeft: function _userLeft(data) {
-			var _state2 = this.state,
-			    users = _state2.users,
-			    messages = _state2.messages;
-			var name = data.name;
-	
-			var index = users.indexOf(name);
-			users.splice(index, 1);
-			messages.push({
-				user: 'LingoBot',
-				text: name + ' Left'
-			});
-			this.setState({ users: users, messages: messages });
-		},
-	
-	
-		//Are we going to allow users to change name in the chat window? Need to discuss about this.
-		_userChangedName: function _userChangedName(data) {
-			var oldName = data.oldName,
-			    newName = data.newName;
-			var _state3 = this.state,
-			    users = _state3.users,
-			    messages = _state3.messages;
-	
-			var index = users.indexOf(oldName);
-			//find the oldName with the index and replace it with newName
-			users.splice(index, 1, newName);
-			message.push({
-				user: 'APPLICATION BOT',
-				text: 'Change Name : ' + oldName + ' ==> ' + newName
-			});
-			this.setState({ users: users, messages: messages });
-		},
-		handleMessageSubmit: function handleMessageSubmit(message) {
-			var messages = this.state.messages;
-	
-			messages.push(message);
-			this.setState({ messages: messages });
-			//send message data through socket
-			socket.emit('send:message', {
-				text: message,
-				language: 'en',
-				id: 1
-			});
-		},
-		handleChangeName: function handleChangeName(newName) {
-			var _this = this;
-	
-			var oldName = this.state.user;
-			socket.emit('change:name', { name: newName }, function (result) {
-				if (!result) {
-					return alert('There was an error changing your name');
-				}
-				var users = _this.state.users;
-	
-				var index = users.indexOf(oldName);
-				users.splice(index, 1, newName);
-				_this.setState({ users: users, user: newName });
-			});
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'chatbox-body' },
-				_react2.default.createElement(_UserList2.default, {
-					users: this.state.users
-				}),
-				_react2.default.createElement(_MessageList2.default, {
-					messages: this.state.messages
-				}),
-				_react2.default.createElement(_MessageForm2.default, {
-					onMessageSubmit: this.handleMessageSubmit,
-					user: this.state.user
-				}),
-				_react2.default.createElement(_ChangeNameForm2.default, {
-					onChangeName: this.handleChangeName
-				})
-			);
-		}
-	});
-	
-	exports.default = ChatApp;
-
-/***/ },
+/* 683 */,
+/* 684 */,
 /* 685 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -87874,336 +87571,10 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-/* 742 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _Main = __webpack_require__(743);
-	
-	var _Main2 = _interopRequireDefault(_Main);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function mapStateToProps(state, ownProps) {
-	  return {};
-	}
-	
-	function mapDispatchToProps(dispatch, ownProps) {
-	  return {};
-	}
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Main2.default);
-
-/***/ },
-/* 743 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = Main;
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ChatApp = __webpack_require__(684);
-	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
-	
-	var _ChatAppCopy = __webpack_require__(744);
-	
-	var _ChatAppCopy2 = _interopRequireDefault(_ChatAppCopy);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function Main(props) {
-	  return _react2.default.createElement(
-	    'main',
-	    null,
-	    _react2.default.createElement(_ChatAppCopy2.default, null)
-	  );
-	}
-
-/***/ },
-/* 744 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _sockets = __webpack_require__(685);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(737);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(738);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(740);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(741);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _translate = __webpack_require__(263);
-	
-	var _messagesReducer = __webpack_require__(607);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var socket = _sockets2.default.connect();
-	
-	var ChatApp = function (_Component) {
-		_inherits(ChatApp, _Component);
-	
-		function ChatApp(props) {
-			_classCallCheck(this, ChatApp);
-	
-			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
-	
-			console.log('PROPS', props);
-			_this.state = {};
-	
-			_this.messageReceive = _this.messageReceive.bind(_this);
-			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
-			return _this;
-		}
-	
-		//run below functions after the components are mounted on the page
-	
-	
-		_createClass(ChatApp, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				socket.on('init', this._initialize);
-				socket.on('send:message', this.messageReceive);
-				socket.on('user:join', this._userJoined);
-				socket.on('user:left', this._userLeft);
-				socket.on('change:name', this._userChangedName);
-			}
-	
-			//set user with given name
-	
-		}, {
-			key: '_initialize',
-			value: function _initialize(data) {
-				var users = data.users,
-				    name = data.name;
-				// this.setState({users, user: name});
-			}
-	
-			//when the user joins the chat box, it will push the name of the user to the users array
-			//message, "name of user" joined will rendered on the chat box
-	
-		}, {
-			key: '_userJoined',
-			value: function _userJoined(data) {
-				var _state = this.state,
-				    users = _state.users,
-				    messages = _state.messages;
-				var name = data.name;
-	
-				users.push(name);
-				messages.push({
-					user: "LingoBo",
-					text: name + ' Joined'
-				});
-				this.setState({ users: users, messages: messages });
-			}
-	
-			//when the user leaves the chat box, it will push the name of the user to the users array
-			//message, "name of user" left will rendered on the chat box
-	
-		}, {
-			key: '_userLeft',
-			value: function _userLeft(data) {
-				var _state2 = this.state,
-				    users = _state2.users,
-				    messages = _state2.messages;
-				var name = data.name;
-	
-				var index = users.indexOf(name);
-				users.splice(index, 1);
-				messages.push({
-					user: 'LingoBot',
-					text: name + ' Left'
-				});
-				this.setState({ users: users, messages: messages });
-			}
-	
-			//Are we going to allow users to change name in the chat window? Need to discuss about this.
-	
-		}, {
-			key: '_userChangedName',
-			value: function _userChangedName(data) {
-				var oldName = data.oldName,
-				    newName = data.newName;
-				var _state3 = this.state,
-				    users = _state3.users,
-				    messages = _state3.messages;
-	
-				var index = users.indexOf(oldName);
-				//find the oldName with the index and replace it with newName
-				users.splice(index, 1, newName);
-				message.push({
-					user: 'APPLICATION BOT',
-					text: 'Change Name : ' + oldName + ' ==> ' + newName
-				});
-				this.setState({ users: users, messages: messages });
-			}
-		}, {
-			key: 'handleChangeName',
-			value: function handleChangeName(newName) {
-				var _this2 = this;
-	
-				var oldName = this.state.user;
-				socket.emit('change:name', { name: newName }, function (result) {
-					if (!result) {
-						return alert('There was an error changing your name');
-					}
-					var users = _this2.state.users;
-	
-					var index = users.indexOf(oldName);
-					users.splice(index, 1, newName);
-					_this2.setState({ users: users, user: newName });
-				});
-			}
-			// ************************************************************
-	
-		}, {
-			key: 'handleMessageSubmit',
-			value: function handleMessageSubmit(message) {
-				socket.emit('send:message', {
-					text: message.text,
-					language: this.props.userLanguage,
-					id: 1
-				});
-	
-				this.props.addToMessages(message.text);
-			}
-		}, {
-			key: 'messageReceive',
-			value: function messageReceive(messageObject) {
-				var id = messageObject && messageObject.id;
-				var originalLanguage = messageObject && messageObject.language;
-				var userLanguage = this.props.userLanguage;
-				var text = messageObject && messageObject.text;
-	
-				if (originalLanguage === userLanguage) {
-					this.props.addToMessages(text);
-				} else {
-					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
-				}
-			}
-	
-			// ************************************************************
-	
-		}, {
-			key: 'render',
-			value: function render() {
-	
-				var fr = this.props.translation && this.props.translation.fr;
-				var en = this.props.translation && this.props.translation.en;
-				var ko = this.props.translation && this.props.translation.ko;
-	
-				var messages = this.props.messages;
-				return _react2.default.createElement(
-					'div',
-					{ id: 'chatbox-body' },
-					_react2.default.createElement(_MessageList2.default, {
-						messages: messages
-					}),
-					_react2.default.createElement(_MessageForm2.default, {
-						onMessageSubmit: this.handleMessageSubmit
-	
-					}),
-					_react2.default.createElement(_ChangeNameForm2.default, {
-						onChangeName: this.handleChangeName
-					})
-				);
-			}
-		}]);
-	
-		return ChatApp;
-	}(_react.Component);
-	
-	// ************************************************
-	
-	
-	var mapStateToProps = function mapStateToProps(state) {
-		var translation = state.translations[1] && state.translations[1];
-		var userLanguage = state.user.selectedUser.primaryLanguage;
-	
-		return {
-			translation: translation,
-			userLanguage: userLanguage,
-			messages: state.messages
-		};
-	};
-	
-	// const mapDispatchToProps = dispatch => ({translateActionCreator})
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, addToMessages: _messagesReducer.addToMessages })(ChatApp);
-
-/***/ },
-/* 745 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = Home;
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _ChatApp = __webpack_require__(684);
-	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function Home(props) {
-	  return _react2.default.createElement('div', null);
-	}
-
-/***/ },
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
 /* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -88216,7 +87587,7 @@
 	
 	var _speech = __webpack_require__(747);
 	
-	var initialState = { interimTranscript: '' };
+	var initialState = { interimTranscript: '', finalTranscripts: [] };
 	
 	function userReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -88224,8 +87595,12 @@
 	
 	  var newState = Object.assign({}, state);
 	  switch (action.type) {
-	    case _speech.INTERIM_TRANSCRIPT:
+	    case _speech.SET_INTERIM_TRANSCRIPT:
 	      newState.interimTranscript = action.interimTranscript;
+	      break;
+	    case _speech.ADD_FINAL_TRANSCRIPT:
+	      console.log('ACTION FINAL TRANSCRIPT', action.finalTranscript);
+	      newState.finalTranscripts = state.finalTranscripts.concat([action.finalTranscript]);
 	      break;
 	    default:
 	      return state;
@@ -88242,10 +87617,14 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var INTERIM_TRANSCRIPT = exports.INTERIM_TRANSCRIPT = 'INTERIM_TRANSCRIPT';
+	var SET_INTERIM_TRANSCRIPT = exports.SET_INTERIM_TRANSCRIPT = 'SET_INTERIM_TRANSCRIPT';
+	var ADD_FINAL_TRANSCRIPT = exports.ADD_FINAL_TRANSCRIPT = 'ADD_FINAL_TRANSCRIPT';
 	
 	var setInterimTranscript = exports.setInterimTranscript = function setInterimTranscript(interimTranscript) {
-	  return { type: INTERIM_TRANSCRIPT, interimTranscript: interimTranscript };
+	  return { type: SET_INTERIM_TRANSCRIPT, interimTranscript: interimTranscript };
+	};
+	var addFinalTranscript = exports.addFinalTranscript = function addFinalTranscript(finalTranscript) {
+	  return { type: ADD_FINAL_TRANSCRIPT, finalTranscript: finalTranscript };
 	};
 
 /***/ },
@@ -88326,12 +87705,19 @@
 	      }
 	    };
 	    recognition.onresult = function (event) {
+	      var emitFinalTranscript = ownProps.emitFinalTranscript;
+	      var emitInterimTranscript = ownProps.emitInterimTranscript;
+	
 	      var interim_transcript = '';
 	      for (var i = event.resultIndex; i < event.results.length; ++i) {
 	        if (event.results[i].isFinal) {
-	          final_transcript += event.results[i][0].transcript;
+	          final_transcript = event.results[i][0].transcript;
+	          emitFinalTranscript(final_transcript);
 	        } else {
 	          interim_transcript += event.results[i][0].transcript;
+	
+	          emitInterimTranscript(interim_transcript);
+	          // socket.emit('interim_transcript', {interim_transcript})
 	        }
 	      }
 	      final_transcript = capitalize(final_transcript);
@@ -88340,9 +87726,6 @@
 	      if (final_transcript || interim_transcript) {
 	        showButtons('inline-block');
 	      }
-	
-	      //setting the interim_transcript to redux state:
-	      if (interim_transcript !== '') return dispatch((0, _speech.setInterimTranscript)(interim_transcript));
 	    };
 	  }
 	
@@ -88608,6 +87991,530 @@
 	  value: true
 	});
 	var langs = exports.langs = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']], ['Català', ['ca-ES']], ['Čeština', ['cs-CZ']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']], ['Français', ['fr-FR']], ['Galego', ['gl-ES']], ['Hrvatski', ['hr_HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']], ['Norsk bokmål', ['nb-NO']], ['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Türkçe', ['tr-TR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['한국어', ['ko-KR']], ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'], ['cmn-Hans-HK', '普通话 (香港)'], ['cmn-Hant-TW', '中文 (台灣)'], ['yue-Hant-HK', '粵語 (香港)']], ['日本語', ['ja-JP']], ['Lingua latīna', ['la']]];
+
+/***/ },
+/* 751 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _sockets = __webpack_require__(685);
+	
+	var _sockets2 = _interopRequireDefault(_sockets);
+	
+	var _UserList = __webpack_require__(737);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(738);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(740);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(741);
+	
+	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
+	
+	var _reactRedux = __webpack_require__(233);
+	
+	var _translate = __webpack_require__(263);
+	
+	var _messagesReducer = __webpack_require__(607);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _sockets2.default.connect();
+	
+	var ChatApp = function (_Component) {
+		_inherits(ChatApp, _Component);
+	
+		function ChatApp(props) {
+			_classCallCheck(this, ChatApp);
+	
+			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
+	
+			console.log('PROPS', props);
+			_this.state = {};
+	
+			_this.messageReceive = _this.messageReceive.bind(_this);
+			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
+			return _this;
+		}
+	
+		//run below functions after the components are mounted on the page
+	
+	
+		_createClass(ChatApp, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				socket.on('init', this._initialize);
+				socket.on('send:message', this.messageReceive);
+				socket.on('user:join', this._userJoined);
+				socket.on('user:left', this._userLeft);
+				socket.on('change:name', this._userChangedName);
+			}
+	
+			//set user with given name
+	
+		}, {
+			key: '_initialize',
+			value: function _initialize(data) {
+				var users = data.users,
+				    name = data.name;
+				// this.setState({users, user: name});
+			}
+	
+			//when the user joins the chat box, it will push the name of the user to the users array
+			//message, "name of user" joined will rendered on the chat box
+	
+		}, {
+			key: '_userJoined',
+			value: function _userJoined(data) {
+				var _state = this.state,
+				    users = _state.users,
+				    messages = _state.messages;
+				var name = data.name;
+	
+				users.push(name);
+				messages.push({
+					user: "LingoBo",
+					text: name + ' Joined'
+				});
+				this.setState({ users: users, messages: messages });
+			}
+	
+			//when the user leaves the chat box, it will push the name of the user to the users array
+			//message, "name of user" left will rendered on the chat box
+	
+		}, {
+			key: '_userLeft',
+			value: function _userLeft(data) {
+				var _state2 = this.state,
+				    users = _state2.users,
+				    messages = _state2.messages;
+				var name = data.name;
+	
+				var index = users.indexOf(name);
+				users.splice(index, 1);
+				messages.push({
+					user: 'LingoBot',
+					text: name + ' Left'
+				});
+				this.setState({ users: users, messages: messages });
+			}
+	
+			//Are we going to allow users to change name in the chat window? Need to discuss about this.
+	
+		}, {
+			key: '_userChangedName',
+			value: function _userChangedName(data) {
+				var oldName = data.oldName,
+				    newName = data.newName;
+				var _state3 = this.state,
+				    users = _state3.users,
+				    messages = _state3.messages;
+	
+				var index = users.indexOf(oldName);
+				//find the oldName with the index and replace it with newName
+				users.splice(index, 1, newName);
+				message.push({
+					user: 'APPLICATION BOT',
+					text: 'Change Name : ' + oldName + ' ==> ' + newName
+				});
+				this.setState({ users: users, messages: messages });
+			}
+		}, {
+			key: 'handleChangeName',
+			value: function handleChangeName(newName) {
+				var _this2 = this;
+	
+				var oldName = this.state.user;
+				socket.emit('change:name', { name: newName }, function (result) {
+					if (!result) {
+						return alert('There was an error changing your name');
+					}
+					var users = _this2.state.users;
+	
+					var index = users.indexOf(oldName);
+					users.splice(index, 1, newName);
+					_this2.setState({ users: users, user: newName });
+				});
+			}
+			// ************************************************************
+	
+		}, {
+			key: 'handleMessageSubmit',
+			value: function handleMessageSubmit(message) {
+				socket.emit('send:message', {
+					text: message.text,
+					language: this.props.userLanguage,
+					id: 1
+				});
+	
+				this.props.addToMessages(message.text);
+			}
+		}, {
+			key: 'messageReceive',
+			value: function messageReceive(messageObject) {
+				var id = messageObject && messageObject.id;
+				var originalLanguage = messageObject && messageObject.language;
+				var userLanguage = this.props.userLanguage;
+				var text = messageObject && messageObject.text;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addToMessages(text);
+				} else {
+					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				}
+			}
+	
+			// ************************************************************
+	
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				var fr = this.props.translation && this.props.translation.fr;
+				var en = this.props.translation && this.props.translation.en;
+				var ko = this.props.translation && this.props.translation.ko;
+	
+				var messages = this.props.messages;
+				return _react2.default.createElement(
+					'div',
+					{ id: 'chatbox-body' },
+					_react2.default.createElement(_MessageList2.default, {
+						messages: messages
+					}),
+					_react2.default.createElement(_MessageForm2.default, {
+						onMessageSubmit: this.handleMessageSubmit
+	
+					}),
+					_react2.default.createElement(_ChangeNameForm2.default, {
+						onChangeName: this.handleChangeName
+					})
+				);
+			}
+		}]);
+	
+		return ChatApp;
+	}(_react.Component);
+	
+	// ************************************************
+	
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		var translation = state.translations[1] && state.translations[1];
+		var userLanguage = state.user.selectedUser.primaryLanguage;
+	
+		return {
+			translation: translation,
+			userLanguage: userLanguage,
+			messages: state.messages
+		};
+	};
+	
+	// const mapDispatchToProps = dispatch => ({translateActionCreator})
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, addToMessages: _messagesReducer.addToMessages })(ChatApp);
+
+/***/ },
+/* 752 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _sockets = __webpack_require__(685);
+	
+	var _sockets2 = _interopRequireDefault(_sockets);
+	
+	var _UserList = __webpack_require__(737);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(738);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(740);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(741);
+	
+	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
+	
+	var _VoiceRecognitionContainer = __webpack_require__(748);
+	
+	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
+	
+	var _reactRedux = __webpack_require__(233);
+	
+	var _translate = __webpack_require__(263);
+	
+	var _speech = __webpack_require__(747);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _sockets2.default.connect();
+	
+	var ChatApp = function (_Component) {
+		_inherits(ChatApp, _Component);
+	
+		function ChatApp(props) {
+			_classCallCheck(this, ChatApp);
+	
+			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
+	
+			console.log('PROPS', props);
+			_this.state = {};
+	
+			_this.messageReceive = _this.messageReceive.bind(_this);
+			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
+			_this.emitFinalTranscript = _this.emitFinalTranscript.bind(_this);
+			_this.interimTranscript = _this.interimTranscript.bind(_this);
+			_this.finalTranscript = _this.finalTranscript.bind(_this);
+			return _this;
+		}
+	
+		//run below functions after the components are mounted on the page
+	
+	
+		_createClass(ChatApp, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				socket.on('init', this._initialize);
+				socket.on('send:message', this.messageReceive);
+				socket.on('user:join', this._userJoined);
+				socket.on('user:left', this._userLeft);
+				socket.on('change:name', this._userChangedName);
+				socket.on('final_transcript', this.finalTranscript);
+				socket.on('interim_transcript', this.interimTranscript);
+			}
+		}, {
+			key: 'emitFinalTranscript',
+			value: function emitFinalTranscript(finalTranscript) {
+				socket.emit('final_transcript', { finalTranscript: finalTranscript });
+			}
+		}, {
+			key: 'emitInterimTranscript',
+			value: function emitInterimTranscript(interimTranscript) {
+				socket.emit('interim_transcript', { interimTranscript: interimTranscript });
+			}
+		}, {
+			key: 'finalTranscript',
+			value: function finalTranscript(data) {
+				this.props.addFinalTranscript(data.finalTranscript);
+			}
+		}, {
+			key: 'interimTranscript',
+			value: function interimTranscript(data) {
+				this.props.setInterimTranscript(data.interimTranscript);
+			}
+	
+			//set user with given name
+	
+		}, {
+			key: '_initialize',
+			value: function _initialize(data) {
+				var users = data.users,
+				    name = data.name;
+				// this.setState({users, user: name});
+			}
+	
+			//when the user joins the chat box, it will push the name of the user to the users array
+			//message, "name of user" joined will rendered on the chat box
+	
+		}, {
+			key: '_userJoined',
+			value: function _userJoined(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	users.push(name);
+			// 	messages.push({
+			// 		user: "LingoBo",
+			// 		text: name + ' Joined'
+			// 	});
+			// 	this.setState({users, messages})
+	
+	
+			//when the user leaves the chat box, it will push the name of the user to the users array
+			//message, "name of user" left will rendered on the chat box
+	
+		}, {
+			key: '_userLeft',
+			value: function _userLeft(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	var index = users.indexOf(name);
+			// 	users.splice(index, 1);
+			// 	messages.push({
+			// 		user: 'LingoBot',
+			// 		text: name + ' Left'
+			// 	})
+			// 	this.setState({users, messages})
+	
+	
+			//Are we going to allow users to change name in the chat window? Need to discuss about this.
+	
+		}, {
+			key: '_userChangedName',
+			value: function _userChangedName(data) {
+				// 	var {oldName, newName} = data;
+				// 	var {users, messages} = this.state;
+				// 	var index = users.indexOf(oldName);
+				// 	//find the oldName with the index and replace it with newName
+				// 	users.splice(index, 1, newName);
+				// 	message.push({
+				// 		user: 'APPLICATION BOT',
+				// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
+				// 	});
+				// 	this.setState({users, messages})
+			}
+		}, {
+			key: 'handleChangeName',
+			value: function handleChangeName(newName) {}
+			// 	var oldName = this.state.user;
+			// 	socket.emit('change:name', { name: newName }, (result) => {
+			// 		if(!result) {
+			// 			return alert('There was an error changing your name');
+			// 		}
+			// 		var {users} = this.state;
+			// 		var index = users.indexOf(oldName);
+			// 		users.splice(index, 1, newName);
+			// 		this.setState({users, user: newName})
+			// 	})
+	
+			// ************************************************************
+	
+		}, {
+			key: 'handleMessageSubmit',
+			value: function handleMessageSubmit(message) {
+				socket.emit('send:message', {
+					text: message.text,
+					language: this.props.userLanguage,
+					id: 1
+				});
+	
+				this.props.addToMessages(message.text);
+			}
+		}, {
+			key: 'messageReceive',
+			value: function messageReceive(messageObject) {
+				var id = messageObject && messageObject.id;
+				var originalLanguage = messageObject && messageObject.language;
+				var userLanguage = this.props.userLanguage;
+				var text = messageObject && messageObject.text;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addToMessages(text);
+				} else {
+					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				}
+			}
+	
+			// ************************************************************
+	
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				var finalTranscripts = this.props.finalTranscripts;
+				var interimTranscript = this.props.interimTranscript;
+	
+				return _react2.default.createElement(
+					'div',
+					{ id: 'chatbox-body' },
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Conversation'
+						),
+						finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
+							return _react2.default.createElement(
+								'div',
+								{ key: i },
+								_react2.default.createElement('br', null),
+								' ',
+								transcript
+							);
+						})
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Live'
+						),
+						interimTranscript
+					),
+					_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript })
+				);
+			}
+		}]);
+	
+		return ChatApp;
+	}(_react.Component);
+	
+	// ************************************************
+	
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		var translation = state.translations[1] && state.translations[1];
+		var userLanguage = state.user.selectedUser.primaryLanguage;
+		var finalTranscripts = state.speech.finalTranscripts;
+		var interimTranscript = state.speech.interimTranscript;
+	
+		return {
+			translation: translation,
+			userLanguage: userLanguage,
+			finalTranscripts: finalTranscripts,
+			interimTranscript: interimTranscript
+		};
+	};
+	
+	// const mapDispatchToProps = dispatch => ({translateActionCreator})
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ }
 /******/ ]);
