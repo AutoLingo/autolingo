@@ -28,12 +28,7 @@ class Translate extends Component {
   render () {
     let text = this.state.text
     let handleChange = this.handleChange
-    let googleTranslate = this.props.googleTranslate
     // let fr = this.props.translations[1] ? this.props.translations[1].fr : null
-    console.log('THIS.PROPS.TRANSLATIONS', this.props.translations)
-    // console.log('LOCAL STATE',this.state.text)
-    //
-    // console.log('FR', fr)
 
     return (
       <div>
