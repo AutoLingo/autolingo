@@ -54082,7 +54082,14 @@
 	});
 	
 	exports.default = function (props) {
-	    return _react2.default.createElement('div', null);
+	    return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_LanguageMessage2.default, null),
+	        _react2.default.createElement(_NavbarContainer2.default, null),
+	        _react2.default.createElement(_MapContainer2.default, null),
+	        props.children && _react2.default.cloneElement(props.children, props)
+	    );
 	};
 	
 	var _react = __webpack_require__(1);
@@ -88165,10 +88172,6 @@
 	function mapDispatchToProps(dispatch, ownProps) {
 	
 	  // ******************* start of recognition object *******************
-	  var final_transcript = '';
-	  var recognizing = false;
-	  var ignore_onend;
-	  var start_timestamp;
 	
 	  if (!('webkitSpeechRecognition' in window)) {
 	    upgrade();
@@ -88244,25 +88247,22 @@
 	
 	  // ******************* start of speech functions object *******************
 	
+	  var final_transcript = '';
+	  var recognizing = false;
+	  var ignore_onend;
+	  var start_timestamp;
+	
+	  function upgrade() {
+	    start_button.style.visibility = 'hidden';
+	    showInfo('info_upgrade');
+	  }
 	  var two_line = /\n\n/g;
 	  var one_line = /\n/g;
+	
 	  function linebreak(s) {
 	    return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
 	  }
 	  var first_char = /\S/;
-	
-	  function showInfo(s) {
-	    if (s) {
-	      for (var child = info.firstChild; child; child = child.nextSibling) {
-	        if (child.style) {
-	          child.style.display = child.id == s ? 'inline' : 'none';
-	        }
-	      }
-	      info.style.visibility = 'visible';
-	    } else {
-	      info.style.visibility = 'hidden';
-	    }
-	  }
 	
 	  function capitalize(s) {
 	    return s.replace(first_char, function (m) {
@@ -88287,17 +88287,25 @@
 	    start_timestamp = event.timeStamp;
 	  }
 	
+	  function showInfo(s) {
+	    if (s) {
+	      for (var child = info.firstChild; child; child = child.nextSibling) {
+	        if (child.style) {
+	          child.style.display = child.id == s ? 'inline' : 'none';
+	        }
+	      }
+	      info.style.visibility = 'visible';
+	    } else {
+	      info.style.visibility = 'hidden';
+	    }
+	  }
+	
 	  var current_style;
 	  function showButtons(style) {
 	    if (style == current_style) {
 	      return;
 	    }
 	    current_style = style;
-	  }
-	
-	  function upgrade() {
-	    start_button.style.visibility = 'hidden';
-	    showInfo('info_upgrade');
 	  }
 	
 	  // ******************* end of speech functions *******************
@@ -88498,8 +88506,8 @@
 	});
 	var INTERIM_TRANSCRIPT = exports.INTERIM_TRANSCRIPT = 'INTERIM_TRANSCRIPT';
 	
-	var setInterimTranscript = exports.setInterimTranscript = function setInterimTranscript(intermTranscript) {
-	  return { type: INTERIM_TRANSCRIPT, intermTranscript: intermTranscript };
+	var setInterimTranscript = exports.setInterimTranscript = function setInterimTranscript(interimTranscript) {
+	  return { type: INTERIM_TRANSCRIPT, interimTranscript: interimTranscript };
 	};
 
 /***/ },

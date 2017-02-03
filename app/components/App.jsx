@@ -7,12 +7,12 @@ import LanguageMessage from '../components/LanguageMessage';
 export default function (props) {
     return (
     	<div>
-        {/* <LanguageMessage />
+        <LanguageMessage />
         <NavbarContainer />
         <Map />
 	      {
 	       props.children && React.cloneElement(props.children, props)
-	      } */}
+	      }
     	</div>
     )
 }
