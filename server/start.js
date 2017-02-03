@@ -27,16 +27,16 @@ var userNames = (function() {
   //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
   //The number will only increase if the guest username does not already exist in the names object. 
   var getGuestName = function() {
-    var name,
-      nextUserId = 1;
+   var name,
+     nextUserId = 1;
 
-      do {
-        name = 'Guest ' + nextUserId;
-        nextUserId += 1;
-      } while (!claim(name));
+     do {
+       name = 'Guest ' + nextUserId;
+       nextUserId += 1;
+     } while (!claim(name));
 
-      return name
-  }
+     return name
+ }
 
   //serialize claimed names as an array
   var get = function() {
@@ -49,9 +49,12 @@ var userNames = (function() {
   }
 
   var free = function (name) {
+    console.log("name asdhasdjasda21@@!3447y328234212212", name)
+    console.log("name asdhasdjasda21@@!3447y328234212212", names)
     if (names[name]) {
       delete names[name];
     }
+    console.log("name asdhasdjasda21@@!3447y328234212212", names)
   }
 
   return {
@@ -142,17 +145,20 @@ function socketInit (server) {
 
   if (!IO) IO = socketio(server);
   else return IO
-  var name = userNames.getGuestName();
+  // console.log("@#@#!@$@!$!#@!#!@#!@#@!#@!#@!#@!#!@#!@#!#!#")
 
   IO.on('connection', function(socket) {
     console.log('A new user has connected')
 
+    var name = userNames.getGuestName();
     //send the new user their name and a list of users
     socket.emit('init', {
       name: name,
       users: userNames.get()
     });
-
+    
+    // console.log("@#@#!#!@#!#!#namenamenamename212312323@!#@!#@!#@1", name)
+    
     //notify other users that a new user has joined
     socket.broadcast.emit('user:join', {
       name: name
@@ -162,7 +168,8 @@ function socketInit (server) {
     socket.on('send:message', function(data) {
       socket.broadcast.emit('send:message', {
         user: name,
-        text: data.text
+        text: data.text,
+        language: 'en'
       })
     })
     
