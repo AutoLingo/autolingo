@@ -33,7 +33,6 @@ render (
         <IndexRedirect to="/home" />
         <Route path="/main/chat" component={ChatApp} /> 
         <Route path="/home" component={Home}/>
-        <Route path="/main/chat" component={ChatApp} />
         <Route path="/main" component={MainContainer}>
         </Route>
       </Route>
