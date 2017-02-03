@@ -17,6 +17,7 @@ import NavbarContainer from './containers/NavbarContainer'
 import ChatApp from './components/ChatApp'
 import MainContainer from './containers/MainContainer'
 import Home from './components/Home'
+import VoiceRecognitionContainer from './containers/VoiceRecognitionContainer'
 
 // generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
@@ -31,13 +32,14 @@ render (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRedirect to="/home" />
-        <Route path="/main/chat" component={ChatApp} /> 
+        <Route path="/main/chat" component={ChatApp} />
         <Route path="/home" component={Home}/>
         <Route path="/main" component={MainContainer}>
         </Route>
       </Route>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/translate" component={Translate} />
+      <Route path="/voice" component={VoiceRecognitionContainer} />
     </Router>
   </Provider>,
   document.getElementById('main')
