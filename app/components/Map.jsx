@@ -50,18 +50,45 @@ export default class Map extends Component {
     }).addTo(map);
 
     //Map click function to show coordinates of the place when the mpa is clicked
-    // var popup = L.popup();
+    var popup = L.popup();
 
-    // function onMapClick(e) {
-    //     popup
-    //         .setLatLng(e.latlng)
-    //         .setContent("You clicked the map at " + e.latlng.toString())
-    //         .openOn(map);
-    // }
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
 
-    // //Need to change below click event when refactoring into react component
-    // map.on('click', onMapClick);
+    //Need to change below click event when refactoring into react component
+    map.on('click', onMapClick);
 
+    //Add country markers
+    var usaIcon = L.icon({
+      iconUrl: 'APP/public/img/united-states.png'
+    });
+
+    var chinaIcon = L.icon({
+      iconUrl: 'APP/public/img/china.png'
+    });
+
+    var franceIcon = L.icon({
+      iconUrl: 'APP/public/img/france.png'
+    });
+
+    var spainIcon = L.icon({
+      iconUrl: 'APP/public/img/spain.png'
+    });
+
+    var koreaIcon = L.icon({
+      iconUrl: 'APP/public/img/south-korea.png'
+    })
+
+    L.marker([41.6981, -99.36035], {icon: usaIcon}).addTo(map);
+    L.marker([35.23727, 103.84277], {icon: chinaIcon}).addTo(map);
+    L.marker([52.69116, -2.43896], {icon:franceIcon}).addTo(map);
+    L.marker([47.54952, -8.69141], {icon:spainIcon}).addTo(map);
+    L.marker([36.67518, 127.81494], {icon:koreaIcon}).addTo(map);
+    //*****************************************
     function highlightFeature(e) {
       var layer = e.target;
       layer.setStyle(
@@ -104,7 +131,7 @@ export default class Map extends Component {
     let self = this;
     return function (event) {
       self.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
-      self.map.dragging.enable();
+      self.map.dragging.disable();
       self.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
     }
   }

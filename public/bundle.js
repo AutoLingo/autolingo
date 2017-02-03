@@ -64,13 +64,13 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-	var _LiveChat = __webpack_require__(680);
+	var _LiveChat = __webpack_require__(684);
 	
 	var _LiveChat2 = _interopRequireDefault(_LiveChat);
 	
 	__webpack_require__(267);
 	
-	var _Translate = __webpack_require__(683);
+	var _Translate = __webpack_require__(687);
 	
 	var _Translate2 = _interopRequireDefault(_Translate);
 	
@@ -86,15 +86,15 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _ChatApp = __webpack_require__(688);
 	
 	var _ChatApp2 = _interopRequireDefault(_ChatApp);
 	
-	var _MainContainer = __webpack_require__(742);
+	var _MainContainer = __webpack_require__(746);
 	
 	var _MainContainer2 = _interopRequireDefault(_MainContainer);
 	
-	var _Home = __webpack_require__(745);
+	var _Home = __webpack_require__(749);
 	
 	var _Home2 = _interopRequireDefault(_Home);
 	
@@ -54208,18 +54208,42 @@
 	      }).addTo(map);
 	
 	      //Map click function to show coordinates of the place when the mpa is clicked
-	      // var popup = L.popup();
+	      var popup = _mapbox2.default.popup();
 	
-	      // function onMapClick(e) {
-	      //     popup
-	      //         .setLatLng(e.latlng)
-	      //         .setContent("You clicked the map at " + e.latlng.toString())
-	      //         .openOn(map);
-	      // }
+	      function onMapClick(e) {
+	        popup.setLatLng(e.latlng).setContent("You clicked the map at " + e.latlng.toString()).openOn(map);
+	      }
 	
-	      // //Need to change below click event when refactoring into react component
-	      // map.on('click', onMapClick);
+	      //Need to change below click event when refactoring into react component
+	      map.on('click', onMapClick);
 	
+	      //Add country markers
+	      var usaIcon = _mapbox2.default.icon({
+	        iconUrl: 'APP/public/img/united-states.png'
+	      });
+	
+	      var chinaIcon = _mapbox2.default.icon({
+	        iconUrl: 'APP/public/img/china.png'
+	      });
+	
+	      var franceIcon = _mapbox2.default.icon({
+	        iconUrl: 'APP/public/img/france.png'
+	      });
+	
+	      var spainIcon = _mapbox2.default.icon({
+	        iconUrl: 'APP/public/img/spain.png'
+	      });
+	
+	      var koreaIcon = _mapbox2.default.icon({
+	        iconUrl: 'APP/public/img/south-korea.png'
+	      });
+	
+	      _mapbox2.default.marker([41.6981, -99.36035], { icon: usaIcon }).addTo(map);
+	      _mapbox2.default.marker([35.23727, 103.84277], { icon: chinaIcon }).addTo(map);
+	      _mapbox2.default.marker([52.69116, -2.43896], { icon: franceIcon }).addTo(map);
+	      _mapbox2.default.marker([47.54952, -8.69141], { icon: spainIcon }).addTo(map);
+	      _mapbox2.default.marker([36.67518, 127.81494], { icon: koreaIcon }).addTo(map);
+	      //*****************************************
 	      function highlightFeature(e) {
 	        var layer = e.target;
 	        layer.setStyle({
@@ -54259,7 +54283,7 @@
 	      var self = this;
 	      return function (event) {
 	        self.map.fitBounds([country.fitBounds], { maxZoom: country.zoomNum });
-	        self.map.dragging.enable();
+	        self.map.dragging.disable();
 	        self.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
 	      };
 	    }
@@ -68071,18 +68095,18 @@
 		"_args": [
 			[
 				{
-					"raw": "mapbox.js@^3.0.1",
+					"raw": "mapbox.js",
 					"scope": null,
 					"escapedName": "mapbox.js",
 					"name": "mapbox.js",
-					"rawSpec": "^3.0.1",
-					"spec": ">=3.0.1 <4.0.0",
-					"type": "range"
+					"rawSpec": "",
+					"spec": "latest",
+					"type": "tag"
 				},
-				"/Users/Adam/Development/Fullstack/Capstone/autolingo"
+				"/Users/EunLee/Desktop/autolingo"
 			]
 		],
-		"_from": "mapbox.js@>=3.0.1 <4.0.0",
+		"_from": "mapbox.js@latest",
 		"_id": "mapbox.js@3.0.1",
 		"_inCache": true,
 		"_location": "/mapbox.js",
@@ -68098,23 +68122,23 @@
 		"_npmVersion": "2.15.9",
 		"_phantomChildren": {},
 		"_requested": {
-			"raw": "mapbox.js@^3.0.1",
+			"raw": "mapbox.js",
 			"scope": null,
 			"escapedName": "mapbox.js",
 			"name": "mapbox.js",
-			"rawSpec": "^3.0.1",
-			"spec": ">=3.0.1 <4.0.0",
-			"type": "range"
+			"rawSpec": "",
+			"spec": "latest",
+			"type": "tag"
 		},
 		"_requiredBy": [
-			"/",
-			"/autolingo"
+			"#USER",
+			"/"
 		],
 		"_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-3.0.1.tgz",
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
-		"_spec": "mapbox.js@^3.0.1",
-		"_where": "/Users/Adam/Development/Fullstack/Capstone/autolingo",
+		"_spec": "mapbox.js",
+		"_where": "/Users/EunLee/Desktop/autolingo",
 		"author": {
 			"name": "Mapbox"
 		},
@@ -75734,6 +75758,10 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
+	var _reactSimpleDropdown = __webpack_require__(680);
+	
+	var _reactSimpleDropdown2 = _interopRequireDefault(_reactSimpleDropdown);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -75819,164 +75847,177 @@
 	          },
 	          _react2.default.createElement(
 	            'h1',
-	            { style: { color: 'black' } },
+	            { style: { color: 'linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5)' } },
 	            'Choose Default Language'
 	          ),
 	          _react2.default.createElement(
-	            'form',
-	            { style: { 'textAlign': 'center' } },
+	            _reactSimpleDropdown2.default,
+	            null,
 	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'en', 'America');
-	                  } },
-	                'English'
-	              )
+	              _reactSimpleDropdown.DropdownTrigger,
+	              { id: 'dropDown-title' },
+	              'Click to select language'
 	            ),
 	            _react2.default.createElement(
-	              'div',
-	              null,
+	              _reactSimpleDropdown.DropdownContent,
+	              { id: 'dropDown-content' },
 	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'zh-CN', 'China');
-	                  } },
-	                'Chinese'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'es', 'Spain');
-	                  } },
-	                'Spanish'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'fr', 'France');
-	                  } },
-	                'French'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'ko', 'Korea');
-	                  } },
-	                'Korean'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'ru', 'Russia');
-	                  } },
-	                'Russian'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'tl', 'Philippines');
-	                  } },
-	                'Filipino'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'el', 'Greece');
-	                  } },
-	                'Greek'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'iw', 'Israel');
-	                  } },
-	                'Hebrew'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'it', 'Italy');
-	                  } },
-	                'Italian'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'ja', 'Japan');
-	                  } },
-	                'Japanese'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'sw', 'Tanzania');
-	                  } },
-	                'Swahili'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'vi', 'Vietnam');
-	                  } },
-	                'Vietnamese'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              null,
-	              _react2.default.createElement(
-	                'button',
-	                { style: { width: '300px', marginBottom: '20px' }, onClick: function onClick(event) {
-	                    return _this2.selectLanguage(event, 'pl', 'Poland');
-	                  } },
-	                'Polish'
+	                'ul',
+	                null,
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'en', 'America');
+	                      } },
+	                    'English'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'zh-CN', 'China');
+	                      } },
+	                    'Chinese'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'es', 'Spain');
+	                      } },
+	                    'Spanish'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'fr', 'France');
+	                      } },
+	                    'French'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'ko', 'Korea');
+	                      } },
+	                    'Korean'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'ru', 'Russia');
+	                      } },
+	                    'Russian'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'tl', 'Philippines');
+	                      } },
+	                    'Filipino'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'el', 'Greece');
+	                      } },
+	                    'Greek'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'iw', 'Israel');
+	                      } },
+	                    'Hebrew'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'it', 'Italy');
+	                      } },
+	                    'Italian'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'ja', 'Japan');
+	                      } },
+	                    'Japanese'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'sw', 'Tanzania');
+	                      } },
+	                    'Swahili'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'vi', 'Vietnam');
+	                      } },
+	                    'Vietnamese'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    'a',
+	                    { onClick: function onClick(event) {
+	                        return _this2.selectLanguage(event, 'pl', 'Poland');
+	                      } },
+	                    'Polish'
+	                  )
+	                )
 	              )
 	            )
 	          )
@@ -78617,6 +78658,292 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.DropdownContent = exports.DropdownTrigger = undefined;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(87);
+	
+	var _classnames = __webpack_require__(681);
+	
+	var _classnames2 = _interopRequireDefault(_classnames);
+	
+	var _DropdownTrigger = __webpack_require__(682);
+	
+	var _DropdownTrigger2 = _interopRequireDefault(_DropdownTrigger);
+	
+	var _DropdownContent = __webpack_require__(683);
+	
+	var _DropdownContent2 = _interopRequireDefault(_DropdownContent);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Dropdown = (0, _react.createClass)({
+	  displayName: 'Dropdown',
+	
+	  getInitialState: function getInitialState() {
+	    return {
+	      active: false
+	    };
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      className: ''
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    window.addEventListener('click', this._onWindowClick);
+	    window.addEventListener('touchstart', this._onWindowClick);
+	  },
+	  componentWillUnmount: function componentWillUnmount() {
+	    window.removeEventListener('click', this._onWindowClick);
+	    window.removeEventListener('touchstart', this._onWindowClick);
+	  },
+	  render: function render() {
+	    var _this = this,
+	        _arguments = arguments;
+	
+	    var _props = this.props;
+	    var children = _props.children;
+	    var className = _props.className;
+	    // create component classes
+	
+	    var active = this.isActive();
+	    var dropdown_classes = (0, _classnames2.default)({
+	      dropdown: true,
+	      'dropdown--active': active
+	    });
+	    dropdown_classes += ' ' + className;
+	    // stick callback on trigger element
+	    var bound_children = _react2.default.Children.map(children, function (child) {
+	      if (child.type === _DropdownTrigger2.default) {
+	        (function () {
+	          var originalOnClick = child.props.onClick;
+	          child = (0, _react.cloneElement)(child, {
+	            ref: 'trigger',
+	            onClick: function onClick(event) {
+	              _this._onToggleClick(event);
+	              if (originalOnClick) {
+	                originalOnClick.apply(child, _arguments);
+	              }
+	            }
+	          });
+	        })();
+	      }
+	      return child;
+	    });
+	    return _react2.default.createElement(
+	      'div',
+	      {
+	        style: this.props.style,
+	        className: dropdown_classes },
+	      bound_children
+	    );
+	  },
+	  isActive: function isActive() {
+	    return typeof this.props.active === 'boolean' ? this.props.active : this.state.active;
+	  },
+	  hide: function hide() {
+	    this.setState({
+	      active: false
+	    });
+	    if (this.props.onHide) {
+	      this.props.onHide();
+	    }
+	  },
+	  show: function show() {
+	    this.setState({
+	      active: true
+	    });
+	    if (this.props.onShow) {
+	      this.props.onShow();
+	    }
+	  },
+	  _onWindowClick: function _onWindowClick(event) {
+	    var dropdown_element = (0, _reactDom.findDOMNode)(this);
+	    if (event.target !== dropdown_element && !dropdown_element.contains(event.target) && this.isActive()) {
+	      this.hide();
+	    }
+	  },
+	  _onToggleClick: function _onToggleClick(event) {
+	    event.preventDefault();
+	    if (this.isActive()) {
+	      this.hide();
+	    } else {
+	      this.show();
+	    }
+	  }
+	});
+	
+	exports.DropdownTrigger = _DropdownTrigger2.default;
+	exports.DropdownContent = _DropdownContent2.default;
+	exports.default = Dropdown;
+
+/***/ },
+/* 681 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+	
+	(function () {
+		'use strict';
+	
+		var hasOwn = {}.hasOwnProperty;
+	
+		function classNames () {
+			var classes = [];
+	
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+	
+				var argType = typeof arg;
+	
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+	
+			return classes.join(' ');
+		}
+	
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
+
+/***/ },
+/* 682 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var DropdownTrigger = (0, _react.createClass)({
+	  displayName: 'DropdownTrigger',
+	
+	  propTypes: {
+	    children: _react.PropTypes.node,
+	    className: _react.PropTypes.string
+	  },
+	
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      className: ''
+	    };
+	  },
+	  render: function render() {
+	    var _props = this.props;
+	    var children = _props.children;
+	    var className = _props.className;
+	
+	    var props = _extends({}, this.props, {
+	      className: 'dropdown__trigger ' + className
+	    });
+	
+	    return _react2.default.createElement(
+	      'a',
+	      _extends({}, props, { href: '#dropdown-trigger' }),
+	      children
+	    );
+	  }
+	});
+	
+	exports.default = DropdownTrigger;
+
+/***/ },
+/* 683 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var DropdownContent = (0, _react.createClass)({
+	  displayName: 'DropdownContent',
+	
+	  propTypes: {
+	    children: _react.PropTypes.node,
+	    className: _react.PropTypes.string
+	  },
+	
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      className: ''
+	    };
+	  },
+	  render: function render() {
+	    var _props = this.props;
+	    var children = _props.children;
+	    var className = _props.className;
+	
+	    var props = _extends({}, this.props, {
+	      className: 'dropdown__content ' + className
+	    });
+	
+	    return _react2.default.createElement(
+	      'div',
+	      props,
+	      children
+	    );
+	  }
+	});
+	
+	exports.default = DropdownContent;
+
+/***/ },
+/* 684 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 	
@@ -78624,7 +78951,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _VideoChat = __webpack_require__(681);
+	var _VideoChat = __webpack_require__(685);
 	
 	var _VideoChat2 = _interopRequireDefault(_VideoChat);
 	
@@ -78650,7 +78977,7 @@
 	exports.default = LiveChat;
 
 /***/ },
-/* 681 */
+/* 685 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -78665,7 +78992,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _LiveChatExternals = __webpack_require__(682);
+	var _LiveChatExternals = __webpack_require__(686);
 	
 	var _LiveChatExternals2 = _interopRequireDefault(_LiveChatExternals);
 	
@@ -78725,7 +79052,7 @@
 	exports.default = VideoChat;
 
 /***/ },
-/* 682 */
+/* 686 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -78904,7 +79231,7 @@
 	exports.default = LiveChatExternals;
 
 /***/ },
-/* 683 */
+/* 687 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79003,7 +79330,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator })(Translate);
 
 /***/ },
-/* 684 */
+/* 688 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79016,23 +79343,23 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _sockets = __webpack_require__(685);
+	var _sockets = __webpack_require__(689);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-	var _UserList = __webpack_require__(737);
+	var _UserList = __webpack_require__(741);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
 	
-	var _MessageList = __webpack_require__(738);
+	var _MessageList = __webpack_require__(742);
 	
 	var _MessageList2 = _interopRequireDefault(_MessageList);
 	
-	var _MessageForm = __webpack_require__(740);
+	var _MessageForm = __webpack_require__(744);
 	
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
-	var _ChangeNameForm = __webpack_require__(741);
+	var _ChangeNameForm = __webpack_require__(745);
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
@@ -79193,7 +79520,7 @@
 	exports.default = ChatApp;
 
 /***/ },
-/* 685 */
+/* 689 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -79202,7 +79529,7 @@
 	  value: true
 	});
 	
-	var _socket = __webpack_require__(686);
+	var _socket = __webpack_require__(690);
 	
 	var _socket2 = _interopRequireDefault(_socket);
 
@@ -79211,7 +79538,7 @@
 	exports.default = _socket2.default;
 
 /***/ },
-/* 686 */
+/* 690 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -79219,10 +79546,10 @@
 	 * Module dependencies.
 	 */
 	
-	var url = __webpack_require__(687);
-	var parser = __webpack_require__(692);
-	var Manager = __webpack_require__(702);
-	var debug = __webpack_require__(689)('socket.io-client');
+	var url = __webpack_require__(691);
+	var parser = __webpack_require__(696);
+	var Manager = __webpack_require__(706);
+	var debug = __webpack_require__(693)('socket.io-client');
 	
 	/**
 	 * Module exports.
@@ -79321,12 +79648,12 @@
 	 * @api public
 	 */
 	
-	exports.Manager = __webpack_require__(702);
-	exports.Socket = __webpack_require__(732);
+	exports.Manager = __webpack_require__(706);
+	exports.Socket = __webpack_require__(736);
 
 
 /***/ },
-/* 687 */
+/* 691 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -79334,8 +79661,8 @@
 	 * Module dependencies.
 	 */
 	
-	var parseuri = __webpack_require__(688);
-	var debug = __webpack_require__(689)('socket.io-client:url');
+	var parseuri = __webpack_require__(692);
+	var debug = __webpack_require__(693)('socket.io-client:url');
 	
 	/**
 	 * Module exports.
@@ -79408,7 +79735,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 688 */
+/* 692 */
 /***/ function(module, exports) {
 
 	/**
@@ -79453,7 +79780,7 @@
 
 
 /***/ },
-/* 689 */
+/* 693 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -79463,7 +79790,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(690);
+	exports = module.exports = __webpack_require__(694);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -79637,7 +79964,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 690 */
+/* 694 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -79653,7 +79980,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(691);
+	exports.humanize = __webpack_require__(695);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -79843,7 +80170,7 @@
 
 
 /***/ },
-/* 691 */
+/* 695 */
 /***/ function(module, exports) {
 
 	/**
@@ -79998,7 +80325,7 @@
 
 
 /***/ },
-/* 692 */
+/* 696 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -80006,11 +80333,11 @@
 	 * Module dependencies.
 	 */
 	
-	var debug = __webpack_require__(693)('socket.io-parser');
-	var json = __webpack_require__(696);
-	var Emitter = __webpack_require__(698);
-	var binary = __webpack_require__(699);
-	var isBuf = __webpack_require__(701);
+	var debug = __webpack_require__(697)('socket.io-parser');
+	var json = __webpack_require__(700);
+	var Emitter = __webpack_require__(702);
+	var binary = __webpack_require__(703);
+	var isBuf = __webpack_require__(705);
 	
 	/**
 	 * Protocol version.
@@ -80408,7 +80735,7 @@
 
 
 /***/ },
-/* 693 */
+/* 697 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -80418,7 +80745,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(694);
+	exports = module.exports = __webpack_require__(698);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -80582,7 +80909,7 @@
 
 
 /***/ },
-/* 694 */
+/* 698 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -80598,7 +80925,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(695);
+	exports.humanize = __webpack_require__(699);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -80785,7 +81112,7 @@
 
 
 /***/ },
-/* 695 */
+/* 699 */
 /***/ function(module, exports) {
 
 	/**
@@ -80916,14 +81243,14 @@
 
 
 /***/ },
-/* 696 */
+/* 700 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 	;(function () {
 	  // Detect the `define` function exposed by asynchronous module loaders. The
 	  // strict `define` check is necessary for compatibility with `r.js`.
-	  var isLoader = "function" === "function" && __webpack_require__(697);
+	  var isLoader = "function" === "function" && __webpack_require__(701);
 	
 	  // A set of types used to distinguish objects from primitives.
 	  var objectTypes = {
@@ -81825,7 +82152,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-/* 697 */
+/* 701 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -81833,7 +82160,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 698 */
+/* 702 */
 /***/ function(module, exports) {
 
 	
@@ -82003,7 +82330,7 @@
 
 
 /***/ },
-/* 699 */
+/* 703 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -82012,8 +82339,8 @@
 	 * Module requirements
 	 */
 	
-	var isArray = __webpack_require__(700);
-	var isBuf = __webpack_require__(701);
+	var isArray = __webpack_require__(704);
+	var isBuf = __webpack_require__(705);
 	
 	/**
 	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -82151,7 +82478,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 700 */
+/* 704 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -82160,7 +82487,7 @@
 
 
 /***/ },
-/* 701 */
+/* 705 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -82180,7 +82507,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 702 */
+/* 706 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -82188,15 +82515,15 @@
 	 * Module dependencies.
 	 */
 	
-	var eio = __webpack_require__(703);
-	var Socket = __webpack_require__(732);
-	var Emitter = __webpack_require__(721);
-	var parser = __webpack_require__(692);
-	var on = __webpack_require__(734);
-	var bind = __webpack_require__(735);
-	var debug = __webpack_require__(689)('socket.io-client:manager');
-	var indexOf = __webpack_require__(730);
-	var Backoff = __webpack_require__(736);
+	var eio = __webpack_require__(707);
+	var Socket = __webpack_require__(736);
+	var Emitter = __webpack_require__(725);
+	var parser = __webpack_require__(696);
+	var on = __webpack_require__(738);
+	var bind = __webpack_require__(739);
+	var debug = __webpack_require__(693)('socket.io-client:manager');
+	var indexOf = __webpack_require__(734);
+	var Backoff = __webpack_require__(740);
 	
 	/**
 	 * IE6+ hasOwnProperty
@@ -82746,19 +83073,19 @@
 
 
 /***/ },
-/* 703 */
+/* 707 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(704);
+	module.exports = __webpack_require__(708);
 
 
 /***/ },
-/* 704 */
+/* 708 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	module.exports = __webpack_require__(705);
+	module.exports = __webpack_require__(709);
 	
 	/**
 	 * Exports parser
@@ -82766,25 +83093,25 @@
 	 * @api public
 	 *
 	 */
-	module.exports.parser = __webpack_require__(712);
+	module.exports.parser = __webpack_require__(716);
 
 
 /***/ },
-/* 705 */
+/* 709 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var transports = __webpack_require__(706);
-	var Emitter = __webpack_require__(721);
-	var debug = __webpack_require__(725)('engine.io-client:socket');
-	var index = __webpack_require__(730);
-	var parser = __webpack_require__(712);
-	var parseuri = __webpack_require__(688);
-	var parsejson = __webpack_require__(731);
-	var parseqs = __webpack_require__(722);
+	var transports = __webpack_require__(710);
+	var Emitter = __webpack_require__(725);
+	var debug = __webpack_require__(729)('engine.io-client:socket');
+	var index = __webpack_require__(734);
+	var parser = __webpack_require__(716);
+	var parseuri = __webpack_require__(692);
+	var parsejson = __webpack_require__(735);
+	var parseqs = __webpack_require__(726);
 	
 	/**
 	 * Module exports.
@@ -82916,9 +83243,9 @@
 	 */
 	
 	Socket.Socket = Socket;
-	Socket.Transport = __webpack_require__(711);
-	Socket.transports = __webpack_require__(706);
-	Socket.parser = __webpack_require__(712);
+	Socket.Transport = __webpack_require__(715);
+	Socket.transports = __webpack_require__(710);
+	Socket.parser = __webpack_require__(716);
 	
 	/**
 	 * Creates transport of the given type.
@@ -83515,17 +83842,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 706 */
+/* 710 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies
 	 */
 	
-	var XMLHttpRequest = __webpack_require__(707);
-	var XHR = __webpack_require__(709);
-	var JSONP = __webpack_require__(727);
-	var websocket = __webpack_require__(728);
+	var XMLHttpRequest = __webpack_require__(711);
+	var XHR = __webpack_require__(713);
+	var JSONP = __webpack_require__(731);
+	var websocket = __webpack_require__(732);
 	
 	/**
 	 * Export transports.
@@ -83575,12 +83902,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 707 */
+/* 711 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 	
-	var hasCORS = __webpack_require__(708);
+	var hasCORS = __webpack_require__(712);
 	
 	module.exports = function (opts) {
 	  var xdomain = opts.xdomain;
@@ -83619,7 +83946,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 708 */
+/* 712 */
 /***/ function(module, exports) {
 
 	
@@ -83642,18 +83969,18 @@
 
 
 /***/ },
-/* 709 */
+/* 713 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module requirements.
 	 */
 	
-	var XMLHttpRequest = __webpack_require__(707);
-	var Polling = __webpack_require__(710);
-	var Emitter = __webpack_require__(721);
-	var inherit = __webpack_require__(723);
-	var debug = __webpack_require__(725)('engine.io-client:polling-xhr');
+	var XMLHttpRequest = __webpack_require__(711);
+	var Polling = __webpack_require__(714);
+	var Emitter = __webpack_require__(725);
+	var inherit = __webpack_require__(727);
+	var debug = __webpack_require__(729)('engine.io-client:polling-xhr');
 	
 	/**
 	 * Module exports.
@@ -84073,19 +84400,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 710 */
+/* 714 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-	var Transport = __webpack_require__(711);
-	var parseqs = __webpack_require__(722);
-	var parser = __webpack_require__(712);
-	var inherit = __webpack_require__(723);
-	var yeast = __webpack_require__(724);
-	var debug = __webpack_require__(725)('engine.io-client:polling');
+	var Transport = __webpack_require__(715);
+	var parseqs = __webpack_require__(726);
+	var parser = __webpack_require__(716);
+	var inherit = __webpack_require__(727);
+	var yeast = __webpack_require__(728);
+	var debug = __webpack_require__(729)('engine.io-client:polling');
 	
 	/**
 	 * Module exports.
@@ -84098,7 +84425,7 @@
 	 */
 	
 	var hasXHR2 = (function () {
-	  var XMLHttpRequest = __webpack_require__(707);
+	  var XMLHttpRequest = __webpack_require__(711);
 	  var xhr = new XMLHttpRequest({ xdomain: false });
 	  return null != xhr.responseType;
 	})();
@@ -84324,15 +84651,15 @@
 
 
 /***/ },
-/* 711 */
+/* 715 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-	var parser = __webpack_require__(712);
-	var Emitter = __webpack_require__(721);
+	var parser = __webpack_require__(716);
+	var Emitter = __webpack_require__(725);
 	
 	/**
 	 * Module exports.
@@ -84487,22 +84814,22 @@
 
 
 /***/ },
-/* 712 */
+/* 716 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var keys = __webpack_require__(713);
-	var hasBinary = __webpack_require__(714);
-	var sliceBuffer = __webpack_require__(716);
-	var after = __webpack_require__(717);
-	var utf8 = __webpack_require__(718);
+	var keys = __webpack_require__(717);
+	var hasBinary = __webpack_require__(718);
+	var sliceBuffer = __webpack_require__(720);
+	var after = __webpack_require__(721);
+	var utf8 = __webpack_require__(722);
 	
 	var base64encoder;
 	if (global && global.ArrayBuffer) {
-	  base64encoder = __webpack_require__(719);
+	  base64encoder = __webpack_require__(723);
 	}
 	
 	/**
@@ -84560,7 +84887,7 @@
 	 * Create a blob api even for blob builder when vendor prefixes exist
 	 */
 	
-	var Blob = __webpack_require__(720);
+	var Blob = __webpack_require__(724);
 	
 	/**
 	 * Encodes a packet.
@@ -85103,7 +85430,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 713 */
+/* 717 */
 /***/ function(module, exports) {
 
 	
@@ -85128,7 +85455,7 @@
 
 
 /***/ },
-/* 714 */
+/* 718 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -85136,7 +85463,7 @@
 	 * Module requirements.
 	 */
 	
-	var isArray = __webpack_require__(715);
+	var isArray = __webpack_require__(719);
 	
 	/**
 	 * Module exports.
@@ -85194,7 +85521,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 715 */
+/* 719 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -85203,7 +85530,7 @@
 
 
 /***/ },
-/* 716 */
+/* 720 */
 /***/ function(module, exports) {
 
 	/**
@@ -85238,7 +85565,7 @@
 
 
 /***/ },
-/* 717 */
+/* 721 */
 /***/ function(module, exports) {
 
 	module.exports = after
@@ -85272,7 +85599,7 @@
 
 
 /***/ },
-/* 718 */
+/* 722 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/wtf8 v1.0.0 by @mathias */
@@ -85511,7 +85838,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-/* 719 */
+/* 723 */
 /***/ function(module, exports) {
 
 	/*
@@ -85584,7 +85911,7 @@
 
 
 /***/ },
-/* 720 */
+/* 724 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -85687,7 +86014,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 721 */
+/* 725 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -85856,7 +86183,7 @@
 
 
 /***/ },
-/* 722 */
+/* 726 */
 /***/ function(module, exports) {
 
 	/**
@@ -85899,7 +86226,7 @@
 
 
 /***/ },
-/* 723 */
+/* 727 */
 /***/ function(module, exports) {
 
 	
@@ -85911,7 +86238,7 @@
 	};
 
 /***/ },
-/* 724 */
+/* 728 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -85985,7 +86312,7 @@
 
 
 /***/ },
-/* 725 */
+/* 729 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -85995,7 +86322,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(726);
+	exports = module.exports = __webpack_require__(730);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -86169,7 +86496,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 726 */
+/* 730 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -86185,7 +86512,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(691);
+	exports.humanize = __webpack_require__(695);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -86375,7 +86702,7 @@
 
 
 /***/ },
-/* 727 */
+/* 731 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -86383,8 +86710,8 @@
 	 * Module requirements.
 	 */
 	
-	var Polling = __webpack_require__(710);
-	var inherit = __webpack_require__(723);
+	var Polling = __webpack_require__(714);
+	var inherit = __webpack_require__(727);
 	
 	/**
 	 * Module exports.
@@ -86613,24 +86940,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 728 */
+/* 732 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var Transport = __webpack_require__(711);
-	var parser = __webpack_require__(712);
-	var parseqs = __webpack_require__(722);
-	var inherit = __webpack_require__(723);
-	var yeast = __webpack_require__(724);
-	var debug = __webpack_require__(725)('engine.io-client:websocket');
+	var Transport = __webpack_require__(715);
+	var parser = __webpack_require__(716);
+	var parseqs = __webpack_require__(726);
+	var inherit = __webpack_require__(727);
+	var yeast = __webpack_require__(728);
+	var debug = __webpack_require__(729)('engine.io-client:websocket');
 	var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 	var NodeWebSocket;
 	if (typeof window === 'undefined') {
 	  try {
-	    NodeWebSocket = __webpack_require__(729);
+	    NodeWebSocket = __webpack_require__(733);
 	  } catch (e) { }
 	}
 	
@@ -86905,13 +87232,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 729 */
+/* 733 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 730 */
+/* 734 */
 /***/ function(module, exports) {
 
 	
@@ -86926,7 +87253,7 @@
 	};
 
 /***/ },
-/* 731 */
+/* 735 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -86964,7 +87291,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 732 */
+/* 736 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -86972,13 +87299,13 @@
 	 * Module dependencies.
 	 */
 	
-	var parser = __webpack_require__(692);
-	var Emitter = __webpack_require__(721);
-	var toArray = __webpack_require__(733);
-	var on = __webpack_require__(734);
-	var bind = __webpack_require__(735);
-	var debug = __webpack_require__(689)('socket.io-client:socket');
-	var hasBin = __webpack_require__(714);
+	var parser = __webpack_require__(696);
+	var Emitter = __webpack_require__(725);
+	var toArray = __webpack_require__(737);
+	var on = __webpack_require__(738);
+	var bind = __webpack_require__(739);
+	var debug = __webpack_require__(693)('socket.io-client:socket');
+	var hasBin = __webpack_require__(718);
 	
 	/**
 	 * Module exports.
@@ -87389,7 +87716,7 @@
 
 
 /***/ },
-/* 733 */
+/* 737 */
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -87408,7 +87735,7 @@
 
 
 /***/ },
-/* 734 */
+/* 738 */
 /***/ function(module, exports) {
 
 	
@@ -87438,7 +87765,7 @@
 
 
 /***/ },
-/* 735 */
+/* 739 */
 /***/ function(module, exports) {
 
 	/**
@@ -87467,7 +87794,7 @@
 
 
 /***/ },
-/* 736 */
+/* 740 */
 /***/ function(module, exports) {
 
 	
@@ -87558,7 +87885,7 @@
 
 
 /***/ },
-/* 737 */
+/* 741 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -87605,7 +87932,7 @@
 	exports.default = UsersList;
 
 /***/ },
-/* 738 */
+/* 742 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87618,7 +87945,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Message = __webpack_require__(739);
+	var _Message = __webpack_require__(743);
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -87670,7 +87997,7 @@
 	exports.default = MessageList;
 
 /***/ },
-/* 739 */
+/* 743 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -87710,7 +88037,7 @@
 	exports.default = Message;
 
 /***/ },
-/* 740 */
+/* 744 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87806,7 +88133,7 @@
 	exports.default = MessageForm;
 
 /***/ },
-/* 741 */
+/* 745 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87868,7 +88195,7 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-/* 742 */
+/* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87879,7 +88206,7 @@
 	
 	var _reactRedux = __webpack_require__(233);
 	
-	var _Main = __webpack_require__(743);
+	var _Main = __webpack_require__(747);
 	
 	var _Main2 = _interopRequireDefault(_Main);
 	
@@ -87896,7 +88223,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Main2.default);
 
 /***/ },
-/* 743 */
+/* 747 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87910,11 +88237,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _ChatApp = __webpack_require__(688);
 	
 	var _ChatApp2 = _interopRequireDefault(_ChatApp);
 	
-	var _ChatAppCopy = __webpack_require__(744);
+	var _ChatAppCopy = __webpack_require__(748);
 	
 	var _ChatAppCopy2 = _interopRequireDefault(_ChatAppCopy);
 	
@@ -87929,7 +88256,7 @@
 	}
 
 /***/ },
-/* 744 */
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87944,23 +88271,23 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _sockets = __webpack_require__(685);
+	var _sockets = __webpack_require__(689);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-	var _UserList = __webpack_require__(737);
+	var _UserList = __webpack_require__(741);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
 	
-	var _MessageList = __webpack_require__(738);
+	var _MessageList = __webpack_require__(742);
 	
 	var _MessageList2 = _interopRequireDefault(_MessageList);
 	
-	var _MessageForm = __webpack_require__(740);
+	var _MessageForm = __webpack_require__(744);
 	
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
-	var _ChangeNameForm = __webpack_require__(741);
+	var _ChangeNameForm = __webpack_require__(745);
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
@@ -88173,7 +88500,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, addToMessages: _messagesReducer.addToMessages })(ChatApp);
 
 /***/ },
-/* 745 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88187,7 +88514,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _ChatApp = __webpack_require__(688);
 	
 	var _ChatApp2 = _interopRequireDefault(_ChatApp);
 	
