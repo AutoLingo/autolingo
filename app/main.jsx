@@ -31,11 +31,11 @@ render (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        {/* <IndexRedirect to="/home" /> */}
-        {/* <Route path="/home" component={Home}/> */}
-        {/* <Route path="/main" component={MainContainer}> */}
-          {/* <Route path="/main/chat" component={ChatApp} /> */}
-        {/* </Route> */}
+        <IndexRedirect to="/home" />
+        <Route path="/main/chat" component={ChatApp} />
+        <Route path="/home" component={Home}/>
+        <Route path="/main" component={MainContainer}>
+        </Route>
       </Route>
       <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
       <Route path="/translate" component={Translate} />

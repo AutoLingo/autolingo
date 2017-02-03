@@ -154,6 +154,7 @@ const SpeechRecognitionExternals = () => {
 	  };
 
 	  recognition.onresult = function(event) {
+			console.log('Result EVENT', event);
 	    var interim_transcript = '';
 	    if (typeof(event.results) == 'undefined') {
 	      recognition.onend = null;

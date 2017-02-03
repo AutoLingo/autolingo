@@ -162,7 +162,9 @@ function socketInit (server) {
     socket.on('send:message', function(data) {
       socket.broadcast.emit('send:message', {
         user: name,
-        text: data.text
+        text: data.text,
+        language: data.language,
+        id: data.id
       })
     })
     

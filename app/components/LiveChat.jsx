@@ -12,7 +12,8 @@ import VideoChat from './VideoChat'
 const LiveChat = (props) => (
 	<article>
 		<VideoChat />
-		{/*<SpeechRecognition />*/}
+		{/*<SpeechRecognitionNew />*/}
+
 	</article>
 )
 

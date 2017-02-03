@@ -73,11 +73,20 @@ class LanguageMessage extends React.Component {
 
           <h1 style={{color: 'black'}}>Choose Default Language</h1>
           <form style={{'textAlign': 'center'}}>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'English', 'America')}>English</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Chinese', 'China')}>Chinese</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Spanish', 'Spain')}>Spanish</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'French', 'France')}>French</button></div>
-            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'Korean', 'Korea')}>Korean</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'en', 'America')}>English</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'zh-CN', 'China')}>Chinese</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'es', 'Spain')}>Spanish</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'fr', 'France')}>French</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ko', 'Korea')}>Korean</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ru', 'Russia')}>Russian</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'tl', 'Philippines')}>Filipino</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'el', 'Greece')}>Greek</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'iw', 'Israel')}>Hebrew</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'it', 'Italy')}>Italian</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ja', 'Japan')}>Japanese</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'sw', 'Tanzania')}>Swahili</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'vi', 'Vietnam')}>Vietnamese</button></div>
+            <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'pl', 'Poland')}>Polish</button></div>
           </form>
         </Modal>
       </div>
@@ -85,6 +94,8 @@ class LanguageMessage extends React.Component {
   }
 }
 
+            // <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ar', 'Saudi Arabia')}>Arabic</button></div>
+            // <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'eo', 'World')}>Esperanto</button></div>
 // ReactDOM.render(<App />, appElement);
 
 export default LanguageMessage;
