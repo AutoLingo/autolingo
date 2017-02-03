@@ -9,7 +9,7 @@ var UsersList = React.createClass({
 				<ul>
 					{	
 						//Need to have users information in the database
-						this.props.users.map((user, i) => {
+						this.props.users[0] && this.props.users.map((user, i) => {
 							return (
 								<li key={i}>{user}</li>
 							)
