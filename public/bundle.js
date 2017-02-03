@@ -28225,7 +28225,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -28252,7 +28252,8 @@
 	//   googleTranslateEpic
 	// );
 	
-	var epicMiddleware = (0, _reduxObservable.createEpicMiddleware)(_translate.googleTranslateEpic);
+	var rootEpic = (0, _reduxObservable.combineEpics)(_translate.googleTranslateEpic, _translate.googleTranslateEpic2, _translate.googleTranslateEpic3);
+	var epicMiddleware = (0, _reduxObservable.createEpicMiddleware)(rootEpic);
 	
 	var composeEnhancers = process.env.NODE_ENV !== 'production' && (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : _redux.compose;
 	
@@ -28296,7 +28297,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.googleTranslateEpic = exports.translateActionCreator = undefined;
+	exports.googleTranslateEpic3 = exports.googleTranslateEpic2 = exports.googleTranslateEpic = exports.translateFinalActionCreator = exports.translateInterimActionCreator = exports.translateActionCreator = undefined;
 	exports.default = translateReducer;
 	
 	var _bluebird = __webpack_require__(264);
@@ -28309,22 +28310,45 @@
 	
 	var _messagesReducer = __webpack_require__(607);
 	
+	var _speech = __webpack_require__(747);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w';
 	
+	
 	// **************************************************
 	// Actions
 	var ADD_TRANSLATION = "ADD_TRANSLATION";
 	var TRANSLATE = "TRANSLATE";
+	var TRANSLATE_INTERIM_TRANSCRIPT = "TRANSLATE_INTERIM_TRANSCRIPT";
+	var TRANSLATE_FINAL_TRANSCRIPT = "TRANSLATE_FINAL_TRANSCRIPT";
 	
 	// Action creators
 	// Fed into the googleTranslateEpic
 	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, originalLanguage, userLanguage, originalText) {
 	  return {
 	    type: TRANSLATE,
+	    id: id,
+	    originalLanguage: originalLanguage,
+	    userLanguage: userLanguage,
+	    originalText: originalText
+	  };
+	};
+	var translateInterimActionCreator = exports.translateInterimActionCreator = function translateInterimActionCreator(id, originalLanguage, userLanguage, originalText) {
+	  return {
+	    type: TRANSLATE_INTERIM_TRANSCRIPT,
+	    id: id,
+	    originalLanguage: originalLanguage,
+	    userLanguage: userLanguage,
+	    originalText: originalText
+	  };
+	};
+	var translateFinalActionCreator = exports.translateFinalActionCreator = function translateFinalActionCreator(id, originalLanguage, userLanguage, originalText) {
+	  return {
+	    type: TRANSLATE_FINAL_TRANSCRIPT,
 	    id: id,
 	    originalLanguage: originalLanguage,
 	    userLanguage: userLanguage,
@@ -28357,6 +28381,42 @@
 	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
 	
 	    return (0, _messagesReducer.addToMessages)(translatedText);
+	  });
+	};
+	// **************************************************
+	var googleTranslateEpic2 = exports.googleTranslateEpic2 = function googleTranslateEpic2(action$) {
+	  console.log('INTERIM GOOGLE EPIC RUNNING');
+	  return action$.ofType(TRANSLATE_INTERIM_TRANSCRIPT).debounceTime(200).mergeMap(function (action) {
+	    var originalLanguage = action.originalLanguage;
+	    var userLanguage = action.userLanguage;
+	    var text = action.originalText;
+	
+	    return (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
+	      crossDomain: true
+	    });
+	  }).map(function (singleTranslation) {
+	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
+	    console.log('SETINTERIMTRANSCRIPT', _speech.setInterimTranscript);
+	    return (0, _speech.setInterimTranscript)(translatedText);
+	  });
+	};
+	
+	var googleTranslateEpic3 = exports.googleTranslateEpic3 = function googleTranslateEpic3(action$) {
+	  return action$.ofType(TRANSLATE_FINAL_TRANSCRIPT).debounceTime(200).mergeMap(function (action) {
+	    var originalLanguage = action.originalLanguage;
+	    var userLanguage = action.userLanguage;
+	    var text = action.originalText;
+	    console.log('ACTION', action);
+	
+	    return (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
+	      crossDomain: true
+	    });
+	  }).map(function (singleTranslation) {
+	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
+	
+	    return (0, _speech.addFinalTranscript)(translatedText);
 	  });
 	};
 	
@@ -54132,6 +54192,8 @@
 	
 	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
 	
+	var _reactRouter = __webpack_require__(32);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54146,9 +54208,9 @@
 	  function Map(props) {
 	    _classCallCheck(this, Map);
 	
+	    // this.map;
 	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 	
-	    _this.map;
 	    _this.repositionMap = _this.repositionMap.bind(_this);
 	    return _this;
 	  }
@@ -54246,6 +54308,7 @@
 	  }, {
 	    key: 'repositionMap',
 	    value: function repositionMap(country) {
+	
 	      var self = this;
 	      return function (event) {
 	        self.map.fitBounds([country.fitBounds], { maxZoom: country.zoomNum });
@@ -54264,9 +54327,13 @@
 	          'div',
 	          { id: 'country-buttons' },
 	          _react2.default.createElement(
-	            'button',
-	            { id: 'fit-america', onClick: this.repositionMap(this.props.america) },
-	            'Go to U.S.A'
+	            _reactRouter.Link,
+	            { to: "/video-chat" },
+	            _react2.default.createElement(
+	              'button',
+	              { id: 'fit-america' },
+	              'Go to U.S.A'
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'button',
@@ -54300,6 +54367,8 @@
 	
 	  return Map;
 	}(_react.Component);
+	// <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to U.S.A</button>
+	
 	
 	exports.default = Map;
 
@@ -87599,7 +87668,6 @@
 	      newState.interimTranscript = action.interimTranscript;
 	      break;
 	    case _speech.ADD_FINAL_TRANSCRIPT:
-	      console.log('ACTION FINAL TRANSCRIPT', action.finalTranscript);
 	      newState.finalTranscripts = state.finalTranscripts.concat([action.finalTranscript]);
 	      break;
 	    default:
@@ -87707,16 +87775,19 @@
 	    recognition.onresult = function (event) {
 	      var emitFinalTranscript = ownProps.emitFinalTranscript;
 	      var emitInterimTranscript = ownProps.emitInterimTranscript;
+	      var userLanguage = ownProps.userLanguage;
 	
 	      var interim_transcript = '';
 	      for (var i = event.resultIndex; i < event.results.length; ++i) {
 	        if (event.results[i].isFinal) {
+	          console.log('FINAL TRANSCRIPT RUNNING');
 	          final_transcript = event.results[i][0].transcript;
-	          emitFinalTranscript(final_transcript);
+	          console.log('THIS IS THE FINAL TRANSCRIPT!!!! ', final_transcript);
+	          emitFinalTranscript(final_transcript, userLanguage);
 	        } else {
 	          interim_transcript += event.results[i][0].transcript;
 	
-	          emitInterimTranscript(interim_transcript);
+	          emitInterimTranscript(interim_transcript, userLanguage);
 	          // socket.emit('interim_transcript', {interim_transcript})
 	        }
 	      }
@@ -88300,7 +88371,6 @@
 	
 			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
 	
-			console.log('PROPS', props);
 			_this.state = {};
 	
 			_this.messageReceive = _this.messageReceive.bind(_this);
@@ -88327,23 +88397,40 @@
 			}
 		}, {
 			key: 'emitFinalTranscript',
-			value: function emitFinalTranscript(finalTranscript) {
-				socket.emit('final_transcript', { finalTranscript: finalTranscript });
+			value: function emitFinalTranscript(finalTranscript, userLanguage) {
+				console.log('EMIT FINAL TRANS', finalTranscript);
+				socket.emit('final_transcript', { finalTranscript: finalTranscript, userLanguage: userLanguage });
 			}
 		}, {
 			key: 'emitInterimTranscript',
-			value: function emitInterimTranscript(interimTranscript) {
-				socket.emit('interim_transcript', { interimTranscript: interimTranscript });
+			value: function emitInterimTranscript(interimTranscript, userLanguage) {
+				socket.emit('interim_transcript', { interimTranscript: interimTranscript, userLanguage: userLanguage });
 			}
 		}, {
 			key: 'finalTranscript',
 			value: function finalTranscript(data) {
-				this.props.addFinalTranscript(data.finalTranscript);
+				var originalLanguage = data.userLanguage;
+				var text = data.interimTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addFinalTranscript(data.finalTranscript);
+				} else {
+					this.props.translateFinalActionCreator(1, originalLanguage, userLanguage, text);
+				}
 			}
 		}, {
 			key: 'interimTranscript',
 			value: function interimTranscript(data) {
-				this.props.setInterimTranscript(data.interimTranscript);
+				var originalLanguage = data.userLanguage;
+				var text = data.interimTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.setInterimTranscript(data.interimTranscript);
+				} else {
+					this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text);
+				}
 			}
 	
 			//set user with given name
@@ -88455,7 +88542,7 @@
 	
 				var finalTranscripts = this.props.finalTranscripts;
 				var interimTranscript = this.props.interimTranscript;
-	
+				var userLanguage = this.props.userLanguage || 'nada';
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body' },
@@ -88487,7 +88574,7 @@
 						),
 						interimTranscript
 					),
-					_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript })
+					_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
 				);
 			}
 		}]);
@@ -88514,7 +88601,7 @@
 	
 	// const mapDispatchToProps = dispatch => ({translateActionCreator})
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ }
 /******/ ]);

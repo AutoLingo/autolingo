@@ -11,7 +11,6 @@ const socket = io.connect();
 class ChatApp extends Component {
 	constructor(props) {
 		super(props)
-		console.log('PROPS',props);
 		this.state = {}
 
 		this.messageReceive = this.messageReceive.bind(this)
@@ -34,20 +33,37 @@ class ChatApp extends Component {
 		socket.on('interim_transcript', this.interimTranscript)
 	}
 
-	emitFinalTranscript(finalTranscript) {
-		socket.emit('final_transcript', {finalTranscript})
+	emitFinalTranscript(finalTranscript, userLanguage) {
+		console.log('EMIT FINAL TRANS', finalTranscript)
+		socket.emit('final_transcript', {finalTranscript, userLanguage})
 	}
 
-	emitInterimTranscript(interimTranscript) {
-		socket.emit('interim_transcript', {interimTranscript})
+	emitInterimTranscript(interimTranscript, userLanguage) {
+		socket.emit('interim_transcript', {interimTranscript, userLanguage})
 	}
 
 	finalTranscript(data) {
-		this.props.addFinalTranscript(data.finalTranscript)
+		let originalLanguage = data.userLanguage
+		let text = data.interimTranscript
+		let userLanguage = this.props.userLanguage
+
+		if (originalLanguage === userLanguage) {
+			this.props.addFinalTranscript(data.finalTranscript)
+		} else {
+			this.props.translateFinalActionCreator(1, originalLanguage, userLanguage, text)
+		}
 	}
 
 	interimTranscript(data) {
-		this.props.setInterimTranscript(data.interimTranscript)
+		let originalLanguage = data.userLanguage
+		let text = data.interimTranscript
+		let userLanguage = this.props.userLanguage
+
+		if (originalLanguage === userLanguage) {
+			this.props.setInterimTranscript(data.interimTranscript)
+		} else {
+			this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text)
+		}
 	}
 
 	//set user with given name
@@ -143,7 +159,7 @@ class ChatApp extends Component {
 		
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
-
+		let userLanguage = this.props.userLanguage || 'nada'
 		return (
 			<div id="chatbox-body">
 				
@@ -165,7 +181,7 @@ class ChatApp extends Component {
 					{ interimTranscript }
 				</div>
 
-				<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} />
+				<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
 			</div>
 		)
 	}
@@ -173,7 +189,7 @@ class ChatApp extends Component {
 
 
 // ************************************************
-import { translateActionCreator } from '../reducers/translate'
+import { translateActionCreator, translateInterimActionCreator, translateFinalActionCreator } from '../reducers/translate'
 import { setInterimTranscript, addFinalTranscript } from '../actionCreators/speech'
 
 const mapStateToProps = state => {
@@ -192,7 +208,7 @@ const mapStateToProps = state => {
 
 // const mapDispatchToProps = dispatch => ({translateActionCreator})
 
-export default connect(mapStateToProps, {translateActionCreator, setInterimTranscript, addFinalTranscript})(ChatApp);
+export default connect(mapStateToProps, {translateActionCreator, translateInterimActionCreator, translateFinalActionCreator, setInterimTranscript, addFinalTranscript})(ChatApp);
 
 
 

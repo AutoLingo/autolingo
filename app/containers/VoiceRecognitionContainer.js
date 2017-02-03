@@ -5,7 +5,7 @@ import VoiceRecognition from '../components/VoiceRecognition';
 import { setInterimTranscript } from '../actionCreators/speech';
 
 function mapStateToProps (state, ownProps) {
-  return {};
+  return {}
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
@@ -64,17 +64,20 @@ function mapDispatchToProps (dispatch, ownProps) {
     recognition.onresult = function(event) {
       let emitFinalTranscript = ownProps.emitFinalTranscript
       let emitInterimTranscript = ownProps.emitInterimTranscript
+      let userLanguage = ownProps.userLanguage
 
       var interim_transcript = '';
       for (var i = event.resultIndex; i < event.results.length; ++i) {
         if (event.results[i].isFinal) {
+          console.log('FINAL TRANSCRIPT RUNNING')
           final_transcript = event.results[i][0].transcript;
-          emitFinalTranscript(final_transcript)
+          console.log('THIS IS THE FINAL TRANSCRIPT!!!! ', final_transcript)
+          emitFinalTranscript(final_transcript, userLanguage)
 
         } else {
           interim_transcript += event.results[i][0].transcript;
           
-          emitInterimTranscript(interim_transcript)
+          emitInterimTranscript(interim_transcript, userLanguage)
           // socket.emit('interim_transcript', {interim_transcript})
         }
       }

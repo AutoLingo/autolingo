@@ -4,10 +4,14 @@ const API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w'
 import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { addToMessages } from './messagesReducer'
+import { setInterimTranscript, addFinalTranscript } from '../actionCreators/speech'
+
 // **************************************************
 // Actions
 const ADD_TRANSLATION = "ADD_TRANSLATION"
 const TRANSLATE = "TRANSLATE"
+const TRANSLATE_INTERIM_TRANSCRIPT = "TRANSLATE_INTERIM_TRANSCRIPT"
+const TRANSLATE_FINAL_TRANSCRIPT = "TRANSLATE_FINAL_TRANSCRIPT"
 
 // Action creators
 // Fed into the googleTranslateEpic
@@ -15,6 +19,28 @@ export const translateActionCreator = (id, originalLanguage, userLanguage, origi
   return (
     {
       type: TRANSLATE,
+      id,
+      originalLanguage, 
+      userLanguage,
+      originalText
+    }
+  )
+}
+export const translateInterimActionCreator = (id, originalLanguage, userLanguage, originalText) => {
+  return (
+    {
+      type: TRANSLATE_INTERIM_TRANSCRIPT,
+      id,
+      originalLanguage, 
+      userLanguage,
+      originalText
+    }
+  )
+}
+export const translateFinalActionCreator = (id, originalLanguage, userLanguage, originalText) => {
+  return (
+    {
+      type: TRANSLATE_FINAL_TRANSCRIPT,
       id,
       originalLanguage, 
       userLanguage,
@@ -54,7 +80,50 @@ export const googleTranslateEpic = (action$) => {
 
       return addToMessages(translatedText)
     })
+}
+// **************************************************
+export const googleTranslateEpic2 = (action$) => {
+  console.log('INTERIM GOOGLE EPIC RUNNING')
+  return action$.ofType(TRANSLATE_INTERIM_TRANSCRIPT)
+    .debounceTime(200)
+    .mergeMap(action => {
+        let originalLanguage = action.originalLanguage
+        let userLanguage = action.userLanguage
+        let text = action.originalText
 
+        return ajax({
+          url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,
+          crossDomain: true
+        })
+    })
+    .map(singleTranslation => {
+      let translatedText = singleTranslation.response ?
+        singleTranslation.response.data.translations[0].translatedText : singleTranslation
+        console.log('SETINTERIMTRANSCRIPT',setInterimTranscript)
+      return setInterimTranscript(translatedText)
+    })
+}
+
+export const googleTranslateEpic3 = (action$) => {
+  return action$.ofType(TRANSLATE_FINAL_TRANSCRIPT)
+    .debounceTime(200)
+    .mergeMap(action => {
+        let originalLanguage = action.originalLanguage
+        let userLanguage = action.userLanguage
+        let text = action.originalText
+        console.log('ACTION', action)
+
+        return ajax({
+          url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,
+          crossDomain: true
+        })
+    })
+    .map(singleTranslation => {
+      let translatedText = singleTranslation.response ?
+        singleTranslation.response.data.translations[0].translatedText : singleTranslation
+
+      return addFinalTranscript(translatedText)
+    })
 }
 
 // *********************USE THIS FOR MESSAGE BOARD***********************************

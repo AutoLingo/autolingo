@@ -2,14 +2,19 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from './reducers'
 import createLogger from 'redux-logger'
 import {whoami} from './reducers/auth'
-import { createEpicMiddleware } from 'redux-observable'
-import { googleTranslateEpic } from './reducers/translate'
+import { combineEpics, createEpicMiddleware } from 'redux-observable'
+import { googleTranslateEpic, googleTranslateEpic2, googleTranslateEpic3 } from './reducers/translate'
 
 // const rootEpic = combineEpics(
 //   googleTranslateEpic
 // );
 
-const epicMiddleware = createEpicMiddleware(googleTranslateEpic)
+const rootEpic = combineEpics(
+  googleTranslateEpic,
+  googleTranslateEpic2,
+  googleTranslateEpic3
+)
+const epicMiddleware = createEpicMiddleware(rootEpic)
 
 const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&

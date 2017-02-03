@@ -11,7 +11,6 @@ export default function userReducer(state = initialState, action) {
       newState.interimTranscript = action.interimTranscript;
       break;
     case ADD_FINAL_TRANSCRIPT:
-      console.log('ACTION FINAL TRANSCRIPT', action.finalTranscript)
       newState.finalTranscripts = state.finalTranscripts.concat([action.finalTranscript]);
       break;
     default:

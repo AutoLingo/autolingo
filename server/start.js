@@ -170,13 +170,15 @@ function socketInit (server) {
 
     socket.on('interim_transcript', function(data) {
       socket.broadcast.emit('interim_transcript', {
-       interimTranscript: data.interimTranscript
+       interimTranscript: data.interimTranscript,
+       userLanguage: data.userLanguage
       })
     })
 
     socket.on('final_transcript', function(data) {
       socket.broadcast.emit('final_transcript', {
-       finalTranscript: data.finalTranscript
+       finalTranscript: data.finalTranscript,
+       userLanguage: data.userLanguage
       })
     })
     
