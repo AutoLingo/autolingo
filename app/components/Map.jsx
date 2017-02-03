@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
 import LanguageMessage from './LanguageMessage';
+import { Link } from 'react-router'
 
 export default class Map extends Component {
   constructor (props) {
     super(props);
-    this.map;
+    // this.map;
     this.repositionMap = this.repositionMap.bind(this);
   }
 
@@ -101,6 +102,7 @@ export default class Map extends Component {
 
   }
   repositionMap(country) {
+   
     let self = this;
     return function (event) {
       self.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
@@ -114,7 +116,7 @@ export default class Map extends Component {
       <div>
         <div id='map'></div>
         <div id="country-buttons">
-          <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to U.S.A</button>
+          <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
           <button id='fit-china' onClick={ this.repositionMap(this.props.china) }>Go to China</button>
           <button id='fit-spain' onClick={ this.repositionMap(this.props.spain) }>Go to Spain</button>
           <button id='fit-france' onClick={ this.repositionMap(this.props.france) }>Go to France</button>
@@ -125,3 +127,4 @@ export default class Map extends Component {
     )
   }
 }
+// <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to U.S.A</button>

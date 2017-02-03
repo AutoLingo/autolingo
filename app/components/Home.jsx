@@ -1,5 +1,5 @@
 import React from 'react';
-import ChatApp from '../components/ChatApp'
+import ChatAppGroup from '../components/ChatAppGroup'
 export default function Home (props) {
   return (
     <div>
