@@ -106,7 +106,12 @@ class ChatApp extends Component {
 		let userLanguage = this.props.userLanguage
 		let text = messageObject && messageObject.text
 
-		this.props.translateActionCreator(id, originalLanguage, userLanguage, text)
+		if (originalLanguage === userLanguage) { 
+			this.props.addToMessages(text)
+		} else {
+			this.props.translateActionCreator(id, originalLanguage, userLanguage, text)
+		}
+
 		
 	}
 

@@ -42,7 +42,6 @@ export const googleTranslateEpic = (action$) => {
         let originalLanguage = action.originalLanguage
         let userLanguage = action.userLanguage
         let text = action.originalText
-        if (originalLanguage === userLanguage) return text
 
         return ajax({
           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,

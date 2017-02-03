@@ -28358,7 +28358,6 @@
 	    var originalLanguage = action.originalLanguage;
 	    var userLanguage = action.userLanguage;
 	    var text = action.originalText;
-	    if (originalLanguage === userLanguage) return text;
 	
 	    return (0, _ajax.ajax)({
 	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
@@ -88117,7 +88116,11 @@
 				var userLanguage = this.props.userLanguage;
 				var text = messageObject && messageObject.text;
 	
-				this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				if (originalLanguage === userLanguage) {
+					this.props.addToMessages(text);
+				} else {
+					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				}
 			}
 	
 			// ************************************************************
