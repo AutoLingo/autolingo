@@ -18,7 +18,7 @@ var MessageList = React.createClass({
 					//Need to have messages container/array in the database
 					this.props.messages[0] && this.props.messages.map((message, i) => {
 						return (
-							<div>
+							<div key={i}>
 								{message}
 							</div>
 						)
