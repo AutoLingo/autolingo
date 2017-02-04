@@ -54222,6 +54222,7 @@
 	    return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_LanguageMessage2.default, null),
 	        _react2.default.createElement(_NavbarContainer2.default, null),
 	        _react2.default.createElement(_MapContainer2.default, null),
 	        props.children && _react2.default.cloneElement(props.children, props)

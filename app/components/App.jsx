@@ -7,6 +7,7 @@ import LanguageMessage from '../components/LanguageMessage';
 export default function (props) {
     return (
     	<div>
+        <LanguageMessage />
         <NavbarContainer />
         <Map />
           {
