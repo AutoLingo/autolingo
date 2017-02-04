@@ -20,7 +20,6 @@ import ChatAppVideo from './components/ChatAppVideo'
 const generateHash = () => {
   if(!location.hash.replace('#', '').length) {
       location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
-      location.reload();
   }
 }
 
@@ -29,8 +28,9 @@ render (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="/group-chat" component={ChatAppGroup} />
-        <Route path="/video-chat" component={ChatAppVideo} />
-        <Route path="/livechat" component={LiveChat} onEnter={generateHash}/>
+        <Route path="/video-chat" component={ChatAppVideo} onEnter={generateHash} />
+        <Route path="/livechat" component={LiveChat} />
+        <Route path="/language" component={LanguageMessage} />
       </Route>
     </Router>
   </Provider>,

@@ -27,16 +27,24 @@ var userNames = (function() {
   //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
   //The number will only increase if the guest username does not already exist in the names object. 
   var getGuestName = function() {
-    var name,
-      nextUserId = 1;
+   var name,
+     nextUserId = 1;
 
-      do {
-        name = 'Guest ' + nextUserId;
-        nextUserId += 1;
-      } while (!claim(name));
+     do {
+       name = 'Guest ' + nextUserId;
+console.log('GUEST IS', name )
+       nextUserId += 1;
+     } while (!claim(name));
 
-      return name
-  }
+
+     //      while (!claim(name)) {
+     //        name = 'Guest ' + nextUserId;
+     // // console.log('GUEST IS', name )
+     //        nextUserId += 1;
+     //      };
+
+     return name
+ }
 
   //serialize claimed names as an array
   var get = function() {
@@ -44,7 +52,7 @@ var userNames = (function() {
     for(let user in names) {
       res.push(user)
     }
-
+console.log(names)
     return res;
   }
 
@@ -139,20 +147,23 @@ if (module === require.main) {
 
 //**********
 function socketInit (server) {
-
+console.log('SOCKETINIT')
   if (!IO) IO = socketio(server);
   else return IO
-  var name = userNames.getGuestName();
 
-  IO.on('connection', function(socket) {
-    
+  var name = userNames.getGuestName();
+  var groupChat = IO.of('/group-chat')
+  var videoChat = IO.of('/video-chat')
+
+//**********GROUP CHAT ************
+  groupChat.on('connection', function(socket) {
 
     //send the new user their name and a list of users
     socket.emit('init', {
       name: name,
       users: userNames.get()
     });
-
+        
     //notify other users that a new user has joined
     socket.broadcast.emit('user:join', {
       name: name
@@ -167,21 +178,6 @@ function socketInit (server) {
         id: data.id
       })
     })
-
-    socket.on('interim_transcript', function(data) {
-      socket.broadcast.emit('interim_transcript', {
-       interimTranscript: data.interimTranscript,
-       userLanguage: data.userLanguage
-      })
-    })
-
-    socket.on('final_transcript', function(data) {
-      socket.broadcast.emit('final_transcript', {
-       finalTranscript: data.finalTranscript,
-       userLanguage: data.userLanguage
-      })
-    })
-    
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
       if(userNames.claim(data.name)) {
@@ -208,6 +204,32 @@ function socketInit (server) {
       })
       userNames.free(name);
     })
+  })
+
+// *********VIDEO CHAT********************
+  videoChat.on('connection', function(socket) {
+
+    socket.on('join_room', function(data) {
+      let room = data.room
+      socket.join(room)
+    })
+
+    socket.on('interim_transcript', function(data) {
+      let room = data.room
+
+      socket.broadcast.emit('interim_transcript', {
+       interimTranscript: data.interimTranscript,
+       userLanguage: data.userLanguage
+      })
+    })
+
+    socket.on('final_transcript', function(data) {
+      socket.broadcast.emit('final_transcript', {
+       finalTranscript: data.finalTranscript,
+       userLanguage: data.userLanguage
+      })
+    })
+    
   })
 }
 
