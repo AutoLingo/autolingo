@@ -11,4 +11,6 @@ public/bundle.js.map
 # NPM errors
 npm-debug.log
 
+.vscode/
+
 .DS_Store

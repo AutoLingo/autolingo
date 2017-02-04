@@ -98,7 +98,6 @@ export const googleTranslateEpic2 = (action$) => {
     .map(singleTranslation => {
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
-        console.log('SETINTERIMTRANSCRIPT',setInterimTranscript)
       return setInterimTranscript(translatedText)
     })
 }
@@ -110,7 +109,6 @@ export const googleTranslateEpic3 = (action$) => {
         let originalLanguage = action.originalLanguage
         let userLanguage = action.userLanguage
         let text = action.originalText
-        console.log('ACTION', action)
 
         return ajax({
           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,
@@ -120,7 +118,7 @@ export const googleTranslateEpic3 = (action$) => {
     .map(singleTranslation => {
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
-
+      
       return addFinalTranscript(translatedText)
     })
 }

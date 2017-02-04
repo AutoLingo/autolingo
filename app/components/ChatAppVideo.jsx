@@ -34,7 +34,6 @@ class ChatApp extends Component {
 	}
 
 	emitFinalTranscript(finalTranscript, userLanguage) {
-		console.log('EMIT FINAL TRANS', finalTranscript)
 		socket.emit('final_transcript', {finalTranscript, userLanguage})
 	}
 
@@ -44,7 +43,7 @@ class ChatApp extends Component {
 
 	finalTranscript(data) {
 		let originalLanguage = data.userLanguage
-		let text = data.interimTranscript
+		let text = data.finalTranscript
 		let userLanguage = this.props.userLanguage
 
 		if (originalLanguage === userLanguage) {

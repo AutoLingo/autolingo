@@ -176,6 +176,9 @@ function socketInit (server) {
     })
 
     socket.on('final_transcript', function(data) {
+      console.log('data: ', data);
+       console.log('data.finalTranscript: ', data.finalTranscript);
+       console.log('userLanguage: ', data.userLanguage);
       socket.broadcast.emit('final_transcript', {
        finalTranscript: data.finalTranscript,
        userLanguage: data.userLanguage
