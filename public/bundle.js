@@ -70,10 +70,6 @@
 	
 	__webpack_require__(267);
 	
-	var _Translate = __webpack_require__(683);
-	
-	var _Translate2 = _interopRequireDefault(_Translate);
-	
 	var _LanguageMessage = __webpack_require__(660);
 	
 	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
@@ -86,17 +82,13 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _ChatAppGroup = __webpack_require__(751);
 	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
+	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
-	var _MainContainer = __webpack_require__(742);
+	var _ChatAppVideo = __webpack_require__(752);
 	
-	var _MainContainer2 = _interopRequireDefault(_MainContainer);
-	
-	var _Home = __webpack_require__(745);
-	
-	var _Home2 = _interopRequireDefault(_Home);
+	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -120,13 +112,10 @@
 	    _react2.default.createElement(
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
-	      _react2.default.createElement(_reactRouter.IndexRedirect, { to: '/home' }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/main/chat', component: _ChatApp2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/home', component: _Home2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/main', component: _MainContainer2.default })
-	    ),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/translate', component: _Translate2.default })
+	      _react2.default.createElement(_reactRouter.Route, { path: '/group-chat', component: _ChatAppGroup2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/video-chat', component: _ChatAppVideo2.default }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default, onEnter: generateHash })
+	    )
 	  )
 	), document.getElementById('main'));
 
@@ -28236,7 +28225,7 @@
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -28263,7 +28252,8 @@
 	//   googleTranslateEpic
 	// );
 	
-	var epicMiddleware = (0, _reduxObservable.createEpicMiddleware)(_translate.googleTranslateEpic);
+	var rootEpic = (0, _reduxObservable.combineEpics)(_translate.googleTranslateEpic, _translate.googleTranslateEpic2, _translate.googleTranslateEpic3);
+	var epicMiddleware = (0, _reduxObservable.createEpicMiddleware)(rootEpic);
 	
 	var composeEnhancers = process.env.NODE_ENV !== 'production' && (typeof window === 'undefined' ? 'undefined' : _typeof(window)) === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : _redux.compose;
 	
@@ -28291,6 +28281,7 @@
 	  translations: __webpack_require__(263).default,
 	  map: __webpack_require__(608).default,
 	  user: __webpack_require__(610).default,
+	  speech: __webpack_require__(746).default,
 	  messages: __webpack_require__(607).default
 	});
 	
@@ -28306,7 +28297,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.googleTranslateEpic = exports.translateActionCreator = undefined;
+	exports.googleTranslateEpic3 = exports.googleTranslateEpic2 = exports.googleTranslateEpic = exports.translateFinalActionCreator = exports.translateInterimActionCreator = exports.translateActionCreator = undefined;
 	exports.default = translateReducer;
 	
 	var _bluebird = __webpack_require__(264);
@@ -28319,22 +28310,45 @@
 	
 	var _messagesReducer = __webpack_require__(607);
 	
+	var _speech = __webpack_require__(747);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 	
 	var API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w';
 	
+	
 	// **************************************************
 	// Actions
 	var ADD_TRANSLATION = "ADD_TRANSLATION";
 	var TRANSLATE = "TRANSLATE";
+	var TRANSLATE_INTERIM_TRANSCRIPT = "TRANSLATE_INTERIM_TRANSCRIPT";
+	var TRANSLATE_FINAL_TRANSCRIPT = "TRANSLATE_FINAL_TRANSCRIPT";
 	
 	// Action creators
 	// Fed into the googleTranslateEpic
 	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, originalLanguage, userLanguage, originalText) {
 	  return {
 	    type: TRANSLATE,
+	    id: id,
+	    originalLanguage: originalLanguage,
+	    userLanguage: userLanguage,
+	    originalText: originalText
+	  };
+	};
+	var translateInterimActionCreator = exports.translateInterimActionCreator = function translateInterimActionCreator(id, originalLanguage, userLanguage, originalText) {
+	  return {
+	    type: TRANSLATE_INTERIM_TRANSCRIPT,
+	    id: id,
+	    originalLanguage: originalLanguage,
+	    userLanguage: userLanguage,
+	    originalText: originalText
+	  };
+	};
+	var translateFinalActionCreator = exports.translateFinalActionCreator = function translateFinalActionCreator(id, originalLanguage, userLanguage, originalText) {
+	  return {
+	    type: TRANSLATE_FINAL_TRANSCRIPT,
 	    id: id,
 	    originalLanguage: originalLanguage,
 	    userLanguage: userLanguage,
@@ -28367,6 +28381,42 @@
 	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
 	
 	    return (0, _messagesReducer.addToMessages)(translatedText);
+	  });
+	};
+	// **************************************************
+	var googleTranslateEpic2 = exports.googleTranslateEpic2 = function googleTranslateEpic2(action$) {
+	  console.log('INTERIM GOOGLE EPIC RUNNING');
+	  return action$.ofType(TRANSLATE_INTERIM_TRANSCRIPT).debounceTime(200).mergeMap(function (action) {
+	    var originalLanguage = action.originalLanguage;
+	    var userLanguage = action.userLanguage;
+	    var text = action.originalText;
+	
+	    return (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
+	      crossDomain: true
+	    });
+	  }).map(function (singleTranslation) {
+	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
+	    console.log('SETINTERIMTRANSCRIPT', _speech.setInterimTranscript);
+	    return (0, _speech.setInterimTranscript)(translatedText);
+	  });
+	};
+	
+	var googleTranslateEpic3 = exports.googleTranslateEpic3 = function googleTranslateEpic3(action$) {
+	  return action$.ofType(TRANSLATE_FINAL_TRANSCRIPT).debounceTime(200).mergeMap(function (action) {
+	    var originalLanguage = action.originalLanguage;
+	    var userLanguage = action.userLanguage;
+	    var text = action.originalText;
+	    console.log('ACTION', action);
+	
+	    return (0, _ajax.ajax)({
+	      url: 'https://translation.googleapis.com/language/translate/v2?key=' + API_KEY + '&source=' + originalLanguage + '&target=' + userLanguage + '&q=' + text,
+	      crossDomain: true
+	    });
+	  }).map(function (singleTranslation) {
+	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
+	
+	    return (0, _speech.addFinalTranscript)(translatedText);
 	  });
 	};
 	
@@ -54142,6 +54192,8 @@
 	
 	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
 	
+	var _reactRouter = __webpack_require__(32);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54156,9 +54208,9 @@
 	  function Map(props) {
 	    _classCallCheck(this, Map);
 	
+	    // this.map;
 	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 	
-	    _this.map;
 	    _this.repositionMap = _this.repositionMap.bind(_this);
 	    return _this;
 	  }
@@ -54256,6 +54308,7 @@
 	  }, {
 	    key: 'repositionMap',
 	    value: function repositionMap(country) {
+	
 	      var self = this;
 	      return function (event) {
 	        self.map.fitBounds([country.fitBounds], { maxZoom: country.zoomNum });
@@ -54274,9 +54327,13 @@
 	          'div',
 	          { id: 'country-buttons' },
 	          _react2.default.createElement(
-	            'button',
-	            { id: 'fit-america', onClick: this.repositionMap(this.props.america) },
-	            'Go to U.S.A'
+	            _reactRouter.Link,
+	            { to: "/video-chat" },
+	            _react2.default.createElement(
+	              'button',
+	              { id: 'fit-america' },
+	              'Go to U.S.A'
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'button',
@@ -54310,6 +54367,8 @@
 	
 	  return Map;
 	}(_react.Component);
+	// <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to U.S.A</button>
+	
 	
 	exports.default = Map;
 
@@ -78904,295 +78963,8 @@
 	exports.default = LiveChatExternals;
 
 /***/ },
-/* 683 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _translate = __webpack_require__(263);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Translate = function (_Component) {
-	  _inherits(Translate, _Component);
-	
-	  function Translate(props) {
-	    _classCallCheck(this, Translate);
-	
-	    var _this = _possibleConstructorReturn(this, (Translate.__proto__ || Object.getPrototypeOf(Translate)).call(this, props));
-	
-	    _this.state = {
-	      text: ""
-	    };
-	
-	    _this.handleChange = _this.handleChange.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(Translate, [{
-	    key: 'handleChange',
-	    value: function handleChange(e) {
-	      var input = e.target.value;
-	      this.props.translateActionCreator(1, 'en', input);
-	      // this.setState ({ text: input })
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var text = this.state.text;
-	      var handleChange = this.handleChange;
-	      // let fr = this.props.translations[1] ? this.props.translations[1].fr : null
-	
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { name: 'input', type: 'textarea', onChange: handleChange }),
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          ' ',
-	          this.props.translations[1] && _react2.default.createElement(
-	            'div',
-	            null,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].en,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].fr,
-	            _react2.default.createElement('br', null),
-	            ' ',
-	            this.props.translations[1].ko
-	          ),
-	          ' '
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Translate;
-	}(_react.Component);
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  var translations = state.translations;
-	  console.log('TRANSLATIONS', translations);
-	
-	  return {
-	    translations: translations
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator })(Translate);
-
-/***/ },
-/* 684 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _sockets = __webpack_require__(685);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(737);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(738);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(740);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(741);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _store = __webpack_require__(261);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _translate = __webpack_require__(263);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	// import VideoChat from './VideoChat.jsx';
-	
-	var socket = _sockets2.default.connect();
-	
-	var ChatApp = _react2.default.createClass({
-		displayName: 'ChatApp',
-	
-		//set empty array/string for users, messages, text
-		getInitialState: function getInitialState() {
-			return {
-				users: [],
-				messages: [],
-				text: ''
-			};
-		},
-	
-	
-		//run below functions after the components are mounted on the page
-		componentDidMount: function componentDidMount() {
-			socket.on('init', this._initialize);
-			socket.on('send:message', this._messageReceive);
-			socket.on('user:join', this._userJoined);
-			socket.on('user:left', this._userLeft);
-			socket.on('change:name', this._userChangedName);
-		},
-	
-	
-		//set user with given name
-		_initialize: function _initialize(data) {
-			var users = data.users,
-			    name = data.name;
-	
-			this.setState({ users: users, user: name });
-		},
-	
-	
-		//push the given message into messages array
-		_messageReceive: function _messageReceive(messageObject) {
-			var messages = this.state.messages;
-	
-			messages.push(message.text);
-			this.setState({ messages: messages });
-			_store2.default.dispatch((0, _translate.translateActionCreator)(message.id, message.language, message.text));
-		},
-	
-	
-		//when the user joins the chat box, it will push the name of the user to the users array
-		//message, "name of user" joined will rendered on the chat box
-		_userJoined: function _userJoined(data) {
-			var _state = this.state,
-			    users = _state.users,
-			    messages = _state.messages;
-			var name = data.name;
-	
-			users.push(name);
-			messages.push({
-				user: "LingoBo",
-				text: name + ' Joined'
-			});
-			this.setState({ users: users, messages: messages });
-		},
-	
-	
-		//when the user leaves the chat box, it will push the name of the user to the users array
-		//message, "name of user" left will rendered on the chat box
-		_userLeft: function _userLeft(data) {
-			var _state2 = this.state,
-			    users = _state2.users,
-			    messages = _state2.messages;
-			var name = data.name;
-	
-			var index = users.indexOf(name);
-			users.splice(index, 1);
-			messages.push({
-				user: 'LingoBot',
-				text: name + ' Left'
-			});
-			this.setState({ users: users, messages: messages });
-		},
-	
-	
-		//Are we going to allow users to change name in the chat window? Need to discuss about this.
-		_userChangedName: function _userChangedName(data) {
-			var oldName = data.oldName,
-			    newName = data.newName;
-			var _state3 = this.state,
-			    users = _state3.users,
-			    messages = _state3.messages;
-	
-			var index = users.indexOf(oldName);
-			//find the oldName with the index and replace it with newName
-			users.splice(index, 1, newName);
-			message.push({
-				user: 'APPLICATION BOT',
-				text: 'Change Name : ' + oldName + ' ==> ' + newName
-			});
-			this.setState({ users: users, messages: messages });
-		},
-		handleMessageSubmit: function handleMessageSubmit(message) {
-			var messages = this.state.messages;
-	
-			messages.push(message);
-			this.setState({ messages: messages });
-			//send message data through socket
-			socket.emit('send:message', {
-				text: message,
-				language: 'en',
-				id: 1
-			});
-		},
-		handleChangeName: function handleChangeName(newName) {
-			var _this = this;
-	
-			var oldName = this.state.user;
-			socket.emit('change:name', { name: newName }, function (result) {
-				if (!result) {
-					return alert('There was an error changing your name');
-				}
-				var users = _this.state.users;
-	
-				var index = users.indexOf(oldName);
-				users.splice(index, 1, newName);
-				_this.setState({ users: users, user: newName });
-			});
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				{ id: 'chatbox-body' },
-				_react2.default.createElement(_UserList2.default, {
-					users: this.state.users
-				}),
-				_react2.default.createElement(_MessageList2.default, {
-					messages: this.state.messages
-				}),
-				_react2.default.createElement(_MessageForm2.default, {
-					onMessageSubmit: this.handleMessageSubmit,
-					user: this.state.user
-				}),
-				_react2.default.createElement(_ChangeNameForm2.default, {
-					onChangeName: this.handleChangeName
-				})
-			);
-		}
-	});
-	
-	exports.default = ChatApp;
-
-/***/ },
+/* 683 */,
+/* 684 */,
 /* 685 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -87868,7 +87640,63 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-/* 742 */
+/* 742 */,
+/* 743 */,
+/* 744 */,
+/* 745 */,
+/* 746 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = userReducer;
+	
+	var _speech = __webpack_require__(747);
+	
+	var initialState = { interimTranscript: '', finalTranscripts: [] };
+	
+	function userReducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+	
+	  var newState = Object.assign({}, state);
+	  switch (action.type) {
+	    case _speech.SET_INTERIM_TRANSCRIPT:
+	      newState.interimTranscript = action.interimTranscript;
+	      break;
+	    case _speech.ADD_FINAL_TRANSCRIPT:
+	      newState.finalTranscripts = state.finalTranscripts.concat([action.finalTranscript]);
+	      break;
+	    default:
+	      return state;
+	  }
+	  return newState;
+	}
+
+/***/ },
+/* 747 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SET_INTERIM_TRANSCRIPT = exports.SET_INTERIM_TRANSCRIPT = 'SET_INTERIM_TRANSCRIPT';
+	var ADD_FINAL_TRANSCRIPT = exports.ADD_FINAL_TRANSCRIPT = 'ADD_FINAL_TRANSCRIPT';
+	
+	var setInterimTranscript = exports.setInterimTranscript = function setInterimTranscript(interimTranscript) {
+	  return { type: SET_INTERIM_TRANSCRIPT, interimTranscript: interimTranscript };
+	};
+	var addFinalTranscript = exports.addFinalTranscript = function addFinalTranscript(finalTranscript) {
+	  return { type: ADD_FINAL_TRANSCRIPT, finalTranscript: finalTranscript };
+	};
+
+/***/ },
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87879,9 +87707,11 @@
 	
 	var _reactRedux = __webpack_require__(233);
 	
-	var _Main = __webpack_require__(743);
+	var _VoiceRecognition = __webpack_require__(749);
 	
-	var _Main2 = _interopRequireDefault(_Main);
+	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
+	
+	var _speech = __webpack_require__(747);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -87890,13 +87720,160 @@
 	}
 	
 	function mapDispatchToProps(dispatch, ownProps) {
-	  return {};
+	
+	  // ******************* start of recognition object *******************
+	
+	  if (!('webkitSpeechRecognition' in window)) {
+	    upgrade();
+	  } else {
+	    var recognition = new webkitSpeechRecognition();
+	    recognition.continuous = true;
+	    recognition.interimResults = true;
+	    recognition.onstart = function () {
+	      recognizing = true;
+	      showInfo('info_speak_now');
+	      start_img.src = 'mic-animate.gif';
+	    };
+	    recognition.onerror = function (event) {
+	      if (event.error == 'no-speech') {
+	        start_img.src = 'mic.gif';
+	        showInfo('info_no_speech');
+	        ignore_onend = true;
+	      }
+	      if (event.error == 'audio-capture') {
+	        start_img.src = 'mic.gif';
+	        showInfo('info_no_microphone');
+	        ignore_onend = true;
+	      }
+	      if (event.error == 'not-allowed') {
+	        if (event.timeStamp - start_timestamp < 100) {
+	          showInfo('info_blocked');
+	        } else {
+	          showInfo('info_denied');
+	        }
+	        ignore_onend = true;
+	      }
+	    };
+	    recognition.onend = function () {
+	      recognizing = false;
+	      if (ignore_onend) {
+	        return;
+	      }
+	      start_img.src = 'mic.gif';
+	      if (!final_transcript) {
+	        showInfo('info_start');
+	        return;
+	      }
+	      showInfo('');
+	      if (window.getSelection) {
+	        window.getSelection().removeAllRanges();
+	        var range = document.createRange();
+	        range.selectNode(document.getElementById('final_span'));
+	        window.getSelection().addRange(range);
+	      }
+	    };
+	    recognition.onresult = function (event) {
+	      var emitFinalTranscript = ownProps.emitFinalTranscript;
+	      var emitInterimTranscript = ownProps.emitInterimTranscript;
+	      var userLanguage = ownProps.userLanguage;
+	
+	      var interim_transcript = '';
+	      for (var i = event.resultIndex; i < event.results.length; ++i) {
+	        if (event.results[i].isFinal) {
+	          console.log('FINAL TRANSCRIPT RUNNING');
+	          final_transcript = event.results[i][0].transcript;
+	          console.log('THIS IS THE FINAL TRANSCRIPT!!!! ', final_transcript);
+	          emitFinalTranscript(final_transcript, userLanguage);
+	        } else {
+	          interim_transcript += event.results[i][0].transcript;
+	
+	          emitInterimTranscript(interim_transcript, userLanguage);
+	          // socket.emit('interim_transcript', {interim_transcript})
+	        }
+	      }
+	      final_transcript = capitalize(final_transcript);
+	      final_span.innerHTML = linebreak(final_transcript);
+	      interim_span.innerHTML = linebreak(interim_transcript);
+	      if (final_transcript || interim_transcript) {
+	        showButtons('inline-block');
+	      }
+	    };
+	  }
+	
+	  // ******************* end of recognition object *******************
+	
+	  // ******************* start of speech functions object *******************
+	
+	  var final_transcript = '';
+	  var recognizing = false;
+	  var ignore_onend;
+	  var start_timestamp;
+	
+	  function upgrade() {
+	    start_button.style.visibility = 'hidden';
+	    showInfo('info_upgrade');
+	  }
+	  var two_line = /\n\n/g;
+	  var one_line = /\n/g;
+	
+	  function linebreak(s) {
+	    return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
+	  }
+	  var first_char = /\S/;
+	
+	  function capitalize(s) {
+	    return s.replace(first_char, function (m) {
+	      return m.toUpperCase();
+	    });
+	  }
+	
+	  function startButton(event) {
+	    if (recognizing) {
+	      recognition.stop();
+	      return;
+	    }
+	    final_transcript = '';
+	    recognition.lang = select_dialect.value;
+	    recognition.start();
+	    ignore_onend = false;
+	    final_span.innerHTML = '';
+	    interim_span.innerHTML = '';
+	    start_img.src = 'mic-slash.gif';
+	    showInfo('info_allow');
+	    showButtons('none');
+	    start_timestamp = event.timeStamp;
+	  }
+	
+	  function showInfo(s) {
+	    if (s) {
+	      for (var child = info.firstChild; child; child = child.nextSibling) {
+	        if (child.style) {
+	          child.style.display = child.id == s ? 'inline' : 'none';
+	        }
+	      }
+	      info.style.visibility = 'visible';
+	    } else {
+	      info.style.visibility = 'hidden';
+	    }
+	  }
+	
+	  var current_style;
+	  function showButtons(style) {
+	    if (style == current_style) {
+	      return;
+	    }
+	    current_style = style;
+	  }
+	
+	  // ******************* end of speech functions *******************
+	
+	  return { showInfo: showInfo, startButton: startButton };
 	}
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Main2.default);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_VoiceRecognition2.default);
 
 /***/ },
-/* 743 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -87904,32 +87881,190 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = Main;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ChatApp = __webpack_require__(684);
-	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
-	
-	var _ChatAppCopy = __webpack_require__(744);
-	
-	var _ChatAppCopy2 = _interopRequireDefault(_ChatAppCopy);
+	var _languages = __webpack_require__(750);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function Main(props) {
-	  return _react2.default.createElement(
-	    'main',
-	    null,
-	    _react2.default.createElement(_ChatAppCopy2.default, null)
-	  );
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var VoiceRecognition = function (_Component) {
+	  _inherits(VoiceRecognition, _Component);
+	
+	  function VoiceRecognition(props) {
+	    _classCallCheck(this, VoiceRecognition);
+	
+	    var _this = _possibleConstructorReturn(this, (VoiceRecognition.__proto__ || Object.getPrototypeOf(VoiceRecognition)).call(this, props));
+	
+	    _this.state = { didMount: false };
+	    _this.updateCountry = _this.updateCountry.bind(_this);
+	    _this.interimHandler = _this.interimHandler.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(VoiceRecognition, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var updateCountry = this.updateCountry;
+	      var showInfo = this.props.showInfo;
+	      var final_transcript = this.props.final_transcript;
+	
+	      for (var i = 0; i < _languages.langs.length; i++) {
+	        select_language.options[i] = new Option(_languages.langs[i][0], i);
+	      }
+	      select_language.selectedIndex = 6;
+	      updateCountry();
+	      select_dialect.selectedIndex = 6;
+	      showInfo('info_start');
+	    }
+	  }, {
+	    key: 'updateCountry',
+	    value: function updateCountry() {
+	      for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+	        select_dialect.remove(i);
+	      }
+	      var list = _languages.langs[select_language.selectedIndex];
+	      for (var i = 1; i < list.length; i++) {
+	        select_dialect.options.add(new Option(list[i][1], list[i][0]));
+	      }
+	      select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+	    }
+	  }, {
+	    key: 'interimHandler',
+	    value: function interimHandler(event) {
+	      console.log(event.target.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var startButton = this.props.startButton;
+	      var updateCountry = this.updateCountry;
+	      var interimHandler = this.interimHandler;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'info' },
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_start' },
+	            'Click on the microphone icon and begin speaking.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_speak_now' },
+	            'Speak now.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_no_speech' },
+	            'No speech was detected. You may need to adjust your',
+	            _react2.default.createElement(
+	              'a',
+	              { href: '//support.google.com/chrome/bin/answer.py?hl=en&answer=1407892' },
+	              'microphone settings'
+	            ),
+	            '.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_no_microphone', style: { display: "none" } },
+	            'No microphone was found. Ensure that a microphone is installed and that',
+	            _react2.default.createElement(
+	              'a',
+	              { href: '//support.google.com/chrome/bin/answer.py?hl=en&answer=1407892' },
+	              'microphone settings'
+	            ),
+	            ' are configured correctly.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_allow' },
+	            'Click the "Allow" button above to enable your microphone.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_denied' },
+	            'Permission to use microphone was denied.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_blocked' },
+	            'Permission to use microphone is blocked. To change, go to chrome://settings/contentExceptions#media-stream'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            { id: 'info_upgrade' },
+	            'Web Speech API is not supported by this browser. Upgrade to ',
+	            _react2.default.createElement(
+	              'a',
+	              { href: '//www.google.com/chrome' },
+	              'Chrome'
+	            ),
+	            'version 25 or later.'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'right' },
+	          _react2.default.createElement(
+	            'button',
+	            { id: 'start_button', onClick: startButton },
+	            _react2.default.createElement('img', { id: 'start_img', src: 'mic.gif', alt: 'Start' })
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { id: 'results' },
+	          _react2.default.createElement('span', { id: 'final_span', className: 'final' }),
+	          _react2.default.createElement('span', { id: 'interim_span', className: 'interim' }),
+	          _react2.default.createElement('p', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'center' },
+	          _react2.default.createElement('p', null),
+	          _react2.default.createElement(
+	            'div',
+	            { id: 'div_language' },
+	            _react2.default.createElement('select', { id: 'select_language', onChange: updateCountry }),
+	            '\xA0\xA0',
+	            _react2.default.createElement('select', { id: 'select_dialect' })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return VoiceRecognition;
+	}(_react.Component);
+	
+	exports.default = VoiceRecognition;
 
 /***/ },
-/* 744 */
+/* 750 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var langs = exports.langs = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']], ['Català', ['ca-ES']], ['Čeština', ['cs-CZ']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']], ['Français', ['fr-FR']], ['Galego', ['gl-ES']], ['Hrvatski', ['hr_HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']], ['Norsk bokmål', ['nb-NO']], ['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Türkçe', ['tr-TR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['한국어', ['ko-KR']], ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'], ['cmn-Hans-HK', '普通话 (香港)'], ['cmn-Hant-TW', '中文 (台灣)'], ['yue-Hant-HK', '粵語 (香港)']], ['日本語', ['ja-JP']], ['Lingua latīna', ['la']]];
+
+/***/ },
+/* 751 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88173,29 +88308,300 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, addToMessages: _messagesReducer.addToMessages })(ChatApp);
 
 /***/ },
-/* 745 */
+/* 752 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+		value: true
 	});
-	exports.default = Home;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _ChatApp = __webpack_require__(684);
+	var _sockets = __webpack_require__(685);
 	
-	var _ChatApp2 = _interopRequireDefault(_ChatApp);
+	var _sockets2 = _interopRequireDefault(_sockets);
+	
+	var _UserList = __webpack_require__(737);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(738);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(740);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(741);
+	
+	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
+	
+	var _VoiceRecognitionContainer = __webpack_require__(748);
+	
+	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
+	
+	var _reactRedux = __webpack_require__(233);
+	
+	var _translate = __webpack_require__(263);
+	
+	var _speech = __webpack_require__(747);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function Home(props) {
-	  return _react2.default.createElement('div', null);
-	}
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _sockets2.default.connect();
+	
+	var ChatApp = function (_Component) {
+		_inherits(ChatApp, _Component);
+	
+		function ChatApp(props) {
+			_classCallCheck(this, ChatApp);
+	
+			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
+	
+			_this.state = {};
+	
+			_this.messageReceive = _this.messageReceive.bind(_this);
+			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
+			_this.emitFinalTranscript = _this.emitFinalTranscript.bind(_this);
+			_this.interimTranscript = _this.interimTranscript.bind(_this);
+			_this.finalTranscript = _this.finalTranscript.bind(_this);
+			return _this;
+		}
+	
+		//run below functions after the components are mounted on the page
+	
+	
+		_createClass(ChatApp, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				socket.on('init', this._initialize);
+				socket.on('send:message', this.messageReceive);
+				socket.on('user:join', this._userJoined);
+				socket.on('user:left', this._userLeft);
+				socket.on('change:name', this._userChangedName);
+				socket.on('final_transcript', this.finalTranscript);
+				socket.on('interim_transcript', this.interimTranscript);
+			}
+		}, {
+			key: 'emitFinalTranscript',
+			value: function emitFinalTranscript(finalTranscript, userLanguage) {
+				console.log('EMIT FINAL TRANS', finalTranscript);
+				socket.emit('final_transcript', { finalTranscript: finalTranscript, userLanguage: userLanguage });
+			}
+		}, {
+			key: 'emitInterimTranscript',
+			value: function emitInterimTranscript(interimTranscript, userLanguage) {
+				socket.emit('interim_transcript', { interimTranscript: interimTranscript, userLanguage: userLanguage });
+			}
+		}, {
+			key: 'finalTranscript',
+			value: function finalTranscript(data) {
+				var originalLanguage = data.userLanguage;
+				var text = data.interimTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addFinalTranscript(data.finalTranscript);
+				} else {
+					this.props.translateFinalActionCreator(1, originalLanguage, userLanguage, text);
+				}
+			}
+		}, {
+			key: 'interimTranscript',
+			value: function interimTranscript(data) {
+				var originalLanguage = data.userLanguage;
+				var text = data.interimTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.setInterimTranscript(data.interimTranscript);
+				} else {
+					this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text);
+				}
+			}
+	
+			//set user with given name
+	
+		}, {
+			key: '_initialize',
+			value: function _initialize(data) {
+				var users = data.users,
+				    name = data.name;
+				// this.setState({users, user: name});
+			}
+	
+			//when the user joins the chat box, it will push the name of the user to the users array
+			//message, "name of user" joined will rendered on the chat box
+	
+		}, {
+			key: '_userJoined',
+			value: function _userJoined(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	users.push(name);
+			// 	messages.push({
+			// 		user: "LingoBo",
+			// 		text: name + ' Joined'
+			// 	});
+			// 	this.setState({users, messages})
+	
+	
+			//when the user leaves the chat box, it will push the name of the user to the users array
+			//message, "name of user" left will rendered on the chat box
+	
+		}, {
+			key: '_userLeft',
+			value: function _userLeft(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	var index = users.indexOf(name);
+			// 	users.splice(index, 1);
+			// 	messages.push({
+			// 		user: 'LingoBot',
+			// 		text: name + ' Left'
+			// 	})
+			// 	this.setState({users, messages})
+	
+	
+			//Are we going to allow users to change name in the chat window? Need to discuss about this.
+	
+		}, {
+			key: '_userChangedName',
+			value: function _userChangedName(data) {
+				// 	var {oldName, newName} = data;
+				// 	var {users, messages} = this.state;
+				// 	var index = users.indexOf(oldName);
+				// 	//find the oldName with the index and replace it with newName
+				// 	users.splice(index, 1, newName);
+				// 	message.push({
+				// 		user: 'APPLICATION BOT',
+				// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
+				// 	});
+				// 	this.setState({users, messages})
+			}
+		}, {
+			key: 'handleChangeName',
+			value: function handleChangeName(newName) {}
+			// 	var oldName = this.state.user;
+			// 	socket.emit('change:name', { name: newName }, (result) => {
+			// 		if(!result) {
+			// 			return alert('There was an error changing your name');
+			// 		}
+			// 		var {users} = this.state;
+			// 		var index = users.indexOf(oldName);
+			// 		users.splice(index, 1, newName);
+			// 		this.setState({users, user: newName})
+			// 	})
+	
+			// ************************************************************
+	
+		}, {
+			key: 'handleMessageSubmit',
+			value: function handleMessageSubmit(message) {
+				socket.emit('send:message', {
+					text: message.text,
+					language: this.props.userLanguage,
+					id: 1
+				});
+	
+				this.props.addToMessages(message.text);
+			}
+		}, {
+			key: 'messageReceive',
+			value: function messageReceive(messageObject) {
+				var id = messageObject && messageObject.id;
+				var originalLanguage = messageObject && messageObject.language;
+				var userLanguage = this.props.userLanguage;
+				var text = messageObject && messageObject.text;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addToMessages(text);
+				} else {
+					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				}
+			}
+	
+			// ************************************************************
+	
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				var finalTranscripts = this.props.finalTranscripts;
+				var interimTranscript = this.props.interimTranscript;
+				var userLanguage = this.props.userLanguage || 'nada';
+				return _react2.default.createElement(
+					'div',
+					{ id: 'chatbox-body' },
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Conversation'
+						),
+						finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
+							return _react2.default.createElement(
+								'div',
+								{ key: i },
+								_react2.default.createElement('br', null),
+								' ',
+								transcript
+							);
+						})
+					),
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Live'
+						),
+						interimTranscript
+					),
+					_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
+				);
+			}
+		}]);
+	
+		return ChatApp;
+	}(_react.Component);
+	
+	// ************************************************
+	
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		var translation = state.translations[1] && state.translations[1];
+		var userLanguage = state.user.selectedUser.primaryLanguage;
+		var finalTranscripts = state.speech.finalTranscripts;
+		var interimTranscript = state.speech.interimTranscript;
+	
+		return {
+			translation: translation,
+			userLanguage: userLanguage,
+			finalTranscripts: finalTranscripts,
+			interimTranscript: interimTranscript
+		};
+	};
+	
+	// const mapDispatchToProps = dispatch => ({translateActionCreator})
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ }
 /******/ ]);
