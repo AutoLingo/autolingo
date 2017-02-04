@@ -1,10 +1,9 @@
 import React from 'react';
-import ChatApp from '../components/ChatApp'
-import ChatAppCopy from '../components/ChatAppCopy'
+import ChatApp from '../components/ChatAppGroup'
 export default function Main (props) {
   return (
     <main>
-      <ChatAppCopy/>
+      <ChatAppGroup/>
       {/* {
        props.children && React.cloneElement(props.children, props)
       } */}
