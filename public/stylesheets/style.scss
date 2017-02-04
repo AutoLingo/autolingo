@@ -136,16 +136,34 @@ nav {
 // ***************** start of chat box (socket) styling *****************
 
 #chatbox-body {
-  width: 1500px;
-  height: 900px;
-  margin: 0 auto;
-  border: 5px solid black;
-  border-radius: 2%;
-  // margin-top: 80px;
-  position: absolute;
-  z-index: 99;
-  background-color: white;
+	width: 90%;
+	height: 900px;
+	margin: 0 auto;
+	border: 5px solid black;
+	border-radius: 2%;
+	position: relative;
+	z-index: 99;
+	background-color: white;
+    padding: 20px;
+
+    h2 {
+    	display: block;
+    	text-align: center;
+    }
 }
+
+#conversation-container {
+	width: 50%;
+	min-height: 444px;
+	display: inline-block;
+}
+
+#videochat-container {
+	width: 42%;
+	margin-right: 30px;
+	float: right;
+}
+
 
 .users {
   float : right;

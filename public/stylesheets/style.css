@@ -110,14 +110,28 @@ nav {
   background: grey; }
 
 #chatbox-body {
-  width: 1500px;
+  width: 90%;
   height: 900px;
   margin: 0 auto;
   border: 5px solid black;
   border-radius: 2%;
-  position: absolute;
+  position: relative;
   z-index: 99;
-  background-color: white; }
+  background-color: white;
+  padding: 20px; }
+  #chatbox-body h2 {
+    display: block;
+    text-align: center; }
+
+#conversation-container {
+  width: 50%;
+  min-height: 444px;
+  display: inline-block; }
+
+#videochat-container {
+  width: 42%;
+  margin-right: 30px;
+  float: right; }
 
 .users {
   float: right;
