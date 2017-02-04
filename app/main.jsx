@@ -31,6 +31,7 @@ render (
         <Route path="/group-chat" component={ChatAppGroup} />
         <Route path="/video-chat" component={ChatAppVideo} onEnter={generateHash} />
         <Route path="/livechat" component={LiveChat} />
+        <Route path="/language" component={LanguageMessage} />
       </Route>
     </Router>
   </Provider>,

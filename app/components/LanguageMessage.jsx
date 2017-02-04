@@ -5,7 +5,8 @@ import sweetAlert from 'sweetAlert';
 import { setUser } from '../actionCreators/user';
 import store from '../store';
 import Dropdown from 'react-simple-dropdown';
-import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'; 
+import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import {browserHistory} from 'react-router'
 
 const customStyles = {
   content : {
@@ -55,6 +56,7 @@ class LanguageMessage extends React.Component {
     }
     this.setState({modalIsOpen: false})
     swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success")
+    browserHistory.push('/')
   }
 
   render() {
@@ -98,7 +100,7 @@ class LanguageMessage extends React.Component {
                 <li><a onClick={(event)=>this.selectLanguage(event, 'fr', 'France')}>French</a></li>
                 <li><a onClick={(event)=>this.selectLanguage(event, 'ko', 'Korea')}>Korean</a></li>
                 <li><a onClick={(event)=>this.selectLanguage(event, 'ru', 'Russia')}>Russian</a></li>
-                <li><a onClick={(event)=>this.selectLanguage(event, 'tl', 'Philippines')}>Filipino</a></li>                
+                <li><a onClick={(event)=>this.selectLanguage(event, 'tl', 'Philippines')}>Filipino</a></li>
                 <li><a onClick={(event)=>this.selectLanguage(event, 'el', 'Greece')}>Greek</a></li>
                 <li><a onClick={(event)=>this.selectLanguage(event, 'iw', 'Israel')}>Hebrew</a></li>
                 <li><a onClick={(event)=>this.selectLanguage(event, 'it', 'Italy')}>Italian</a></li>
@@ -109,7 +111,7 @@ class LanguageMessage extends React.Component {
               </ul>
             </DropdownContent>
           </Dropdown>
-        
+
         </Modal>
       </div>
     );
