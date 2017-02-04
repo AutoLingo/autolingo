@@ -10,6 +10,9 @@ export default function Navbar (props) {
       <Link to="/language">
         <button type="button" className="btn btn-warning btn-md navbar-btn">Select Language</button>
       </Link>
+      <Link to='/instructions'>
+      	<button type="button" className="btn btn-warning btn-md navbar-btn">Instructions</button>
+      </Link>
     </nav>
   );
 }
