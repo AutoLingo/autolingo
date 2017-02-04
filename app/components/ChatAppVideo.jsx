@@ -33,6 +33,7 @@ class ChatApp extends Component {
 		socket.on('interim_transcript', this.interimTranscript)
 	}
 
+	//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
 	emitFinalTranscript(finalTranscript, userLanguage) {
 		socket.emit('final_transcript', {finalTranscript, userLanguage})
 	}
@@ -40,7 +41,9 @@ class ChatApp extends Component {
 	emitInterimTranscript(interimTranscript, userLanguage) {
 		socket.emit('interim_transcript', {interimTranscript, userLanguage})
 	}
+	//*******************************************************
 
+	//**************** Browser/user receiving broadcast-emits from server **************************
 	finalTranscript(data) {
 		let originalLanguage = data.userLanguage
 		let text = data.finalTranscript
@@ -64,6 +67,7 @@ class ChatApp extends Component {
 			this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text)
 		}
 	}
+	//*******************************************************
 
 	//set user with given name
 	_initialize(data) {

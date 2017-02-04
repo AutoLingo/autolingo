@@ -114,7 +114,7 @@ module.exports = app
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
   .use((err, req, res, next) => {
-    console.log(prettyError.render(err))
+    
     res.status(500).send(err)
     next()
   })
@@ -126,8 +126,8 @@ if (module === require.main) {
   const server = app.listen(
     process.env.PORT || 1337,
     () => {
-      console.log(`--- Started HTTP Server for ${pkg.name} ---`)      
-      console.log(`Listening on ${JSON.stringify(server.address())}`)
+            
+      
     }
   )
 
@@ -145,7 +145,7 @@ function socketInit (server) {
   var name = userNames.getGuestName();
 
   IO.on('connection', function(socket) {
-    console.log('A new user has connected')
+    
 
     //send the new user their name and a list of users
     socket.emit('init', {
@@ -176,9 +176,6 @@ function socketInit (server) {
     })
 
     socket.on('final_transcript', function(data) {
-      console.log('data: ', data);
-       console.log('data.finalTranscript: ', data.finalTranscript);
-       console.log('userLanguage: ', data.userLanguage);
       socket.broadcast.emit('final_transcript', {
        finalTranscript: data.finalTranscript,
        userLanguage: data.userLanguage
