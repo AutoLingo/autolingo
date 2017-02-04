@@ -6,7 +6,7 @@ import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer'
 import { connect } from 'react-redux';
-const socket = io.connect();
+const socket = io.connect('/video-chat');
 
 class ChatApp extends Component {
 	constructor(props) {

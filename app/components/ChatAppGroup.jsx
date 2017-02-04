@@ -5,7 +5,7 @@ import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import { connect } from 'react-redux';
-const socket = io.connect();
+const socket = io.connect('/group-chat');
 
 class ChatApp extends Component {
 	constructor(props) {
