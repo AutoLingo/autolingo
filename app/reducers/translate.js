@@ -83,7 +83,6 @@ export const googleTranslateEpic = (action$) => {
 }
 // **************************************************
 export const googleTranslateEpic2 = (action$) => {
-  console.log('INTERIM GOOGLE EPIC RUNNING')
   return action$.ofType(TRANSLATE_INTERIM_TRANSCRIPT)
     .debounceTime(200)
     .mergeMap(action => {

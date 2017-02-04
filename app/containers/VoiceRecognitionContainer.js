@@ -44,6 +44,7 @@ function mapDispatchToProps (dispatch, ownProps) {
       }
     };
     recognition.onend = function() {
+      console.log('ON END SPEECH RECOGNITION EVENT FIRED')
       recognizing = false;
       if (ignore_onend) {
         return;
