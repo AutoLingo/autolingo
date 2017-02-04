@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import socket from '../sockets';
+import io from '../sockets';
 import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
