@@ -2,7 +2,7 @@
 
 import { SET_USER, ADD_USER } from '../actionCreators/user';
 
-const initialState = { selectedUser: {} , users: [] };
+const initialState = { selectedUser: {firstName: '', lastName: '', email: '', primaryLanguage: 'en', country: 'America'} };
 
 export default function userReducer(state = initialState, action) {
   let newState = Object.assign({}, state)

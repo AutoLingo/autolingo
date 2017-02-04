@@ -39,6 +39,7 @@ class ChatApp extends Component {
 	//when the user joins the chat box, it will push the name of the user to the users array
 	//message, "name of user" joined will rendered on the chat box
 	_userJoined(data) {
+<<<<<<< HEAD
 	// 	var {users, messages} = this.state;
 	console.log('DATA', data)
 		var {name} = data;
@@ -50,11 +51,22 @@ class ChatApp extends Component {
 	// 	this.setState({users, messages})
 	console.log('THIS.PROPS.ADDUSER', this.props.addUser)
 		this.props.addUser(name)
+=======
+		// var {users, messages} = this.state;
+		// var {name} = data;
+		// users.push(name);
+		// messages.push({
+		// 	user: "LingoBo",
+		// 	text: name + ' Joined'
+		// });
+		// this.setState({users, messages})
+>>>>>>> master
 	}
 
 	//when the user leaves the chat box, it will push the name of the user to the users array
 	//message, "name of user" left will rendered on the chat box
 	_userLeft(data) {
+<<<<<<< HEAD
 	// 	var {users, messages} = this.state;
 	// 	var {name} = data;
 	// 	var index = users.indexOf(name);
@@ -64,10 +76,22 @@ class ChatApp extends Component {
 	// 		text: name + ' Left'
 	// 	})
 	// 	this.setState({users, messages})
+=======
+		// var {users, messages} = this.state;
+		// var {name} = data;
+		// var index = users.indexOf(name);
+		// users.splice(index, 1);
+		// messages.push({
+		// 	user: 'LingoBot',
+		// 	text: name + ' Left'
+		// })
+		// this.setState({users, messages})
+>>>>>>> master
 	}
 
 	//Are we going to allow users to change name in the chat window? Need to discuss about this.
 	_userChangedName(data) {
+<<<<<<< HEAD
 	// 	var {oldName, newName} = data;
 	// 	var {users, messages} = this.state;
 	// 	var index = users.indexOf(oldName);
@@ -78,10 +102,23 @@ class ChatApp extends Component {
 	// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
 	// 	});
 	// 	this.setState({users, messages})
+=======
+		// var {oldName, newName} = data;
+		// var {users, messages} = this.state;
+		// var index = users.indexOf(oldName);
+		// //find the oldName with the index and replace it with newName
+		// users.splice(index, 1, newName);
+		// message.push({
+		// 	user: 'APPLICATION BOT',
+		// 	text: 'Change Name : ' + oldName + ' ==> ' + newName
+		// });
+		// this.setState({users, messages})
+>>>>>>> master
 	}
 
 
 	handleChangeName(newName) {
+<<<<<<< HEAD
 	// 	var oldName = this.state.user;
 	// 	socket.emit('change:name', { name: newName }, (result) => {
 	// 		if(!result) {
@@ -92,6 +129,18 @@ class ChatApp extends Component {
 	// 		users.splice(index, 1, newName);
 	// 		this.setState({users, user: newName})
 	// 	})
+=======
+		// var oldName = this.state.user;
+		// socket.emit('change:name', { name: newName }, (result) => {
+		// 	if(!result) {
+		// 		return alert('There was an error changing your name');
+		// 	}
+		// 	var {users} = this.state;
+		// 	var index = users.indexOf(oldName);
+		// 	users.splice(index, 1, newName);
+		// 	this.setState({users, user: newName})
+		// })
+>>>>>>> master
 	}
 // ************************************************************
 	handleMessageSubmit(message) {
@@ -105,6 +154,7 @@ class ChatApp extends Component {
 	}
 
 	messageReceive(messageObject) {
+		console.log('messageObject: ', messageObject);
 		let id = messageObject && messageObject.id
 		let originalLanguage = messageObject && messageObject.language
 		let userLanguage = this.props.userLanguage
