@@ -11,13 +11,20 @@ export default class Map extends Component {
     super(props);
     // this.map;
     this.repositionMap = this.repositionMap.bind(this);
+    // this.usaMarker;
+    // this.usaIcon;
+    this.usaMarker;
+    this.chinaMarker;
+    this.franceMarker;
+    this.spainMarker;
+    this.koreaMarker;
   }
 
   componentDidMount() {
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
-    this.map = map
+    this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/thlee1122/ciyhpbj15003d2sluqt6ylrqa').addTo(map);
 
@@ -51,18 +58,48 @@ export default class Map extends Component {
     }).addTo(map);
 
     //Map click function to show coordinates of the place when the mpa is clicked
-    // var popup = L.popup();
+    var popup = L.popup();
 
-    // function onMapClick(e) {
-    //     popup
-    //         .setLatLng(e.latlng)
-    //         .setContent("You clicked the map at " + e.latlng.toString())
-    //         .openOn(map);
-    // }
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("You clicked the map at " + e.latlng.toString())
+            .openOn(map);
+    }
 
-    // //Need to change below click event when refactoring into react component
-    // map.on('click', onMapClick);
+    //Need to change below click event when refactoring into react component
+    map.on('click', onMapClick);
 
+    //Add country markers
+    this.usaIcon = L.icon({
+      iconUrl: 'APP/public/img/united-states.png'
+    });
+
+    this.chinaIcon = L.icon({
+      iconUrl: 'APP/public/img/china.png'
+    });
+
+    this.franceIcon = L.icon({
+      iconUrl: 'APP/public/img/france.png'
+    });
+
+    this.spainIcon = L.icon({
+      iconUrl: 'APP/public/img/spain.png'
+    });
+
+    this.koreaIcon = L.icon({
+      iconUrl: 'APP/public/img/south-korea.png'
+    })
+
+    this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(map);
+    this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(map);
+    this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(map);
+    this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(map);
+    this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(map);
+    
+    console.log('#@$@$&*#!@!@#^$%&^*&I%&$#@!#~@', L);
+    //*****************************************
+    
     function highlightFeature(e) {
       var layer = e.target;
       layer.setStyle(
@@ -99,15 +136,31 @@ export default class Map extends Component {
         }
       )
     }
-
+    this.L = L
   }
   repositionMap(country) {
-   
-    let self = this;
-    return function (event) {
-      self.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
-      self.map.dragging.enable();
-      self.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+    return (event) => {
+      this.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
+      this.map.dragging.disable();
+      this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+
+      if (country.name === 'globe') {
+        //then put them back to right coordinates
+        this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(this.map);
+        this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(this.map);
+        this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(this.map);
+        this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(this.map);
+        this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(this.map);
+    
+      }
+
+      if(country.name=== 'america' || country.name==="china" || country.name==="spain" || country.name==="france" || country.name==="korea") {
+        this.map.removeLayer(this.usaMarker)
+        this.map.removeLayer(this.spainMarker)
+        this.map.removeLayer(this.chinaMarker)
+        this.map.removeLayer(this.koreaMarker)
+        this.map.removeLayer(this.franceMarker)
+      }
     }
   }
 

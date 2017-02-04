@@ -110,14 +110,28 @@ nav {
   background: grey; }
 
 #chatbox-body {
-  width: 1500px;
+  width: 90%;
   height: 900px;
   margin: 0 auto;
   border: 5px solid black;
   border-radius: 2%;
-  position: absolute;
+  position: relative;
   z-index: 99;
-  background-color: white; }
+  background-color: white;
+  padding: 20px; }
+  #chatbox-body h2 {
+    display: block;
+    text-align: center; }
+
+#conversation-container {
+  width: 50%;
+  min-height: 444px;
+  display: inline-block; }
+
+#videochat-container {
+  width: 42%;
+  margin-right: 30px;
+  float: right; }
 
 .users {
   float: right;
@@ -192,6 +206,9 @@ main {
 
 .ReactModal__Content--after-open {
   z-index: 99; }
+
+.ReactModal__Content {
+  height: 500px; }
 
 .ReactModal__Overlay {
   z-index: 1; }
@@ -291,7 +308,8 @@ article {
   padding: 2em; }
 
 h1 {
-  margin-top: 0; }
+  margin-top: 100px;
+  font-size: 40px; }
 
 article p:first-of-type {
   margin-top: 1.6em; }
@@ -727,6 +745,68 @@ blockquote.inline {
   box-shadow: 2px 2px #b6aaaa; }
 
 /**************************************************Temporary CSS End*/
+/**************************************************Drop down menu start*****/
+.dropdown {
+  position: absolute;
+  margin-left: -130px;
+  margin-top: 40px;
+  width: 500px; }
+
+.dropdown__content {
+  display: none;
+  position: absolute; }
+
+.dropdown--active .dropdown__content {
+  display: block; }
+
+#dropDown-title {
+  font-size: 25px;
+  color: black;
+  border: 3px solid black;
+  background-color: lightGrey; }
+
+#dropDown-title {
+  text-decoration: none;
+  position: absolute;
+  font-size: 30px;
+  color: black;
+  border: 3px solid black;
+  background-color: lightGrey;
+  width: 350px;
+  margin-left: -30px;
+  height: 50px;
+  width: 380px;
+  padding-top: 15px; }
+
+/*#dropDown-title:hover {
+  cursor: pointer;
+}*/
+#dropDown-content ul {
+  font-size: 20px;
+  list-style: none;
+  text-decoration: none;
+  position: absolute;
+  margin-left: 300px;
+  margin-top: 50px; }
+
+#dropDown-content ul li {
+  border: 1px solid black;
+  width: 380px;
+  margin-left: -120px; }
+
+#dropDown-content ul li a {
+  color: black;
+  cursor: pointer; }
+
+#dropDown-content ul li a:hover {
+  text-decoration: none;
+  color: blue; }
+
+#dropDown-content ul li:hover {
+  color: blue;
+  cursor: pointer; }
+
+/************************** start fo Speech recognition **************************/
 a:link {
   color: #000;
   text-decoration: none; }

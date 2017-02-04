@@ -4,9 +4,9 @@ import Modal from 'react-modal';
 import sweetAlert from 'sweetAlert';
 import { setUser } from '../actionCreators/user';
 import store from '../store';
-
-
-
+import Dropdown from 'react-simple-dropdown';
+import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown';
+import {browserHistory} from 'react-router'
 
 const customStyles = {
   content : {
@@ -56,6 +56,7 @@ class LanguageMessage extends React.Component {
     }
     this.setState({modalIsOpen: false})
     swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success")
+    browserHistory.push('/')
   }
 
   render() {
@@ -71,8 +72,8 @@ class LanguageMessage extends React.Component {
           selectLanguage={this.selectLanguage}
         >
 
-          <h1 style={{color: 'black'}}>Choose Default Language</h1>
-          <form style={{'textAlign': 'center'}}>
+          <h1 style={{color: 'linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5)'}}>Choose Default Language</h1>
+          {/*<form style={{'textAlign': 'center'}}>
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'en', 'America')}>English</button></div>
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'zh-CN', 'China')}>Chinese</button></div>
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'es', 'Spain')}>Spanish</button></div>
@@ -87,7 +88,30 @@ class LanguageMessage extends React.Component {
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'sw', 'Tanzania')}>Swahili</button></div>
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'vi', 'Vietnam')}>Vietnamese</button></div>
             <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'pl', 'Poland')}>Polish</button></div>
-          </form>
+          </form>*/}
+
+          <Dropdown>
+            <DropdownTrigger id="dropDown-title">Click to select language</DropdownTrigger>
+            <DropdownContent id="dropDown-content">
+              <ul>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'en', 'America')}>English</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'zh-CN', 'China')}>Chinese</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'es', 'Spain')}>Spanish</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'fr', 'France')}>French</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'ko', 'Korea')}>Korean</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'ru', 'Russia')}>Russian</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'tl', 'Philippines')}>Filipino</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'el', 'Greece')}>Greek</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'iw', 'Israel')}>Hebrew</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'it', 'Italy')}>Italian</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'ja', 'Japan')}>Japanese</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'sw', 'Tanzania')}>Swahili</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'vi', 'Vietnam')}>Vietnamese</a></li>
+                <li><a onClick={(event)=>this.selectLanguage(event, 'pl', 'Poland')}>Polish</a></li>
+              </ul>
+            </DropdownContent>
+          </Dropdown>
+
         </Modal>
       </div>
     );

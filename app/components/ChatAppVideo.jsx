@@ -4,7 +4,8 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer'
+import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer';
+import VideoChat from './VideoChat';
 import { connect } from 'react-redux';
 const socket = io.connect('/video-chat');
 
@@ -165,8 +166,8 @@ class ChatApp extends Component {
 		let userLanguage = this.props.userLanguage || 'nada'
 		return (
 			<div id="chatbox-body">
-				
-				<div>
+				<h2>Live Video Translation</h2>
+				<div id="conversation-container">
 					<h2>Conversation</h2>
 					{
 						finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
@@ -179,12 +180,18 @@ class ChatApp extends Component {
 					}
 				</div>
 
-				<div>
+				<div id="videochat-container">
+					<VideoChat />
+				</div>
+
+				<div id="live-transcript-container">
 					<h2>Live</h2>
 					{ interimTranscript }
 				</div>
 
-				<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
+				<div id="voicerecog-container">
+					<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
+				</div>
 			</div>
 		)
 	}
