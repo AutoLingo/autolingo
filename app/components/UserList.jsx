@@ -3,6 +3,7 @@ import React from 'react';
 //renderUser function that return the li tag for each of the users
 var UsersList = React.createClass({
 	render() {
+console.log('THIS.PROPS IN USERLIST', this.props)
 		return (
 			<div className="users">
 				<h3>Current Online Users</h3>
