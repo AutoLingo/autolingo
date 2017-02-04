@@ -151,11 +151,13 @@ console.log('SOCKETINIT')
   if (!IO) IO = socketio(server);
   else return IO
 
-    let i = 0
-    console.log(i)
-  IO.on('connection', function(socket) {
-    //user connection to socket server made here
-    var name = userNames.getGuestName();
+  var name = userNames.getGuestName();
+  var groupChat = IO.of('/group-chat')
+  var videoChat = IO.of('/video-chat')
+
+//**********GROUP CHAT ************
+  groupChat.on('connection', function(socket) {
+
     //send the new user their name and a list of users
     socket.emit('init', {
       name: name,
@@ -176,21 +178,6 @@ console.log('SOCKETINIT')
         id: data.id
       })
     })
-
-    socket.on('interim_transcript', function(data) {
-      socket.broadcast.emit('interim_transcript', {
-       interimTranscript: data.interimTranscript,
-       userLanguage: data.userLanguage
-      })
-    })
-
-    socket.on('final_transcript', function(data) {
-      socket.broadcast.emit('final_transcript', {
-       finalTranscript: data.finalTranscript,
-       userLanguage: data.userLanguage
-      })
-    })
-    
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
       if(userNames.claim(data.name)) {
@@ -217,6 +204,32 @@ console.log('SOCKETINIT')
       })
       userNames.free(name);
     })
+  })
+
+// *********VIDEO CHAT********************
+  videoChat.on('connection', function(socket) {
+
+    socket.on('join_room', function(data) {
+      let room = data.room
+      socket.join(room)
+    })
+
+    socket.on('interim_transcript', function(data) {
+      let room = data.room
+
+      socket.broadcast.emit('interim_transcript', {
+       interimTranscript: data.interimTranscript,
+       userLanguage: data.userLanguage
+      })
+    })
+
+    socket.on('final_transcript', function(data) {
+      socket.broadcast.emit('final_transcript', {
+       finalTranscript: data.finalTranscript,
+       userLanguage: data.userLanguage
+      })
+    })
+    
   })
 }
 

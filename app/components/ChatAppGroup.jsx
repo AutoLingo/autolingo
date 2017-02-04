@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import socket from '../sockets';
+import io from '../sockets';
 import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import { connect } from 'react-redux';
-// const socket = io.connect();
 
+const socket = io.connect('/group-chat');
 
 
 class ChatApp extends Component {
