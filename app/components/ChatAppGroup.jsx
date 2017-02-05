@@ -5,12 +5,12 @@ import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 
-const socket = io.connect('/group-chat');
 
 var ChatApp = React.createClass({
 	//set empty array/string for users, messages, text
 	getInitialState() {
 		return {
+			socket: {},
 			users: [],
 			messages: [],
 			text: ''
@@ -19,6 +19,9 @@ var ChatApp = React.createClass({
 
 	//run below functions after the components are mounted on the page
 	componentDidMount() {
+		const socket = io.connect('/group-chat');
+		console.log(socket)
+		this.setState({socket})
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -86,12 +89,12 @@ var ChatApp = React.createClass({
 		messages.push(message);
 		this.setState({messages});
 		//send message data through socket
-		socket.emit('send:message', message);
+		this.state.socket.emit('send:message', message);
 	},
 
 	handleChangeName(newName) {
 		var oldName = this.state.user;
-		socket.emit('change:name', { name: newName }, (result) => {
+		this.state.socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
 			}

@@ -10,6 +10,12 @@ export default function Navbar (props) {
       <Link to="/language">
         <button type="button" className="btn btn-warning btn-md navbar-btn">Select Language</button>
       </Link>
+      <Link to="/group-chat">
+        <button type="button" className="btn btn-warning btn-md navbar-btn">group chat</button>
+      </Link>
+      <Link to="/video-chat">
+        <button type="button" className="btn btn-warning btn-md navbar-btn">video chat</button>
+      </Link>
     </nav>
   );
 }
