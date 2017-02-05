@@ -96,10 +96,9 @@ export default class Map extends Component {
     this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(map);
     this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(map);
     this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(map);
-    
-    console.log('#@$@$&*#!@!@#^$%&^*&I%&$#@!#~@', L);
+
     //*****************************************
-    
+
     function highlightFeature(e) {
       var layer = e.target;
       layer.setStyle(
@@ -151,7 +150,7 @@ export default class Map extends Component {
         this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(this.map);
         this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(this.map);
         this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(this.map);
-    
+
       }
 
       if(country.name=== 'america' || country.name==="china" || country.name==="spain" || country.name==="france" || country.name==="korea") {
