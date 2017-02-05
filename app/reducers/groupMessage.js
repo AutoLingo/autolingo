@@ -1,6 +1,6 @@
 'use strict'
 
-import { ADD_GROUP_MESSAGE, SET_GROUP_USER, ADD_TO_GROUP_USERS, REMOVE_GROUP_USER } from '../actionCreators/groupMessage';
+import { ADD_GROUP_MESSAGE, SET_GROUP_USER, ADD_TO_GROUP_USERS, REMOVE_GROUP_USER, GROUP_USER_NAME_CHANGE } from '../actionCreators/groupMessage';
 
 const initialState = { messages: [], user: '', users: [] };
 
@@ -21,6 +21,12 @@ export default function userReducer(state = initialState, action) {
       const userIndex = users.indexOf(action.user);
       users.splice(userIndex, 1);
       newState.users = users;
+      break;
+    case GROUP_USER_NAME_CHANGE:
+      const usersList = newState.users.slice(0);
+      const Idx = usersList.indexOf(action.oldName);
+      usersList[Idx] = action.newName
+      newState.users = usersList;
       break;
     default:
       return state;

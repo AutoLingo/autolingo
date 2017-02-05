@@ -6,8 +6,7 @@ import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import store from '../store';
 import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage'
-import {connect} from 'react-redux';
-
+console.log('store', store);
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
 	constructor (props) {
@@ -150,7 +149,6 @@ class ChatAppGroup extends React.Component {
 		const users = storeState.groupMessage.users;
 		const messages = storeState.groupMessage.messages;
 		const user = storeState.groupMessage.user;
-		console.log('hi*****')
 		return (
 			<div id="chatbox-body">
 				<UsersList
@@ -171,12 +169,4 @@ class ChatAppGroup extends React.Component {
 	}
 }
 
-function mapStateToProps (state, ownProps) {
-  return { state };
-}
-
-function mapDispatchToProps (dispatch, ownProps) {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
+export default ChatAppGroup;

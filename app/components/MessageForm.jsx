@@ -32,7 +32,6 @@ class MessageForm extends React.Component {
 	changeHandler(e) {
 		//change the state of text to inputted value
 		this.setState({ text: e.target.value });
-		console.log('@$!@%!%!%!@#!@##', e.target.value)
 	}
 
 	render() {
