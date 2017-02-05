@@ -7,7 +7,9 @@ import ChangeNameForm from './ChangeNameForm.jsx';
 import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer';
 import VideoChat from './VideoChat';
 import { connect } from 'react-redux';
-const socket = io.connect('/video-chat');
+import { browserHistory } from 'react-router'
+
+export const socket = io.connect('/video-chat');
 
 class ChatApp extends Component {
 	constructor(props) {
@@ -19,6 +21,7 @@ class ChatApp extends Component {
 		this.emitFinalTranscript = this.emitFinalTranscript.bind(this)
 		this.interimTranscript = this.interimTranscript.bind(this)
 		this.finalTranscript = this.finalTranscript.bind(this)
+		this.joinVideo = this.joinVideo.bind(this)
 	}
 
 
@@ -32,6 +35,7 @@ class ChatApp extends Component {
 		socket.on('change:name', this._userChangedName);
 		socket.on('final_transcript', this.finalTranscript)
 		socket.on('interim_transcript', this.interimTranscript)
+		socket.on('broadcast_video_room', this.joinVideo)
 	}
 
 	//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
@@ -43,6 +47,11 @@ class ChatApp extends Component {
 		socket.emit('interim_transcript', {interimTranscript, userLanguage})
 	}
 	//*******************************************************
+
+	joinVideo(data) {
+		console.log('data: ', data);
+		browserHistory.push(`${data.room}`)
+	}
 
 	//**************** Browser/user receiving broadcast-emits from server **************************
 	finalTranscript(data) {
