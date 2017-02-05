@@ -1,3 +1,7 @@
+import io from '../sockets'
+
+import { socket } from '../components/ChatAppVideo'
+
 const LiveChatExternals = () => {
 
     // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
@@ -10,6 +14,7 @@ const LiveChatExternals = () => {
     WebSocket  = PUBNUB.ws;
 
     var websocket = new WebSocket('wss://pubsub.pubnub.com/' + pub + '/' + sub + '/' + channel);
+    
 
     websocket.onerror = function() {
         //location.reload();
@@ -24,7 +29,10 @@ const LiveChatExternals = () => {
         websocket.push(JSON.stringify(data));
     };
 
+    // Peer connection 
     var peer = new PeerConnection(websocket);
+
+
     peer.onUserFound = function(userid) {
         if (document.getElementById(userid)) return;
         var tr = document.createElement('tr');
@@ -79,13 +87,18 @@ const LiveChatExternals = () => {
         }
     };
 
+//**************************** 'START VIDEO CHAT' BUTTON *****************
     document.querySelector('#start-broadcasting').onclick = function() {
         this.disabled = true;
         getUserMedia(function(stream) {
             peer.addStream(stream);
             peer.startBroadcasting();
         });
+        socket.emit('broadcast_video_room', {
+            room: location.pathname + location.hash
+        })
     };
+//**************************** 
 
     document.querySelector('#your-name').onchange = function() {
         peer.userid = this.value;

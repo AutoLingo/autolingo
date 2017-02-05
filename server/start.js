@@ -214,6 +214,12 @@ console.log('SOCKETINIT')
       socket.join(room)
     })
 
+    socket.on('broadcast_video_room', function(data) {
+      socket.broadcast.emit('broadcast_video_room', {
+        room: data.room
+      })
+    })
+
     socket.on('interim_transcript', function(data) {
       let room = data.room
 

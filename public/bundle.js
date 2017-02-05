@@ -112,7 +112,11 @@
 	      _reactRouter.Route,
 	      { path: '/', component: _App2.default },
 	      _react2.default.createElement(_reactRouter.Route, { path: '/group-chat', component: _ChatAppGroup2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/video-chat', component: _ChatAppVideo2.default, onEnter: generateHash }),
+	      _react2.default.createElement(
+	        _reactRouter.Route,
+	        { path: '/video-chat', component: _ChatAppVideo2.default, onEnter: generateHash },
+	        _react2.default.createElement(_reactRouter.Route, { path: '/video-chat/:hash', component: _ChatAppVideo2.default })
+	      ),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/language', component: _LanguageMessage2.default })
 	    )
@@ -79176,8 +79180,8 @@
 		}
 	
 		_createClass(VideoChat, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
 				(0, _LiveChatExternals2.default)();
 			}
 		}, {
@@ -79209,13 +79213,22 @@
 
 /***/ },
 /* 688 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	
+	var _sockets = __webpack_require__(691);
+	
+	var _sockets2 = _interopRequireDefault(_sockets);
+	
+	var _ChatAppVideo = __webpack_require__(690);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var LiveChatExternals = function LiveChatExternals() {
 	
 	    // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
@@ -79242,7 +79255,9 @@
 	        websocket.push(JSON.stringify(data));
 	    };
 	
+	    // Peer connection 
 	    var peer = new PeerConnection(websocket);
+	
 	    peer.onUserFound = function (userid) {
 	        if (document.getElementById(userid)) return;
 	        var tr = document.createElement('tr');
@@ -79297,13 +79312,18 @@
 	        }
 	    };
 	
+	    //**************************** 'START VIDEO CHAT' BUTTON *****************
 	    document.querySelector('#start-broadcasting').onclick = function () {
 	        this.disabled = true;
 	        getUserMedia(function (stream) {
 	            peer.addStream(stream);
 	            peer.startBroadcasting();
 	        });
+	        _ChatAppVideo.socket.emit('broadcast_video_room', {
+	            room: location.pathname + location.hash
+	        });
 	    };
+	    //**************************** 
 	
 	    document.querySelector('#your-name').onchange = function () {
 	        peer.userid = this.value;
@@ -79657,6 +79677,7 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
+	exports.socket = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -79694,6 +79715,8 @@
 	
 	var _reactRedux = __webpack_require__(233);
 	
+	var _reactRouter = __webpack_require__(32);
+	
 	var _translate = __webpack_require__(263);
 	
 	var _speech = __webpack_require__(608);
@@ -79706,7 +79729,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var socket = _sockets2.default.connect('/video-chat');
+	var socket = exports.socket = _sockets2.default.connect('/video-chat');
 	
 	var ChatApp = function (_Component) {
 		_inherits(ChatApp, _Component);
@@ -79723,6 +79746,7 @@
 			_this.emitFinalTranscript = _this.emitFinalTranscript.bind(_this);
 			_this.interimTranscript = _this.interimTranscript.bind(_this);
 			_this.finalTranscript = _this.finalTranscript.bind(_this);
+			_this.joinVideo = _this.joinVideo.bind(_this);
 			return _this;
 		}
 	
@@ -79739,6 +79763,7 @@
 				socket.on('change:name', this._userChangedName);
 				socket.on('final_transcript', this.finalTranscript);
 				socket.on('interim_transcript', this.interimTranscript);
+				socket.on('broadcast_video_room', this.joinVideo);
 			}
 	
 			//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
@@ -79754,6 +79779,13 @@
 				socket.emit('interim_transcript', { interimTranscript: interimTranscript, userLanguage: userLanguage });
 			}
 			//*******************************************************
+	
+		}, {
+			key: 'joinVideo',
+			value: function joinVideo(data) {
+				console.log('data: ', data);
+				_reactRouter.browserHistory.push('' + data.room);
+			}
 	
 			//**************** Browser/user receiving broadcast-emits from server **************************
 	
