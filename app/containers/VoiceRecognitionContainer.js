@@ -68,7 +68,7 @@ const VoiceRecognitionContainer = (props) => {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             final_transcript = event.results[i][0].transcript;
-            console.log('final_transcript: ', final_transcript);
+            
             emitFinalTranscript(final_transcript, userLanguage)
             addFinalTranscript(final_transcript)
           } else {
@@ -121,7 +121,14 @@ const VoiceRecognitionContainer = (props) => {
       return;
     }
     final_transcript = '';
-    recognition.lang = select_dialect.value;
+
+    // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
+      // recognition.lang = select_dialect.value;
+      // CHANGED TO REFLECT STORE STATE. USER SHOULD CHANGE CHOOSE HOME COUNTRY TO ASSIGN DIALECT
+      recognition.lang = props.userDialect
+      
+    // *****************************
+
     recognition.start();
     ignore_onend = false;
     final_span.innerHTML = '';
@@ -165,7 +172,7 @@ const VoiceRecognitionContainer = (props) => {
 import { setInterimTranscript, addFinalTranscript } from '../actionCreators/speech';
 
 function mapStateToProps (state, ownProps) {
-  return {}
+  return { userDialect: state.user.selectedUser.dialect }
 }
 
 export default connect(mapStateToProps, {setInterimTranscript, addFinalTranscript})(VoiceRecognitionContainer);

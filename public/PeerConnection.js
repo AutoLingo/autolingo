@@ -1,7 +1,8 @@
 // Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
 
 (function () {
-
+    // socketURL is new WebSocket('wss://pubsub.pubnub.com/' + pub + '/' + sub + '/' + channel);
+    // userId = token from random generator (not hash)
     window.PeerConnection = function (socketURL, userid) {
         this.userid = userid || getToken();
         this.peers = {};
