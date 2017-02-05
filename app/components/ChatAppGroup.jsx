@@ -4,71 +4,87 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-
-
-var ChatApp = React.createClass({
+import store from '../store';
+import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser } from '../actionCreators/groupMessage'
+console.log('store', store);
+class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
-	getInitialState() {
-		return {
+	constructor (props) {
+		super(props)
+		this.state = {
 			socket: {},
 			users: [],
 			messages: [],
 			text: ''
 		}
-	},
+	}
 
 	//run below functions after the components are mounted on the page
 	componentDidMount() {
 		const socket = io.connect('/group-chat');
-		console.log(socket)
 		this.setState({socket})
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
 		socket.on('user:left', this._userLeft);
 		socket.on('change:name', this._userChangedName);
-	},
+	}
 
 	//set user with given name
 	_initialize(data) {
-    console.log('data', data)
 		var {users, name} = data;
-		this.setState({users, user: name});
-	},
+		store.dispatch(setGroupUser(name));
+		store.dispatch(addToGroupUsers(users));
+	}
 
 	//push the given message into messages array
 	_messageReceive(message) {
-		var {messages} = this.state;
-		messages.push(message);
-		this.setState({messages})
-	},
+		// var {messages} = this.state;
+		// messages.push(message);
+		// this.setState({messages})
+		store.dispatch(addGroupMessage(messages))
+	}
 
 	//when the user joins the chat box, it will push the name of the user to the users array
 	//message, "name of user" joined will rendered on the chat box
 	_userJoined(data) {
-		var {users, messages} = this.state;
+		// var {users, messages} = this.state;
+		// var {name} = data;
+		// users.push(name);
+		// messages.push({
+		// 	user: "LingoBot",
+		// 	text: name + ' Joined'
+		// });
+		// this.setState({users, messages})
 		var {name} = data;
-		users.push(name);
-		messages.push({
-			user: "LingoBo",
+		var userJoinMsg = {
+			user: "LingoBot",
 			text: name + ' Joined'
-		});
-		this.setState({users, messages})
-	},
+		};
+		store.dispatch(addGroupMessage(userJoinMsg))
+		store.dispatch(addToGroupUsers([name]))
+	}
 
 	//when the user leaves the chat box, it will push the name of the user to the users array
 	//message, "name of user" left will rendered on the chat box
 	_userLeft(data) {
-		var {users, messages} = this.state;
+		// var {users, messages} = this.state;
+		// var {name} = data;
+		// var index = users.indexOf(name);
+		// users.splice(index, 1);
+		// messages.push({
+		// 	user: 'LingoBot',
+		// 	text: name + ' Left'
+		// })
+		// this.setState({users, messages})
 		var {name} = data;
-		var index = users.indexOf(name);
-		users.splice(index, 1);
-		messages.push({
+		var userLeftMsg = {
 			user: 'LingoBot',
 			text: name + ' Left'
-		})
-		this.setState({users, messages})
-	},
+		}
+		store.dispatch(addGroupMessage(userLeftMsg))
+		store.dispatch(removeGroupUser(name))
+	}
 
 	//Are we going to allow users to change name in the chat window? Need to discuss about this.
 	_userChangedName(data) {
@@ -82,7 +98,19 @@ var ChatApp = React.createClass({
 			text: 'Change Name : ' + oldName + ' ==> ' + newName
 		});
 		this.setState({users, messages})
-	},
+
+		var {oldName, newName} = data;
+		var {users, messages} = this.state;
+		var index = users.indexOf(oldName);
+		//find the oldName with the index and replace it with newName
+		users.splice(index, 1, newName);
+		var nameChangeMsg = {
+			user: 'APPLICATION BOT',
+			text: 'Change Name : ' + oldName + ' ==> ' + newName
+		};
+		this.setState({users, messages})
+		store.dispatch(addGroupMessage(nameChangeMsg))
+	}
 
 	handleMessageSubmit(message) {
 		var {messages} = this.state;
@@ -90,7 +118,7 @@ var ChatApp = React.createClass({
 		this.setState({messages});
 		//send message data through socket
 		this.state.socket.emit('send:message', message);
-	},
+	}
 
 	handleChangeName(newName) {
 		var oldName = this.state.user;
@@ -103,7 +131,7 @@ var ChatApp = React.createClass({
 			users.splice(index, 1, newName);
 			this.setState({users, user: newName})
 		})
-	},
+	}
 
 	render() {
 		return (
@@ -124,6 +152,6 @@ var ChatApp = React.createClass({
 			</div>
 		)
 	}
-})
+}
 
-export default ChatApp;
+export default ChatAppGroup;
