@@ -3,6 +3,10 @@ import LiveChatExternals from '../externals/LiveChatExternals'
 
 class VideoChat extends Component {
 
+	componentDidMount() {
+		LiveChatExternals()
+	}
+	
 	componentDidUpdate() {
 		LiveChatExternals()
 	}
