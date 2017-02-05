@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
-import sweetAlert from 'sweetAlert';
+import sweetAlert from 'sweetalert';
 import { setUser } from '../actionCreators/user';
 import store from '../store';
 import Dropdown from 'react-simple-dropdown';
