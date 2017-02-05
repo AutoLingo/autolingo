@@ -10,17 +10,20 @@ var MessageList = React.createClass({
 
 	render() {
 		// this.scrollToBottom && this.scrollToBottom()
-		
+
 		return (
 			<div className="messages">
 				<h2><strong>Live Conversation: </strong></h2>
 				{
 					//Need to have messages container/array in the database
-					this.props.messages[0] && this.props.messages.map((message, i) => {
+					this.props.messages.map((message, i) => {
 						return (
-							<div key={i}>
-								{message}
-							</div>
+							//render single message from Message.jsx component
+							<Message
+								key={i}
+								user={message.user}
+								text={message.text}
+							/>
 						)
 					})
 				}

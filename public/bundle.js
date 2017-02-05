@@ -86,7 +86,7 @@
 	
 	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
-	var _ChatAppVideo = __webpack_require__(690);
+	var _ChatAppVideo = __webpack_require__(748);
 	
 	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
@@ -34654,6 +34654,14 @@
 	        this.closed = true;
 	        this.observers = null;
 	    };
+	    Subject.prototype._trySubscribe = function (subscriber) {
+	        if (this.closed) {
+	            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+	        }
+	        else {
+	            return _super.prototype._trySubscribe.call(this, subscriber);
+	        }
+	    };
 	    Subject.prototype._subscribe = function (subscriber) {
 	        if (this.closed) {
 	            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
@@ -34772,7 +34780,7 @@
 	            operator.call(sink, this.source);
 	        }
 	        else {
-	            sink.add(this._subscribe(sink));
+	            sink.add(this._trySubscribe(sink));
 	        }
 	        if (sink.syncErrorThrowable) {
 	            sink.syncErrorThrowable = false;
@@ -34781,6 +34789,16 @@
 	            }
 	        }
 	        return sink;
+	    };
+	    Observable.prototype._trySubscribe = function (sink) {
+	        try {
+	            return this._subscribe(sink);
+	        }
+	        catch (err) {
+	            sink.syncErrorThrown = true;
+	            sink.syncErrorValue = err;
+	            sink.error(err);
+	        }
 	    };
 	    /**
 	     * @method forEach
@@ -35772,13 +35790,13 @@
 	        this.hasCompleted = false;
 	    }
 	    AsyncSubject.prototype._subscribe = function (subscriber) {
-	        if (this.hasCompleted && this.hasNext) {
-	            subscriber.next(this.value);
-	            subscriber.complete();
+	        if (this.hasError) {
+	            subscriber.error(this.thrownError);
 	            return Subscription_1.Subscription.EMPTY;
 	        }
-	        else if (this.hasError) {
-	            subscriber.error(this.thrownError);
+	        else if (this.hasCompleted && this.hasNext) {
+	            subscriber.next(this.value);
+	            subscriber.complete();
 	            return Subscription_1.Subscription.EMPTY;
 	        }
 	        return _super.prototype._subscribe.call(this, subscriber);
@@ -35787,6 +35805,11 @@
 	        if (!this.hasCompleted) {
 	            this.value = value;
 	            this.hasNext = true;
+	        }
+	    };
+	    AsyncSubject.prototype.error = function (error) {
+	        if (!this.hasCompleted) {
+	            _super.prototype.error.call(this, error);
 	        }
 	    };
 	    AsyncSubject.prototype.complete = function () {
@@ -36450,7 +36473,7 @@
 	    // if the first and only other argument besides the resultSelector is an array
 	    // assume it's been called with `combineLatest([obs1, obs2, obs3], project)`
 	    if (observables.length === 1 && isArray_1.isArray(observables[0])) {
-	        observables = observables[0];
+	        observables = observables[0].slice();
 	    }
 	    observables.unshift(this);
 	    return this.lift.call(new ArrayObservable_1.ArrayObservable(observables), new CombineLatestOperator(project));
@@ -38059,7 +38082,7 @@
 	var errorObject_1 = __webpack_require__(278);
 	var Subscription_1 = __webpack_require__(274);
 	var toString = Object.prototype.toString;
-	function isNodeStyleEventEmmitter(sourceObj) {
+	function isNodeStyleEventEmitter(sourceObj) {
 	    return !!sourceObj && typeof sourceObj.addListener === 'function' && typeof sourceObj.removeListener === 'function';
 	}
 	function isJQueryStyleEventEmitter(sourceObj) {
@@ -38153,7 +38176,7 @@
 	            sourceObj.on(eventName, handler);
 	            unsubscribe = function () { return source_2.off(eventName, handler); };
 	        }
-	        else if (isNodeStyleEventEmmitter(sourceObj)) {
+	        else if (isNodeStyleEventEmitter(sourceObj)) {
 	            var source_3 = sourceObj;
 	            sourceObj.addListener(eventName, handler);
 	            unsubscribe = function () { return source_3.removeListener(eventName, handler); };
@@ -38217,6 +38240,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var isFunction_1 = __webpack_require__(273);
 	var Observable_1 = __webpack_require__(269);
 	var Subscription_1 = __webpack_require__(274);
 	/**
@@ -38268,9 +38292,10 @@
 	     * @param {function(handler: Function): any} addHandler A function that takes
 	     * a `handler` function as argument and attaches it somehow to the actual
 	     * source of events.
-	     * @param {function(handler: Function): void} removeHandler A function that
+	     * @param {function(handler: Function, signal?: any): void} [removeHandler] An optional function that
 	     * takes a `handler` function as argument and removes it in case it was
-	     * previously attached using `addHandler`.
+	     * previously attached using `addHandler`. if addHandler returns signal to teardown when remove,
+	     * removeHandler function will forward it.
 	     * @param {function(...args: any): T} [selector] An optional function to
 	     * post-process results. It takes the arguments from the event handler and
 	     * should return a single value.
@@ -38292,10 +38317,13 @@
 	            }
 	            _this._callSelector(subscriber, args);
 	        } : function (e) { subscriber.next(e); };
-	        this._callAddHandler(handler, subscriber);
+	        var retValue = this._callAddHandler(handler, subscriber);
+	        if (!isFunction_1.isFunction(removeHandler)) {
+	            return;
+	        }
 	        subscriber.add(new Subscription_1.Subscription(function () {
 	            //TODO: determine whether or not to forward to error handler
-	            removeHandler(handler);
+	            removeHandler(handler, retValue);
 	        }));
 	    };
 	    FromEventPatternObservable.prototype._callSelector = function (subscriber, args) {
@@ -38309,7 +38337,7 @@
 	    };
 	    FromEventPatternObservable.prototype._callAddHandler = function (handler, errorSubscriber) {
 	        try {
-	            this.addHandler(handler);
+	            return this.addHandler(handler) || null;
 	        }
 	        catch (e) {
 	            errorSubscriber.error(e);
@@ -40971,7 +40999,36 @@
 	        return JSON.parse(e.data);
 	    };
 	    /**
-	     * @param urlConfigOrSource
+	     * Wrapper around the w3c-compatible WebSocket object provided by the browser.
+	     *
+	     * @example <caption>Wraps browser WebSocket</caption>
+	     *
+	     * let subject = Observable.webSocket('ws://localhost:8081');
+	     * subject.subscribe(
+	     *    (msg) => console.log('message received: ' + msg),
+	     *    (err) => console.log(err),
+	     *    () => console.log('complete')
+	     *  );
+	     * subject.next(JSON.stringify({ op: 'hello' }));
+	     *
+	     * @example <caption>Wraps WebSocket from nodejs-websocket (using node.js)</caption>
+	     *
+	     * import { w3cwebsocket } from 'websocket';
+	     *
+	     * let socket = new WebSocketSubject({
+	     *   url: 'ws://localhost:8081',
+	     *   WebSocketCtor: w3cwebsocket
+	     * });
+	     *
+	     * let subject = Observable.webSocket('ws://localhost:8081');
+	     * subject.subscribe(
+	     *    (msg) => console.log('message received: ' + msg),
+	     *    (err) => console.log(err),
+	     *    () => console.log('complete')
+	     *  );
+	     * subject.next(JSON.stringify({ op: 'hello' }));
+	     *
+	     * @param {string | WebSocketSubjectConfig} urlConfigOrSource the source of the websocket as an url or a structure defining the websocket object
 	     * @return {WebSocketSubject}
 	     * @static true
 	     * @name webSocket
@@ -42120,6 +42177,54 @@
 	var subscribeToResult_1 = __webpack_require__(300);
 	/**
 	 * Catches errors on the observable to be handled by returning a new observable or throwing an error.
+	 *
+	 * <img src="./img/catch.png" width="100%">
+	 *
+	 * @example <caption>Continues with a different Observable when there's an error</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 * 	   if (n == 4) {
+	 * 	     throw 'four!';
+	 *     }
+	 *	   return n;
+	 *   })
+	 *   .catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
+	 *   .subscribe(x => console.log(x));
+	 *   // 1, 2, 3, I, II, III, IV, V
+	 *
+	 * @example <caption>Retries the caught source Observable again in case of error, similar to retry() operator</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 * 	   if (n === 4) {
+	 * 	     throw 'four!';
+	 *     }
+	 * 	   return n;
+	 *   })
+	 *   .catch((err, caught) => caught)
+	 *   .take(30)
+	 *   .subscribe(x => console.log(x));
+	 *   // 1, 2, 3, 1, 2, 3, ...
+	 *
+	 * @example <caption>Throws a new error when the source Observable throws an error</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 *     if (n == 4) {
+	 *       throw 'four!';
+	 *     }
+	 *     return n;
+	 *   })
+	 *   .catch(err => {
+	 *     throw 'error in source. Details: ' + err;
+	 *   })
+	 *   .subscribe(
+	 *     x => console.log(x),
+	 *     err => console.log(err)
+	 *   );
+	 *   // 1, 2, 3, error in source. Details: four!
+	 *
 	 * @param {function} selector a function that takes as arguments `err`, which is the error, and `caught`, which
 	 *  is the source observable, in case you'd like to "retry" that observable by returning it again. Whatever observable
 	 *  is returned by the `selector` will be used to continue the observable chain.
@@ -42157,20 +42262,24 @@
 	        this.caught = caught;
 	    }
 	    // NOTE: overriding `error` instead of `_error` because we don't want
-	    // to have this flag this subscriber as `isStopped`.
+	    // to have this flag this subscriber as `isStopped`. We can mimic the
+	    // behavior of the RetrySubscriber (from the `retry` operator), where
+	    // we unsubscribe from our source chain, reset our Subscriber flags,
+	    // then subscribe to the selector result.
 	    CatchSubscriber.prototype.error = function (err) {
 	        if (!this.isStopped) {
 	            var result = void 0;
 	            try {
 	                result = this.selector(err, this.caught);
 	            }
-	            catch (err) {
-	                this.destination.error(err);
+	            catch (err2) {
+	                _super.prototype.error.call(this, err2);
 	                return;
 	            }
 	            this.unsubscribe();
-	            this.destination.remove(this);
-	            subscribeToResult_1.subscribeToResult(this, result);
+	            this.closed = false;
+	            this.isStopped = false;
+	            this.add(subscribeToResult_1.subscribeToResult(this, result));
 	        }
 	    };
 	    return CatchSubscriber;
@@ -42863,7 +42972,7 @@
 	 * `count` transforms an Observable that emits values into an Observable that
 	 * emits a single value that represents the number of values emitted by the
 	 * source Observable. If the source Observable terminates with an error, `count`
-	 * will pass this error notification along without emitting an value first. If
+	 * will pass this error notification along without emitting a value first. If
 	 * the source Observable does not terminate at all, `count` will neither emit
 	 * a value nor terminate. This operator takes an optional `predicate` function
 	 * as argument, in which case the output emission will represent the number of
@@ -46656,7 +46765,7 @@
 	 * @see {@link mergeScan}
 	 * @see {@link scan}
 	 *
-	 * @param {function(acc: R, value: T): R} accumulator The accumulator function
+	 * @param {function(acc: R, value: T, index: number): R} accumulator The accumulator function
 	 * called on each source value.
 	 * @param {R} [seed] The initial accumulation value.
 	 * @return {Observable<R>} An observable of the accumulated values.
@@ -46702,8 +46811,12 @@
 	        _super.call(this, destination);
 	        this.accumulator = accumulator;
 	        this.hasSeed = hasSeed;
+	        this.index = 0;
 	        this.hasValue = false;
 	        this.acc = seed;
+	        if (!this.hasSeed) {
+	            this.index++;
+	        }
 	    }
 	    ReduceSubscriber.prototype._next = function (value) {
 	        if (this.hasValue || (this.hasValue = this.hasSeed)) {
@@ -46717,7 +46830,7 @@
 	    ReduceSubscriber.prototype._tryReduce = function (value) {
 	        var result;
 	        try {
-	            result = this.accumulator(this.acc, value);
+	            result = this.accumulator(this.acc, value, this.index++);
 	        }
 	        catch (err) {
 	            this.destination.error(err);
@@ -46803,26 +46916,49 @@
 	var subscribeToResult_1 = __webpack_require__(300);
 	var OuterSubscriber_1 = __webpack_require__(299);
 	/**
-	 * @param project
-	 * @param seed
-	 * @param concurrent
-	 * @return {Observable<R>|WebSocketSubject<T>|Observable<T>}
+	 * Applies an accumulator function over the source Observable where the
+	 * accumulator function itself returns an Observable, then each intermediate
+	 * Observable returned is merged into the output Observable.
+	 *
+	 * <span class="informal">It's like {@link scan}, but the Observables returned
+	 * by the accumulator are merged into the outer Observable.</span>
+	 *
+	 * @example <caption>Count the number of click events</caption>
+	 * const click$ = Rx.Observable.fromEvent(document, 'click');
+	 * const one$ = click$.mapTo(1);
+	 * const seed = 0;
+	 * const count$ = one$.mergeScan((acc, one) => Rx.Observable.of(acc + one), seed);
+	 * count$.subscribe(x => console.log(x));
+	 *
+	 * // Results:
+	 * 1
+	 * 2
+	 * 3
+	 * 4
+	 * // ...and so on for each click
+	 *
+	 * @param {function(acc: R, value: T): Observable<R>} accumulator
+	 * The accumulator function called on each source value.
+	 * @param seed The initial accumulation value.
+	 * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of
+	 * input Observables being subscribed to concurrently.
+	 * @return {Observable<R>} An observable of the accumulated values.
 	 * @method mergeScan
 	 * @owner Observable
 	 */
-	function mergeScan(project, seed, concurrent) {
+	function mergeScan(accumulator, seed, concurrent) {
 	    if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
-	    return this.lift(new MergeScanOperator(project, seed, concurrent));
+	    return this.lift(new MergeScanOperator(accumulator, seed, concurrent));
 	}
 	exports.mergeScan = mergeScan;
 	var MergeScanOperator = (function () {
-	    function MergeScanOperator(project, seed, concurrent) {
-	        this.project = project;
+	    function MergeScanOperator(accumulator, seed, concurrent) {
+	        this.accumulator = accumulator;
 	        this.seed = seed;
 	        this.concurrent = concurrent;
 	    }
 	    MergeScanOperator.prototype.call = function (subscriber, source) {
-	        return source.subscribe(new MergeScanSubscriber(subscriber, this.project, this.seed, this.concurrent));
+	        return source.subscribe(new MergeScanSubscriber(subscriber, this.accumulator, this.seed, this.concurrent));
 	    };
 	    return MergeScanOperator;
 	}());
@@ -46834,9 +46970,9 @@
 	 */
 	var MergeScanSubscriber = (function (_super) {
 	    __extends(MergeScanSubscriber, _super);
-	    function MergeScanSubscriber(destination, project, acc, concurrent) {
+	    function MergeScanSubscriber(destination, accumulator, acc, concurrent) {
 	        _super.call(this, destination);
-	        this.project = project;
+	        this.accumulator = accumulator;
 	        this.acc = acc;
 	        this.concurrent = concurrent;
 	        this.hasValue = false;
@@ -46848,7 +46984,7 @@
 	    MergeScanSubscriber.prototype._next = function (value) {
 	        if (this.active < this.concurrent) {
 	            var index = this.index++;
-	            var ish = tryCatch_1.tryCatch(this.project)(this.acc, value);
+	            var ish = tryCatch_1.tryCatch(this.accumulator)(this.acc, value);
 	            var destination = this.destination;
 	            if (ish === errorObject_1.errorObject) {
 	                destination.error(errorObject_1.errorObject.e);
@@ -47795,16 +47931,15 @@
 	 * @owner Observable
 	 */
 	function repeatWhen(notifier) {
-	    return this.lift(new RepeatWhenOperator(notifier, this));
+	    return this.lift(new RepeatWhenOperator(notifier));
 	}
 	exports.repeatWhen = repeatWhen;
 	var RepeatWhenOperator = (function () {
-	    function RepeatWhenOperator(notifier, source) {
+	    function RepeatWhenOperator(notifier) {
 	        this.notifier = notifier;
-	        this.source = source;
 	    }
 	    RepeatWhenOperator.prototype.call = function (subscriber, source) {
-	        return source.subscribe(new RepeatWhenSubscriber(subscriber, this.notifier, this.source));
+	        return source.subscribe(new RepeatWhenSubscriber(subscriber, this.notifier, source));
 	    };
 	    return RepeatWhenOperator;
 	}());
@@ -47819,30 +47954,28 @@
 	        _super.call(this, destination);
 	        this.notifier = notifier;
 	        this.source = source;
+	        this.sourceIsBeingSubscribedTo = true;
 	    }
+	    RepeatWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+	        this.source.subscribe(this);
+	        this.sourceIsBeingSubscribedTo = true;
+	    };
+	    RepeatWhenSubscriber.prototype.notifyComplete = function (innerSub) {
+	        if (this.sourceIsBeingSubscribedTo === false) {
+	            return _super.prototype.complete.call(this);
+	        }
+	    };
 	    RepeatWhenSubscriber.prototype.complete = function () {
+	        this.sourceIsBeingSubscribedTo = false;
 	        if (!this.isStopped) {
-	            var notifications = this.notifications;
-	            var retries = this.retries;
-	            var retriesSubscription = this.retriesSubscription;
-	            if (!retries) {
-	                notifications = new Subject_1.Subject();
-	                retries = tryCatch_1.tryCatch(this.notifier)(notifications);
-	                if (retries === errorObject_1.errorObject) {
-	                    return _super.prototype.complete.call(this);
-	                }
-	                retriesSubscription = subscribeToResult_1.subscribeToResult(this, retries);
+	            if (!this.retries) {
+	                this.subscribeToRetries();
 	            }
-	            else {
-	                this.notifications = null;
-	                this.retriesSubscription = null;
+	            else if (this.retriesSubscription.closed) {
+	                return _super.prototype.complete.call(this);
 	            }
-	            this.unsubscribe();
-	            this.closed = false;
-	            this.notifications = notifications;
-	            this.retries = retries;
-	            this.retriesSubscription = retriesSubscription;
-	            notifications.next();
+	            this.temporarilyUnsubscribe();
+	            this.notifications.next();
 	        }
 	    };
 	    RepeatWhenSubscriber.prototype._unsubscribe = function () {
@@ -47857,7 +47990,16 @@
 	        }
 	        this.retries = null;
 	    };
-	    RepeatWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+	    RepeatWhenSubscriber.prototype.subscribeToRetries = function () {
+	        this.notifications = new Subject_1.Subject();
+	        var retries = tryCatch_1.tryCatch(this.notifier)(this.notifications);
+	        if (retries === errorObject_1.errorObject) {
+	            return _super.prototype.complete.call(this);
+	        }
+	        this.retries = retries;
+	        this.retriesSubscription = subscribeToResult_1.subscribeToResult(this, retries);
+	    };
+	    RepeatWhenSubscriber.prototype.temporarilyUnsubscribe = function () {
 	        var _a = this, notifications = _a.notifications, retries = _a.retries, retriesSubscription = _a.retriesSubscription;
 	        this.notifications = null;
 	        this.retries = null;
@@ -47868,7 +48010,6 @@
 	        this.notifications = notifications;
 	        this.retries = retries;
 	        this.retriesSubscription = retriesSubscription;
-	        this.source.subscribe(this);
 	    };
 	    return RepeatWhenSubscriber;
 	}(OuterSubscriber_1.OuterSubscriber));
@@ -51035,8 +51176,51 @@
 	var root_1 = __webpack_require__(270);
 	/* tslint:disable:max-line-length */
 	/**
-	 * @param PromiseCtor
-	 * @return {Promise<T>}
+	 * Converts an Observable sequence to a ES2015 compliant promise.
+	 *
+	 * @example
+	 * // Using normal ES2015
+	 * let source = Rx.Observable
+	 *   .just(42)
+	 *   .toPromise();
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * // Rejected Promise
+	 * // Using normal ES2015
+	 * let source = Rx.Observable
+	 *   .throw(new Error('woops'))
+	 *   .toPromise();
+	 *
+	 * source
+	 *   .then((value) => console.log('Value: %s', value))
+	 *   .catch((err) => console.log('Error: %s', err));
+	 * // => Error: Error: woops
+	 *
+	 * // Setting via the config
+	 * Rx.config.Promise = RSVP.Promise;
+	 *
+	 * let source = Rx.Observable
+	 *   .of(42)
+	 *   .toPromise();
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * // Setting via the method
+	 * let source = Rx.Observable
+	 *   .just(42)
+	 *   .toPromise(RSVP.Promise);
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * @param PromiseCtor promise The constructor of the promise. If not provided,
+	 * it will look for a constructor first in Rx.config.Promise then fall back to
+	 * the native Promise constructor if available.
+	 * @return {Promise<T>} An ES2015 compatible promise with the last value from
+	 * the observable sequence.
 	 * @method toPromise
 	 * @owner Observable
 	 */
@@ -51435,16 +51619,15 @@
 	        this.windowCreationInterval = windowCreationInterval;
 	        this.scheduler = scheduler;
 	        this.windows = [];
+	        var window = this.openWindow();
 	        if (windowCreationInterval !== null && windowCreationInterval >= 0) {
-	            var window_1 = this.openWindow();
-	            var closeState = { subscriber: this, window: window_1, context: null };
+	            var closeState = { subscriber: this, window: window, context: null };
 	            var creationState = { windowTimeSpan: windowTimeSpan, windowCreationInterval: windowCreationInterval, subscriber: this, scheduler: scheduler };
 	            this.add(scheduler.schedule(dispatchWindowClose, windowTimeSpan, closeState));
 	            this.add(scheduler.schedule(dispatchWindowCreation, windowCreationInterval, creationState));
 	        }
 	        else {
-	            var window_2 = this.openWindow();
-	            var timeSpanOnlyState = { subscriber: this, window: window_2, windowTimeSpan: windowTimeSpan };
+	            var timeSpanOnlyState = { subscriber: this, window: window, windowTimeSpan: windowTimeSpan };
 	            this.add(scheduler.schedule(dispatchWindowTimeSpanOnly, windowTimeSpan, timeSpanOnlyState));
 	        }
 	    }
@@ -51452,9 +51635,9 @@
 	        var windows = this.windows;
 	        var len = windows.length;
 	        for (var i = 0; i < len; i++) {
-	            var window_3 = windows[i];
-	            if (!window_3.closed) {
-	                window_3.next(value);
+	            var window_1 = windows[i];
+	            if (!window_1.closed) {
+	                window_1.next(value);
 	            }
 	        }
 	    };
@@ -51468,9 +51651,9 @@
 	    WindowTimeSubscriber.prototype._complete = function () {
 	        var windows = this.windows;
 	        while (windows.length > 0) {
-	            var window_4 = windows.shift();
-	            if (!window_4.closed) {
-	                window_4.complete();
+	            var window_2 = windows.shift();
+	            if (!window_2.closed) {
+	                window_2.complete();
 	            }
 	        }
 	        this.destination.complete();
@@ -51492,7 +51675,7 @@
 	function dispatchWindowTimeSpanOnly(state) {
 	    var subscriber = state.subscriber, windowTimeSpan = state.windowTimeSpan, window = state.window;
 	    if (window) {
-	        window.complete();
+	        subscriber.closeWindow(window);
 	    }
 	    state.window = subscriber.openWindow();
 	    this.schedule(state, windowTimeSpan);
@@ -51507,8 +51690,8 @@
 	    action.add(context.subscription);
 	    action.schedule(state, windowCreationInterval);
 	}
-	function dispatchWindowClose(arg) {
-	    var subscriber = arg.subscriber, window = arg.window, context = arg.context;
+	function dispatchWindowClose(state) {
+	    var subscriber = state.subscriber, window = state.window, context = state.context;
 	    if (context && context.action && context.subscription) {
 	        context.action.remove(context.subscription);
 	    }
@@ -52813,7 +52996,7 @@
 	      newState.selectedUser = action.selectedUser;
 	      break;
 	    case _user.ADD_USER:
-	      newState.users = newState.users.concat([action.user]);
+	      newState.users = newState.users ? newState.users.concat([action.user]) : [action.user];
 	      break;
 	    case _user.REMOVE_USER:
 	      var index = newState.users.indexOf(action.user);
@@ -53092,7 +53275,7 @@
 	    var formattedAction = actionTransformer(action);
 	    var isCollapsed = typeof collapsed === 'function' ? collapsed(function () {
 	      return nextState;
-	    }, action) : collapsed;
+	    }, action, logEntry) : collapsed;
 	
 	    var formattedTime = (0, _helpers.formatTime)(startedTime);
 	    var titleCSS = colors.title ? 'color: ' + colors.title(formattedAction) + ';' : null;
@@ -53183,6 +53366,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	// https://github.com/flitbit/diff#differences
 	var dictionary = {
 	  'E': {
@@ -53217,15 +53402,15 @@
 	
 	  switch (kind) {
 	    case 'E':
-	      return path.join('.') + ' ' + lhs + ' → ' + rhs;
+	      return [path.join('.'), lhs, '→', rhs];
 	    case 'N':
-	      return path.join('.') + ' ' + rhs;
+	      return [path.join('.'), rhs];
 	    case 'D':
-	      return '' + path.join('.');
+	      return [path.join('.')];
 	    case 'A':
 	      return [path.join('.') + '[' + index + ']', item];
 	    default:
-	      return null;
+	      return [];
 	  }
 	}
 	
@@ -53248,7 +53433,7 @@
 	
 	      var output = render(elem);
 	
-	      logger.log('%c ' + dictionary[kind].text, style(kind), output);
+	      logger.log.apply(logger, ['%c ' + dictionary[kind].text, style(kind)].concat(_toConsumableArray(output)));
 	    });
 	  } else {
 	    logger.log('—— no diff ——');
@@ -54068,7 +54253,6 @@
 	        return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_LanguageMessage2.default, null),
 	                _react2.default.createElement(_NavbarContainer2.default, null),
 	                _react2.default.createElement(_MapContainer2.default, null),
 	                props.children && _react2.default.cloneElement(props.children, props)
@@ -54375,7 +54559,6 @@
 	      this.spainMarker = _mapbox2.default.marker([47.54952, -8.69141], { icon: this.spainIcon }).addTo(map);
 	      this.koreaMarker = _mapbox2.default.marker([45.07518, 122.11494], { icon: this.koreaIcon }).addTo(map);
 	
-	      console.log('#@$@$&*#!@!@#^$%&^*&I%&$#@!#~@', _mapbox2.default);
 	      //*****************************************
 	
 	      function highlightFeature(e) {
@@ -68262,7 +68445,7 @@
 					"spec": ">=3.0.1 <4.0.0",
 					"type": "range"
 				},
-				"/Users/Adam/Development/Fullstack/Capstone/autolingo"
+				"/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo"
 			]
 		],
 		"_from": "mapbox.js@>=3.0.1 <4.0.0",
@@ -68297,7 +68480,7 @@
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
 		"_spec": "mapbox.js@^3.0.1",
-		"_where": "/Users/Adam/Development/Fullstack/Capstone/autolingo",
+		"_where": "/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo",
 		"author": {
 			"name": "Mapbox"
 		},
@@ -79396,13 +79579,11 @@
 		value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _sockets = __webpack_require__(691);
+	var _sockets = __webpack_require__(690);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
@@ -79422,231 +79603,149 @@
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _translate = __webpack_require__(263);
-	
-	var _messagesReducer = __webpack_require__(607);
-	
-	var _user = __webpack_require__(612);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var socket = _sockets2.default.connect('/group-chat');
 	
-	var ChatApp = function (_Component) {
-		_inherits(ChatApp, _Component);
+	var ChatApp = _react2.default.createClass({
+		displayName: 'ChatApp',
 	
-		function ChatApp(props) {
-			_classCallCheck(this, ChatApp);
+		//set empty array/string for users, messages, text
+		getInitialState: function getInitialState() {
+			return {
+				users: [],
+				messages: [],
+				text: ''
+			};
+		},
 	
-			// console.log('PROPS',props);
-			// this.state = {}
-	
-			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
-	
-			_this.messageReceive = _this.messageReceive.bind(_this);
-			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
-			_this._initialize = _this._initialize.bind(_this);
-			_this._userJoined = _this._userJoined.bind(_this);
-			_this._userLeft = _this._userLeft.bind(_this);
-			_this._userChangedName = _this._userChangedName.bind(_this);
-	
-			return _this;
-		}
 	
 		//run below functions after the components are mounted on the page
+		componentDidMount: function componentDidMount() {
+			socket.on('init', this._initialize);
+			socket.on('send:message', this._messageReceive);
+			socket.on('user:join', this._userJoined);
+			socket.on('user:left', this._userLeft);
+			socket.on('change:name', this._userChangedName);
+		},
 	
 	
-		_createClass(ChatApp, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				socket.on('init', this._initialize);
-				socket.on('send:message', this.messageReceive);
-				socket.on('user:join', this._userJoined);
-				socket.on('user:left', this._userLeft);
-				socket.on('change:name', this._userChangedName);
-			}
+		//set user with given name
+		_initialize: function _initialize(data) {
+			console.log('data', data);
+			var users = data.users,
+			    name = data.name;
 	
-			//set user with given name
+			this.setState({ users: users, user: name });
+		},
 	
-		}, {
-			key: '_initialize',
-			value: function _initialize(data) {
-				var name = data.name;
-				// this.setState({users, user: name});
-				// this.props.setUser(name);
 	
-				this.props.addUser(name);
-			}
+		//push the given message into messages array
+		_messageReceive: function _messageReceive(message) {
+			var messages = this.state.messages;
 	
-			//when the user joins the chat box, it will push the name of the user to the users array
-			//message, "name of user" joined will rendered on the chat box
+			messages.push(message);
+			this.setState({ messages: messages });
+		},
 	
-		}, {
-			key: '_userJoined',
-			value: function _userJoined(data) {
-				// 	var {users, messages} = this.state;
-				console.log('USERJOINED DATA', data);
-				var name = data.name;
-				// 	users.push(name);
-				// messages.push({
-				// 	user: "LingoBo",
-				// 	text: name + ' Joined'
-				// });
-				// 	this.setState({users, messages})
-				// console.log('THIS.PROPS.ADDUSER', this.props.addUser)
 	
-				this.props.addUser(name);
-			}
+		//when the user joins the chat box, it will push the name of the user to the users array
+		//message, "name of user" joined will rendered on the chat box
+		_userJoined: function _userJoined(data) {
+			var _state = this.state,
+			    users = _state.users,
+			    messages = _state.messages;
+			var name = data.name;
 	
-			//when the user leaves the chat box, it will push the name of the user to the users array
-			//message, "name of user" left will rendered on the chat box
+			users.push(name);
+			messages.push({
+				user: "LingoBo",
+				text: name + ' Joined'
+			});
+			this.setState({ users: users, messages: messages });
+		},
 	
-		}, {
-			key: '_userLeft',
-			value: function _userLeft(data) {
-				// 	var {users, messages} = this.state;
-				var name = data.name;
-				// var index = users.indexOf(name);
-				// users.splice(index, 1);
-				// messages.push({
-				// 	user: 'LingoBot',
-				// 	text: name + ' Left'
-				// })
-				// this.setState({users, messages})
 	
-				this.props.removeUser(name);
-			}
+		//when the user leaves the chat box, it will push the name of the user to the users array
+		//message, "name of user" left will rendered on the chat box
+		_userLeft: function _userLeft(data) {
+			var _state2 = this.state,
+			    users = _state2.users,
+			    messages = _state2.messages;
+			var name = data.name;
 	
-			//Are we going to allow users to change name in the chat window? Need to discuss about this.
+			var index = users.indexOf(name);
+			users.splice(index, 1);
+			messages.push({
+				user: 'LingoBot',
+				text: name + ' Left'
+			});
+			this.setState({ users: users, messages: messages });
+		},
 	
-		}, {
-			key: '_userChangedName',
-			value: function _userChangedName(data) {
-				// var {oldName, newName} = data;
-				// var {users, messages} = this.state;
-				// var index = users.indexOf(oldName);
-				// //find the oldName with the index and replace it with newName
-				// users.splice(index, 1, newName);
-				// message.push({
-				// 	user: 'APPLICATION BOT',
-				// 	text: 'Change Name : ' + oldName + ' ==> ' + newName
-				// });
-				// this.setState({users, messages})
-			}
-		}, {
-			key: 'handleChangeName',
-			value: function handleChangeName(newName) {}
-			// 	var oldName = this.state.user;
-			// 	socket.emit('change:name', { name: newName }, (result) => {
-			// 		if(!result) {
-			// 			return alert('There was an error changing your name');
-			// 		}
-			// 		var {users} = this.state;
-			// 		var index = users.indexOf(oldName);
-			// 		users.splice(index, 1, newName);
-			// 		this.setState({users, user: newName})
-			// 	})
 	
-			// ************************************************************
+		//Are we going to allow users to change name in the chat window? Need to discuss about this.
+		_userChangedName: function _userChangedName(data) {
+			var oldName = data.oldName,
+			    newName = data.newName;
+			var _state3 = this.state,
+			    users = _state3.users,
+			    messages = _state3.messages;
 	
-		}, {
-			key: 'handleMessageSubmit',
-			value: function handleMessageSubmit(message) {
-				socket.emit('send:message', {
-					text: message.text,
-					language: this.props.userLanguage,
-					id: 1
-				});
+			var index = users.indexOf(oldName);
+			//find the oldName with the index and replace it with newName
+			users.splice(index, 1, newName);
+			messages.push({
+				user: 'APPLICATION BOT',
+				text: 'Change Name : ' + oldName + ' ==> ' + newName
+			});
+			this.setState({ users: users, messages: messages });
+		},
+		handleMessageSubmit: function handleMessageSubmit(message) {
+			var messages = this.state.messages;
 	
-				this.props.addToMessages(message.text);
-			}
-		}, {
-			key: 'messageReceive',
-			value: function messageReceive(messageObject) {
-				console.log('messageObject: ', messageObject);
-				var id = messageObject && messageObject.id;
-				var originalLanguage = messageObject && messageObject.language;
-				var userLanguage = this.props.userLanguage;
-				var text = messageObject && messageObject.text;
+			messages.push(message);
+			this.setState({ messages: messages });
+			//send message data through socket
+			socket.emit('send:message', message);
+		},
+		handleChangeName: function handleChangeName(newName) {
+			var _this = this;
 	
-				if (originalLanguage === userLanguage) {
-					this.props.addToMessages(text);
-				} else {
-					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+			var oldName = this.state.user;
+			socket.emit('change:name', { name: newName }, function (result) {
+				if (!result) {
+					return alert('There was an error changing your name');
 				}
-			}
+				var users = _this.state.users;
 	
-			// ************************************************************
+				var index = users.indexOf(oldName);
+				users.splice(index, 1, newName);
+				_this.setState({ users: users, user: newName });
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ id: 'chatbox-body' },
+				_react2.default.createElement(_UserList2.default, {
+					users: this.state.users
+				}),
+				_react2.default.createElement(_MessageList2.default, {
+					messages: this.state.messages
+				}),
+				_react2.default.createElement(_MessageForm2.default, {
+					onMessageSubmit: this.handleMessageSubmit,
+					user: this.state.user
+				}),
+				_react2.default.createElement(_ChangeNameForm2.default, {
+					onChangeName: this.handleChangeName
+				})
+			);
+		}
+	});
 	
-		}, {
-			key: 'render',
-			value: function render() {
-				var fr = this.props.translation && this.props.translation.fr;
-				var en = this.props.translation && this.props.translation.en;
-				var ko = this.props.translation && this.props.translation.ko;
-	
-				var messages = this.props.messages;
-				var users = this.props.users;
-	
-				return _react2.default.createElement(
-					'div',
-					{ id: 'chatbox-body' },
-					_react2.default.createElement(_UserList2.default, {
-						users: users
-					}),
-					_react2.default.createElement(_MessageList2.default, {
-						messages: messages
-					}),
-					_react2.default.createElement(_MessageForm2.default, {
-						onMessageSubmit: this.handleMessageSubmit
-	
-					}),
-					_react2.default.createElement(_ChangeNameForm2.default, {
-						onChangeName: this.handleChangeName
-					})
-				);
-			}
-		}]);
-	
-		return ChatApp;
-	}(_react.Component);
-	
-	// ************************************************
-	
-	
-	// console.log('ADDUSER', addUser)
-	
-	
-	var mapStateToProps = function mapStateToProps(state) {
-		var translation = state.translations[1] && state.translations[1];
-		var userLanguage = state.user.selectedUser.primaryLanguage;
-		var users = state.user.users;
-	
-		return {
-			translation: translation,
-			userLanguage: userLanguage,
-			messages: state.messages,
-			users: users
-		};
-	};
-	
-	// const mapDispatchToProps = dispatch => ({translateActionCreator})
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-		translateActionCreator: _translate.translateActionCreator,
-		addToMessages: _messagesReducer.addToMessages,
-		addUser: _user.addUser,
-		removeUser: _user.removeUser,
-		setUser: _user.setUser
-	})(ChatApp);
+	exports.default = ChatApp;
 
 /***/ },
 /* 690 */
@@ -79655,331 +79754,10 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _sockets = __webpack_require__(691);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(743);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(744);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(746);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(747);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _VoiceRecognitionContainer = __webpack_require__(748);
-	
-	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
-	
-	var _VideoChat = __webpack_require__(687);
-	
-	var _VideoChat2 = _interopRequireDefault(_VideoChat);
-	
-	var _reactRedux = __webpack_require__(233);
-	
-	var _translate = __webpack_require__(263);
-	
-	var _speech = __webpack_require__(608);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var socket = _sockets2.default.connect('/video-chat');
-	
-	var ChatApp = function (_Component) {
-		_inherits(ChatApp, _Component);
-	
-		function ChatApp(props) {
-			_classCallCheck(this, ChatApp);
-	
-			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
-	
-			_this.state = {};
-	
-			_this.messageReceive = _this.messageReceive.bind(_this);
-			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
-			_this.emitFinalTranscript = _this.emitFinalTranscript.bind(_this);
-			_this.interimTranscript = _this.interimTranscript.bind(_this);
-			_this.finalTranscript = _this.finalTranscript.bind(_this);
-			return _this;
-		}
-	
-		//run below functions after the components are mounted on the page
-	
-	
-		_createClass(ChatApp, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				socket.on('init', this._initialize);
-				socket.on('send:message', this.messageReceive);
-				socket.on('user:join', this._userJoined);
-				socket.on('user:left', this._userLeft);
-				socket.on('change:name', this._userChangedName);
-				socket.on('final_transcript', this.finalTranscript);
-				socket.on('interim_transcript', this.interimTranscript);
-			}
-	
-			//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
-	
-		}, {
-			key: 'emitFinalTranscript',
-			value: function emitFinalTranscript(finalTranscript, userLanguage) {
-				socket.emit('final_transcript', { finalTranscript: finalTranscript, userLanguage: userLanguage });
-			}
-		}, {
-			key: 'emitInterimTranscript',
-			value: function emitInterimTranscript(interimTranscript, userLanguage) {
-				socket.emit('interim_transcript', { interimTranscript: interimTranscript, userLanguage: userLanguage });
-			}
-			//*******************************************************
-	
-			//**************** Browser/user receiving broadcast-emits from server **************************
-	
-		}, {
-			key: 'finalTranscript',
-			value: function finalTranscript(data) {
-				var originalLanguage = data.userLanguage;
-				var text = data.finalTranscript;
-				var userLanguage = this.props.userLanguage;
-	
-				if (originalLanguage === userLanguage) {
-					this.props.addFinalTranscript(data.finalTranscript);
-				} else {
-					this.props.translateFinalActionCreator(1, originalLanguage, userLanguage, text);
-				}
-			}
-		}, {
-			key: 'interimTranscript',
-			value: function interimTranscript(data) {
-				var originalLanguage = data.userLanguage;
-				var text = data.interimTranscript;
-				var userLanguage = this.props.userLanguage;
-	
-				if (originalLanguage === userLanguage) {
-					this.props.setInterimTranscript(data.interimTranscript);
-				} else {
-					this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text);
-				}
-			}
-			//*******************************************************
-	
-			//set user with given name
-	
-		}, {
-			key: '_initialize',
-			value: function _initialize(data) {
-				var users = data.users,
-				    name = data.name;
-				// this.setState({users, user: name});
-			}
-	
-			//when the user joins the chat box, it will push the name of the user to the users array
-			//message, "name of user" joined will rendered on the chat box
-	
-		}, {
-			key: '_userJoined',
-			value: function _userJoined(data) {}
-			// 	var {users, messages} = this.state;
-			// 	var {name} = data;
-			// 	users.push(name);
-			// 	messages.push({
-			// 		user: "LingoBo",
-			// 		text: name + ' Joined'
-			// 	});
-			// 	this.setState({users, messages})
-	
-	
-			//when the user leaves the chat box, it will push the name of the user to the users array
-			//message, "name of user" left will rendered on the chat box
-	
-		}, {
-			key: '_userLeft',
-			value: function _userLeft(data) {}
-			// 	var {users, messages} = this.state;
-			// 	var {name} = data;
-			// 	var index = users.indexOf(name);
-			// 	users.splice(index, 1);
-			// 	messages.push({
-			// 		user: 'LingoBot',
-			// 		text: name + ' Left'
-			// 	})
-			// 	this.setState({users, messages})
-	
-	
-			//Are we going to allow users to change name in the chat window? Need to discuss about this.
-	
-		}, {
-			key: '_userChangedName',
-			value: function _userChangedName(data) {
-				// 	var {oldName, newName} = data;
-				// 	var {users, messages} = this.state;
-				// 	var index = users.indexOf(oldName);
-				// 	//find the oldName with the index and replace it with newName
-				// 	users.splice(index, 1, newName);
-				// 	message.push({
-				// 		user: 'APPLICATION BOT',
-				// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
-				// 	});
-				// 	this.setState({users, messages})
-			}
-		}, {
-			key: 'handleChangeName',
-			value: function handleChangeName(newName) {}
-			// 	var oldName = this.state.user;
-			// 	socket.emit('change:name', { name: newName }, (result) => {
-			// 		if(!result) {
-			// 			return alert('There was an error changing your name');
-			// 		}
-			// 		var {users} = this.state;
-			// 		var index = users.indexOf(oldName);
-			// 		users.splice(index, 1, newName);
-			// 		this.setState({users, user: newName})
-			// 	})
-	
-			// ************************************************************
-	
-		}, {
-			key: 'handleMessageSubmit',
-			value: function handleMessageSubmit(message) {
-				socket.emit('send:message', {
-					text: message.text,
-					language: this.props.userLanguage,
-					id: 1
-				});
-	
-				this.props.addToMessages(message.text);
-			}
-		}, {
-			key: 'messageReceive',
-			value: function messageReceive(messageObject) {
-				var id = messageObject && messageObject.id;
-				var originalLanguage = messageObject && messageObject.language;
-				var userLanguage = this.props.userLanguage;
-				var text = messageObject && messageObject.text;
-	
-				if (originalLanguage === userLanguage) {
-					this.props.addToMessages(text);
-				} else {
-					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
-				}
-			}
-	
-			// ************************************************************
-	
-		}, {
-			key: 'render',
-			value: function render() {
-	
-				var finalTranscripts = this.props.finalTranscripts;
-				var interimTranscript = this.props.interimTranscript;
-				var userLanguage = this.props.userLanguage || 'nada';
-				return _react2.default.createElement(
-					'div',
-					{ id: 'chatbox-body' },
-					_react2.default.createElement(
-						'h2',
-						null,
-						'Live Video Translation'
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'conversation-container' },
-						_react2.default.createElement(
-							'h2',
-							null,
-							'Conversation'
-						),
-						finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
-							return _react2.default.createElement(
-								'div',
-								{ key: i },
-								_react2.default.createElement('br', null),
-								' ',
-								transcript
-							);
-						})
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'videochat-container' },
-						_react2.default.createElement(_VideoChat2.default, null)
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'live-transcript-container' },
-						_react2.default.createElement(
-							'h2',
-							null,
-							'Live'
-						),
-						interimTranscript
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'voicerecog-container' },
-						_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
-					)
-				);
-			}
-		}]);
-	
-		return ChatApp;
-	}(_react.Component);
-	
-	// ************************************************
-	
-	
-	var mapStateToProps = function mapStateToProps(state) {
-		var translation = state.translations[1] && state.translations[1];
-		var userLanguage = state.user.selectedUser.primaryLanguage;
-		var finalTranscripts = state.speech.finalTranscripts;
-		var interimTranscript = state.speech.interimTranscript;
-	
-		return {
-			translation: translation,
-			userLanguage: userLanguage,
-			finalTranscripts: finalTranscripts,
-			interimTranscript: interimTranscript
-		};
-	};
-	
-	// const mapDispatchToProps = dispatch => ({translateActionCreator})
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
-
-/***/ },
-/* 691 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
-	var _socket = __webpack_require__(692);
+	var _socket = __webpack_require__(691);
 	
 	var _socket2 = _interopRequireDefault(_socket);
 
@@ -79988,7 +79766,7 @@
 	exports.default = _socket2.default;
 
 /***/ },
-/* 692 */
+/* 691 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -79996,10 +79774,10 @@
 	 * Module dependencies.
 	 */
 	
-	var url = __webpack_require__(693);
-	var parser = __webpack_require__(698);
-	var Manager = __webpack_require__(708);
-	var debug = __webpack_require__(695)('socket.io-client');
+	var url = __webpack_require__(692);
+	var parser = __webpack_require__(697);
+	var Manager = __webpack_require__(707);
+	var debug = __webpack_require__(694)('socket.io-client');
 	
 	/**
 	 * Module exports.
@@ -80098,12 +79876,12 @@
 	 * @api public
 	 */
 	
-	exports.Manager = __webpack_require__(708);
-	exports.Socket = __webpack_require__(738);
+	exports.Manager = __webpack_require__(707);
+	exports.Socket = __webpack_require__(737);
 
 
 /***/ },
-/* 693 */
+/* 692 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -80111,8 +79889,8 @@
 	 * Module dependencies.
 	 */
 	
-	var parseuri = __webpack_require__(694);
-	var debug = __webpack_require__(695)('socket.io-client:url');
+	var parseuri = __webpack_require__(693);
+	var debug = __webpack_require__(694)('socket.io-client:url');
 	
 	/**
 	 * Module exports.
@@ -80185,7 +79963,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 694 */
+/* 693 */
 /***/ function(module, exports) {
 
 	/**
@@ -80230,7 +80008,7 @@
 
 
 /***/ },
-/* 695 */
+/* 694 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -80240,7 +80018,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(696);
+	exports = module.exports = __webpack_require__(695);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -80414,7 +80192,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 696 */
+/* 695 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -80430,7 +80208,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(697);
+	exports.humanize = __webpack_require__(696);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -80620,7 +80398,7 @@
 
 
 /***/ },
-/* 697 */
+/* 696 */
 /***/ function(module, exports) {
 
 	/**
@@ -80775,7 +80553,7 @@
 
 
 /***/ },
-/* 698 */
+/* 697 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -80783,11 +80561,11 @@
 	 * Module dependencies.
 	 */
 	
-	var debug = __webpack_require__(699)('socket.io-parser');
-	var json = __webpack_require__(702);
-	var Emitter = __webpack_require__(704);
-	var binary = __webpack_require__(705);
-	var isBuf = __webpack_require__(707);
+	var debug = __webpack_require__(698)('socket.io-parser');
+	var json = __webpack_require__(701);
+	var Emitter = __webpack_require__(703);
+	var binary = __webpack_require__(704);
+	var isBuf = __webpack_require__(706);
 	
 	/**
 	 * Protocol version.
@@ -81185,7 +80963,7 @@
 
 
 /***/ },
-/* 699 */
+/* 698 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -81195,7 +80973,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(700);
+	exports = module.exports = __webpack_require__(699);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -81359,7 +81137,7 @@
 
 
 /***/ },
-/* 700 */
+/* 699 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -81375,7 +81153,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(701);
+	exports.humanize = __webpack_require__(700);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -81562,7 +81340,7 @@
 
 
 /***/ },
-/* 701 */
+/* 700 */
 /***/ function(module, exports) {
 
 	/**
@@ -81693,14 +81471,14 @@
 
 
 /***/ },
-/* 702 */
+/* 701 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 	;(function () {
 	  // Detect the `define` function exposed by asynchronous module loaders. The
 	  // strict `define` check is necessary for compatibility with `r.js`.
-	  var isLoader = "function" === "function" && __webpack_require__(703);
+	  var isLoader = "function" === "function" && __webpack_require__(702);
 	
 	  // A set of types used to distinguish objects from primitives.
 	  var objectTypes = {
@@ -82602,7 +82380,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-/* 703 */
+/* 702 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -82610,7 +82388,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 704 */
+/* 703 */
 /***/ function(module, exports) {
 
 	
@@ -82780,7 +82558,7 @@
 
 
 /***/ },
-/* 705 */
+/* 704 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -82789,8 +82567,8 @@
 	 * Module requirements
 	 */
 	
-	var isArray = __webpack_require__(706);
-	var isBuf = __webpack_require__(707);
+	var isArray = __webpack_require__(705);
+	var isBuf = __webpack_require__(706);
 	
 	/**
 	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -82928,7 +82706,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 706 */
+/* 705 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -82937,7 +82715,7 @@
 
 
 /***/ },
-/* 707 */
+/* 706 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -82957,7 +82735,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 708 */
+/* 707 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -82965,14 +82743,14 @@
 	 * Module dependencies.
 	 */
 	
-	var eio = __webpack_require__(709);
-	var Socket = __webpack_require__(738);
-	var Emitter = __webpack_require__(727);
-	var parser = __webpack_require__(698);
+	var eio = __webpack_require__(708);
+	var Socket = __webpack_require__(737);
+	var Emitter = __webpack_require__(738);
+	var parser = __webpack_require__(697);
 	var on = __webpack_require__(740);
 	var bind = __webpack_require__(741);
-	var debug = __webpack_require__(695)('socket.io-client:manager');
-	var indexOf = __webpack_require__(736);
+	var debug = __webpack_require__(694)('socket.io-client:manager');
+	var indexOf = __webpack_require__(735);
 	var Backoff = __webpack_require__(742);
 	
 	/**
@@ -83523,19 +83301,19 @@
 
 
 /***/ },
+/* 708 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports = __webpack_require__(709);
+
+
+/***/ },
 /* 709 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
 	module.exports = __webpack_require__(710);
-
-
-/***/ },
-/* 710 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	module.exports = __webpack_require__(711);
 	
 	/**
 	 * Exports parser
@@ -83543,25 +83321,25 @@
 	 * @api public
 	 *
 	 */
-	module.exports.parser = __webpack_require__(718);
+	module.exports.parser = __webpack_require__(717);
 
 
 /***/ },
-/* 711 */
+/* 710 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var transports = __webpack_require__(712);
-	var Emitter = __webpack_require__(727);
-	var debug = __webpack_require__(731)('engine.io-client:socket');
-	var index = __webpack_require__(736);
-	var parser = __webpack_require__(718);
-	var parseuri = __webpack_require__(694);
-	var parsejson = __webpack_require__(737);
-	var parseqs = __webpack_require__(728);
+	var transports = __webpack_require__(711);
+	var Emitter = __webpack_require__(726);
+	var debug = __webpack_require__(730)('engine.io-client:socket');
+	var index = __webpack_require__(735);
+	var parser = __webpack_require__(717);
+	var parseuri = __webpack_require__(693);
+	var parsejson = __webpack_require__(736);
+	var parseqs = __webpack_require__(727);
 	
 	/**
 	 * Module exports.
@@ -83693,9 +83471,9 @@
 	 */
 	
 	Socket.Socket = Socket;
-	Socket.Transport = __webpack_require__(717);
-	Socket.transports = __webpack_require__(712);
-	Socket.parser = __webpack_require__(718);
+	Socket.Transport = __webpack_require__(716);
+	Socket.transports = __webpack_require__(711);
+	Socket.parser = __webpack_require__(717);
 	
 	/**
 	 * Creates transport of the given type.
@@ -84292,17 +84070,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 712 */
+/* 711 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies
 	 */
 	
-	var XMLHttpRequest = __webpack_require__(713);
-	var XHR = __webpack_require__(715);
-	var JSONP = __webpack_require__(733);
-	var websocket = __webpack_require__(734);
+	var XMLHttpRequest = __webpack_require__(712);
+	var XHR = __webpack_require__(714);
+	var JSONP = __webpack_require__(732);
+	var websocket = __webpack_require__(733);
 	
 	/**
 	 * Export transports.
@@ -84352,12 +84130,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 713 */
+/* 712 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 	
-	var hasCORS = __webpack_require__(714);
+	var hasCORS = __webpack_require__(713);
 	
 	module.exports = function (opts) {
 	  var xdomain = opts.xdomain;
@@ -84396,7 +84174,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 714 */
+/* 713 */
 /***/ function(module, exports) {
 
 	
@@ -84419,18 +84197,18 @@
 
 
 /***/ },
-/* 715 */
+/* 714 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module requirements.
 	 */
 	
-	var XMLHttpRequest = __webpack_require__(713);
-	var Polling = __webpack_require__(716);
-	var Emitter = __webpack_require__(727);
-	var inherit = __webpack_require__(729);
-	var debug = __webpack_require__(731)('engine.io-client:polling-xhr');
+	var XMLHttpRequest = __webpack_require__(712);
+	var Polling = __webpack_require__(715);
+	var Emitter = __webpack_require__(726);
+	var inherit = __webpack_require__(728);
+	var debug = __webpack_require__(730)('engine.io-client:polling-xhr');
 	
 	/**
 	 * Module exports.
@@ -84850,19 +84628,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 716 */
+/* 715 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-	var Transport = __webpack_require__(717);
-	var parseqs = __webpack_require__(728);
-	var parser = __webpack_require__(718);
-	var inherit = __webpack_require__(729);
-	var yeast = __webpack_require__(730);
-	var debug = __webpack_require__(731)('engine.io-client:polling');
+	var Transport = __webpack_require__(716);
+	var parseqs = __webpack_require__(727);
+	var parser = __webpack_require__(717);
+	var inherit = __webpack_require__(728);
+	var yeast = __webpack_require__(729);
+	var debug = __webpack_require__(730)('engine.io-client:polling');
 	
 	/**
 	 * Module exports.
@@ -84875,7 +84653,7 @@
 	 */
 	
 	var hasXHR2 = (function () {
-	  var XMLHttpRequest = __webpack_require__(713);
+	  var XMLHttpRequest = __webpack_require__(712);
 	  var xhr = new XMLHttpRequest({ xdomain: false });
 	  return null != xhr.responseType;
 	})();
@@ -85101,15 +84879,15 @@
 
 
 /***/ },
-/* 717 */
+/* 716 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-	var parser = __webpack_require__(718);
-	var Emitter = __webpack_require__(727);
+	var parser = __webpack_require__(717);
+	var Emitter = __webpack_require__(726);
 	
 	/**
 	 * Module exports.
@@ -85264,22 +85042,22 @@
 
 
 /***/ },
-/* 718 */
+/* 717 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var keys = __webpack_require__(719);
-	var hasBinary = __webpack_require__(720);
-	var sliceBuffer = __webpack_require__(722);
-	var after = __webpack_require__(723);
-	var utf8 = __webpack_require__(724);
+	var keys = __webpack_require__(718);
+	var hasBinary = __webpack_require__(719);
+	var sliceBuffer = __webpack_require__(721);
+	var after = __webpack_require__(722);
+	var utf8 = __webpack_require__(723);
 	
 	var base64encoder;
 	if (global && global.ArrayBuffer) {
-	  base64encoder = __webpack_require__(725);
+	  base64encoder = __webpack_require__(724);
 	}
 	
 	/**
@@ -85337,7 +85115,7 @@
 	 * Create a blob api even for blob builder when vendor prefixes exist
 	 */
 	
-	var Blob = __webpack_require__(726);
+	var Blob = __webpack_require__(725);
 	
 	/**
 	 * Encodes a packet.
@@ -85880,7 +85658,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 719 */
+/* 718 */
 /***/ function(module, exports) {
 
 	
@@ -85905,7 +85683,7 @@
 
 
 /***/ },
-/* 720 */
+/* 719 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -85913,7 +85691,7 @@
 	 * Module requirements.
 	 */
 	
-	var isArray = __webpack_require__(721);
+	var isArray = __webpack_require__(720);
 	
 	/**
 	 * Module exports.
@@ -85971,7 +85749,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 721 */
+/* 720 */
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -85980,7 +85758,7 @@
 
 
 /***/ },
-/* 722 */
+/* 721 */
 /***/ function(module, exports) {
 
 	/**
@@ -86015,7 +85793,7 @@
 
 
 /***/ },
-/* 723 */
+/* 722 */
 /***/ function(module, exports) {
 
 	module.exports = after
@@ -86049,7 +85827,7 @@
 
 
 /***/ },
-/* 724 */
+/* 723 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/wtf8 v1.0.0 by @mathias */
@@ -86288,7 +86066,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-/* 725 */
+/* 724 */
 /***/ function(module, exports) {
 
 	/*
@@ -86361,7 +86139,7 @@
 
 
 /***/ },
-/* 726 */
+/* 725 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -86464,7 +86242,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 727 */
+/* 726 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -86633,7 +86411,7 @@
 
 
 /***/ },
-/* 728 */
+/* 727 */
 /***/ function(module, exports) {
 
 	/**
@@ -86676,7 +86454,7 @@
 
 
 /***/ },
-/* 729 */
+/* 728 */
 /***/ function(module, exports) {
 
 	
@@ -86688,7 +86466,7 @@
 	};
 
 /***/ },
-/* 730 */
+/* 729 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -86762,7 +86540,7 @@
 
 
 /***/ },
-/* 731 */
+/* 730 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -86772,7 +86550,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-	exports = module.exports = __webpack_require__(732);
+	exports = module.exports = __webpack_require__(731);
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -86946,7 +86724,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 732 */
+/* 731 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -86962,7 +86740,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-	exports.humanize = __webpack_require__(697);
+	exports.humanize = __webpack_require__(696);
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -87152,7 +86930,7 @@
 
 
 /***/ },
-/* 733 */
+/* 732 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -87160,8 +86938,8 @@
 	 * Module requirements.
 	 */
 	
-	var Polling = __webpack_require__(716);
-	var inherit = __webpack_require__(729);
+	var Polling = __webpack_require__(715);
+	var inherit = __webpack_require__(728);
 	
 	/**
 	 * Module exports.
@@ -87390,24 +87168,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 734 */
+/* 733 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-	var Transport = __webpack_require__(717);
-	var parser = __webpack_require__(718);
-	var parseqs = __webpack_require__(728);
-	var inherit = __webpack_require__(729);
-	var yeast = __webpack_require__(730);
-	var debug = __webpack_require__(731)('engine.io-client:websocket');
+	var Transport = __webpack_require__(716);
+	var parser = __webpack_require__(717);
+	var parseqs = __webpack_require__(727);
+	var inherit = __webpack_require__(728);
+	var yeast = __webpack_require__(729);
+	var debug = __webpack_require__(730)('engine.io-client:websocket');
 	var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 	var NodeWebSocket;
 	if (typeof window === 'undefined') {
 	  try {
-	    NodeWebSocket = __webpack_require__(735);
+	    NodeWebSocket = __webpack_require__(734);
 	  } catch (e) { }
 	}
 	
@@ -87682,13 +87460,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 735 */
+/* 734 */
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-/* 736 */
+/* 735 */
 /***/ function(module, exports) {
 
 	
@@ -87703,7 +87481,7 @@
 	};
 
 /***/ },
-/* 737 */
+/* 736 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -87741,7 +87519,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 738 */
+/* 737 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -87749,13 +87527,13 @@
 	 * Module dependencies.
 	 */
 	
-	var parser = __webpack_require__(698);
-	var Emitter = __webpack_require__(727);
+	var parser = __webpack_require__(697);
+	var Emitter = __webpack_require__(738);
 	var toArray = __webpack_require__(739);
 	var on = __webpack_require__(740);
 	var bind = __webpack_require__(741);
-	var debug = __webpack_require__(695)('socket.io-client:socket');
-	var hasBin = __webpack_require__(720);
+	var debug = __webpack_require__(694)('socket.io-client:socket');
+	var hasBin = __webpack_require__(719);
 	
 	/**
 	 * Module exports.
@@ -88166,6 +87944,175 @@
 
 
 /***/ },
+/* 738 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+	
+	if (true) {
+	  module.exports = Emitter;
+	}
+	
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+	
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+	
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+	
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+	
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+	
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+	
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+	
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+	
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+	
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+	
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+	
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+	
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+	
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+	
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+	
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+	
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
 /* 739 */
 /***/ function(module, exports) {
 
@@ -88338,7 +88285,7 @@
 /* 743 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -88352,25 +88299,24 @@
 	
 	//renderUser function that return the li tag for each of the users
 	var UsersList = _react2.default.createClass({
-		displayName: 'UsersList',
+		displayName: "UsersList",
 		render: function render() {
-			console.log('THIS.PROPS IN USERLIST', this.props);
 			return _react2.default.createElement(
-				'div',
-				{ className: 'users' },
+				"div",
+				{ className: "users" },
 				_react2.default.createElement(
-					'h3',
+					"h3",
 					null,
-					'Current Online Users'
+					"Current Online Users"
 				),
 				_react2.default.createElement(
-					'ul',
+					"ul",
 					null,
 	
 					//Need to have users information in the database
-					this.props.users[0] && this.props.users.map(function (user, i) {
+					this.props.users.map(function (user, i) {
 						return _react2.default.createElement(
-							'li',
+							"li",
 							{ key: i },
 							user
 						);
@@ -88430,11 +88376,14 @@
 				),
 	
 				//Need to have messages container/array in the database
-				this.props.messages[0] && this.props.messages.map(function (message, i) {
-					return _react2.default.createElement(
-						'div',
-						{ key: i },
-						message
+				this.props.messages.map(function (message, i) {
+					return (
+						//render single message from Message.jsx component
+						_react2.default.createElement(_Message2.default, {
+							key: i,
+							user: message.user,
+							text: message.text
+						})
 					);
 				}),
 				_react2.default.createElement('div', { style: { float: "left", clear: "both" },
@@ -88652,6 +88601,327 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _sockets = __webpack_require__(690);
+	
+	var _sockets2 = _interopRequireDefault(_sockets);
+	
+	var _UserList = __webpack_require__(743);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(744);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(746);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(747);
+	
+	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
+	
+	var _VoiceRecognitionContainer = __webpack_require__(749);
+	
+	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
+	
+	var _VideoChat = __webpack_require__(687);
+	
+	var _VideoChat2 = _interopRequireDefault(_VideoChat);
+	
+	var _reactRedux = __webpack_require__(233);
+	
+	var _translate = __webpack_require__(263);
+	
+	var _speech = __webpack_require__(608);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var socket = _sockets2.default.connect('/video-chat');
+	
+	var ChatApp = function (_Component) {
+		_inherits(ChatApp, _Component);
+	
+		function ChatApp(props) {
+			_classCallCheck(this, ChatApp);
+	
+			var _this = _possibleConstructorReturn(this, (ChatApp.__proto__ || Object.getPrototypeOf(ChatApp)).call(this, props));
+	
+			_this.state = {};
+	
+			_this.messageReceive = _this.messageReceive.bind(_this);
+			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
+			_this.emitFinalTranscript = _this.emitFinalTranscript.bind(_this);
+			_this.interimTranscript = _this.interimTranscript.bind(_this);
+			_this.finalTranscript = _this.finalTranscript.bind(_this);
+			return _this;
+		}
+	
+		//run below functions after the components are mounted on the page
+	
+	
+		_createClass(ChatApp, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				socket.on('init', this._initialize);
+				socket.on('send:message', this.messageReceive);
+				socket.on('user:join', this._userJoined);
+				socket.on('user:left', this._userLeft);
+				socket.on('change:name', this._userChangedName);
+				socket.on('final_transcript', this.finalTranscript);
+				socket.on('interim_transcript', this.interimTranscript);
+			}
+	
+			//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
+	
+		}, {
+			key: 'emitFinalTranscript',
+			value: function emitFinalTranscript(finalTranscript, userLanguage) {
+				socket.emit('final_transcript', { finalTranscript: finalTranscript, userLanguage: userLanguage });
+			}
+		}, {
+			key: 'emitInterimTranscript',
+			value: function emitInterimTranscript(interimTranscript, userLanguage) {
+				socket.emit('interim_transcript', { interimTranscript: interimTranscript, userLanguage: userLanguage });
+			}
+			//*******************************************************
+	
+			//**************** Browser/user receiving broadcast-emits from server **************************
+	
+		}, {
+			key: 'finalTranscript',
+			value: function finalTranscript(data) {
+				var originalLanguage = data.userLanguage;
+				var text = data.finalTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addFinalTranscript(data.finalTranscript);
+				} else {
+					this.props.translateFinalActionCreator(1, originalLanguage, userLanguage, text);
+				}
+			}
+		}, {
+			key: 'interimTranscript',
+			value: function interimTranscript(data) {
+				var originalLanguage = data.userLanguage;
+				var text = data.interimTranscript;
+				var userLanguage = this.props.userLanguage;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.setInterimTranscript(data.interimTranscript);
+				} else {
+					this.props.translateInterimActionCreator(1, originalLanguage, userLanguage, text);
+				}
+			}
+			//*******************************************************
+	
+			//set user with given name
+	
+		}, {
+			key: '_initialize',
+			value: function _initialize(data) {
+				var users = data.users,
+				    name = data.name;
+				// this.setState({users, user: name});
+			}
+	
+			//when the user joins the chat box, it will push the name of the user to the users array
+			//message, "name of user" joined will rendered on the chat box
+	
+		}, {
+			key: '_userJoined',
+			value: function _userJoined(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	users.push(name);
+			// 	messages.push({
+			// 		user: "LingoBo",
+			// 		text: name + ' Joined'
+			// 	});
+			// 	this.setState({users, messages})
+	
+	
+			//when the user leaves the chat box, it will push the name of the user to the users array
+			//message, "name of user" left will rendered on the chat box
+	
+		}, {
+			key: '_userLeft',
+			value: function _userLeft(data) {}
+			// 	var {users, messages} = this.state;
+			// 	var {name} = data;
+			// 	var index = users.indexOf(name);
+			// 	users.splice(index, 1);
+			// 	messages.push({
+			// 		user: 'LingoBot',
+			// 		text: name + ' Left'
+			// 	})
+			// 	this.setState({users, messages})
+	
+	
+			//Are we going to allow users to change name in the chat window? Need to discuss about this.
+	
+		}, {
+			key: '_userChangedName',
+			value: function _userChangedName(data) {
+				// 	var {oldName, newName} = data;
+				// 	var {users, messages} = this.state;
+				// 	var index = users.indexOf(oldName);
+				// 	//find the oldName with the index and replace it with newName
+				// 	users.splice(index, 1, newName);
+				// 	message.push({
+				// 		user: 'APPLICATION BOT',
+				// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
+				// 	});
+				// 	this.setState({users, messages})
+			}
+		}, {
+			key: 'handleChangeName',
+			value: function handleChangeName(newName) {}
+			// 	var oldName = this.state.user;
+			// 	socket.emit('change:name', { name: newName }, (result) => {
+			// 		if(!result) {
+			// 			return alert('There was an error changing your name');
+			// 		}
+			// 		var {users} = this.state;
+			// 		var index = users.indexOf(oldName);
+			// 		users.splice(index, 1, newName);
+			// 		this.setState({users, user: newName})
+			// 	})
+	
+			// ************************************************************
+	
+		}, {
+			key: 'handleMessageSubmit',
+			value: function handleMessageSubmit(message) {
+				socket.emit('send:message', {
+					text: message.text,
+					language: this.props.userLanguage,
+					id: 1
+				});
+	
+				this.props.addToMessages(message.text);
+			}
+		}, {
+			key: 'messageReceive',
+			value: function messageReceive(messageObject) {
+				var id = messageObject && messageObject.id;
+				var originalLanguage = messageObject && messageObject.language;
+				var userLanguage = this.props.userLanguage;
+				var text = messageObject && messageObject.text;
+	
+				if (originalLanguage === userLanguage) {
+					this.props.addToMessages(text);
+				} else {
+					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
+				}
+			}
+	
+			// ************************************************************
+	
+		}, {
+			key: 'render',
+			value: function render() {
+	
+				var finalTranscripts = this.props.finalTranscripts;
+				var interimTranscript = this.props.interimTranscript;
+				var userLanguage = this.props.userLanguage || 'nada';
+				return _react2.default.createElement(
+					'div',
+					{ id: 'chatbox-body' },
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Live Video Translation'
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'conversation-container' },
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Conversation'
+						),
+						finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
+							return _react2.default.createElement(
+								'div',
+								{ key: i },
+								_react2.default.createElement('br', null),
+								' ',
+								transcript
+							);
+						})
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'videochat-container' },
+						_react2.default.createElement(_VideoChat2.default, null)
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'live-transcript-container' },
+						_react2.default.createElement(
+							'h2',
+							null,
+							'Live'
+						),
+						interimTranscript
+					),
+					_react2.default.createElement(
+						'div',
+						{ id: 'voicerecog-container' },
+						_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
+					)
+				);
+			}
+		}]);
+	
+		return ChatApp;
+	}(_react.Component);
+	
+	// ************************************************
+	
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		var translation = state.translations[1] && state.translations[1];
+		var userLanguage = state.user.selectedUser.primaryLanguage;
+		var finalTranscripts = state.speech.finalTranscripts;
+		var interimTranscript = state.speech.interimTranscript;
+	
+		return {
+			translation: translation,
+			userLanguage: userLanguage,
+			finalTranscripts: finalTranscripts,
+			interimTranscript: interimTranscript
+		};
+	};
+	
+	// const mapDispatchToProps = dispatch => ({translateActionCreator})
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
+
+/***/ },
+/* 749 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	
@@ -88661,7 +88931,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _VoiceRecognition = __webpack_require__(749);
+	var _VoiceRecognition = __webpack_require__(750);
 	
 	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
 	
@@ -88829,7 +89099,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
 
 /***/ },
-/* 749 */
+/* 750 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88844,7 +89114,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _languages = __webpack_require__(750);
+	var _languages = __webpack_require__(751);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -89009,7 +89279,7 @@
 	exports.default = VoiceRecognition;
 
 /***/ },
-/* 750 */
+/* 751 */
 /***/ function(module, exports) {
 
 	'use strict';
