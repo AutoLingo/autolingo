@@ -52805,7 +52805,7 @@
 	
 	var _user = __webpack_require__(612);
 	
-	var initialState = { selectedUser: { firstName: '', lastName: '', email: '', primaryLanguage: 'en', country: 'America' } };
+	var initialState = { selectedUser: { firstName: '', lastName: '', email: '', primaryLanguage: 'en', dialect: 'en-US', country: 'America' } };
 	
 	function userReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -88764,7 +88764,7 @@
 	      for (var i = event.resultIndex; i < event.results.length; ++i) {
 	        if (event.results[i].isFinal) {
 	          final_transcript = event.results[i][0].transcript;
-	          console.log('final_transcript: ', final_transcript);
+	
 	          emitFinalTranscript(final_transcript, userLanguage);
 	          addFinalTranscript(final_transcript);
 	        } else {
@@ -88817,7 +88817,14 @@
 	      return;
 	    }
 	    final_transcript = '';
-	    recognition.lang = select_dialect.value;
+	
+	    // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
+	    // recognition.lang = select_dialect.value;
+	    // CHANGED TO REFLECT STORE STATE. USER SHOULD CHANGE CHOOSE HOME COUNTRY TO ASSIGN DIALECT
+	    recognition.lang = props.userDialect;
+	
+	    // *****************************
+	
 	    recognition.start();
 	    ignore_onend = false;
 	    final_span.innerHTML = '';
@@ -88855,7 +88862,7 @@
 	// ******************************************************
 	
 	function mapStateToProps(state, ownProps) {
-	  return {};
+	  return { userDialect: state.user.selectedUser.dialect };
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
@@ -88895,7 +88902,6 @@
 	    var _this = _possibleConstructorReturn(this, (VoiceRecognition.__proto__ || Object.getPrototypeOf(VoiceRecognition)).call(this, props));
 	
 	    _this.state = { didMount: false };
-	    _this.updateCountry = _this.updateCountry.bind(_this);
 	    _this.interimHandler = _this.interimHandler.bind(_this);
 	    return _this;
 	  }
@@ -88907,26 +88913,26 @@
 	      var showInfo = this.props.showInfo;
 	      var final_transcript = this.props.final_transcript;
 	
-	      for (var i = 0; i < _languages.langs.length; i++) {
-	        select_language.options[i] = new Option(_languages.langs[i][0], i);
-	      }
-	      select_language.selectedIndex = 6;
-	      updateCountry();
-	      select_dialect.selectedIndex = 6;
+	      // for (var i = 0; i < langs.length; i++) {
+	      //   select_language.options[i] = new Option(langs[i][0], i);
+	      // }
+	      // select_language.selectedIndex = 6;
+	      // updateCountry();
+	      // select_dialect.selectedIndex = 6;
 	      showInfo('info_start');
 	    }
-	  }, {
-	    key: 'updateCountry',
-	    value: function updateCountry() {
-	      for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-	        select_dialect.remove(i);
-	      }
-	      var list = _languages.langs[select_language.selectedIndex];
-	      for (var i = 1; i < list.length; i++) {
-	        select_dialect.options.add(new Option(list[i][1], list[i][0]));
-	      }
-	      select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
-	    }
+	
+	    // updateCountry() {
+	    //   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+	    //     select_dialect.remove(i);
+	    //   }
+	    //   var list = langs[select_language.selectedIndex];
+	    //   for (var i = 1; i < list.length; i++) {
+	    //     select_dialect.options.add(new Option(list[i][1], list[i][0]));
+	    //   }
+	    //   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+	    // }
+	
 	  }, {
 	    key: 'interimHandler',
 	    value: function interimHandler(event) {
@@ -89018,18 +89024,6 @@
 	          _react2.default.createElement('span', { id: 'final_span', className: 'final' }),
 	          _react2.default.createElement('span', { id: 'interim_span', className: 'interim' }),
 	          _react2.default.createElement('p', null)
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'center' },
-	          _react2.default.createElement('p', null),
-	          _react2.default.createElement(
-	            'div',
-	            { id: 'div_language' },
-	            _react2.default.createElement('select', { id: 'select_language', onChange: updateCountry }),
-	            '\xA0\xA0',
-	            _react2.default.createElement('select', { id: 'select_dialect' })
-	          )
 	        )
 	      );
 	    }
@@ -89039,6 +89033,15 @@
 	}(_react.Component);
 	
 	exports.default = VoiceRecognition;
+	
+	{/*<div className="center">
+	   <p></p>
+	   <div id="div_language">
+	     <select id="select_language" onChange={updateCountry}></select>
+	     &nbsp;&nbsp;
+	     <select id="select_dialect"></select>
+	   </div>
+	  </div>*/}
 
 /***/ },
 /* 750 */

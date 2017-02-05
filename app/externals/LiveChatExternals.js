@@ -97,6 +97,7 @@ const LiveChatExternals = () => {
         socket.emit('broadcast_video_room', {
             room: location.pathname + location.hash
         })
+        
     };
 //**************************** 
 
