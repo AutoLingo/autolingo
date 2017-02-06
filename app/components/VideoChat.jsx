@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import LiveChatExternals from '../externals/LiveChatExternals' 
 
 class VideoChat extends Component {
+
 	componentDidMount() {
 		LiveChatExternals()
 	}
+	
+	componentDidUpdate() {
+		LiveChatExternals()
+	}
+
 	render() {
 		return (
 			<section>
