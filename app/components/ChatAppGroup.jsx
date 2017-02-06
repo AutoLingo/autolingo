@@ -5,8 +5,8 @@ import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage'
+import { translateActionCreator } from '../reducers/translate'
 import {connect} from 'react-redux';
-import store from '../store'
 
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
@@ -25,6 +25,7 @@ class ChatAppGroup extends React.Component {
 
 	//run below functions after the components are mounted on the page
 	componentDidMount() {
+		console.log("mounted")
 		const socket = io.connect('/group-chat');
 		this.setState({socket})
 		socket.on('init', this._initialize);
@@ -46,7 +47,15 @@ class ChatAppGroup extends React.Component {
 		// var {messages} = this.state;
 		// messages.push(message);
 		// this.setState({messages})
-		this.dispatch(addGroupMessage(message))
+		const userLanguage = this.props.state.user.selectedUser.primaryLanguage;
+		if (userLanguage === message.language) {
+			this.dispatch(addGroupMessage(message))
+		} else {
+			const id = 1;
+			const originalLanguage = message.language;
+			const originalText = message.text;
+			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText))
+		}
 	}
 
 	//when the user joins the chat box, it will push the name of the user to the users array
@@ -118,7 +127,6 @@ class ChatAppGroup extends React.Component {
 		// this.setState({messages});
 		// //send message data through socket
 		// this.state.socket.emit('send:message', message);
-
 		this.dispatch(addGroupMessage(message))
 		//send message data through socket
 		this.state.socket.emit('send:message', message);
@@ -152,6 +160,7 @@ class ChatAppGroup extends React.Component {
 		const user = this.props.state.groupMessage.user;
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
+		const language = this.props.state.user.selectedUser.primaryLanguage;
 		return (
 			<div id="chatbox-body">
 				<UsersList
@@ -163,6 +172,7 @@ class ChatAppGroup extends React.Component {
 				<MessageForm
 					onMessageSubmit={handleMessageSubmit}
 					user={user}
+					language={language}
 				/>
 				<ChangeNameForm
 					onChangeName={handleChangeName}

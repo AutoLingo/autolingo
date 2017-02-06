@@ -147,7 +147,7 @@ function socketInit (server) {
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
     var name = userNames.getGuestName();
-
+    console.log('*********name', name) 
     //send the new user their name and a list of users
     socket.emit('init', {
       name: name,
