@@ -73,23 +73,28 @@ export const googleTranslateEpic = (action$) => {
         let userLanguage = action.userLanguage
         let text = action.originalText
 
-        return ajax({
+        const request = ajax({
           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,
           crossDomain: true
         })
+
+        const actionObservable = Observable.of(action)
+        return Observable.combineLatest(request, actionObservable, (request, actionObservable) => [request, actionObservable])
     })
-    .map(singleTranslation => {
+    .map(combineArray => {
+      console.log('COMBINEARRAY', combineArray)
+      const action = combineArray[1]
+      const singleTranslation = combineArray[0]
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
+        console.log('ACTION', action)
       const translatedMsg = {
-        var message = {
-          user: ,
-          text: ,
-          language: ,
-          id:
-        }
+          user: action.user,
+          text: translatedText,
+          language: action.language,
+          id: action.id
       }
-      return addGroupMessage(translatedText)
+      return addGroupMessage(translatedMsg)
     })
 }
 // **************************************************

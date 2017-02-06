@@ -47,14 +47,19 @@ class ChatAppGroup extends React.Component {
 		// var {messages} = this.state;
 		// messages.push(message);
 		// this.setState({messages})
-		const userLanguage = this.props.state.user.selectedUser.primaryLanguage;
+		console.log('MESSAGE', message)
+		const userLanguage = this.props.userLanguage
+		console.log('userLanguage', userLanguage)
 		if (userLanguage === message.language) {
+			// console.log('message receive')
+			// console.log('USERLANGUAGE', userLanguage)
+			// console.log('MESSAGE.LANGUAGEMESSAGE', message.language)
 			this.dispatch(addGroupMessage(message))
 		} else {
 			const id = 1;
 			const originalLanguage = message.language;
 			const originalText = message.text;
-			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText))
+			// this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText))
 		}
 	}
 
@@ -127,8 +132,9 @@ class ChatAppGroup extends React.Component {
 		// this.setState({messages});
 		// //send message data through socket
 		// this.state.socket.emit('send:message', message);
-		this.dispatch(addGroupMessage(message))
 		//send message data through socket
+
+		this.dispatch(addGroupMessage(message))
 		this.state.socket.emit('send:message', message);
 	}
 
@@ -183,7 +189,9 @@ class ChatAppGroup extends React.Component {
 }
 
 function mapStateToProps (state, ownProps) {
-  return { state };
+	const userLanguage = state.user.selectedUser.primaryLanguage;
+
+  return { state, userLanguage };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
