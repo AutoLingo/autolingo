@@ -233,6 +233,7 @@ const SpeechRecognitionExternals = () => {
 	    return;
 	  }
 	  final_transcript = '';
+	  // recognition.lang = select_dialect.value;
 	  recognition.lang = select_dialect.value;
 	  recognition.start();
 	  ignore_onend = false;

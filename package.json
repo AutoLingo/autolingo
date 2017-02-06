@@ -12,7 +12,8 @@
     "deploy-heroku": "bin/deploy-heroku.sh",
     "start": "check-node-version --node '>= 6.7.0' && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js",
-    "build-css": "node-sass -w public/stylesheets/style.scss -o public/stylesheets"
+    "build-css": "node-sass -w public/stylesheets/style.scss -o public/stylesheets",
+    "postinstall": "check-node-version --node '>= 6.7.0' && bin/setup && webpack"
   },
   "repository": {
     "type": "git",

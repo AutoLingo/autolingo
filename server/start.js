@@ -25,23 +25,15 @@ var userNames = (function() {
   }
 
   //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
-  //The number will only increase if the guest username does not already exist in the names object. 
+  //The number will only increase if the guest username does not already exist in the names object.
   var getGuestName = function() {
    var name,
      nextUserId = 1;
 
      do {
        name = 'Guest ' + nextUserId;
-console.log('GUEST IS', name )
        nextUserId += 1;
      } while (!claim(name));
-
-
-     //      while (!claim(name)) {
-     //        name = 'Guest ' + nextUserId;
-     // // console.log('GUEST IS', name )
-     //        nextUserId += 1;
-     //      };
 
      return name
  }
@@ -52,7 +44,6 @@ console.log('GUEST IS', name )
     for(let user in names) {
       res.push(user)
     }
-console.log(names)
     return res;
   }
 
@@ -109,7 +100,7 @@ module.exports = app
   // Authentication middleware
   .use(passport.initialize())
   .use(passport.session())
-  
+
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
   .use(express.static(resolve(__dirname, '..', 'node_modules')))
@@ -122,20 +113,20 @@ module.exports = app
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
   .use((err, req, res, next) => {
-    
+
     res.status(500).send(err)
     next()
   })
 
 if (module === require.main) {
   // Start listening only if we're the main module.
-  // 
+  //
   // https://nodejs.org/api/modules.html#modules_accessing_the_main_module
   const server = app.listen(
     process.env.PORT || 1337,
     () => {
-            
-      
+
+
     }
   )
 
@@ -147,23 +138,22 @@ if (module === require.main) {
 
 //**********
 function socketInit (server) {
-console.log('SOCKETINIT')
   if (!IO) IO = socketio(server);
   else return IO
 
-  var name = userNames.getGuestName();
   var groupChat = IO.of('/group-chat')
   var videoChat = IO.of('/video-chat')
 
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
+    var name = userNames.getGuestName();
 
     //send the new user their name and a list of users
     socket.emit('init', {
       name: name,
       users: userNames.get()
     });
-        
+
     //notify other users that a new user has joined
     socket.broadcast.emit('user:join', {
       name: name
@@ -214,6 +204,12 @@ console.log('SOCKETINIT')
       socket.join(room)
     })
 
+    socket.on('broadcast_video_room', function(data) {
+      socket.broadcast.emit('broadcast_video_room', {
+        room: data.room
+      })
+    })
+
     socket.on('interim_transcript', function(data) {
       let room = data.room
 
@@ -229,12 +225,6 @@ console.log('SOCKETINIT')
        userLanguage: data.userLanguage
       })
     })
-    
+
   })
 }
-
-
-
-
-
-

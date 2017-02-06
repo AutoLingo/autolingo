@@ -5,7 +5,6 @@ export default class VoiceRecognition extends Component {
   constructor (props) {
     super(props);
     this.state = { didMount: false }
-    this.updateCountry = this.updateCountry.bind(this);
     this.interimHandler = this.interimHandler.bind(this);
   }
 
@@ -14,25 +13,25 @@ export default class VoiceRecognition extends Component {
     const showInfo = this.props.showInfo;
     const final_transcript = this.props.final_transcript;
 
-      for (var i = 0; i < langs.length; i++) {
-        select_language.options[i] = new Option(langs[i][0], i);
-      }
-      select_language.selectedIndex = 6;
-      updateCountry();
-      select_dialect.selectedIndex = 6;
+      // for (var i = 0; i < langs.length; i++) {
+      //   select_language.options[i] = new Option(langs[i][0], i);
+      // }
+      // select_language.selectedIndex = 6;
+      // updateCountry();
+      // select_dialect.selectedIndex = 6;
       showInfo('info_start');
   }
 
-  updateCountry() {
-    for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-      select_dialect.remove(i);
-    }
-    var list = langs[select_language.selectedIndex];
-    for (var i = 1; i < list.length; i++) {
-      select_dialect.options.add(new Option(list[i][1], list[i][0]));
-    }
-    select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
-  }
+  // updateCountry() {
+  //   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+  //     select_dialect.remove(i);
+  //   }
+  //   var list = langs[select_language.selectedIndex];
+  //   for (var i = 1; i < list.length; i++) {
+  //     select_dialect.options.add(new Option(list[i][1], list[i][0]));
+  //   }
+  //   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+  // }
 
   interimHandler (event) {
     console.log(event.target.value)
@@ -71,15 +70,15 @@ export default class VoiceRecognition extends Component {
           <span id="interim_span" className="interim"></span>
           <p></p>
         </div>
-        <div className="center">
+      </div>
+    )
+  }
+}
+        {/*<div className="center">
           <p></p>
           <div id="div_language">
             <select id="select_language" onChange={updateCountry}></select>
             &nbsp;&nbsp;
             <select id="select_dialect"></select>
           </div>
-        </div>
-      </div>
-    )
-  }
-}
+        </div>*/}
