@@ -22,11 +22,12 @@ class ChatAppGroup extends React.Component {
 		this._userJoined = this._userJoined.bind(this)
 		this._userLeft = this._userLeft.bind(this)
 		this._userChangedName = this._userChangedName.bind(this)
+		this._disconnectUser = this._disconnectUser.bind(this)
 	}
 
 	//run below functions after the components are mounted on the page
 	componentDidMount() {
-		console.log("mounted")
+		
 		
 		// this.setState({socket})
 		socket.on('init', this._initialize);
@@ -34,10 +35,14 @@ class ChatAppGroup extends React.Component {
 		socket.on('user:join', this._userJoined);
 		socket.on('user:left', this._userLeft);
 		socket.on('change:name', this._userChangedName);
+		socket.on('disconnect', this._disconnectUser)
+		socket.emit('join_room', { room: this.props.selectedCountry})
 	}
 
 	//set user with given name
 	_initialize(data) {
+		
+		
 		var {users, name} = data;
 		this.dispatch(setGroupUser(name));
 		this.dispatch(addToGroupUsers(users));
@@ -48,13 +53,13 @@ class ChatAppGroup extends React.Component {
 		// var {messages} = this.state;
 		// messages.push(message);
 		// this.setState({messages})
-		console.log('MESSAGE', message)
+		
 		const userLanguage = this.props.userLanguage
-		console.log('userLanguage', userLanguage)
+		
 		if (userLanguage === message.language) {
-			// console.log('message receive')
-			// console.log('USERLANGUAGE', userLanguage)
-			// console.log('MESSAGE.LANGUAGEMESSAGE', message.language)
+			// 
+			// 
+			// 
 			this.dispatch(addGroupMessage(message))
 		} else {
 			const id = 1;
@@ -64,9 +69,14 @@ class ChatAppGroup extends React.Component {
 		}
 	}
 
+	_disconnectUser() {
+		socket.emit('user_left', { name: this.props.userName, room: this.props.selectedCountry})
+	}
+
 	//when the user joins the chat box, it will push the name of the user to the users array
 	//message, "name of user" joined will rendered on the chat box
 	_userJoined(data) {
+		
 		// var {users, messages} = this.state;
 		// var {name} = data;
 		// users.push(name);
@@ -191,8 +201,10 @@ class ChatAppGroup extends React.Component {
 
 function mapStateToProps (state, ownProps) {
 	const userLanguage = state.user.selectedUser.primaryLanguage;
+	const selectedCountry = state.user.selectedUser.country;
+	const userName = state.groupMessage.user;
 
-  return { state, userLanguage };
+  return { state, userLanguage, selectedCountry, userName };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {

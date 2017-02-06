@@ -44,6 +44,7 @@ var userNames = (function() {
     for(let user in names) {
       res.push(user)
     }
+    console.log('user names on server: ', res);
     return res;
   }
 
@@ -51,6 +52,7 @@ var userNames = (function() {
     if (names[name]) {
       delete names[name];
     }
+    console.log('names on disconnect',names)
   }
 
   return {
@@ -147,17 +149,36 @@ function socketInit (server) {
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
     var name = userNames.getGuestName();
-    console.log('*********name', name) 
-    //send the new user their name and a list of users
-    socket.emit('init', {
-      name: name,
-      users: userNames.get()
-    });
+
+    socket.on('join_room', function(data) {
+      console.log('data on join)_room: ', data);
+      
+        socket.join(data.room)
+        console.log('data.room: ', data.room);
+
+        
+        socket.to(data.room).emit('init', {
+          name: name,
+          users: userNames.get()
+        });
+       
+       console.log('rooms', groupChat.adapter.rooms[data.room])
+
+           IO.of('/groupChat').in(data.room).clients(function(error, clients){
+        if (error) throw error;
+        console.log('client list', clients); // => [Anw2LatarvGVVXEIAAAD]
+      });
+
+      IO.sockets.adapter.rooms
+      
+      socket.to(data.room).broadcast.emit('user:join', {
+        name: name
+      });
+    })
+
+     
 
     //notify other users that a new user has joined
-    socket.broadcast.emit('user:join', {
-      name: name
-    });
 
     //render/send user's message to other user
     socket.on('send:message', function(data) {
@@ -168,6 +189,7 @@ function socketInit (server) {
         id: data.id
       })
     })
+
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
       if(userNames.claim(data.name)) {
@@ -188,12 +210,20 @@ function socketInit (server) {
     });
 
     //send/broadcast to user2 that user1 left the chat box
-    socket.on('disconnect', function() {
-      socket.broadcast.emit('user:left', {
-        name: name
+    socket.on('user_left', function(data) {
+      console.log('user_left: ', data);
+
+      socket.to(data.room).broadcast.emit('user:left', {
+        name: data.name
       })
-      userNames.free(name);
+
+        userNames.free(data.name);
     })
+      
+    socket.on('disconnect', function(){
+
+    })
+
   })
 
 // *********VIDEO CHAT********************
