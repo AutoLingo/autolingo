@@ -101,9 +101,9 @@ const LiveChatExternals = () => {
     };
 //**************************** 
 
-    document.querySelector('#your-name').onchange = function() {
-        peer.userid = this.value;
-    };
+    // document.querySelector('#your-name').onchange = function() {
+    //     peer.userid = this.value;
+    // };
 
     var videosContainer = document.getElementById('videos-container') || document.body;
     var btnSetupNewRoom = document.getElementById('setup-new-room');
