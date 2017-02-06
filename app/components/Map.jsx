@@ -22,11 +22,11 @@ export default class Map extends Component {
 
   componentDidMount() {
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
-    L.mapbox.accessToken = 'pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw'
+    L.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
     this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
-    L.mapbox.styleLayer('mapbox://styles/thlee1122/ciyhpbj15003d2sluqt6ylrqa').addTo(map);
+    L.mapbox.styleLayer('mapbox://styles/adam2222/ciyu52ate001c2sll4w480gvs').addTo(map);
 
     map.dragging.disable();
     map.touchZoom.disable();
