@@ -4,22 +4,23 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import store from '../store';
 import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage'
 import {connect} from 'react-redux';
+import store from '../store'
 
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
 	constructor (props) {
 		super(props)
-		this.state = {
-			socket: {},
-			users: [],
-			messages: [],
-			text: ''
-		}
+		this.state = { socket: {} }
+		this.dispatch = props.dispatch
 		this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
 		this.handleChangeName = this.handleChangeName.bind(this)
+		this._initialize = this._initialize.bind(this)
+		this._messageReceive = this._messageReceive.bind(this)
+		this._userJoined = this._userJoined.bind(this)
+		this._userLeft = this._userLeft.bind(this)
+		this._userChangedName = this._userChangedName.bind(this)
 	}
 
 	//run below functions after the components are mounted on the page
@@ -36,8 +37,8 @@ class ChatAppGroup extends React.Component {
 	//set user with given name
 	_initialize(data) {
 		var {users, name} = data;
-		store.dispatch(setGroupUser(name));
-		store.dispatch(addToGroupUsers(users));
+		this.dispatch(setGroupUser(name));
+		this.dispatch(addToGroupUsers(users));
 	}
 
 	//push the given message into messages array
@@ -45,7 +46,7 @@ class ChatAppGroup extends React.Component {
 		// var {messages} = this.state;
 		// messages.push(message);
 		// this.setState({messages})
-		store.dispatch(addGroupMessage(message))
+		this.dispatch(addGroupMessage(message))
 	}
 
 	//when the user joins the chat box, it will push the name of the user to the users array
@@ -64,8 +65,8 @@ class ChatAppGroup extends React.Component {
 			user: "LingoBot",
 			text: name + ' Joined'
 		};
-		store.dispatch(addGroupMessage(userJoinMsg))
-		store.dispatch(addToGroupUsers([name]))
+		this.dispatch(addGroupMessage(userJoinMsg))
+		this.dispatch(addToGroupUsers([name]))
 	}
 
 	//when the user leaves the chat box, it will push the name of the user to the users array
@@ -85,8 +86,8 @@ class ChatAppGroup extends React.Component {
 			user: 'LingoBot',
 			text: name + ' Left'
 		}
-		store.dispatch(addGroupMessage(userLeftMsg))
-		store.dispatch(removeGroupUser(name))
+		this.dispatch(addGroupMessage(userLeftMsg))
+		this.dispatch(removeGroupUser(name))
 	}
 
 	//Are we going to allow users to change name in the chat window? Need to discuss about this.
@@ -107,8 +108,8 @@ class ChatAppGroup extends React.Component {
 			user: 'APPLICATION BOT',
 			text: 'Change Name : ' + oldName + ' ==> ' + newName
 		};
-		store.dispatch(addGroupMessage(nameChangeMsg))
-		store.dispatch(groupUserNameChange(oldName, newName))
+		this.dispatch(addGroupMessage(nameChangeMsg))
+		this.dispatch(groupUserNameChange(oldName, newName))
 	}
 
 	handleMessageSubmit(message) {
@@ -118,7 +119,7 @@ class ChatAppGroup extends React.Component {
 		// //send message data through socket
 		// this.state.socket.emit('send:message', message);
 
-		store.dispatch(addGroupMessage(message))
+		this.dispatch(addGroupMessage(message))
 		//send message data through socket
 		this.state.socket.emit('send:message', message);
 	}
@@ -135,22 +136,22 @@ class ChatAppGroup extends React.Component {
 		// 	this.setState({users, user: newName})
 		// })
 
-		var oldName = store.getState().groupMessage.user
+		var oldName = this.props.state.groupMessage.user
 		this.state.socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
 			}
-			store.dispatch(setGroupUser(newName))
-			store.dispatch(groupUserNameChange(oldName, newName))
+			this.dispatch(setGroupUser(newName))
+			this.dispatch(groupUserNameChange(oldName, newName))
 		})
 	}
 
 	render() {
-		const storeState = store.getState()
-		const users = storeState.groupMessage.users;
-		const messages = storeState.groupMessage.messages;
-		const user = storeState.groupMessage.user;
-		console.log('hi*****')
+		const users = this.props.state.groupMessage.users;
+		const messages = this.props.state.groupMessage.messages;
+		const user = this.props.state.groupMessage.user;
+		const handleMessageSubmit = this.handleMessageSubmit;
+		const handleChangeName = this.handleChangeName;
 		return (
 			<div id="chatbox-body">
 				<UsersList
@@ -160,11 +161,11 @@ class ChatAppGroup extends React.Component {
 					messages={messages}
 				/>
 				<MessageForm
-					onMessageSubmit={this.handleMessageSubmit}
+					onMessageSubmit={handleMessageSubmit}
 					user={user}
 				/>
 				<ChangeNameForm
-					onChangeName={this.handleChangeName}
+					onChangeName={handleChangeName}
 				/>
 			</div>
 		)
@@ -176,7 +177,7 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  return {};
+  return { dispatch };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
