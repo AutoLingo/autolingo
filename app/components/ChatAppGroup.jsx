@@ -41,7 +41,7 @@ class ChatAppGroup extends React.Component {
 
 	//set user with given name
 	_initialize(data) {
-		
+		console.log('INITIALIZE');
 		
 		var {users, name} = data;
 		this.dispatch(setGroupUser(name));
@@ -76,7 +76,7 @@ class ChatAppGroup extends React.Component {
 	//when the user joins the chat box, it will push the name of the user to the users array
 	//message, "name of user" joined will rendered on the chat box
 	_userJoined(data) {
-		
+		console.log('USER JOINED CLIENT');
 		// var {users, messages} = this.state;
 		// var {name} = data;
 		// users.push(name);
@@ -91,7 +91,7 @@ class ChatAppGroup extends React.Component {
 			text: name + ' Joined'
 		};
 		this.dispatch(addGroupMessage(userJoinMsg))
-		this.dispatch(addToGroupUsers([name]))
+		// this.dispatch(addToGroupUsers([name]))
 	}
 
 	//when the user leaves the chat box, it will push the name of the user to the users array
@@ -117,6 +117,7 @@ class ChatAppGroup extends React.Component {
 
 	//Are we going to allow users to change name in the chat window? Need to discuss about this.
 	_userChangedName(data) {
+		console.log('userChanged name data client: ', data);
 		// var {oldName, newName} = data;
 		// var {users, messages} = this.state;
 		// var index = users.indexOf(oldName);

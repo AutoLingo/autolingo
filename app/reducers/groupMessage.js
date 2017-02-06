@@ -14,7 +14,7 @@ export default function userReducer(state = initialState, action) {
       newState.user = action.user;
       break;
     case ADD_TO_GROUP_USERS:
-      newState.users = newState.users.concat(action.user);
+      newState.users = action.users;
       break;
     case REMOVE_GROUP_USER:
       const users = newState.users.slice(0);
@@ -24,8 +24,13 @@ export default function userReducer(state = initialState, action) {
       break;
     case GROUP_USER_NAME_CHANGE:
       const usersList = newState.users.slice(0);
+      console.log('usersList: ', usersList);
       const Idx = usersList.indexOf(action.oldName);
+      console.log('oldName: ', action.oldName);
+      console.log('Idx: ', Idx);
       usersList[Idx] = action.newName
+      console.log('usersList after update', usersList);
+
       newState.users = usersList;
       break;
     default:

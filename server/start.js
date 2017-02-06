@@ -11,6 +11,18 @@ const chalk = require('chalk');
 
 let IO = null;
 
+function getAllRoomMembers(room, namespace, io) {
+        const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
+        console.log('socketIds: ', socketIds);
+        const sockets = socketIds.map(id => {
+          const idSplit = id.split('#')[1]
+          return io.sockets.connected[idSplit];
+        })
+          return sockets;
+        
+        
+  }
+
 var userNames = (function() {
   var names = {};
 
@@ -52,7 +64,6 @@ var userNames = (function() {
     if (names[name]) {
       delete names[name];
     }
-    console.log('names on disconnect',names)
   }
 
   return {
@@ -149,27 +160,24 @@ function socketInit (server) {
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
     var name = userNames.getGuestName();
+    socket.name = name
 
     socket.on('join_room', function(data) {
+      socket.currentRoom = data.room
       console.log('data on join)_room: ', data);
       
         socket.join(data.room)
         console.log('data.room: ', data.room);
-
         
-        socket.to(data.room).emit('init', {
+        
+        groupChat.to(data.room).emit('init', {
           name: name,
           users: userNames.get()
         });
        
-       console.log('rooms', groupChat.adapter.rooms[data.room])
+        const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
 
-           IO.of('/groupChat').in(data.room).clients(function(error, clients){
-        if (error) throw error;
-        console.log('client list', clients); // => [Anw2LatarvGVVXEIAAAD]
-      });
-
-      IO.sockets.adapter.rooms
+    
       
       socket.to(data.room).broadcast.emit('user:join', {
         name: name
@@ -198,7 +206,7 @@ function socketInit (server) {
 
         name = data.name;
 
-        socket.broadcast.emit('change:name', {
+        groupChat.to(socket.currentRoom).emit('change:name', {
           oldName: oldName,
           newName: name
         });
@@ -210,18 +218,13 @@ function socketInit (server) {
     });
 
     //send/broadcast to user2 that user1 left the chat box
-    socket.on('user_left', function(data) {
-      console.log('user_left: ', data);
-
-      socket.to(data.room).broadcast.emit('user:left', {
-        name: data.name
-      })
-
-        userNames.free(data.name);
-    })
+   
       
     socket.on('disconnect', function(){
-
+      groupChat.to(socket.currentRoom).emit('user:left', {
+        name: socket.name
+      })
+      userNames.free(socket.name);
     })
 
   })

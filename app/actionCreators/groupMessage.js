@@ -14,8 +14,8 @@ export const setGroupUser = (user) => {
   return { type: SET_GROUP_USER, user }
 }
 
-export const addToGroupUsers = (user) => {
-  return { type: ADD_TO_GROUP_USERS, user }
+export const addToGroupUsers = (users) => {
+  return { type: ADD_TO_GROUP_USERS, users }
 }
 
 export const removeGroupUser = (user) => {
