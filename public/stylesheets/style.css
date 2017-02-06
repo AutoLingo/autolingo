@@ -369,3 +369,9 @@ a:hover {
   border: 0;
   background-color: transparent;
   padding: 0; }
+
+/************************* start fo Speech recognition *************************
+
+/************************** start fo Instruction Message **************************/
+.swal-div {
+  color: black; }
