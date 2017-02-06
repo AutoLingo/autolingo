@@ -24,15 +24,15 @@ body {
 
 /*End of nav bar styling*/
 /***************** Start of map styling *****************/
-/*#map {
-  position:absolute;
+#map {
+  position: absolute;
   top: 10vh;
   left: 0;
   right: 0;
-  bottom:0;
-  width:100%;
-  z-index: 1;
-}*/
+  bottom: 0;
+  width: 100%;
+  z-index: 1; }
+
 #country-buttons {
   position: absolute;
   right: 5vw;
