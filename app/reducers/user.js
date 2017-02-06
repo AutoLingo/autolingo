@@ -17,6 +17,8 @@ export default function userReducer(state = initialState, action) {
     	let index = newState.users.indexOf(action.user)
     	newState.users.splice(index,1)
 	    break;
+    case SET_DIALECT:
+      newState.selectedUser.dialect = action.dialect
     default:
       return state;
   }
