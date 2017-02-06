@@ -21,6 +21,8 @@ body {
   margin-bottom: 20px; }
   #language-list .dropdown-menu {
     margin-bottom: 20px; }
+  #language-list .dropdown-submenu a {
+    cursor: pointer; }
 
 /*End of nav bar styling*/
 /***************** Start of map styling *****************/
