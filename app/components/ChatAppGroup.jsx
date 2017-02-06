@@ -135,7 +135,7 @@ class ChatAppGroup extends React.Component {
 		// 	this.setState({users, user: newName})
 		// })
 
-		var oldName = store.getState().groupMessages.user
+		var oldName = store.getState().groupMessage.user
 		this.state.socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
