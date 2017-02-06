@@ -57,7 +57,7 @@ const VoiceRecognitionContainer = (props) => {
         }
       };
       recognition.onresult = function(event) {
-        
+        console.log('ONRESULT FOR VOICE RECOGNITION FIRING');
         let emitFinalTranscript = props.emitFinalTranscript
         let emitInterimTranscript = props.emitInterimTranscript
         let setInterimTranscript = props.setInterimTranscript
@@ -125,11 +125,13 @@ const VoiceRecognitionContainer = (props) => {
     // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
       // recognition.lang = select_dialect.value;
       // CHANGED TO REFLECT STORE STATE. USER SHOULD CHANGE CHOOSE HOME COUNTRY TO ASSIGN DIALECT
-      recognition.lang = props.userDialect
+    recognition.lang = props.userDialect
+    console.log('recognition.lang: ', recognition.lang);
       
     // *****************************
 
     recognition.start();
+    console.log('recognition: ', recognition);
     ignore_onend = false;
     final_span.innerHTML = '';
     interim_span.innerHTML = '';
