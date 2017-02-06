@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router'
+import React, {Component} from 'react';
+import { Link } from 'react-router';
+import Instructions from './Instructions.jsx';
+import repositionMap from './utilities.jsx';
 
 const languageList = {
   0 : "Afrikaans",
@@ -44,63 +46,82 @@ const languageList = {
   39 : "ภาษาไทย"
 }
 
-export default function Navbar (props) {
-  return (
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-        <div className="navbar-header">
-          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span className="sr-only">Toggle navigation</span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-            <span className="icon-bar"></span>
-          </button>
-          <a className="navbar-brand" href="#">Auto<span className="lingo-blue">Lingo</span></a>
-        </div>
+export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {show: false};
+    this.showInstruction = this.showInstruction.bind(this);
+  }
 
-        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul className="nav navbar-nav navbar-right">
-            <li><a href="/">World Map</a></li>
-            <li><a href="#">About</a></li>
-            
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
-              <ul id="language-list" className="dropdown-menu" role="menu">
+  showInstruction(event) {
+    let show = !this.state.show;
+    console.log(show);
+    this.setState({show});
+  }
 
-                {
-                  Object.keys(languageList).map( value => (
-                    <li key={value}><a href="#">{languageList[value]}</a></li>
+  render() {
+    return (
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">Auto<span className="lingo-blue">Lingo</span></a>
+          </div>
+
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav navbar-right">
+              <li><a href="/">World Map</a></li>
+              <li><a href="#">About</a></li>
+              
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
+                <ul id="language-list" className="dropdown-menu" role="menu">
+
+                  {
+                    Object.keys(languageList).map( value => (
+                      <li key={value}><a href="#">{languageList[value]}</a></li>
+                      )
                     )
-                  )
-                }
+                  }
 
-              </ul>
-            </li>
+                </ul>
+              </li>
 
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Country <span className="caret"></span></a>
-              <ul id="country-list" className="dropdown-menu" role="menu">
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Country <span className="caret"></span></a>
+                <ul id="country-list" className="dropdown-menu" role="menu">
+                  <li><a onClick={repositionMap(this.props.america, this.map)}>Go to U.S.A</a></li>
+                  <li><a onClick={repositionMap(this.props.china, this.map)}>Go to China</a></li>
+                  <li><a onClick={repositionMap(this.props.spain, this.map)}>Go to Spain</a></li>
+                  <li><a onClick={repositionMap(this.props.france, this.map)}>Go to France</a></li>
+                  <li><a onClick={repositionMap(this.props.korea, this.map)}>Go to Korea</a></li>
+                </ul>
+              </li>
 
-              </ul>
-            </li>
-
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
-              <ul id="change-username-form" className="dropdown-menu" role="menu">
-                <form className="navbar-form navbar-left" role="search">
-                  <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Search" />
-                  </div>
-                  <button type="submit" className="btn btn-default">Submit</button>
-                </form>
-              </ul>
-            </li>
-
-            <li><a href="#">Instructions</a></li>
-          </ul>
+              <li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
+                <ul id="change-username-form" className="dropdown-menu" role="menu">
+                  <form className="navbar-form navbar-left" role="search">
+                    <div className="form-group">
+                      <input type="text" className="form-control" placeholder="Search" />
+                    </div>
+                    <button type="submit" className="btn btn-default">Submit</button>
+                  </form>
+                </ul>
+              </li>
+              
+              {this.state.show && <Instructions showInstruction={this.showInstruction}/>}
+              
+              <li><a href="#" onClick={this.showInstruction}>Instructions</a></li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
-
-  );
+      </nav>
+    );
+  }
 }
