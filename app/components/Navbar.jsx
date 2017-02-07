@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import Instructions from './Instructions.jsx';
-import repositionMap from './utilities.jsx';
+// import repositionMap from './utilities.jsx';
+// import { setCountry } from '../actionCreators/map.js';
+// import store from '../store.jsx';
+// import { connect } from 'react-redux';
+
+// const america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 }
+// const china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 }
+// const spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 }
+// const france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 }
+// const korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 }
+// const zoomOut = { name: 'globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 }
 
 const languageList = {
   0 : "Afrikaans",
@@ -70,7 +80,7 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Auto<span className="lingo-blue">Lingo</span></a>
+            <a className="navbar-brand" href="/">Auto<span className="lingo-blue">Lingo</span></a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -92,16 +102,16 @@ export default class Navbar extends Component {
                 </ul>
               </li>
 
-              <li className="dropdown">
+              {/*<li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Country <span className="caret"></span></a>
                 <ul id="country-list" className="dropdown-menu" role="menu">
-                  <li><a onClick={repositionMap(this.props.america, this.map)}>Go to U.S.A</a></li>
+                  <li><a onClick={()=> this.props.zoomInCountry(america)}>Go to U.S.A</a></li>
                   <li><a onClick={repositionMap(this.props.china, this.map)}>Go to China</a></li>
                   <li><a onClick={repositionMap(this.props.spain, this.map)}>Go to Spain</a></li>
                   <li><a onClick={repositionMap(this.props.france, this.map)}>Go to France</a></li>
                   <li><a onClick={repositionMap(this.props.korea, this.map)}>Go to Korea</a></li>
                 </ul>
-              </li>
+              </li>*/}
 
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
@@ -125,3 +135,22 @@ export default class Navbar extends Component {
     );
   }
 }
+
+
+// function mapDispatchToProps(dispatch, ownProps) {
+//   function zoomInCountry(country) {
+//     dispatch(setCountry(country.name, country.fitBounds, country.zoomNum))
+//   }
+
+//   return { zoomInCountry };
+// }
+
+
+// export default connect(null, mapDispatchToProps)(Navbar);
+
+
+
+
+
+
+

@@ -72,7 +72,7 @@ class InstructionMessage extends React.Component {
 	          		<li style={{border: 'none'}}>Your conversation and other user's conversation will be shown on the 'Live Conversation' box.</li>
 	          		<li style={{border: 'none'}}>You will be able to see the entire conversation on the 'Live Conversation' box.</li>
 	          	</ol>
-	          	<div><button style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%'}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
+	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', hover: {backgroundColor: 'black'}}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
 	          </form>
 	        </Modal>
 	    )

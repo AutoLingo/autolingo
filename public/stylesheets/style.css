@@ -8,6 +8,9 @@ body {
 * {
   font-family: 'Lato', sans-serif; }
 
+.navbar-default .navbar-nav > li > a {
+  font-size: 20px; }
+
 .lingo-blue {
   color: #0082e6; }
 
@@ -22,11 +25,14 @@ body {
   overflow-y: scroll;
   overflow-x: hidden; }
 
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+  font-size: 35px; }
+
 /*End of nav bar styling*/
 /***************** Start of map styling *****************/
 #map {
   position: absolute;
-  top: 10vh;
+  top: 8.5vh;
   left: 0;
   right: 0;
   bottom: 0;
@@ -39,6 +45,11 @@ body {
   bottom: 10vh;
   z-index: 99; }
 
+#fit-america:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
+
 #fit-america {
   display: inline-block;
   /*margin: 0px auto;*/
@@ -47,10 +58,15 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  background: purple; }
+  background: #9370DB; }
+
+#fit-spain:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
 
 #fit-spain {
   display: block;
@@ -60,10 +76,15 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  background: #ee8a65; }
+  background: #FFA07A; }
+
+#fit-china:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
 
 #fit-china {
   display: block;
@@ -73,10 +94,15 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
   background: #FF4500; }
+
+#fit-france:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
 
 #fit-france {
   display: block;
@@ -86,10 +112,15 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  background: blue; }
+  background: #00BFFF; }
+
+#fit-korea:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
 
 #fit-korea {
   display: block;
@@ -99,10 +130,15 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
-  background: red; }
+  background: #FF0000; }
+
+#zoomout:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3); }
 
 #zoomout {
   display: block;
@@ -112,10 +148,19 @@ body {
   padding: 10px;
   border: none;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   color: #fff;
   background: grey; }
+
+/*************************map marker styling************************/
+.leaflet-container img.leaflet-marker-icon {
+  -webkit-animation-name: hvr-icon-down;
+  animation-name: hvr-icon-down;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out; }
 
 /***************** start of chat box (socket) styling *****************/
 #chatbox-body {
@@ -375,3 +420,6 @@ a:hover {
 /************************** start fo Instruction Message **************************/
 .swal-div {
   color: black; }
+
+#instruction-submit-button:hover {
+  background-color: white; }
