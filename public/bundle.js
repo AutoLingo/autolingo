@@ -80131,10 +80131,10 @@
 	                mandatory: {}
 	            }
 	        };
-	        navigator.mediaDevices.getUserMedia(hints).then(function (stream) {
+	        navigator.getUserMedia(hints, function (stream) {
 	            var video = document.createElement('video');
 	            video.src = URL.createObjectURL(stream);
-	            // video.controls = true;
+	            video.controls = true;
 	            video.muted = true;
 	
 	            peer.onStreamAdded({
@@ -80143,8 +80143,8 @@
 	                stream: stream
 	            });
 	
-	            return callback(stream);
-	        }).catch(console.error);
+	            callback(stream);
+	        });
 	    }
 	
 	    (function () {
