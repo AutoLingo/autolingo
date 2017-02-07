@@ -240,6 +240,12 @@ nav {
     }
 }
 
+#chatbox-body h1 {
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
 #conversation-container {
   border: 1px solid #ddd;
   min-height: 400px;
@@ -313,64 +319,62 @@ nav {
   }
 }
 
-
 .users {
   float : right;
-  margin-right: 50px;
+  /*margin-right: 50px;*/
   border: 3px solid black;
-  margin-top: 18px;
-  width: 300px;
-  height: 530px;
+  /*margin-top: 14px;*/
+  width: 100%;
+  height: 50vh;
 }
 
 .users h3 {
   text-align: center;
   font-size: 20px;
+  color: black;
 }
 
 .users li {
   font-size: 20px;
   border: none;
+  color: black;
 }
 
 .messages {
-  width: 1000px;
-  margin: 1em;
+  width: 100%;
+  /*margin: 1em;*/
   border : 5px solid black;
   padding: 1em;
-  margin-left: 80px;
-  height: 500px;
+  /*margin-left: 80px;*/
+  height: 50vh;
   overflow: scroll;
   background-color: #F0F8FF;
 }
 
 .messages h2 {
   margin-top: -5px;
-  font-size: 30px;
-}
-
-.message_form,
-.change_name_form{
-  padding: 1em;
-  margin-left: 70px;
+  font-size: 25px;
 }
 
 .message {
   font-size: 20px;
 }
 
-/*.message_form {
-  margin-top: 10px;
-}*/
-
 .change_name_form {
-  margin-top: -30px;
+  /*margin-top: 0px;*/
+  width: 100%;
+  /*margin-left: -8px;*/
+}
+
+.message_form {
+  width: 100%;
+  /*margin-left: 80px;*/
 }
 
 .message_form input {
   font-size: 20px;
-  width: 1025px;
-  height: 40px;
+  width: 100%;
+  height: 5vh;
   border: 3px solid black;
 }
 
@@ -380,7 +384,8 @@ nav {
 
 .change_name_form input {
   font-size: 20px;
-  height: 40px;
+  height: 5vh;
+  width: 100%;
   border: 3px solid black;
 }
 
