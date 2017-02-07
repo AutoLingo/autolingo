@@ -5,42 +5,18 @@ export default class VoiceRecognition extends Component {
   constructor (props) {
     super(props);
     this.state = { didMount: false }
-    this.interimHandler = this.interimHandler.bind(this);
   }
 
   componentDidMount() {
-    const updateCountry = this.updateCountry;
     const showInfo = this.props.showInfo;
-    const final_transcript = this.props.final_transcript;
+    // const final_transcript = this.props.final_transcript;
 
-      // for (var i = 0; i < langs.length; i++) {
-      //   select_language.options[i] = new Option(langs[i][0], i);
-      // }
-      // select_language.selectedIndex = 6;
-      // updateCountry();
-      // select_dialect.selectedIndex = 6;
-      showInfo('info_start');
-  }
-
-  // updateCountry() {
-  //   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-  //     select_dialect.remove(i);
-  //   }
-  //   var list = langs[select_language.selectedIndex];
-  //   for (var i = 1; i < list.length; i++) {
-  //     select_dialect.options.add(new Option(list[i][1], list[i][0]));
-  //   }
-  //   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
-  // }
-
-  interimHandler (event) {
-    console.log(event.target.value)
+    showInfo('info_start');
   }
 
   render() {
     const startButton = this.props.startButton;
-    const updateCountry = this.updateCountry;
-    const interimHandler = this.interimHandler;
+
     return (
       <div>
         <div id="info">
@@ -63,7 +39,8 @@ export default class VoiceRecognition extends Component {
         </div>
         <div className="right">
           <button id="start_button" onClick={startButton}>
-            <img id="start_img" src="mic.gif" alt="Start" /></button>
+            <img id="start_img" src="mic.gif" alt="Start" />
+          </button>
         </div>
         <div id="results">
           <span id="final_span" className="final"></span>
@@ -74,11 +51,3 @@ export default class VoiceRecognition extends Component {
     )
   }
 }
-        {/*<div className="center">
-          <p></p>
-          <div id="div_language">
-            <select id="select_language" onChange={updateCountry}></select>
-            &nbsp;&nbsp;
-            <select id="select_dialect"></select>
-          </div>
-        </div>*/}

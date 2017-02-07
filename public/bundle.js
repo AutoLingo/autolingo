@@ -54358,24 +54358,6 @@
 	              { className: 'nav navbar-nav navbar-right' },
 	              _react2.default.createElement(
 	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: '/' },
-	                  'World Map'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                null,
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: '#' },
-	                  'About'
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
 	                { className: 'dropdown' },
 	                _react2.default.createElement(
 	                  'a',
@@ -54444,34 +54426,6 @@
 	                      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	                    }
 	                  })
-	                )
-	              ),
-	              _react2.default.createElement(
-	                'li',
-	                { className: 'dropdown' },
-	                _react2.default.createElement(
-	                  'a',
-	                  { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-expanded': 'false' },
-	                  'Change Username ',
-	                  _react2.default.createElement('span', { className: 'caret' })
-	                ),
-	                _react2.default.createElement(
-	                  'ul',
-	                  { id: 'change-username-form', className: 'dropdown-menu', role: 'menu' },
-	                  _react2.default.createElement(
-	                    'form',
-	                    { className: 'navbar-form navbar-left', role: 'search' },
-	                    _react2.default.createElement(
-	                      'div',
-	                      { className: 'form-group' },
-	                      _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Search' })
-	                    ),
-	                    _react2.default.createElement(
-	                      'button',
-	                      { type: 'submit', className: 'btn btn-default' },
-	                      'Submit'
-	                    )
-	                  )
 	                )
 	              ),
 	              this.state.show && _react2.default.createElement(_Instructions2.default, { showInstruction: this.showInstruction }),
@@ -79847,18 +79801,27 @@
 			value: function render() {
 				return _react2.default.createElement(
 					'section',
-					null,
+					{ id: 'videochat-wrapper' },
 					_react2.default.createElement(
-						'section',
-						null,
+						'div',
+						{ id: 'buttons-wrapper' },
 						_react2.default.createElement(
 							'button',
-							{ id: 'start-broadcasting', className: 'setup' },
+							{ id: 'start-broadcasting', className: 'btn btn-primary btn-lg btn-block' },
 							'Start Video Chat'
+						),
+						_react2.default.createElement(
+							'button',
+							{ id: 'join-broadcast', className: 'btn btn-success btn-lg btn-block' },
+							'Join Video Chat'
 						)
 					),
 					_react2.default.createElement('table', { id: 'rooms-list' }),
-					_react2.default.createElement('div', { id: 'videos-container' })
+					_react2.default.createElement(
+						'div',
+						{ id: 'videos-container-wrapper' },
+						_react2.default.createElement('div', { id: 'videos-container' })
+					)
 				);
 			}
 		}]);
@@ -79917,30 +79880,17 @@
 	
 	    peer.onUserFound = function (userid) {
 	        if (document.getElementById(userid)) return;
-	        var tr = document.createElement('tr');
 	
-	        var td1 = document.createElement('td');
-	        var td2 = document.createElement('td');
-	
-	        td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
-	
-	        var button = document.createElement('button');
-	        button.innerHTML = 'Join';
-	        button.id = userid;
-	        button.style.float = 'right';
+	        var button = document.getElementById('join-broadcast');
+	        button.style.display = 'block';
 	        button.onclick = function () {
 	            button = this;
 	            getUserMedia(function (stream) {
 	                peer.addStream(stream);
-	                peer.sendParticipationRequest(button.id);
+	                peer.sendParticipationRequest(userid);
 	            });
 	            button.disabled = true;
 	        };
-	        td2.appendChild(button);
-	
-	        tr.appendChild(td1);
-	        tr.appendChild(td2);
-	        roomsList.appendChild(tr);
 	    };
 	
 	    peer.onStreamAdded = function (e) {
@@ -79948,12 +79898,12 @@
 	        var video = e.mediaElement;
 	
 	        video.setAttribute('width', 600);
-	        video.setAttribute('controls', true);
+	        // video.setAttribute('controls', true);
 	
 	        videosContainer.insertBefore(video, videosContainer.firstChild);
 	
 	        video.play();
-	        rotateVideo(video);
+	        // rotateVideo(video);
 	        scaleVideos();
 	    };
 	
@@ -79961,7 +79911,7 @@
 	        var video = e.mediaElement;
 	        if (video) {
 	            video.style.opacity = 0;
-	            rotateVideo(video);
+	            // rotateVideo(video);
 	            setTimeout(function () {
 	                video.parentNode.removeChild(video);
 	                scaleVideos();
@@ -79982,22 +79932,10 @@
 	    };
 	    //**************************** 
 	
-	    // document.querySelector('#your-name').onchange = function() {
-	    //     peer.userid = this.value;
-	    // };
-	
 	    var videosContainer = document.getElementById('videos-container') || document.body;
 	    var btnSetupNewRoom = document.getElementById('setup-new-room');
-	    var roomsList = document.getElementById('rooms-list');
 	
 	    if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-	
-	    function rotateVideo(video) {
-	        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-	        setTimeout(function () {
-	            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-	        }, 1000);
-	    }
 	
 	    function scaleVideos() {
 	        var videos = document.querySelectorAll('video'),
@@ -80042,7 +79980,7 @@
 	        navigator.mediaDevices.getUserMedia(hints).then(function (stream) {
 	            var video = document.createElement('video');
 	            video.src = URL.createObjectURL(stream);
-	            video.controls = true;
+	            // video.controls = true;
 	            video.muted = true;
 	
 	            peer.onStreamAdded({
@@ -88477,6 +88415,10 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
+	var _languages = __webpack_require__(655);
+	
+	var _languages2 = _interopRequireDefault(_languages);
+	
 	var _translate = __webpack_require__(263);
 	
 	var _speech = __webpack_require__(608);
@@ -88687,51 +88629,76 @@
 				var finalTranscripts = this.props.finalTranscripts;
 				var interimTranscript = this.props.interimTranscript;
 				var userLanguage = this.props.userLanguage || 'nada';
+	
+				var userFullLanguage = _languages2.default.filter(function (lang) {
+					return userLanguage === lang[1][0].split('-')[0];
+				})[0][0];
+				console.log(finalTranscripts);
 				return _react2.default.createElement(
 					'div',
-					{ id: 'chatbox-body' },
+					{ id: 'chatbox-body', className: 'container' },
 					_react2.default.createElement(
 						'h2',
 						null,
-						'Live Video Translation'
+						'Live Translation'
 					),
 					_react2.default.createElement(
 						'div',
-						{ id: 'conversation-container' },
+						{ className: 'col-sm-6' },
 						_react2.default.createElement(
-							'h2',
+							'h3',
+							{ className: 'text-center' },
+							'Video Chat'
+						),
+						_react2.default.createElement(
+							'div',
 							null,
+							_react2.default.createElement(_VideoChat2.default, null)
+						),
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'col-sm-6' },
+						_react2.default.createElement(
+							'h3',
+							{ className: 'text-center' },
 							'Conversation'
 						),
-						finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
-							return _react2.default.createElement(
-								'div',
-								{ key: i },
-								_react2.default.createElement('br', null),
-								' ',
-								transcript
-							);
-						})
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'videochat-container' },
-						_react2.default.createElement(_VideoChat2.default, null)
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'live-transcript-container' },
 						_react2.default.createElement(
-							'h2',
-							null,
-							'Live'
+							'div',
+							{ id: 'conversation-container' },
+							_react2.default.createElement(
+								'ul',
+								null,
+								finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
+									return _react2.default.createElement(
+										'li',
+										{ key: i },
+										transcript
+									);
+								})
+							)
 						),
-						interimTranscript
-					),
-					_react2.default.createElement(
-						'div',
-						{ id: 'voicerecog-container' },
-						_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
+						_react2.default.createElement(
+							'ul',
+							{ className: 'breadcrumb' },
+							_react2.default.createElement(
+								'li',
+								null,
+								'Current language is ',
+								_react2.default.createElement(
+									'b',
+									null,
+									userFullLanguage
+								),
+								'. Change language from navigation bar.'
+							)
+						)
 					)
 				);
 			}
@@ -89307,48 +89274,22 @@
 	    var _this = _possibleConstructorReturn(this, (VoiceRecognition.__proto__ || Object.getPrototypeOf(VoiceRecognition)).call(this, props));
 	
 	    _this.state = { didMount: false };
-	    _this.interimHandler = _this.interimHandler.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(VoiceRecognition, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var updateCountry = this.updateCountry;
 	      var showInfo = this.props.showInfo;
-	      var final_transcript = this.props.final_transcript;
+	      // const final_transcript = this.props.final_transcript;
 	
-	      // for (var i = 0; i < langs.length; i++) {
-	      //   select_language.options[i] = new Option(langs[i][0], i);
-	      // }
-	      // select_language.selectedIndex = 6;
-	      // updateCountry();
-	      // select_dialect.selectedIndex = 6;
 	      showInfo('info_start');
-	    }
-	
-	    // updateCountry() {
-	    //   for (var i = select_dialect.options.length - 1; i >= 0; i--) {
-	    //     select_dialect.remove(i);
-	    //   }
-	    //   var list = langs[select_language.selectedIndex];
-	    //   for (var i = 1; i < list.length; i++) {
-	    //     select_dialect.options.add(new Option(list[i][1], list[i][0]));
-	    //   }
-	    //   select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
-	    // }
-	
-	  }, {
-	    key: 'interimHandler',
-	    value: function interimHandler(event) {
-	      console.log(event.target.value);
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var startButton = this.props.startButton;
-	      var updateCountry = this.updateCountry;
-	      var interimHandler = this.interimHandler;
+	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -89438,15 +89379,6 @@
 	}(_react.Component);
 	
 	exports.default = VoiceRecognition;
-	
-	{/*<div className="center">
-	   <p></p>
-	   <div id="div_language">
-	     <select id="select_language" onChange={updateCountry}></select>
-	     &nbsp;&nbsp;
-	     <select id="select_dialect"></select>
-	   </div>
-	  </div>*/}
 
 /***/ },
 /* 754 */
@@ -89641,34 +89573,47 @@
 					'div',
 					{ className: 'container', id: 'chatbox-body' },
 					_react2.default.createElement(
-						'div',
-						{ className: 'col-sm-9' },
-						_react2.default.createElement(_MessageList2.default, {
-							messages: messages
-						})
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-sm-3' },
-						_react2.default.createElement(_UserList2.default, {
-							users: users
-						})
-					),
-					_react2.default.createElement(
-						'div',
+						'h1',
 						null,
-						_react2.default.createElement(_MessageForm2.default, {
-							onMessageSubmit: handleMessageSubmit,
-							user: user,
-							language: language
-						})
+						'Live Group Chat'
 					),
 					_react2.default.createElement(
 						'div',
-						null,
-						_react2.default.createElement(_ChangeNameForm2.default, {
-							onChangeName: handleChangeName
-						})
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-9' },
+							_react2.default.createElement(_MessageList2.default, {
+								messages: messages
+							})
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							_react2.default.createElement(_UserList2.default, {
+								users: users
+							})
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-9' },
+							_react2.default.createElement(_MessageForm2.default, {
+								onMessageSubmit: handleMessageSubmit,
+								user: user,
+								language: language
+							})
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							_react2.default.createElement(_ChangeNameForm2.default, {
+								onChangeName: handleChangeName
+							})
+						)
 					)
 				);
 			}
