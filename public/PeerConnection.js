@@ -1,5 +1,16 @@
-// Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
+/* Adds a global 'PeerConnection' object/'class' to window. 
+The constructor for this object takes socketUrL and userid parameters.
+PeerConnection object itself has following methods:
+    addStream
+    startBroadcasting
+    sendParticipationRequest
+    acceptRequest
+    closePeerConnections
+    close
 
+
+*/
+// Documentation - https://github.com/muaz-khan/WebRTC-Experiment/tree/master/websocket
 (function () {
     // socketURL is new WebSocket('wss://pubsub.pubnub.com/' + pub + '/' + sub + '/' + channel);
     // userId = token from random generator (not hash)
@@ -213,7 +224,6 @@
     var RTCIceCandidate = window.mozRTCIceCandidate || window.RTCIceCandidate;
 
     navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia;
-    window.URL = window.webkitURL || window.URL;
 
     var isFirefox = !!navigator.mozGetUserMedia;
     var isChrome = !!navigator.webkitGetUserMedia;

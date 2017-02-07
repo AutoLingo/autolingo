@@ -11,6 +11,7 @@ import { browserHistory } from 'react-router'
 
 export const socket = io.connect('/video-chat');
 
+
 class ChatApp extends Component {
 	constructor(props) {
 		super(props)
@@ -49,7 +50,7 @@ class ChatApp extends Component {
 	//*******************************************************
 
 	joinVideo(data) {
-		console.log('data: ', data);
+		console.log('I just joined the video');
 		browserHistory.push(`${data.room}`)
 	}
 

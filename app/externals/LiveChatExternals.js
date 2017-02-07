@@ -173,7 +173,7 @@ const LiveChatExternals = () => {
                 stream: stream
             });
 
-            return callback(stream);
+            callback(stream);
         })
         .catch(console.error)
     }

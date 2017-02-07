@@ -79736,7 +79736,7 @@
 	                stream: stream
 	            });
 	
-	            return callback(stream);
+	            callback(stream);
 	        }).catch(console.error);
 	    }
 	
@@ -88228,7 +88228,7 @@
 		}, {
 			key: 'joinVideo',
 			value: function joinVideo(data) {
-				console.log('data: ', data);
+				console.log('I just joined the video');
 				_reactRouter.browserHistory.push('' + data.room);
 			}
 	
