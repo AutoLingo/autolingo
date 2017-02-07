@@ -121,21 +121,32 @@ class ChatAppGroup extends React.Component {
 		const handleChangeName = this.handleChangeName;
 		const language = this.props.state.user.selectedUser.primaryLanguage;
 		return (
-			<div id="chatbox-body">
-				<UsersList
-					users={users}
-				/>
-				<MessageList
-					messages={messages}
-				/>
-				<MessageForm
-					onMessageSubmit={handleMessageSubmit}
-					user={user}
-					language={language}
-				/>
-				<ChangeNameForm
-					onChangeName={handleChangeName}
-				/>
+			<div className="container" id="chatbox-body">
+				<div className="col-sm-9">
+					<MessageList
+						messages={messages}
+					/>
+				</div>
+				
+				<div className="col-sm-3">
+					<UsersList
+						users={users}
+					/>
+				</div>
+
+				<div>
+					<MessageForm
+						onMessageSubmit={handleMessageSubmit}
+						user={user}
+						language={language}
+					/>
+				</div>
+
+				<div>
+					<ChangeNameForm
+						onChangeName={handleChangeName}
+					/>
+				</div>
 			</div>
 		)
 	}

@@ -8,6 +8,7 @@ import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer';
 import VideoChat from './VideoChat';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router'
+import languages from '../data/languages'
 
 export const socket = io.connect('/video-chat');
 
@@ -174,34 +175,44 @@ class ChatApp extends Component {
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
+
+		let userFullLanguage = languages.filter( (lang) => { 
+								   return userLanguage === lang[1][0].split('-')[0]
+								 })[0][0]
+console.log(finalTranscripts);
 		return (
-			<div id="chatbox-body">
-				<h2>Live Video Translation</h2>
-				<div id="conversation-container">
-					<h2>Conversation</h2>
-					{
-						finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
-							return (
-								<div key={i}>
-									<br /> {transcript}
-								</div>
-							)
-						})
-					}
+			<div id="chatbox-body" className="container">
+				<h2>Live Translation</h2>
+
+				<div className="col-sm-6">
+					<h3 className="text-center">Video Chat</h3>
+					<div>
+						<VideoChat />
+					</div>
+					<div>
+						<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
+					</div>
+
 				</div>
 
-				<div id="videochat-container">
-					<VideoChat />
+				<div className="col-sm-6">
+					<h3 className="text-center">Conversation</h3>
+					<div id="conversation-container">
+						<ul>
+						{
+							finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
+								return (
+									<li key={i}>
+										{transcript}
+									</li>
+								)
+							})
+						}
+						</ul>
+					</div>
+					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 				</div>
 
-				<div id="live-transcript-container">
-					<h2>Live</h2>
-					{ interimTranscript }
-				</div>
-
-				<div id="voicerecog-container">
-					<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
-				</div>
 			</div>
 		)
 	}

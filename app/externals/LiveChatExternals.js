@@ -35,30 +35,17 @@ const LiveChatExternals = () => {
 
     peer.onUserFound = function(userid) {
         if (document.getElementById(userid)) return;
-        var tr = document.createElement('tr');
 
-        var td1 = document.createElement('td');
-        var td2 = document.createElement('td');
-
-        td1.innerHTML = userid + ' has camera. Are you interested in video chat?';
-
-        var button = document.createElement('button');
-        button.innerHTML = 'Join';
-        button.id = userid;
-        button.style.float = 'right';
+        var button = document.getElementById('join-broadcast');
+        button.style.display = 'block'
         button.onclick = function() {
             button = this;
             getUserMedia(function(stream) {
                 peer.addStream(stream);
-                peer.sendParticipationRequest(button.id);
+                peer.sendParticipationRequest(userid);
             });
             button.disabled = true;
         };
-        td2.appendChild(button);
-
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        roomsList.appendChild(tr);
     };
 
     peer.onStreamAdded = function(e) {
@@ -66,12 +53,12 @@ const LiveChatExternals = () => {
         var video = e.mediaElement;
 
         video.setAttribute('width', 600);
-        video.setAttribute('controls', true);
+        // video.setAttribute('controls', true);
 
         videosContainer.insertBefore(video, videosContainer.firstChild);
 
         video.play();
-        rotateVideo(video);
+        // rotateVideo(video);
         scaleVideos();
     };
 
@@ -79,7 +66,7 @@ const LiveChatExternals = () => {
         var video = e.mediaElement;
         if (video) {
             video.style.opacity = 0;
-            rotateVideo(video);
+            // rotateVideo(video);
             setTimeout(function() {
                 video.parentNode.removeChild(video);
                 scaleVideos();
@@ -101,22 +88,10 @@ const LiveChatExternals = () => {
     };
 //**************************** 
 
-    // document.querySelector('#your-name').onchange = function() {
-    //     peer.userid = this.value;
-    // };
-
     var videosContainer = document.getElementById('videos-container') || document.body;
     var btnSetupNewRoom = document.getElementById('setup-new-room');
-    var roomsList = document.getElementById('rooms-list');
 
     if (btnSetupNewRoom) btnSetupNewRoom.onclick = setupNewRoomButtonClickHandler;
-
-    function rotateVideo(video) {
-        video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(0deg)';
-        setTimeout(function() {
-            video.style[navigator.mozGetUserMedia ? 'transform' : '-webkit-transform'] = 'rotate(360deg)';
-        }, 1000);
-    }
 
     function scaleVideos() {
         var videos = document.querySelectorAll('video'),
@@ -164,7 +139,7 @@ const LiveChatExternals = () => {
         .then(function(stream) {
             var video = document.createElement('video');
             video.src = URL.createObjectURL(stream);
-            video.controls = true;
+            // video.controls = true;
             video.muted = true;
 
             peer.onStreamAdded({

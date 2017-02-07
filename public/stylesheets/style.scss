@@ -1,16 +1,27 @@
 /*Global background styling*/
+html {
+  background-color: #cad2d3;
+}
 
 body {
 	background: url(../background-world-map.jpg) no-repeat center 30px;
 	background-size: 100%;
+  background-color: #cad2d3;
 }
 
+#main {
+  background-color: #cad2d3;
+}
 /*End of global background styling*/
 
 /*Nav bar styling*/
 
 * {
 	font-family: 'Lato', sans-serif;
+}
+
+nav {
+  z-index: 999;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -35,6 +46,7 @@ body {
 
 #language-list {
   margin-bottom: 20px;
+  font-size: 18px;
 
   .dropdown-menu {
     margin-bottom: 20px;
@@ -57,11 +69,12 @@ body {
 /***************** Start of map styling *****************/
 #map {
   position:absolute;
-  top: 8.5vh;
+  top: 64px;
   left: 0;
   right: 0;
   bottom:0;
   width:100%;
+  height:100%;
   z-index: 1;
 }
 
@@ -210,17 +223,17 @@ body {
 /***************** start of chat box (socket) styling *****************/
 
 #chatbox-body {
-	width: 90%;
-	/*height: 900px;*/
+	width: 90vw;
+	height: 80vh;
 	margin: 0 auto 20px;
-    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-    border-radius: 4px;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  border-radius: 4px;
 	position: relative;
 	z-index: 99;
 	background-color: white;
-    padding: 20px;
-
+  padding: 20px;
+  margin-top: 90px;
     h2 {
     	display: block;
     	text-align: center;
@@ -228,16 +241,78 @@ body {
 }
 
 #conversation-container {
-	width: 50%;
-	min-height: 444px;
-	display: inline-block;
+  border: 1px solid #ddd;
+  min-height: 400px;
+  height: auto;
+  max-height: 500px;
+  border-radius: 5px;
+  padding: 30px;
+  font-size: 1.4em;
 }
 
-#videochat-container {
-	width: 42%;
-	margin-right: 30px;
-	float: right;
+
+#buttons-wrapper {
+  position: relative;
 }
+
+#start-broadcasting {
+  position: absolute;
+  z-index: 49;
+  padding: 30px;
+  margin-bottom: -30px;
+  margin-left: 10%;
+  width: 80%;
+  top: 30px;
+}
+
+#join-broadcast {
+  position: absolute;
+  z-index: 50;
+  padding: 30px;
+  margin-bottom: -30px;
+  margin-top: 0;
+  margin-left: 10%;
+  width: 80%;
+  top: 30px;
+  display: none;
+}
+
+#rooms-list {
+  position: absolute;
+  top: 0;
+  z-index: 50;
+}
+
+#videochat-wrapper {
+  position: relative;
+  padding-bottom: 75%;
+}
+
+#videos-container-wrapper {
+  position: absolute;
+  top: 0;
+  /*padding-bottom: 75%;*/
+  width: 100%;
+}
+
+#videos-container {
+  position: relative;
+  padding-bottom: 75%;
+
+  video:nth-child(1) {
+    width: 100%;
+    position: absolute;
+    z-index: 51;
+  }
+  video:nth-child(2) {
+    width: 30%;
+    position: absolute;
+    z-index: 52;
+    left: 0;
+    bottom: 1px;
+  }
+}
+
 
 
 .users {
@@ -494,17 +569,19 @@ a:hover {
   visibility: hidden;
 }
 #results {
-  font-size: 14px;
+  font-size: 1.4em;
   font-weight: bold;
   border: 1px solid #ddd;
-  padding: 15px;
+  padding: 20px;
   text-align: left;
-  min-height: 150px;
+  min-height: 100px;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 #start_button {
   border: 0;
   background-color:transparent;
-  padding: 0;
+  padding: 25px 15px;
 }
 
 /************************* start of Speech recognition *************************
@@ -520,7 +597,7 @@ a:hover {
 
 /**************************  of Instruction Message **************************/
 
-//************************* start of country transition component *************************
+/************************* start of country transition component *************************/
 
 .countryTransition-appear {
   opacity: 0.01;
@@ -534,8 +611,15 @@ a:hover {
 .countryTransitionMsg {
   position: absolute;
   top: 50vh;
-  left: 50vw;
+  left: 40vw;
   z-index: 99;
 }
 
-//************************* start of country transition component *************************
+.countryTransitionMsg h1 {
+  color: #0000CD;
+  font-weight: bold;
+  font-family: Helvetica;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+
+/************************* start of country transition component *************************/
