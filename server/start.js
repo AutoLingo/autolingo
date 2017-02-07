@@ -10,9 +10,19 @@ const socketio = require('socket.io');
 const chalk = require('chalk');
 
 let IO = null;
+  var names = {};
+
+function getAllRoomMembers(room, namespace, io) {
+        const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
+        
+        const sockets = socketIds.map(id => {
+          const idSplit = id.split('#')[1]
+          return io.sockets.connected[idSplit];
+        })
+          return sockets;
+  }
 
 var userNames = (function() {
-  var names = {};
 
   //check if the given name exists in the names object
   var claim = function(name) {
@@ -44,6 +54,7 @@ var userNames = (function() {
     for(let user in names) {
       res.push(user)
     }
+    
     return res;
   }
 
@@ -147,19 +158,22 @@ function socketInit (server) {
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
     var name = userNames.getGuestName();
+    socket.name = name
 
-    //send the new user their name and a list of users
-    socket.emit('init', {
-      name: name,
-      users: userNames.get()
-    });
+    socket.on('join_room', function(data) {
+      socket.currentRoom = data.room
+      socket.join(data.room)
 
-    //notify other users that a new user has joined
-    socket.broadcast.emit('user:join', {
-      name: name
-    });
+      groupChat.to(data.room).emit('init', {
+          name: name,
+          users: userNames.get()
+        });
+      // const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
+      socket.to(data.room).broadcast.emit('user:join', {
+        name: name
+      });
+    })
 
-    //render/send user's message to other user
     socket.on('send:message', function(data) {
       socket.broadcast.emit('send:message', {
         user: name,
@@ -168,6 +182,7 @@ function socketInit (server) {
         id: data.id
       })
     })
+
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
       if(userNames.claim(data.name)) {
@@ -175,8 +190,9 @@ function socketInit (server) {
         userNames.free(oldName);
 
         name = data.name;
+        socket.name = name;
 
-        socket.broadcast.emit('change:name', {
+        socket.broadcast.to(socket.currentRoom).emit('change:name', {
           oldName: oldName,
           newName: name
         });
@@ -187,15 +203,14 @@ function socketInit (server) {
       }
     });
 
-    //send/broadcast to user2 that user1 left the chat box
-    socket.on('disconnect', function() {
-      socket.broadcast.emit('user:left', {
-        name: name
+    socket.on('disconnect', function(){
+      groupChat.to(socket.currentRoom).emit('user:left', {
+        name: socket.name
       })
-      userNames.free(name);
+      userNames.free(socket.name);
     })
-  })
 
+  })
 // *********VIDEO CHAT********************
   videoChat.on('connection', function(socket) {
 

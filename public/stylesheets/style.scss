@@ -208,7 +208,7 @@ body {
   -webkit-animation-duration: 0.75s;
   animation-duration: 0.75s;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out; 
+  animation-timing-function: ease-out;
 }
 
 /***************** start of chat box (socket) styling *****************/
@@ -511,9 +511,9 @@ a:hover {
   padding: 0;
 }
 
-/************************* start fo Speech recognition *************************
+/************************* start of Speech recognition *************************
 
-/************************** start fo Instruction Message **************************/
+/************************** start of Instruction Message **************************/
 .swal-div {
   color: black;
 }
@@ -522,4 +522,24 @@ a:hover {
   background-color: white;
 }
 
+/**************************  of Instruction Message **************************/
 
+//************************* start of country transition component *************************
+
+.countryTransition-appear {
+  opacity: 0.01;
+}
+
+.countryTransition-appear.countryTransition-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.countryTransitionMsg {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  z-index: 99;
+}
+
+//************************* start of country transition component *************************
