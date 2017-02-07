@@ -10,6 +10,7 @@ const socketio = require('socket.io');
 const chalk = require('chalk');
 
 let IO = null;
+  var names = {};
 
 function getAllRoomMembers(room, namespace, io) {
         const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
@@ -24,7 +25,6 @@ function getAllRoomMembers(room, namespace, io) {
   }
 
 var userNames = (function() {
-  var names = {};
 
   //check if the given name exists in the names object
   var claim = function(name) {
@@ -205,8 +205,11 @@ function socketInit (server) {
         userNames.free(oldName);
 
         name = data.name;
+        console.log('SERVER: user name change ', data);
+        console.log('SERVER: names left after name change', names)
+        socket.name = name;
 
-        groupChat.to(socket.currentRoom).emit('change:name', {
+        socket.broadcast.to(socket.currentRoom).emit('change:name', {
           oldName: oldName,
           newName: name
         });
@@ -221,6 +224,7 @@ function socketInit (server) {
    
       
     socket.on('disconnect', function(){
+        console.log('socket.name: ', socket.name);
       groupChat.to(socket.currentRoom).emit('user:left', {
         name: socket.name
       })

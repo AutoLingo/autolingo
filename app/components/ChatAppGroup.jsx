@@ -7,7 +7,8 @@ import ChangeNameForm from './ChangeNameForm.jsx';
 import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage'
 import { translateActionCreator } from '../reducers/translate'
 import {connect} from 'react-redux';
-const socket = io.connect('/group-chat');
+
+let socket; 
 
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
@@ -27,8 +28,7 @@ class ChatAppGroup extends React.Component {
 
 	//run below functions after the components are mounted on the page
 	componentDidMount() {
-		
-		
+		socket = io.connect('/group-chat');
 		// this.setState({socket})
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
@@ -43,7 +43,12 @@ class ChatAppGroup extends React.Component {
 	_initialize(data) {
 		console.log('INITIALIZE');
 		
-		var {users, name} = data;
+		let users = data.users;
+		let name = this.props.userName ? this.props.userName : data.name
+		
+		console.log('Initialize name: ', name);
+		console.log('Initialize users: ', users);
+		console.log('Initialize data;: ', data);
 		this.dispatch(setGroupUser(name));
 		this.dispatch(addToGroupUsers(users));
 	}
@@ -130,6 +135,10 @@ class ChatAppGroup extends React.Component {
 		// this.setState({users, messages})
 
 		var {oldName, newName} = data;
+		console.log('data: ', data);
+		console.log('newName: ', newName);
+		console.log('oldName: ', oldName);
+
 		var nameChangeMsg = {
 			user: 'APPLICATION BOT',
 			text: 'Change Name : ' + oldName + ' ==> ' + newName
@@ -161,8 +170,8 @@ class ChatAppGroup extends React.Component {
 		// 	users.splice(index, 1, newName);
 		// 	this.setState({users, user: newName})
 		// })
-
 		var oldName = this.props.state.groupMessage.user
+		console.log(`i am changing my name from ${oldName} to ${newName}`)
 		socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
