@@ -21,7 +21,9 @@ class MessageForm extends React.Component {
 		e.preventDefault();
 		var message = {
 			user: this.props.user,
-			text: this.state.text
+			text: this.state.text,
+			language: this.props.language,
+			id: 1
 		}
 		//Connects to ChatApp component
 		this.props.onMessageSubmit(message);
@@ -32,7 +34,6 @@ class MessageForm extends React.Component {
 	changeHandler(e) {
 		//change the state of text to inputted value
 		this.setState({ text: e.target.value });
-		console.log('@$!@%!%!%!@#!@##', e.target.value)
 	}
 
 	render() {
