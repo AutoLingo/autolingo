@@ -1,6 +1,6 @@
 'use strict'
 
-import { SET_USER, ADD_USER, REMOVE_USER } from '../actionCreators/user';
+import { SET_USER, ADD_USER, REMOVE_USER, SET_DIALECT } from '../actionCreators/user';
 
 const initialState = { selectedUser: {firstName: '', lastName: '', email: '', primaryLanguage: 'en', dialect: 'en-US', country: 'America'} };
 
@@ -17,6 +17,9 @@ export default function userReducer(state = initialState, action) {
     	let index = newState.users.indexOf(action.user)
     	newState.users.splice(index,1)
 	    break;
+    case SET_DIALECT:
+         newState.selectedUser.dialect = action.dialect
+         newState.selectedUser.primaryLanguage = action.primaryLanguage
     default:
       return state;
   }

@@ -1,66 +1,22 @@
+
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import Instructions from './Instructions.jsx';
-// import repositionMap from './utilities.jsx';
-// import { setCountry } from '../actionCreators/map.js';
-// import store from '../store.jsx';
-// import { connect } from 'react-redux';
+import languages from '../data/languages'
 
-// const america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 }
-// const china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 }
-// const spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 }
-// const france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 }
-// const korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 }
-// const zoomOut = { name: 'globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 }
+class Navbar extends Component {
+  
 
-const languageList = {
-  0 : "Afrikaans",
-  1 : "Bahasa Indonesia",
-  2 : "Bahasa Melayu",
-  3 : "Català",
-  4 : "Čeština",
-  5 : "Dansk",
-  6 : "Deutsch",
-  7 : "English",
-  8 : "Español",
-  9 : "Euskara",
-  10 : "Filipino",
-  11 : "Français",
-  12 : "Galego",
-  13 : "Hrvatski",
-  14 : "IsiZulu",
-  15 : "Íslenska",
-  16 : "Italiano",
-  17 : "Lietuvių",
-  18 : "Magyar",
-  19 : "Nederlands",
-  20 : "Norsk bokmål",
-  21 : "Polski",
-  22 : "Português",
-  23 : "Română",
-  24 : "Slovenščina",
-  25 : "Slovenčina",
-  26 : "Suomi",
-  27 : "Svenska",
-  28 : "Tiếng Việt",
-  29 : "Türkçe",
-  30 : "Ελληνικά",
-  31 : "български",
-  32 : "Pусский",
-  33 : "Српски",
-  34 : "Українська",
-  35 : "한국어",
-  36 : "中文",
-  37 : "日本語",
-  38 : "हिन्दी",
-  39 : "ภาษาไทย"
-}
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {show: false};
     this.showInstruction = this.showInstruction.bind(this);
+  }
+      
+  componentDidMount() {
+    $('[data-submenu]').submenupicker();
   }
 
   showInstruction(event) {
@@ -80,6 +36,7 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
+
             <a className="navbar-brand" href="/">Auto<span className="lingo-blue">Lingo</span></a>
           </div>
 
@@ -87,15 +44,34 @@ export default class Navbar extends Component {
             <ul className="nav navbar-nav navbar-right">
               <li><a href="/">World Map</a></li>
               <li><a href="#">About</a></li>
-              
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
-                <ul id="language-list" className="dropdown-menu" role="menu">
+                <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
+                <ul id="language-list" className="dropdown-menu">
 
                   {
-                    Object.keys(languageList).map( value => (
-                      <li key={value}><a href="#">{languageList[value]}</a></li>
-                      )
+                    languages.map( language => {
+                        if ( language.length > 2 ) { //if there is more than 1 dialect
+                          let dialects = language.slice(1,language.length) //we don't want to iterate over the main language
+                          return (
+                            <li key={language} className="dropdown-submenu">
+                              <a tabIndex="0">{language[0]}</a>
+                              <ul className="dropdown-menu">
+                                <li className="dropdown-header">Select Dialect</li>
+                                { dialects.map( dialect => (<li key={dialect}><a onClick={()=>{this.props.setUserLanguage(dialect[0].split('-')[0], dialect[0])}} data-langcode={dialect[0]} tabIndex="0">{dialect[1]}</a></li>) ) }
+                              </ul>
+                            </li>
+                          )
+                        } else {
+                          let dialect = language[1][0]
+                          let langCode = language[1][0].split('-')[0]
+
+                          return (
+                            <li key={language}>
+                              <a onClick={()=>{this.props.setUserLanguage(langCode, dialect)}} data-langcode={dialect} >{language[0]}</a>
+                            </li>
+                          )
+                        }
+                      }
                     )
                   }
 
@@ -135,22 +111,3 @@ export default class Navbar extends Component {
     );
   }
 }
-
-
-// function mapDispatchToProps(dispatch, ownProps) {
-//   function zoomInCountry(country) {
-//     dispatch(setCountry(country.name, country.fitBounds, country.zoomNum))
-//   }
-
-//   return { zoomInCountry };
-// }
-
-
-// export default connect(null, mapDispatchToProps)(Navbar);
-
-
-
-
-
-
-

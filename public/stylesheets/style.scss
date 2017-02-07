@@ -34,9 +34,17 @@ body {
 }
 
 #language-list {
-	height: 500px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+  margin-bottom: 20px;
+
+  .dropdown-menu {
+    margin-bottom: 20px;
+  }
+
+  .dropdown-submenu {
+    a {
+      cursor: pointer;
+    }
+  }
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
