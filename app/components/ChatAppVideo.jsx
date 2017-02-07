@@ -181,21 +181,21 @@ class ChatApp extends Component {
 console.log(finalTranscripts);
 		return (
 			<div id="chatbox-body" className="container">
-				<h2>Live Translation</h2>
+				<h2>Video Chat</h2>
 
 				<div className="col-sm-6">
-					<h3 className="text-center">Video Chat</h3>
 					<div>
 						<VideoChat />
 					</div>
-					<div>
-						<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
-					</div>
+
 
 				</div>
 
 				<div className="col-sm-6">
-					<h3 className="text-center">Conversation</h3>
+					<div>
+						<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
+					</div>
+					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 					<div id="conversation-container">
 						<ul>
 						{
@@ -205,11 +205,10 @@ console.log(finalTranscripts);
 										{transcript}
 									</li>
 								)
-							})
+							}).reverse()
 						}
 						</ul>
 					</div>
-					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 				</div>
 
 			</div>
