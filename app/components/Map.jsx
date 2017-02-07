@@ -4,15 +4,14 @@ import React, { Component } from 'react';
 import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
 import LanguageMessage from './LanguageMessage';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import repositionMap from './utilities.jsx';
 
 export default class Map extends Component {
   constructor (props) {
     super(props);
-    // this.map;
+    this.map;
     this.repositionMap = this.repositionMap.bind(this);
-    // this.usaMarker;
-    // this.usaIcon;
     this.usaMarker;
     this.chinaMarker;
     this.franceMarker;
@@ -22,16 +21,18 @@ export default class Map extends Component {
 
   componentDidMount() {
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
-    L.mapbox.accessToken = 'pk.eyJ1IjoidGhsZWUxMTIyIiwiYSI6ImNpeWdyd2tycDAzZTUzMm12eDcybjJocTgifQ.r1njnGgI95MNlwVBTm1slw'
+    L.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
     this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
-    L.mapbox.styleLayer('mapbox://styles/thlee1122/ciyhpbj15003d2sluqt6ylrqa').addTo(map);
+    L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
 
     map.dragging.disable();
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
     map.scrollWheelZoom.disable();
+    map.zoomControl.remove();
+
     var geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {
         switch(feature.properties.title) {
@@ -120,10 +121,14 @@ export default class Map extends Component {
     }
 
     let mapThis = this;
+
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds())
       const country = mapThis.props.findCountry(e.target.getBounds());
-      mapThis.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+      mapThis.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
+      // mapThis.props.removeLayer(this.usaMarker);
+      console.log(mapThis);
+      // mapThis.removeLayer(this.usaMarker);
     }
 
     function countriesOnEachFeature(feature, layer) {
@@ -137,8 +142,13 @@ export default class Map extends Component {
     }
     this.L = L
   }
-  repositionMap(country) {
-    return (event) => {
+
+  repositionMap(country, map) {
+    // console.log('map', map)
+    // return (event) => {
+      // console.log('this', this)
+      // console.log('this.map', this.map);
+      // if(!this.map) return "";
       this.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
       this.map.dragging.disable();
       this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
@@ -159,24 +169,29 @@ export default class Map extends Component {
         this.map.removeLayer(this.chinaMarker)
         this.map.removeLayer(this.koreaMarker)
         this.map.removeLayer(this.franceMarker)
-      }
+        // console.log(this.map)
     }
   }
 
   render() {
+
+   // console.log('hello~~~~')
+   //  const zoomIn = this.repositionMap(this.props.country, this.map);
+   //  zoomIn();
     return (
       <div>
         <div id='map'></div>
         <div id="country-buttons">
           <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
-          <button id='fit-china' onClick={ this.repositionMap(this.props.china) }>Go to China</button>
-          <button id='fit-spain' onClick={ this.repositionMap(this.props.spain) }>Go to Spain</button>
-          <button id='fit-france' onClick={ this.repositionMap(this.props.france) }>Go to France</button>
-          <button id='fit-korea' onClick={ this.repositionMap(this.props.korea) }>Go to Korea</button>
-          <button id='zoomout' onClick={ this.repositionMap(this.props.zoomOut) }>Zoom out</button>
+          <button id='fit-china' onClick={ ()=>this.repositionMap(this.props.china, this.map) }>Go to China</button>
+          <button id='fit-spain' onClick={ ()=>this.repositionMap(this.props.spain, this.map) }>Go to Spain</button>
+          <button id='fit-france' onClick={ ()=>this.repositionMap(this.props.france, this.map) }>Go to France</button>
+          <button id='fit-korea' onClick={ ()=>this.repositionMap(this.props.korea, this.map) }>Go to Korea</button>
+          <button id='zoomout' onClick={ ()=>this.repositionMap(this.props.zoomOut, this.map) }>Zoom out</button>
         </div>
       </div>
     )
   }
 }
-// <button id="fit-america" onClick={ this.repositionMap(this.props.america) }>Go to U.S.A</button>
+
+

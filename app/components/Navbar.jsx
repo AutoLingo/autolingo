@@ -1,10 +1,28 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router'
+
+import React, {Component} from 'react';
+import { Link } from 'react-router';
+import Instructions from './Instructions.jsx';
 import languages from '../data/languages'
 
 class Navbar extends Component {
+  
+
+
+export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {show: false};
+    this.showInstruction = this.showInstruction.bind(this);
+  }
+      
   componentDidMount() {
     $('[data-submenu]').submenupicker();
+  }
+
+  showInstruction(event) {
+    let show = !this.state.show;
+    console.log(show);
+    this.setState({show});
   }
 
   render() {
@@ -18,12 +36,13 @@ class Navbar extends Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Auto<span className="lingo-blue">Lingo</span></a>
+
+            <a className="navbar-brand" href="/">Auto<span className="lingo-blue">Lingo</span></a>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#">World Map</a></li>
+              <li><a href="/">World Map</a></li>
               <li><a href="#">About</a></li>
               <li className="dropdown">
                 <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
@@ -58,6 +77,18 @@ class Navbar extends Component {
 
                 </ul>
               </li>
+
+              {/*<li className="dropdown">
+                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Country <span className="caret"></span></a>
+                <ul id="country-list" className="dropdown-menu" role="menu">
+                  <li><a onClick={()=> this.props.zoomInCountry(america)}>Go to U.S.A</a></li>
+                  <li><a onClick={repositionMap(this.props.china, this.map)}>Go to China</a></li>
+                  <li><a onClick={repositionMap(this.props.spain, this.map)}>Go to Spain</a></li>
+                  <li><a onClick={repositionMap(this.props.france, this.map)}>Go to France</a></li>
+                  <li><a onClick={repositionMap(this.props.korea, this.map)}>Go to Korea</a></li>
+                </ul>
+              </li>*/}
+
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
                 <ul id="change-username-form" className="dropdown-menu" role="menu">
@@ -69,13 +100,14 @@ class Navbar extends Component {
                   </form>
                 </ul>
               </li>
+              
+              {this.state.show && <Instructions showInstruction={this.showInstruction}/>}
+              
+              <li><a href="#" onClick={this.showInstruction}>Instructions</a></li>
             </ul>
           </div>
         </div>
       </nav>
-
     );
   }
 }
-
-export default Navbar
