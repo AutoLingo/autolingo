@@ -21,7 +21,8 @@ body {
   width: 280px; }
 
 #language-list {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  font-size: 18px; }
   #language-list .dropdown-menu {
     margin-bottom: 20px; }
   #language-list .dropdown-submenu a {
@@ -34,11 +35,12 @@ body {
 /***************** Start of map styling *****************/
 #map {
   position: absolute;
-  top: 8.5vh;
+  top: 8vh;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
+  height: 100%;
   z-index: 1; }
 
 #country-buttons {
@@ -166,8 +168,8 @@ body {
 
 /***************** start of chat box (socket) styling *****************/
 #chatbox-body {
-  width: 90%;
-  /*height: 900px;*/
+  width: 90vw;
+  height: 80vh;
   margin: 0 auto 20px;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -175,7 +177,8 @@ body {
   position: relative;
   z-index: 99;
   background-color: white;
-  padding: 20px; }
+  padding: 20px;
+  margin-top: 90px; }
   #chatbox-body h2 {
     display: block;
     text-align: center; }
@@ -427,6 +430,7 @@ a:hover {
   background-color: white; }
 
 /**************************  of Instruction Message **************************/
+/************************* start of country transition component *************************/
 .countryTransition-appear {
   opacity: 0.01; }
 
@@ -437,5 +441,13 @@ a:hover {
 .countryTransitionMsg {
   position: absolute;
   top: 50vh;
-  left: 50vw;
+  left: 40vw;
   z-index: 99; }
+
+.countryTransitionMsg h1 {
+  color: #0000CD;
+  font-weight: bold;
+  font-family: Helvetica;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); }
+
+/************************* start of country transition component *************************/

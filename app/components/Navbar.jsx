@@ -4,7 +4,6 @@ import { Link } from 'react-router';
 import Instructions from './Instructions.jsx';
 import languages from '../data/languages'
 
-
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
