@@ -45,11 +45,7 @@ nav {
 /***************** Start of map styling *****************/
 #map {
   position: absolute;
-<<<<<<< HEAD
-  top: 8vh;
-=======
   top: 64px;
->>>>>>> design
   left: 0;
   right: 0;
   bottom: 0;
