@@ -4,10 +4,10 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class CountryTransition extends React.Component {
   componentDidMount() {
-    timeoutID = window.setTimeout(changeReactComponent, 2000);
+    const timeoutID = window.setTimeout(changeReactComponent, 2000);
 
     function changeReactComponent() {
-      browserHistory.push('/video-chat');
+      browserHistory.push('/group-chat');
       window.clearTimeout(timeoutID);
     }
   }

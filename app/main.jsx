@@ -16,6 +16,7 @@ import NavbarContainer from './containers/NavbarContainer'
 import ChatAppGroup from './components/ChatAppGroup'
 import ChatAppVideo from './components/ChatAppVideo'
 import InstructionMessage from './components/Instructions.jsx'
+import CountryTransition from './components/CountryTransition.jsx'
 
 // generated hash is used to match 2 users in a private chatroom for LiveChat
 const generateHash = () => {
@@ -35,6 +36,7 @@ render (
         <Route path="/livechat" component={LiveChat} />
         <Route path="/language" component={LanguageMessage} />
         <Route path="/instructions" component={InstructionMessage} />
+        <Route path="/country-transition" component={CountryTransition} />
       </Route>
     </Router>
   </Provider>,

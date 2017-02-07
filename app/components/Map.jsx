@@ -197,16 +197,34 @@ export default class Map extends Component {
       <div>
         <div className="container" id='map'></div>
         <div id="country-buttons">
-          <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
-          <button id='fit-china' onClick={ ()=>this.repositionMap(this.props.china, this.map) }>Go to China</button>
-          <button id='fit-spain' onClick={ ()=>this.repositionMap(this.props.spain, this.map) }>Go to Spain</button>
-          <button id='fit-france' onClick={ ()=>this.repositionMap(this.props.france, this.map) }>Go to France</button>
-          <button id='fit-korea' onClick={ ()=>this.repositionMap(this.props.korea, this.map) }>Go to Korea</button>
-          <button id='zoomout' onClick={ ()=>this.repositionMap(this.props.zoomOut, this.map) }>Zoom out</button>
+          <Link to={"/country-transition"}>
+            <button id="fit-america" onClick={ ()=>this.repositionMap(this.props.america, this.map) }>Go to U.S.A</button>
+          </Link>
+          
+          <Link to={"/country-transition"}>
+            <button id='fit-china' onClick={ ()=>this.repositionMap(this.props.china, this.map) }>Go to China</button>
+          </Link>
+          
+          <Link to={"/country-transition"}>
+            <button id='fit-spain' onClick={ ()=>this.repositionMap(this.props.spain, this.map) }>Go to Spain</button>
+          </Link>
+
+          <Link to={"/country-transition"}>
+            <button id='fit-france' onClick={ ()=>this.repositionMap(this.props.france, this.map) }>Go to France</button>
+          </Link>
+
+          <Link to={"/country-transition"}>
+            <button id='fit-korea' onClick={ ()=>this.repositionMap(this.props.korea, this.map) }>Go to Korea</button>
+          </Link>
+
+          <Link to={"/country-transition"}>
+            <button id='zoomout' onClick={ ()=>this.repositionMap(this.props.zoomOut, this.map) }>Zoom out</button>
+          </Link>
         </div>
       </div>
     )
   }
 }
 
+          // <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
 
