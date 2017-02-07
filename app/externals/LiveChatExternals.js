@@ -160,7 +160,8 @@ const LiveChatExternals = () => {
                 mandatory: {}
             }
         };
-        navigator.getUserMedia(hints, function(stream) {
+        navigator.mediaDevices.getUserMedia(hints)
+        .then(function(stream) {
             var video = document.createElement('video');
             video.src = URL.createObjectURL(stream);
             video.controls = true;
@@ -172,8 +173,9 @@ const LiveChatExternals = () => {
                 stream: stream
             });
 
-            callback(stream);
-        });
+            return callback(stream);
+        })
+        .catch(console.error)
     }
 
     (function() {
