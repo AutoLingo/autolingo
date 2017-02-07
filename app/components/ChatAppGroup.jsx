@@ -4,9 +4,11 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage'
-import { translateActionCreator } from '../reducers/translate'
-import {connect} from 'react-redux';
+import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage';
+import { translateActionCreator } from '../reducers/translate';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
+
 
 let socket;
 
@@ -116,6 +118,7 @@ class ChatAppGroup extends React.Component {
 
 	joinVideoChat(selectedUser) {
 
+		browserHistory.push('/live-chat');
 	}
 
 	render() {
@@ -128,30 +131,35 @@ class ChatAppGroup extends React.Component {
 		const joinVideoChat = this.joinVideoChat
 		return (
 			<div className="container" id="chatbox-body">
-				<div className="col-sm-9">
-					<MessageList
-						messages={messages}
-					/>
-				</div>
+				<h1>Live Group Chat</h1>
+				<div className="row">
+					<div className="col-sm-9">
+						<MessageList
+							messages={messages}
+						/>
+					</div>
 
-				<div className="col-sm-3">
-					<UsersList
-						users={users, joinVideoChat}
-					/>
+					<div className="col-sm-3">
+						<UsersList
+							users={users}
+							joinVideoChat={joinVideoChat}
+						/>
+					</div>
 				</div>
+				<div className="row">
+					<div className="col-sm-9">
+						<MessageForm
+							onMessageSubmit={handleMessageSubmit}
+							user={user}
+							language={language}
+						/>
+					</div>
 
-				<div>
-					<MessageForm
-						onMessageSubmit={handleMessageSubmit}
-						user={user}
-						language={language}
-					/>
-				</div>
-
-				<div>
-					<ChangeNameForm
-						onChangeName={handleChangeName}
-					/>
+					<div className="col-sm-3">
+						<ChangeNameForm
+							onChangeName={handleChangeName}
+						/>
+					</div>
 				</div>
 			</div>
 		)
