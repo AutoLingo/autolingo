@@ -54440,7 +54440,7 @@
 	                              _react2.default.createElement(
 	                                'a',
 	                                { onClick: function onClick() {
-	                                    _this2.props.setUserLanguage(dialect[0].split('')[0], dialect[0]);
+	                                    _this2.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]);
 	                                  }, 'data-langcode': dialect[0], tabIndex: '0' },
 	                                dialect[1]
 	                              )

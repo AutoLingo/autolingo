@@ -38,7 +38,7 @@ class Navbar extends Component {
                               <a tabIndex="0">{language[0]}</a>
                               <ul className="dropdown-menu">
                                 <li className="dropdown-header">Select Dialect</li>
-                                { dialects.map( dialect => (<li key={dialect}><a onClick={()=>{this.props.setUserLanguage(dialect[0].split('')[0], dialect[0])}} data-langcode={dialect[0]} tabIndex="0">{dialect[1]}</a></li>) ) }
+                                { dialects.map( dialect => (<li key={dialect}><a onClick={()=>{this.props.setUserLanguage(dialect[0].split('-')[0], dialect[0])}} data-langcode={dialect[0]} tabIndex="0">{dialect[1]}</a></li>) ) }
                               </ul>
                             </li>
                           )
