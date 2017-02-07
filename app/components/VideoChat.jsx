@@ -15,7 +15,6 @@ class VideoChat extends Component {
 		return (
 			<section>
 			    <section>
-			        <input type="text" id="your-name" placeholder="your-name" />
 			        <button id="start-broadcasting" className="setup">Start Video Chat</button>
 			    </section>
                 <table id="rooms-list"></table>

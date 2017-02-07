@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import VoiceRecognition from '../components/VoiceRecognition';
 
+import store from '../store'; //this is an antipattern but this container is special
 
 const VoiceRecognitionContainer = (props) => {
   if (!('webkitSpeechRecognition' in window)) {
@@ -123,9 +124,8 @@ const VoiceRecognitionContainer = (props) => {
     final_transcript = '';
 
     // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
-      // recognition.lang = select_dialect.value;
-      // CHANGED TO REFLECT STORE STATE. USER SHOULD CHANGE CHOOSE HOME COUNTRY TO ASSIGN DIALECT
-    recognition.lang = props.userDialect
+    // GETTING DIALECT STRAIGHT FROM THE STORE BECAUSE THIS IS A STATELESS COMPONENT THAT REDUX CAN'T RERENDER
+    recognition.lang = store.getState().user.selectedUser.dialect
     console.log('recognition.lang: ', recognition.lang);
       
     // *****************************
