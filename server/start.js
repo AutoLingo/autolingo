@@ -14,14 +14,12 @@ let IO = null;
 
 function getAllRoomMembers(room, namespace, io) {
         const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
-        console.log('socketIds: ', socketIds);
+        
         const sockets = socketIds.map(id => {
           const idSplit = id.split('#')[1]
           return io.sockets.connected[idSplit];
         })
           return sockets;
-        
-        
   }
 
 var userNames = (function() {
@@ -56,7 +54,7 @@ var userNames = (function() {
     for(let user in names) {
       res.push(user)
     }
-    console.log('user names on server: ', res);
+    
     return res;
   }
 
@@ -164,31 +162,18 @@ function socketInit (server) {
 
     socket.on('join_room', function(data) {
       socket.currentRoom = data.room
-      console.log('data on join)_room: ', data);
-      
-        socket.join(data.room)
-        console.log('data.room: ', data.room);
-        
-        
-        groupChat.to(data.room).emit('init', {
+      socket.join(data.room)
+
+      groupChat.to(data.room).emit('init', {
           name: name,
           users: userNames.get()
         });
-       
-        const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
-
-    
-      
+      // const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
       socket.to(data.room).broadcast.emit('user:join', {
         name: name
       });
     })
 
-     
-
-    //notify other users that a new user has joined
-
-    //render/send user's message to other user
     socket.on('send:message', function(data) {
       socket.broadcast.emit('send:message', {
         user: name,
@@ -205,8 +190,6 @@ function socketInit (server) {
         userNames.free(oldName);
 
         name = data.name;
-        console.log('SERVER: user name change ', data);
-        console.log('SERVER: names left after name change', names)
         socket.name = name;
 
         socket.broadcast.to(socket.currentRoom).emit('change:name', {
@@ -220,11 +203,7 @@ function socketInit (server) {
       }
     });
 
-    //send/broadcast to user2 that user1 left the chat box
-   
-      
     socket.on('disconnect', function(){
-        console.log('socket.name: ', socket.name);
       groupChat.to(socket.currentRoom).emit('user:left', {
         name: socket.name
       })
@@ -232,7 +211,6 @@ function socketInit (server) {
     })
 
   })
-
 // *********VIDEO CHAT********************
   videoChat.on('connection', function(socket) {
 

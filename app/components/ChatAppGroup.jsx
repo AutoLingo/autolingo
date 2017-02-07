@@ -26,10 +26,9 @@ class ChatAppGroup extends React.Component {
 		this._disconnectUser = this._disconnectUser.bind(this)
 	}
 
-	//run below functions after the components are mounted on the page
 	componentDidMount() {
 		socket = io.connect('/group-chat');
-		// this.setState({socket})
+
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -41,30 +40,18 @@ class ChatAppGroup extends React.Component {
 
 	//set user with given name
 	_initialize(data) {
-		console.log('INITIALIZE');
-		
 		let users = data.users;
 		let name = this.props.userName ? this.props.userName : data.name
 		
-		console.log('Initialize name: ', name);
-		console.log('Initialize users: ', users);
-		console.log('Initialize data;: ', data);
 		this.dispatch(setGroupUser(name));
 		this.dispatch(addToGroupUsers(users));
 	}
 
 	//push the given message into messages array
 	_messageReceive(message) {
-		// var {messages} = this.state;
-		// messages.push(message);
-		// this.setState({messages})
-		
 		const userLanguage = this.props.userLanguage
 		
 		if (userLanguage === message.language) {
-			// 
-			// 
-			// 
 			this.dispatch(addGroupMessage(message))
 		} else {
 			const id = 1;
@@ -78,39 +65,16 @@ class ChatAppGroup extends React.Component {
 		socket.emit('user_left', { name: this.props.userName, room: this.props.selectedCountry})
 	}
 
-	//when the user joins the chat box, it will push the name of the user to the users array
-	//message, "name of user" joined will rendered on the chat box
 	_userJoined(data) {
-		console.log('USER JOINED CLIENT');
-		// var {users, messages} = this.state;
-		// var {name} = data;
-		// users.push(name);
-		// messages.push({
-		// 	user: "LingoBot",
-		// 	text: name + ' Joined'
-		// });
-		// this.setState({users, messages})
 		var {name} = data;
 		var userJoinMsg = {
 			user: "LingoBot",
 			text: name + ' Joined'
 		};
 		this.dispatch(addGroupMessage(userJoinMsg))
-		// this.dispatch(addToGroupUsers([name]))
 	}
 
-	//when the user leaves the chat box, it will push the name of the user to the users array
-	//message, "name of user" left will rendered on the chat box
 	_userLeft(data) {
-		// var {users, messages} = this.state;
-		// var {name} = data;
-		// var index = users.indexOf(name);
-		// users.splice(index, 1);
-		// messages.push({
-		// 	user: 'LingoBot',
-		// 	text: name + ' Left'
-		// })
-		// this.setState({users, messages})
 		var {name} = data;
 		var userLeftMsg = {
 			user: 'LingoBot',
@@ -120,24 +84,8 @@ class ChatAppGroup extends React.Component {
 		this.dispatch(removeGroupUser(name))
 	}
 
-	//Are we going to allow users to change name in the chat window? Need to discuss about this.
 	_userChangedName(data) {
-		console.log('userChanged name data client: ', data);
-		// var {oldName, newName} = data;
-		// var {users, messages} = this.state;
-		// var index = users.indexOf(oldName);
-		// //find the oldName with the index and replace it with newName
-		// users.splice(index, 1, newName);
-		// messages.push({
-		// 	user: 'APPLICATION BOT',
-		// 	text: 'Change Name : ' + oldName + ' ==> ' + newName
-		// });
-		// this.setState({users, messages})
-
 		var {oldName, newName} = data;
-		console.log('data: ', data);
-		console.log('newName: ', newName);
-		console.log('oldName: ', oldName);
 
 		var nameChangeMsg = {
 			user: 'APPLICATION BOT',
@@ -148,30 +96,14 @@ class ChatAppGroup extends React.Component {
 	}
 
 	handleMessageSubmit(message) {
-		// var {messages} = this.state;
-		// messages.push(message);
-		// this.setState({messages});
-		// //send message data through socket
-		// this.state.socket.emit('send:message', message);
-		//send message data through socket
-
+	
 		this.dispatch(addGroupMessage(message))
 		socket.emit('send:message', message);
 	}
 
 	handleChangeName(newName) {
-		// var oldName = this.state.user;
-		// this.state.socket.emit('change:name', { name: newName }, (result) => {
-		// 	if(!result) {
-		// 		return alert('There was an error changing your name');
-		// 	}
-		// 	var {users} = this.state;
-		// 	var index = users.indexOf(oldName);
-		// 	users.splice(index, 1, newName);
-		// 	this.setState({users, user: newName})
-		// })
 		var oldName = this.props.state.groupMessage.user
-		console.log(`i am changing my name from ${oldName} to ${newName}`)
+		
 		socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
