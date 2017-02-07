@@ -273,7 +273,8 @@ nav {
 .users li {
   font-size: 20px;
   border: none;
-  color: black; }
+  color: black;
+  list-style: none; }
 
 .messages {
   width: 100%;
