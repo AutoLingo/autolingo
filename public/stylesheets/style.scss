@@ -49,14 +49,12 @@ nav {
 #language-list {
   margin-bottom: 20px;
 
-  .dropdown-menu {
-    margin-bottom: 20px;
+  a {
+    cursor: pointer;
   }
 
-  .dropdown-submenu {
-    a {
-      cursor: pointer;
-    }
+  .dropdown-menu {
+    margin-bottom: 20px;
   }
 }
 
@@ -247,13 +245,17 @@ nav {
 }
 
 #conversation-container {
+  overflow-y: scroll;
   border: 1px solid #ddd;
-  min-height: 400px;
-  height: auto;
-  max-height: 500px;
+  height: 300px;
   border-radius: 5px;
   padding: 30px;
   font-size: 1.4em;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 }
 
 
@@ -291,7 +293,8 @@ nav {
 
 #videochat-wrapper {
   position: relative;
-  padding-bottom: 75%;
+  padding-bottom: 80%;
+  margin-top: 37px;
 }
 
 #videos-container-wrapper {
@@ -579,7 +582,6 @@ a:hover {
   padding: 20px;
   text-align: left;
   min-height: 100px;
-  margin-bottom: 20px;
   border-radius: 5px;
 }
 #start_button {
