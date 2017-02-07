@@ -1,25 +1,29 @@
 'use strict'
 
-import { SET_USER, ADD_USER, REMOVE_USER, SET_DIALECT } from '../actionCreators/user';
+import { SET_USER_NAME, SET_DIALECT } from '../actionCreators/user';
 
-const initialState = { selectedUser: {firstName: '', lastName: '', email: '', primaryLanguage: 'en', dialect: 'en-US', country: 'America'} };
+const initialState = {
+  primaryUser: {
+    name: '',
+    primaryLanguage: 'en',
+    dialect: 'en-US',
+    country: 'America'
+  },
+  selectedUser: {
+    name: '',
+  }
+ };
 
 export default function userReducer(state = initialState, action) {
   let newState = Object.assign({}, state)
   switch (action.type) {
-    case SET_USER:
-		newState.selectedUser = action.selectedUser;
+    case SET_USER_NAME:
+		  newState.primaryUser.name = action.name;
 		break;
-    case ADD_USER:
-		newState.users = newState.users ? newState.users.concat([action.user]) : [action.user]
-		break;
-    case REMOVE_USER:
-    	let index = newState.users.indexOf(action.user)
-    	newState.users.splice(index,1)
-	    break;
     case SET_DIALECT:
-         newState.selectedUser.dialect = action.dialect
-         newState.selectedUser.primaryLanguage = action.primaryLanguage
+      newState.primaryUser.dialect = action.dialect
+      newState.primaryUser.primaryLanguage = action.primaryLanguage
+      break;
     default:
       return state;
   }

@@ -148,7 +148,7 @@ class ChatApp extends Component {
 			language: this.props.userLanguage,
 			id: 1
 		});
-		
+
 		this.props.addToMessages(message.text)
 	}
 
@@ -158,24 +158,24 @@ class ChatApp extends Component {
 		let userLanguage = this.props.userLanguage
 		let text = messageObject && messageObject.text
 
-		if (originalLanguage === userLanguage) { 
+		if (originalLanguage === userLanguage) {
 			this.props.addToMessages(text)
 		} else {
 			this.props.translateActionCreator(id, originalLanguage, userLanguage, text)
 		}
 
-		
+
 	}
 
 // ************************************************************
-	
+
 	render() {
-		
+
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
 
-		let userFullLanguage = languages.filter( (lang) => { 
+		let userFullLanguage = languages.filter( (lang) => {
 								   return userLanguage === lang[1][0].split('-')[0]
 								 })[0][0]
 console.log(finalTranscripts);
@@ -223,11 +223,11 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
-	let userLanguage = state.user.selectedUser.primaryLanguage
+	let userLanguage = state.user.primaryUser.primaryLanguage
 	let finalTranscripts = state.speech.finalTranscripts
 	let interimTranscript = state.speech.interimTranscript
 
-	return { 
+	return {
 		translation,
 		userLanguage,
 		finalTranscripts,
@@ -238,13 +238,3 @@ const mapStateToProps = state => {
 // const mapDispatchToProps = dispatch => ({translateActionCreator})
 
 export default connect(mapStateToProps, {translateActionCreator, translateInterimActionCreator, translateFinalActionCreator, setInterimTranscript, addFinalTranscript})(ChatApp);
-
-
-
-
-
-
-
-
-
-
