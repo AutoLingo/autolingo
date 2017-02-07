@@ -89323,34 +89323,47 @@
 					'div',
 					{ className: 'container', id: 'chatbox-body' },
 					_react2.default.createElement(
-						'div',
-						{ className: 'col-sm-9' },
-						_react2.default.createElement(_MessageList2.default, {
-							messages: messages
-						})
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'col-sm-3' },
-						_react2.default.createElement(_UserList2.default, {
-							users: users
-						})
-					),
-					_react2.default.createElement(
-						'div',
+						'h1',
 						null,
-						_react2.default.createElement(_MessageForm2.default, {
-							onMessageSubmit: handleMessageSubmit,
-							user: user,
-							language: language
-						})
+						'Live Group Chat'
 					),
 					_react2.default.createElement(
 						'div',
-						null,
-						_react2.default.createElement(_ChangeNameForm2.default, {
-							onChangeName: handleChangeName
-						})
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-9' },
+							_react2.default.createElement(_MessageList2.default, {
+								messages: messages
+							})
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							_react2.default.createElement(_UserList2.default, {
+								users: users
+							})
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'row' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-9' },
+							_react2.default.createElement(_MessageForm2.default, {
+								onMessageSubmit: handleMessageSubmit,
+								user: user,
+								language: language
+							})
+						),
+						_react2.default.createElement(
+							'div',
+							{ className: 'col-sm-3' },
+							_react2.default.createElement(_ChangeNameForm2.default, {
+								onChangeName: handleChangeName
+							})
+						)
 					)
 				);
 			}

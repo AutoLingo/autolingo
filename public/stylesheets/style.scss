@@ -1,23 +1,25 @@
 /*Global background styling*/
+
 html {
   background-color: #cad2d3;
 }
 
 body {
-	background: url(../background-world-map.jpg) no-repeat center 30px;
-	background-size: 100%;
+  background: url(../background-world-map.jpg) no-repeat center 30px;
+  background-size: 100%;
   background-color: #cad2d3;
 }
 
 #main {
   background-color: #cad2d3;
 }
+
 /*End of global background styling*/
 
 /*Nav bar styling*/
 
 * {
-	font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 nav {
@@ -30,14 +32,14 @@ nav {
 
 
 .lingo-blue {
-	color: rgba(0, 130, 230, 1);
+  color: rgba(0, 130, 230, 1);
 }
 
 #title {
-	h1 {
-		font-weight: 600;
+  h1 {
+    font-weight: 600;
 
-	}
+  }
 }
 
 #change-username-form {
@@ -46,7 +48,6 @@ nav {
 
 #language-list {
   margin-bottom: 20px;
-  font-size: 18px;
 
   .dropdown-menu {
     margin-bottom: 20px;
@@ -74,7 +75,6 @@ nav {
   right: 0;
   bottom:0;
   width:100%;
-  height:100%;
   z-index: 1;
 }
 
@@ -217,27 +217,33 @@ nav {
   -webkit-animation-duration: 0.75s;
   animation-duration: 0.75s;
   -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out;
+  animation-timing-function: ease-out; 
 }
 
 /***************** start of chat box (socket) styling *****************/
 
 #chatbox-body {
-	width: 90vw;
-	height: 80vh;
-	margin: 0 auto 20px;
-  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
-  border-radius: 4px;
-	position: relative;
-	z-index: 99;
-	background-color: white;
-  padding: 20px;
-  margin-top: 90px;
+  width: 90%;
+  /*height: 900px;*/
+  margin: 0 auto 20px;
+    -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    border-radius: 4px;
+  position: relative;
+  z-index: 99;
+  background-color: white;
+    padding: 20px;
+
     h2 {
-    	display: block;
-    	text-align: center;
+      display: block;
+      text-align: center;
     }
+}
+
+#chatbox-body h1 {
+  font-size: 50px;
+  text-align: center;
+  padding-bottom: 10px;
 }
 
 #conversation-container {
@@ -313,65 +319,62 @@ nav {
   }
 }
 
-
-
 .users {
   float : right;
-  margin-right: 50px;
+  /*margin-right: 50px;*/
   border: 3px solid black;
-  margin-top: 18px;
-  width: 300px;
-  height: 530px;
+  /*margin-top: 14px;*/
+  width: 100%;
+  height: 50vh;
 }
 
 .users h3 {
   text-align: center;
   font-size: 20px;
+  color: black;
 }
 
 .users li {
   font-size: 20px;
   border: none;
+  color: black;
 }
 
 .messages {
-  width: 1000px;
-  margin: 1em;
+  width: 100%;
+  /*margin: 1em;*/
   border : 5px solid black;
   padding: 1em;
-  margin-left: 80px;
-  height: 500px;
+  /*margin-left: 80px;*/
+  height: 50vh;
   overflow: scroll;
   background-color: #F0F8FF;
 }
 
 .messages h2 {
   margin-top: -5px;
-  font-size: 30px;
-}
-
-.message_form,
-.change_name_form{
-  padding: 1em;
-  margin-left: 70px;
+  font-size: 25px;
 }
 
 .message {
   font-size: 20px;
 }
 
-/*.message_form {
-  margin-top: 10px;
-}*/
-
 .change_name_form {
-  margin-top: -30px;
+  /*margin-top: 0px;*/
+  width: 100%;
+  /*margin-left: -8px;*/
+}
+
+.message_form {
+  width: 100%;
+  /*margin-left: 80px;*/
 }
 
 .message_form input {
   font-size: 20px;
-  width: 1025px;
-  height: 40px;
+  width: 100%;
+  height: 5vh;
   border: 3px solid black;
 }
 
@@ -381,7 +384,8 @@ nav {
 
 .change_name_form input {
   font-size: 20px;
-  height: 40px;
+  height: 5vh;
+  width: 100%;
   border: 3px solid black;
 }
 
@@ -584,9 +588,9 @@ a:hover {
   padding: 25px 15px;
 }
 
-/************************* start of Speech recognition *************************
+/************************* start fo Speech recognition *************************
 
-/************************** start of Instruction Message **************************/
+/************************** start fo Instruction Message **************************/
 .swal-div {
   color: black;
 }
@@ -595,31 +599,4 @@ a:hover {
   background-color: white;
 }
 
-/**************************  of Instruction Message **************************/
 
-/************************* start of country transition component *************************/
-
-.countryTransition-appear {
-  opacity: 0.01;
-}
-
-.countryTransition-appear.countryTransition-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
-.countryTransitionMsg {
-  position: absolute;
-  top: 50vh;
-  left: 40vw;
-  z-index: 99;
-}
-
-.countryTransitionMsg h1 {
-  color: #0000CD;
-  font-weight: bold;
-  font-family: Helvetica;
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
-}
-
-/************************* start of country transition component *************************/
