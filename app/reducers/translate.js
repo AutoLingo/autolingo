@@ -5,6 +5,7 @@ import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax';
 import { addToMessages } from './messagesReducer'
 import { setInterimTranscript, addFinalTranscript } from '../actionCreators/speech'
+import { addGroupMessage } from '../actionCreators/groupMessage'
 
 // **************************************************
 // Actions
@@ -12,6 +13,7 @@ const ADD_TRANSLATION = "ADD_TRANSLATION"
 const TRANSLATE = "TRANSLATE"
 const TRANSLATE_INTERIM_TRANSCRIPT = "TRANSLATE_INTERIM_TRANSCRIPT"
 const TRANSLATE_FINAL_TRANSCRIPT = "TRANSLATE_FINAL_TRANSCRIPT"
+const TRANSLATE_GROUP_MESSAGE = "TRANSLATE_GROUP_MESSAGE"
 
 // Action creators
 // Fed into the googleTranslateEpic
@@ -20,7 +22,7 @@ export const translateActionCreator = (id, originalLanguage, userLanguage, origi
     {
       type: TRANSLATE,
       id,
-      originalLanguage, 
+      originalLanguage,
       userLanguage,
       originalText
     }
@@ -31,7 +33,7 @@ export const translateInterimActionCreator = (id, originalLanguage, userLanguage
     {
       type: TRANSLATE_INTERIM_TRANSCRIPT,
       id,
-      originalLanguage, 
+      originalLanguage,
       userLanguage,
       originalText
     }
@@ -42,12 +44,13 @@ export const translateFinalActionCreator = (id, originalLanguage, userLanguage, 
     {
       type: TRANSLATE_FINAL_TRANSCRIPT,
       id,
-      originalLanguage, 
+      originalLanguage,
       userLanguage,
       originalText
     }
   )
 }
+
 
 // Dispatched from the epic to store
 const addTranslation = (id, translation, language) => {
@@ -62,6 +65,7 @@ const addTranslation = (id, translation, language) => {
 
 // **************************************************
 export const googleTranslateEpic = (action$) => {
+
   return action$.ofType(TRANSLATE)
     .debounceTime(200)
     .mergeMap(action => {
@@ -69,16 +73,28 @@ export const googleTranslateEpic = (action$) => {
         let userLanguage = action.userLanguage
         let text = action.originalText
 
-        return ajax({
+        const request = ajax({
           url: `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}&source=${originalLanguage}&target=${userLanguage}&q=${text}`,
           crossDomain: true
         })
+
+        const actionObservable = Observable.of(action)
+        return Observable.combineLatest(request, actionObservable, (request, actionObservable) => [request, actionObservable])
     })
-    .map(singleTranslation => {
+    .map(combineArray => {
+      console.log('COMBINEARRAY', combineArray)
+      const action = combineArray[1]
+      const singleTranslation = combineArray[0]
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
-
-      return addToMessages(translatedText)
+        console.log('ACTION', action)
+      const translatedMsg = {
+          user: action.user,
+          text: translatedText,
+          language: action.language,
+          id: action.id
+      }
+      return addGroupMessage(translatedMsg)
     })
 }
 // **************************************************
@@ -118,10 +134,11 @@ export const googleTranslateEpic3 = (action$) => {
     .map(singleTranslation => {
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
-      
+
       return addFinalTranscript(translatedText)
     })
 }
+
 
 // *********************USE THIS FOR MESSAGE BOARD***********************************
 // export const googleTranslateEpic = (action$) => {
