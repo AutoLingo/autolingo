@@ -39,8 +39,6 @@ export default class Navbar extends Component {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="/">World Map</a></li>
-              <li><a href="#">About</a></li>
               <li className="dropdown">
                 <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
                 <ul id="language-list" className="dropdown-menu">
@@ -86,7 +84,7 @@ export default class Navbar extends Component {
                 </ul>
               </li>*/}
 
-              <li className="dropdown">
+              {/*<li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
                 <ul id="change-username-form" className="dropdown-menu" role="menu">
                   <form className="navbar-form navbar-left" role="search">
@@ -96,7 +94,7 @@ export default class Navbar extends Component {
                     <button type="submit" className="btn btn-default">Submit</button>
                   </form>
                 </ul>
-              </li>
+              </li>*/}
               
               {this.state.show && <Instructions showInstruction={this.showInstruction}/>}
               

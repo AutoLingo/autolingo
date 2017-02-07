@@ -1,12 +1,22 @@
 /*Global background styling*/
+html {
+  background-color: #cad2d3; }
+
 body {
   background: url(../background-world-map.jpg) no-repeat center 30px;
-  background-size: 100%; }
+  background-size: 100%;
+  background-color: #cad2d3; }
+
+#main {
+  background-color: #cad2d3; }
 
 /*End of global background styling*/
 /*Nav bar styling*/
 * {
   font-family: 'Lato', sans-serif; }
+
+nav {
+  z-index: 999; }
 
 .navbar-default .navbar-nav > li > a {
   font-size: 20px; }
@@ -34,7 +44,7 @@ body {
 /***************** Start of map styling *****************/
 #map {
   position: absolute;
-  top: 8.5vh;
+  top: 64px;
   left: 0;
   right: 0;
   bottom: 0;
