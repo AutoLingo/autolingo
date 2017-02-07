@@ -117,7 +117,6 @@ class ChatAppGroup extends React.Component {
 	}
 
 	joinVideoChat(selectedUser) {
-
 		browserHistory.push('/live-chat');
 	}
 
@@ -127,7 +126,7 @@ class ChatAppGroup extends React.Component {
 		const user = this.props.state.groupMessage.user;
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
-		const language = this.props.state.user.selectedUser.primaryLanguage;
+		const language = this.props.state.user.primaryUser.primaryLanguage;
 		const joinVideoChat = this.joinVideoChat
 		return (
 			<div className="container" id="chatbox-body">
@@ -167,8 +166,8 @@ class ChatAppGroup extends React.Component {
 }
 
 function mapStateToProps (state, ownProps) {
-	const userLanguage = state.user.selectedUser.primaryLanguage;
-	const selectedCountry = state.user.selectedUser.country;
+	const userLanguage = state.user.primaryUser.primaryLanguage;
+	const selectedCountry = state.user.primaryUser.country;
 	const userName = state.groupMessage.user;
   return { state, userLanguage, selectedCountry, userName };
 }
