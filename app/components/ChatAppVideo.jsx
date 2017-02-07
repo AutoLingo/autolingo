@@ -186,6 +186,7 @@ console.log(finalTranscripts);
 				<div className="col-sm-6">
 					<div>
 						<VideoChat />
+						<ul id="subtitles" className="lingo-blue breadcrumb"><li>{interimTranscript}</li></ul>
 					</div>
 
 

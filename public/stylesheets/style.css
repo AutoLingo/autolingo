@@ -237,10 +237,11 @@ nav {
 
 #videochat-wrapper {
   position: relative;
-  padding-bottom: 80%;
+  padding-bottom: 75%;
   margin-top: 37px; }
 
 #videos-container-wrapper {
+  overflow: hidden;
   position: absolute;
   top: 0;
   /*padding-bottom: 75%;*/
@@ -259,6 +260,13 @@ nav {
     z-index: 52;
     left: 0;
     bottom: 1px; }
+
+#subtitles {
+  text-align: center;
+  margin: auto;
+  font-weight: 600;
+  font-size: 1.6em;
+  display: block; }
 
 .users {
   float: right;
