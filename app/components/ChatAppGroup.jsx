@@ -8,7 +8,7 @@ import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupU
 import { translateActionCreator } from '../reducers/translate'
 import {connect} from 'react-redux';
 
-let socket; 
+let socket;
 
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
@@ -18,6 +18,7 @@ class ChatAppGroup extends React.Component {
 		this.dispatch = props.dispatch
 		this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
 		this.handleChangeName = this.handleChangeName.bind(this)
+		this.joinVideoChat = this.joinVideoChat.bind(this)
 		this._initialize = this._initialize.bind(this)
 		this._messageReceive = this._messageReceive.bind(this)
 		this._userJoined = this._userJoined.bind(this)
@@ -42,7 +43,7 @@ class ChatAppGroup extends React.Component {
 	_initialize(data) {
 		let users = data.users;
 		let name = this.props.userName ? this.props.userName : data.name
-		
+
 		this.dispatch(setGroupUser(name));
 		this.dispatch(addToGroupUsers(users));
 	}
@@ -50,7 +51,7 @@ class ChatAppGroup extends React.Component {
 	//push the given message into messages array
 	_messageReceive(message) {
 		const userLanguage = this.props.userLanguage
-		
+
 		if (userLanguage === message.language) {
 			this.dispatch(addGroupMessage(message))
 		} else {
@@ -96,14 +97,14 @@ class ChatAppGroup extends React.Component {
 	}
 
 	handleMessageSubmit(message) {
-	
+
 		this.dispatch(addGroupMessage(message))
 		socket.emit('send:message', message);
 	}
 
 	handleChangeName(newName) {
 		var oldName = this.props.state.groupMessage.user
-		
+
 		socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
@@ -113,6 +114,10 @@ class ChatAppGroup extends React.Component {
 		})
 	}
 
+	joinVideoChat(selectedUser) {
+
+	}
+
 	render() {
 		const users = this.props.state.groupMessage.users;
 		const messages = this.props.state.groupMessage.messages;
@@ -120,6 +125,7 @@ class ChatAppGroup extends React.Component {
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
 		const language = this.props.state.user.selectedUser.primaryLanguage;
+		const joinVideoChat = this.joinVideoChat
 		return (
 			<div className="container" id="chatbox-body">
 				<div className="col-sm-9">
@@ -127,10 +133,10 @@ class ChatAppGroup extends React.Component {
 						messages={messages}
 					/>
 				</div>
-				
+
 				<div className="col-sm-3">
 					<UsersList
-						users={users}
+						users={users, joinVideoChat}
 					/>
 				</div>
 
@@ -156,7 +162,6 @@ function mapStateToProps (state, ownProps) {
 	const userLanguage = state.user.selectedUser.primaryLanguage;
 	const selectedCountry = state.user.selectedUser.country;
 	const userName = state.groupMessage.user;
-
   return { state, userLanguage, selectedCountry, userName };
 }
 
