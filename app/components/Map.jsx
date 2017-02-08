@@ -32,11 +32,11 @@ export default class Map extends Component {
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
 
-    map.dragging.enable();
+    map.dragging.disable();
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
-    map.scrollWheelZoom.enable();
-    map.zoomControl.enable();
+    map.scrollWheelZoom.disable();
+    map.zoomControl.remove();
 
     geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {
@@ -69,12 +69,12 @@ export default class Map extends Component {
     //Don't erase this function, we might need this for future modification
     // var popup = L.popup();
 
-    function onMapClick(e) {
-      var features = map.queryRenderedFeatures(e.point, { layers: ['symbols'] });
-      console.log('features: ', features);
-    //    
-    
-    }
+    // function onMapClick(e) {
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("You clicked the map at " + e.latlng.toString())
+    //         .openOn(map);
+    // }
 
     //Need to change below click event when refactoring into react component
     // map.on('click', onMapClick);
