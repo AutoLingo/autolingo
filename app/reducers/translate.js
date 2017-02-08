@@ -91,7 +91,7 @@ export const googleTranslateEpic = (action$) => {
       const translatedMsg = {
           user: action.user,
           text: translatedText,
-          language: action.language,
+          language: action.userLanguage,
           id: action.id
       }
       return addGroupMessage(translatedMsg)

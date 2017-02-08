@@ -28405,7 +28405,7 @@
 	    var translatedMsg = {
 	      user: action.user,
 	      text: translatedText,
-	      language: action.language,
+	      language: action.userLanguage,
 	      id: action.id
 	    };
 	    return (0, _groupMessage.addGroupMessage)(translatedMsg);
@@ -53065,8 +53065,11 @@
 	
 	  var newState = Object.assign({}, state);
 	  switch (action.type) {
-	    case _user.SET_USER_NAME:
+	    case _user.SET_PRIMARY_USER_NAME:
 	      newState.primaryUser.name = action.name;
+	      break;
+	    case _user.SET_SELECTED_USER_NAME:
+	      newState.selectedUser.name = action.name;
 	      break;
 	    case _user.SET_DIALECT:
 	      newState.primaryUser.dialect = action.dialect;
@@ -53087,13 +53090,16 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SET_USER_NAME = exports.SET_USER_NAME = 'SET_USER_NAME';
-	var ADD_USER = exports.ADD_USER = 'ADD_USER';
-	var REMOVE_USER = exports.REMOVE_USER = 'REMOVE_USER';
+	var SET_PRIMARY_USER_NAME = exports.SET_PRIMARY_USER_NAME = 'SET_USER_NAME';
+	var SET_SELECTED_USER_NAME = exports.SET_SELECTED_USER_NAME = 'SET_DIALECT';
 	var SET_DIALECT = exports.SET_DIALECT = 'SET_DIALECT';
 	
-	var setUserName = exports.setUserName = function setUserName(name) {
-	  return { type: SET_USER_NAME, name: name };
+	var setPrimaryUserName = exports.setPrimaryUserName = function setPrimaryUserName(name) {
+	  return { type: SET_PRIMARY_USER_NAME, name: name };
+	};
+	
+	var setSelectedUserName = exports.setSelectedUserName = function setSelectedUserName(name) {
+	  return { type: SET_SELECTED_USER_NAME, name: name };
 	};
 	
 	var setUserLanguage = exports.setUserLanguage = function setUserLanguage(primaryLanguage, dialect) {
@@ -89428,6 +89434,8 @@
 	
 	var _translate = __webpack_require__(263);
 	
+	var _user = __webpack_require__(613);
+	
 	var _reactRedux = __webpack_require__(233);
 	
 	var _reactRouter = __webpack_require__(32);
@@ -89552,7 +89560,7 @@
 		}, {
 			key: 'handleMessageSubmit',
 			value: function handleMessageSubmit(message) {
-	
+				console.log('message', message);
 				this.dispatch((0, _groupMessage.addGroupMessage)(message));
 				socket.emit('send:message', message);
 			}
@@ -89573,8 +89581,9 @@
 			}
 		}, {
 			key: 'joinVideoChat',
-			value: function joinVideoChat(selectedUser) {
-				_reactRouter.browserHistory.push('/live-chat');
+			value: function joinVideoChat(name) {
+				this.dispatch((0, _user.setSelectedUserName)(name));
+				_reactRouter.browserHistory.push('/video-chat');
 			}
 		}, {
 			key: 'render',
