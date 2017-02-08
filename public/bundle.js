@@ -57755,7 +57755,7 @@
 	
 	function mapStateToProps(state, ownProps) {
 	  var america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
-	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 };
+	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
 	  var spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
 	  var france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
 	  var korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
@@ -57997,6 +57997,7 @@
 	      this.map.removeLayer(this.chinaMarker);
 	      this.map.removeLayer(this.koreaMarker);
 	      this.map.removeLayer(this.franceMarker);
+	      _reactRouter.browserHistory.push('/country-transition');
 	    }
 	  }, {
 	    key: 'repositionMap',
@@ -88658,7 +88659,6 @@
 				var userFullLanguage = _languages2.default.filter(function (lang) {
 					return userLanguage === lang[1][0].split('-')[0];
 				})[0][0];
-				console.log(finalTranscripts);
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body', className: 'container' },
@@ -88673,7 +88673,16 @@
 						_react2.default.createElement(
 							'div',
 							null,
-							_react2.default.createElement(_VideoChat2.default, null)
+							_react2.default.createElement(_VideoChat2.default, null),
+							_react2.default.createElement(
+								'ul',
+								{ id: 'subtitles', className: 'lingo-blue breadcrumb' },
+								_react2.default.createElement(
+									'li',
+									null,
+									interimTranscript
+								)
+							)
 						)
 					),
 					_react2.default.createElement(
@@ -88780,6 +88789,7 @@
 						{ key: i, onClick: function onClick() {
 								return props.joinVideoChat(user);
 							} },
+						_react2.default.createElement("img", { src: "APP/public/img/videocam.png", height: "25", width: "25" }),
 						user
 					);
 				})
