@@ -222,16 +222,15 @@ nav {
 
 #chatbox-body {
   width: 90%;
-  /*height: 900px;*/
+  height: auto;
   margin: 0 auto 20px;
   -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   box-shadow: 0 1px 5px rgba(0,0,0,0.3);
   border-radius: 4px;
   position: relative;
   z-index: 99;
-  height: 80vh;
   background-color: white;
-    padding: 20px;
+  padding: 20px;
 
     h2 {
       display: block;
