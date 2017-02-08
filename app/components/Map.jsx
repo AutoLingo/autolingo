@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
-import LanguageMessage from './LanguageMessage';
 import { Link } from 'react-router';
 import repositionMap from './utilities.jsx';
 import {browserHistory} from 'react-router'
@@ -205,11 +204,11 @@ export default class Map extends Component {
           <Link to={"/country-transition"}>
             <button id="fit-america" onClick={ ()=>this.repositionMap(this.props.america, this.map) }>Go to U.S.A</button>
           </Link>
-          
+
           <Link to={"/country-transition"}>
             <button id='fit-china' onClick={ ()=>this.repositionMap(this.props.china, this.map) }>Go to China</button>
           </Link>
-          
+
           <Link to={"/country-transition"}>
             <button id='fit-spain' onClick={ ()=>this.repositionMap(this.props.spain, this.map) }>Go to Spain</button>
           </Link>
@@ -232,4 +231,3 @@ export default class Map extends Component {
 }
 
           // <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
-

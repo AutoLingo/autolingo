@@ -70,10 +70,6 @@
 	
 	__webpack_require__(267);
 	
-	var _LanguageMessage = __webpack_require__(664);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
-	
 	var _MapContainer = __webpack_require__(631);
 	
 	var _MapContainer2 = _interopRequireDefault(_MapContainer);
@@ -101,14 +97,14 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// generated hash is used to match 2 users in a private chatroom for LiveChat
+	
+	// import Login from './components/Login'
+	// import WhoAmI from './components/WhoAmI'
 	var generateHash = function generateHash() {
 	  if (!location.hash.replace('#', '').length) {
 	    location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
 	  }
 	};
-	// import Login from './components/Login'
-	// import WhoAmI from './components/WhoAmI'
-	
 	
 	(0, _reactDom.render)(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -126,7 +122,6 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: '/video-chat/:hash', component: _ChatAppVideo2.default })
 	      ),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/livechat', component: _LiveChat2.default }),
-	      _react2.default.createElement(_reactRouter.Route, { path: '/language', component: _LanguageMessage2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/instructions', component: _Instructions2.default }),
 	      _react2.default.createElement(_reactRouter.Route, { path: '/country-transition', component: _CountryTransition2.default })
 	    )
@@ -52869,7 +52864,17 @@
 	
 	var _user = __webpack_require__(613);
 	
-	var initialState = { selectedUser: { firstName: '', lastName: '', email: '', primaryLanguage: 'en', dialect: 'en-US', country: 'America' } };
+	var initialState = {
+	  primaryUser: {
+	    name: '',
+	    primaryLanguage: 'en',
+	    dialect: 'en-US',
+	    country: 'America'
+	  },
+	  selectedUser: {
+	    name: ''
+	  }
+	};
 	
 	function userReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -52877,19 +52882,13 @@
 	
 	  var newState = Object.assign({}, state);
 	  switch (action.type) {
-	    case _user.SET_USER:
-	      newState.selectedUser = action.selectedUser;
-	      break;
-	    case _user.ADD_USER:
-	      newState.users = newState.users ? newState.users.concat([action.user]) : [action.user];
-	      break;
-	    case _user.REMOVE_USER:
-	      var index = newState.users.indexOf(action.user);
-	      newState.users.splice(index, 1);
+	    case _user.SET_USER_NAME:
+	      newState.primaryUser.name = action.name;
 	      break;
 	    case _user.SET_DIALECT:
-	      newState.selectedUser.dialect = action.dialect;
-	      newState.selectedUser.primaryLanguage = action.primaryLanguage;
+	      newState.primaryUser.dialect = action.dialect;
+	      newState.primaryUser.primaryLanguage = action.primaryLanguage;
+	      break;
 	    default:
 	      return state;
 	  }
@@ -52903,27 +52902,19 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
-	var SET_USER = exports.SET_USER = 'SET_USER';
+	var SET_USER_NAME = exports.SET_USER_NAME = 'SET_USER_NAME';
 	var ADD_USER = exports.ADD_USER = 'ADD_USER';
 	var REMOVE_USER = exports.REMOVE_USER = 'REMOVE_USER';
 	var SET_DIALECT = exports.SET_DIALECT = 'SET_DIALECT';
 	
-	var setUser = exports.setUser = function setUser(selectedUser) {
-		return { type: SET_USER, selectedUser: selectedUser };
-	};
-	
-	var addUser = exports.addUser = function addUser(user) {
-		return { type: ADD_USER, user: user };
-	};
-	
-	var removeUser = exports.removeUser = function removeUser(user) {
-		return { type: REMOVE_USER, user: user };
+	var setUserName = exports.setUserName = function setUserName(name) {
+	  return { type: SET_USER_NAME, name: name };
 	};
 	
 	var setUserLanguage = exports.setUserLanguage = function setUserLanguage(primaryLanguage, dialect) {
-		return { type: SET_DIALECT, primaryLanguage: primaryLanguage, dialect: dialect };
+	  return { type: SET_DIALECT, primaryLanguage: primaryLanguage, dialect: dialect };
 	};
 
 /***/ },
@@ -54214,10 +54205,6 @@
 	var _MapContainer = __webpack_require__(631);
 	
 	var _MapContainer2 = _interopRequireDefault(_MapContainer);
-	
-	var _LanguageMessage = __webpack_require__(664);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54472,7 +54459,7 @@
 	
 	function mapStateToProps(state, ownProps) {
 	  var america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
-	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 };
+	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
 	  var spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
 	  var france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
 	  var korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
@@ -54538,10 +54525,6 @@
 	var _countryCoordinates = __webpack_require__(663);
 	
 	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
-	
-	var _LanguageMessage = __webpack_require__(664);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
 	
 	var _reactRouter = __webpack_require__(32);
 	
@@ -76233,320 +76216,7 @@
 	};
 
 /***/ },
-/* 664 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(87);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _reactModal = __webpack_require__(665);
-	
-	var _reactModal2 = _interopRequireDefault(_reactModal);
-	
-	var _sweetalert = __webpack_require__(675);
-	
-	var _sweetalert2 = _interopRequireDefault(_sweetalert);
-	
-	var _user = __webpack_require__(613);
-	
-	var _store = __webpack_require__(261);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactSimpleDropdown = __webpack_require__(684);
-	
-	var _reactSimpleDropdown2 = _interopRequireDefault(_reactSimpleDropdown);
-	
-	var _reactRouter = __webpack_require__(32);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)',
-	    width: '600px',
-	    textAlign: 'center'
-	  }
-	};
-	
-	var LanguageMessage = function (_React$Component) {
-	  _inherits(LanguageMessage, _React$Component);
-	
-	  function LanguageMessage() {
-	    _classCallCheck(this, LanguageMessage);
-	
-	    var _this = _possibleConstructorReturn(this, (LanguageMessage.__proto__ || Object.getPrototypeOf(LanguageMessage)).call(this));
-	
-	    _this.state = {
-	      modalIsOpen: true
-	    };
-	
-	    _this.openModal = _this.openModal.bind(_this);
-	    _this.closeModal = _this.closeModal.bind(_this);
-	    _this.selectLanguage = _this.selectLanguage.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(LanguageMessage, [{
-	    key: 'openModal',
-	    value: function openModal() {
-	      this.setState({ modalIsOpen: true });
-	    }
-	  }, {
-	    key: 'closeModal',
-	    value: function closeModal() {
-	      this.setState({ modalIsOpen: false });
-	    }
-	  }, {
-	    key: 'selectLanguage',
-	    value: function selectLanguage(event, language, country) {
-	      event.preventDefault();
-	      if (!_store2.default.user) {
-	        _store2.default.dispatch((0, _user.setUser)({
-	          firstName: 'Guest',
-	          lastName: (Math.random() * 10000).toString(),
-	          email: 'guest@guestmail.com',
-	          primaryLanguage: language,
-	          country: country
-	        }));
-	      }
-	      this.setState({ modalIsOpen: false });
-	      swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success");
-	      _reactRouter.browserHistory.push('/');
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'language-message' },
-	        _react2.default.createElement(
-	          _reactModal2.default,
-	          {
-	            isOpen: this.state.modalIsOpen,
-	            onAfterOpen: this.afterOpenModal,
-	            onRequestClose: this.closeModal,
-	            style: customStyles,
-	            contentLabel: 'Example Modal',
-	            selectLanguage: this.selectLanguage
-	          },
-	          _react2.default.createElement(
-	            'h1',
-	            { style: { color: 'linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5)' } },
-	            'Choose Default Language'
-	          ),
-	          _react2.default.createElement(
-	            _reactSimpleDropdown2.default,
-	            null,
-	            _react2.default.createElement(
-	              _reactSimpleDropdown.DropdownTrigger,
-	              { id: 'dropDown-title' },
-	              'Click to select language'
-	            ),
-	            _react2.default.createElement(
-	              _reactSimpleDropdown.DropdownContent,
-	              { id: 'dropDown-content' },
-	              _react2.default.createElement(
-	                'ul',
-	                null,
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'en', 'America');
-	                      } },
-	                    'English'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'zh-CN', 'China');
-	                      } },
-	                    'Chinese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'es', 'Spain');
-	                      } },
-	                    'Spanish'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'fr', 'France');
-	                      } },
-	                    'French'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ko', 'Korea');
-	                      } },
-	                    'Korean'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ru', 'Russia');
-	                      } },
-	                    'Russian'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'tl', 'Philippines');
-	                      } },
-	                    'Filipino'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'el', 'Greece');
-	                      } },
-	                    'Greek'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'iw', 'Israel');
-	                      } },
-	                    'Hebrew'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'it', 'Italy');
-	                      } },
-	                    'Italian'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ja', 'Japan');
-	                      } },
-	                    'Japanese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'sw', 'Tanzania');
-	                      } },
-	                    'Swahili'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'vi', 'Vietnam');
-	                      } },
-	                    'Vietnamese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'pl', 'Poland');
-	                      } },
-	                    'Polish'
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LanguageMessage;
-	}(_react2.default.Component);
-	
-	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ar', 'Saudi Arabia')}>Arabic</button></div>
-	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'eo', 'World')}>Esperanto</button></div>
-	// ReactDOM.render(<App />, appElement);
-	
-	exports.default = LanguageMessage;
-
-/***/ },
+/* 664 */,
 /* 665 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -88371,56 +88041,39 @@
 				var userFullLanguage = _languages2.default.filter(function (lang) {
 					return userLanguage === lang[1][0].split('-')[0];
 				})[0][0];
-				console.log(finalTranscripts);
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body', className: 'container' },
 					_react2.default.createElement(
 						'h2',
 						null,
-						'Live Translation'
+						'Video Chat'
 					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'col-sm-6' },
 						_react2.default.createElement(
-							'h3',
-							{ className: 'text-center' },
-							'Video Chat'
-						),
-						_react2.default.createElement(
 							'div',
 							null,
-							_react2.default.createElement(_VideoChat2.default, null)
-						),
-						_react2.default.createElement(
-							'div',
-							null,
-							_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
+							_react2.default.createElement(_VideoChat2.default, null),
+							_react2.default.createElement(
+								'ul',
+								{ id: 'subtitles', className: 'lingo-blue breadcrumb' },
+								_react2.default.createElement(
+									'li',
+									null,
+									interimTranscript
+								)
+							)
 						)
 					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'col-sm-6' },
 						_react2.default.createElement(
-							'h3',
-							{ className: 'text-center' },
-							'Conversation'
-						),
-						_react2.default.createElement(
 							'div',
-							{ id: 'conversation-container' },
-							_react2.default.createElement(
-								'ul',
-								null,
-								finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
-									return _react2.default.createElement(
-										'li',
-										{ key: i },
-										transcript
-									);
-								})
-							)
+							null,
+							_react2.default.createElement(_VoiceRecognitionContainer2.default, { emitFinalTranscript: this.emitFinalTranscript, emitInterimTranscript: this.emitInterimTranscript, userLanguage: userLanguage })
 						),
 						_react2.default.createElement(
 							'ul',
@@ -88436,6 +88089,21 @@
 								),
 								'. Change language from navigation bar.'
 							)
+						),
+						_react2.default.createElement(
+							'div',
+							{ id: 'conversation-container' },
+							_react2.default.createElement(
+								'ul',
+								null,
+								finalTranscripts[0] && finalTranscripts.map(function (transcript, i) {
+									return _react2.default.createElement(
+										'li',
+										{ key: i },
+										transcript
+									);
+								}).reverse()
+							)
 						)
 					)
 				);
@@ -88450,7 +88118,7 @@
 	
 	var mapStateToProps = function mapStateToProps(state) {
 		var translation = state.translations[1] && state.translations[1];
-		var userLanguage = state.user.selectedUser.primaryLanguage;
+		var userLanguage = state.user.primaryUser.primaryLanguage;
 		var finalTranscripts = state.speech.finalTranscripts;
 		var interimTranscript = state.speech.interimTranscript;
 	
@@ -88483,33 +88151,33 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	//renderUser function that return the li tag for each of the users
-	var UsersList = _react2.default.createClass({
-		displayName: "UsersList",
-		render: function render() {
-			return _react2.default.createElement(
-				"div",
-				{ className: "users" },
-				_react2.default.createElement(
-					"h3",
-					null,
-					"Current Online Users"
-				),
-				_react2.default.createElement(
-					"ul",
-					null,
+	var UsersList = function UsersList(props) {
+		return _react2.default.createElement(
+			"div",
+			{ className: "users" },
+			_react2.default.createElement(
+				"h3",
+				null,
+				"Current Online Users"
+			),
+			_react2.default.createElement(
+				"ul",
+				null,
 	
-					//Need to have users information in the database
-					this.props.users.map(function (user, i) {
-						return _react2.default.createElement(
-							"li",
-							{ key: i },
-							user
-						);
-					})
-				)
-			);
-		}
-	});
+				//Need to have users information in the database
+				props.users.map(function (user, i) {
+					return _react2.default.createElement(
+						"li",
+						{ key: i, onClick: function onClick() {
+								return props.joinVideoChat(user);
+							} },
+						_react2.default.createElement("img", { src: "APP/public/img/videocam.png", height: "25", width: "25" }),
+						user
+					);
+				})
+			)
+		);
+	};
 	
 	exports.default = UsersList;
 
@@ -88929,7 +88597,7 @@
 	
 	    // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
 	    // GETTING DIALECT STRAIGHT FROM THE STORE BECAUSE THIS IS A STATELESS COMPONENT THAT REDUX CAN'T RERENDER
-	    recognition.lang = _store2.default.getState().user.selectedUser.dialect;
+	    recognition.lang = _store2.default.getState().user.primaryUser.dialect;
 	    console.log('recognition.lang: ', recognition.lang);
 	
 	    // *****************************
@@ -88972,7 +88640,7 @@
 	// ******************************************************
 	
 	function mapStateToProps(state, ownProps) {
-	  return { userDialect: state.user.selectedUser.dialect };
+	  return { userDialect: state.user.primaryUser.dialect };
 	}
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
@@ -89173,6 +88841,8 @@
 	
 	var _reactRedux = __webpack_require__(233);
 	
+	var _reactRouter = __webpack_require__(32);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89196,6 +88866,7 @@
 			_this.dispatch = props.dispatch;
 			_this.handleMessageSubmit = _this.handleMessageSubmit.bind(_this);
 			_this.handleChangeName = _this.handleChangeName.bind(_this);
+			_this.joinVideoChat = _this.joinVideoChat.bind(_this);
 			_this._initialize = _this._initialize.bind(_this);
 			_this._messageReceive = _this._messageReceive.bind(_this);
 			_this._userJoined = _this._userJoined.bind(_this);
@@ -89312,6 +88983,11 @@
 				});
 			}
 		}, {
+			key: 'joinVideoChat',
+			value: function joinVideoChat(selectedUser) {
+				_reactRouter.browserHistory.push('/video-chat');
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var users = this.props.state.groupMessage.users;
@@ -89319,7 +88995,8 @@
 				var user = this.props.state.groupMessage.user;
 				var handleMessageSubmit = this.handleMessageSubmit;
 				var handleChangeName = this.handleChangeName;
-				var language = this.props.state.user.selectedUser.primaryLanguage;
+				var language = this.props.state.user.primaryUser.primaryLanguage;
+				var joinVideoChat = this.joinVideoChat;
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container', id: 'chatbox-body' },
@@ -89342,7 +89019,8 @@
 							'div',
 							{ className: 'col-sm-3' },
 							_react2.default.createElement(_UserList2.default, {
-								users: users
+								users: users,
+								joinVideoChat: joinVideoChat
 							})
 						)
 					),
@@ -89374,10 +89052,9 @@
 	}(_react2.default.Component);
 	
 	function mapStateToProps(state, ownProps) {
-		var userLanguage = state.user.selectedUser.primaryLanguage;
-		var selectedCountry = state.user.selectedUser.country;
+		var userLanguage = state.user.primaryUser.primaryLanguage;
+		var selectedCountry = state.user.primaryUser.country;
 		var userName = state.groupMessage.user;
-	
 		return { state: state, userLanguage: userLanguage, selectedCountry: selectedCountry, userName: userName };
 	}
 	
@@ -89598,10 +89275,6 @@
 	var _countryCoordinates = __webpack_require__(663);
 	
 	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
-	
-	var _LanguageMessage = __webpack_require__(664);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
 	
 	var _reactRouter = __webpack_require__(32);
 	

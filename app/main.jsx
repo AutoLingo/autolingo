@@ -10,7 +10,6 @@ import LiveChat from './components/LiveChat'
 import 'rxjs';
 // import Login from './components/Login'
 // import WhoAmI from './components/WhoAmI'
-import LanguageMessage from './components/LanguageMessage'
 import MapContainer from './containers/MapContainer'
 import NavbarContainer from './containers/NavbarContainer'
 import ChatAppGroup from './components/ChatAppGroup'
@@ -34,7 +33,6 @@ render (
           <Route path="/video-chat/:hash"  component={ChatAppVideo}/>
         </Route>
         <Route path="/livechat" component={LiveChat} />
-        <Route path="/language" component={LanguageMessage} />
         <Route path="/instructions" component={InstructionMessage} />
         <Route path="/country-transition" component={CountryTransition} />
       </Route>
