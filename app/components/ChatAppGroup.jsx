@@ -117,7 +117,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	joinVideoChat(selectedUser) {
-		browserHistory.push('/live-chat');
+		browserHistory.push('/video-chat');
 	}
 
 	render() {
