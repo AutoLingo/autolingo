@@ -88424,6 +88424,7 @@
 			_this.interimTranscript = _this.interimTranscript.bind(_this);
 			_this.finalTranscript = _this.finalTranscript.bind(_this);
 			_this.joinVideo = _this.joinVideo.bind(_this);
+			_this.htmlDecode = _this.htmlDecode.bind(_this);
 			return _this;
 		}
 	
@@ -88594,12 +88595,20 @@
 					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
 				}
 			}
+		}, {
+			key: 'htmlDecode',
+			value: function htmlDecode(input) {
+				var e = document.createElement('div');
+				e.innerHTML = input;
+				return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+			}
 	
 			// ************************************************************
 	
 		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
 	
 				var finalTranscripts = this.props.finalTranscripts;
 				var interimTranscript = this.props.interimTranscript;
@@ -88629,7 +88638,7 @@
 								_react2.default.createElement(
 									'li',
 									null,
-									interimTranscript
+									this.htmlDecode(interimTranscript)
 								)
 							)
 						)
@@ -88667,7 +88676,7 @@
 									return _react2.default.createElement(
 										'li',
 										{ key: i },
-										transcript
+										_this2.htmlDecode(transcript)
 									);
 								}).reverse()
 							)
