@@ -46,12 +46,30 @@ export default class Navbar extends Component {
                     languages.map( language => {
                         if ( language.length > 2 ) { //if there is more than 1 dialect
                           let dialects = language.slice(1,language.length) //we don't want to iterate over the main language
+                          
                           return (
                             <li key={language} className="dropdown-submenu">
                               <a tabIndex="0">{language[0]}</a>
                               <ul className="dropdown-menu">
                                 <li className="dropdown-header">Select Dialect</li>
-                                { dialects.map( dialect => (<li key={dialect}><a onClick={()=>{this.props.setUserLanguage(dialect[0].split('-')[0], dialect[0])}} data-langcode={dialect[0]} tabIndex="0">{dialect[1]}</a></li>) ) }
+                                { 
+                                  dialects.map( dialect => {
+                                    return (
+                                    <li key={dialect}>
+                                      <a onClick={()=>{
+                                        dialect[0].split('-')[0] !== 'zh' ? 
+                                          this.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]) :
+                                          this.props.setUserLanguage(dialect[0], dialect[0])
+                                        }
+                                      } data-langcode={
+
+                                        dialect[0]
+
+                                      } tabIndex="0">{dialect[1]}</a>
+                                    </li>
+                                    )} 
+                                  ) 
+                                }
                               </ul>
                             </li>
                           )
