@@ -81,6 +81,7 @@ nav {
   right: 5vw;
   bottom: 12vh;
   z-index: 99;
+  line-height: 15px;
 }
 
 #fit-america:hover {
@@ -618,10 +619,10 @@ a:hover {
 }
 
 .countryTransitionMsg {
- position: absolute;
- top: 50vh;
- left: 40vw;
- z-index: 99;
+  position: absolute;
+  top: 40%;
+  left: 32%;
+  z-index: 99;
 }
 
 .countryTransitionMsg h1 {
