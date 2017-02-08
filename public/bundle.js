@@ -54513,6 +54513,7 @@
 	                    if (language.length > 2) {
 	                      //if there is more than 1 dialect
 	                      var dialects = language.slice(1, language.length); //we don't want to iterate over the main language
+	
 	                      return _react2.default.createElement(
 	                        'li',
 	                        { key: language, className: 'dropdown-submenu' },
@@ -54536,7 +54537,7 @@
 	                              _react2.default.createElement(
 	                                'a',
 	                                { onClick: function onClick() {
-	                                    _this2.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]);
+	                                    dialect[0].split('-')[0] !== 'zh' ? _this2.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]) : _this2.props.setUserLanguage(dialect[0], dialect[0]);
 	                                  }, 'data-langcode': dialect[0], tabIndex: '0' },
 	                                dialect[1]
 	                              )
@@ -57692,7 +57693,21 @@
 	Object.defineProperty(exports, "__esModule", {
 	                    value: true
 	});
-	var languages = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']], ['Català', ['ca-ES']], ['Čeština', ['cs-CZ']], ['Dansk', ['da-DK']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']], ['Filipino', ['fil-PH']], ['Français', ['fr-FR']], ['Galego', ['gl-ES']], ['Hrvatski', ['hr_HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Lietuvių', ['lt-LT']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']], ['Norsk bokmål', ['nb-NO']], ['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenščina', ['sl-SI']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Tiếng Việt', ['vi-VN']], ['Türkçe', ['tr-TR']], ['Ελληνικά', ['el-GR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['Українська', ['uk-UA']], ['한국어', ['ko-KR']], ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'], ['cmn-Hans-HK', '普通话 (香港)'], ['cmn-Hant-TW', '中文 (台灣)'], ['yue-Hant-HK', '粵語 (香港)']], ['日本語', ['ja-JP']], ['हिन्दी', ['hi-IN']], ['ภาษาไทย', ['th-TH']]];
+	var languages = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']],
+	// ['Català',          ['ca-ES']],
+	['Čeština', ['cs-CZ']], ['Dansk', ['da-DK']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']],
+	// ['Filipino',        ['fil-PH']],
+	['Filipino', ['tl']], ['Français', ['fr-FR']],
+	// ['Galego',          ['gl-ES']],
+	// ['Hrvatski',        ['hr_HR']],
+	['Hrvatski', ['hr-HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Lietuvių', ['lt-LT']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']],
+	// ['Norsk bokmål',    ['nb-NO']],
+	['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenščina', ['sl-SI']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Tiếng Việt', ['vi-VN']], ['Türkçe', ['tr-TR']], ['Ελληνικά', ['el-GR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['Українська', ['uk-UA']], ['한국어', ['ko-KR']],
+	// ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],
+	//                     ['cmn-Hans-HK', '普通话 (香港)'],
+	//                     ['cmn-Hant-TW', '中文 (台灣)'],
+	//                     ['yue-Hant-HK', '粵語 (香港)']],
+	['中文', ['zh-CN', '普通话 (中国大陆)'], ['zh-TW', '中文 (台灣)']], ['日本語', ['ja-JP']], ['हिन्दी', ['hi-IN']], ['ภาษาไทย', ['th-TH']]];
 	
 	exports.default = languages;
 
@@ -88614,9 +88629,16 @@
 				var interimTranscript = this.props.interimTranscript;
 				var userLanguage = this.props.userLanguage || 'nada';
 	
-				var userFullLanguage = _languages2.default.filter(function (lang) {
-					return userLanguage === lang[1][0].split('-')[0];
-				})[0][0];
+				var userFullLanguage = '';
+	
+				if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
+					userFullLanguage = '中文';
+				} else {
+					userFullLanguage = _languages2.default.filter(function (lang) {
+						return userLanguage === lang[1][0].split('-')[0];
+					})[0][0];
+				}
+	
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body', className: 'container' },

@@ -182,9 +182,16 @@ class ChatApp extends Component {
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
 
-		let userFullLanguage = languages.filter( (lang) => {
-								   return userLanguage === lang[1][0].split('-')[0]
-								 })[0][0]
+		let userFullLanguage = ''
+
+		if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
+			userFullLanguage = '中文'
+		} else {
+			userFullLanguage = languages.filter( (lang) => {
+				return userLanguage === lang[1][0].split('-')[0]
+			})[0][0]
+		}
+
 		return (
 			<div id="chatbox-body" className="container">
 				<h2>Video Chat</h2>
