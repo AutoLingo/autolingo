@@ -5,6 +5,7 @@ import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
 import { Link } from 'react-router';
 import repositionMap from './utilities.jsx';
+import {browserHistory} from 'react-router'
 
 var geojson;
 
@@ -154,6 +155,7 @@ export default class Map extends Component {
       this.map.removeLayer(this.chinaMarker)
       this.map.removeLayer(this.koreaMarker)
       this.map.removeLayer(this.franceMarker)
+      browserHistory.push('/country-transition')
     }
 
   repositionMap(country, map) {

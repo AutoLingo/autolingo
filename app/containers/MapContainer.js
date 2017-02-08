@@ -6,7 +6,7 @@ import { setCountry } from '../actionCreators/map';
 
 function mapStateToProps (state, ownProps) {
   const america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 }
-  const china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 }
+  const china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 }
   const spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 }
   const france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 }
   const korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 }
