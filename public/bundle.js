@@ -64,25 +64,13 @@
 	
 	var _App2 = _interopRequireDefault(_App);
 	
-<<<<<<< HEAD
-	var _LiveChat = __webpack_require__(691);
-=======
 	var _LiveChat = __webpack_require__(700);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _LiveChat2 = _interopRequireDefault(_LiveChat);
 	
 	__webpack_require__(277);
 	
-<<<<<<< HEAD
-	var _LanguageMessage = __webpack_require__(689);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
-	
-	var _MapContainer = __webpack_require__(656);
-=======
 	var _MapContainer = __webpack_require__(666);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _MapContainer2 = _interopRequireDefault(_MapContainer);
 	
@@ -90,17 +78,6 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-<<<<<<< HEAD
-	var _ChatAppGroup = __webpack_require__(754);
-	
-	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
-	
-	var _ChatAppVideo = __webpack_require__(746);
-	
-	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
-	
-	var _Instructions = __webpack_require__(631);
-=======
 	var _ChatAppGroup = __webpack_require__(764);
 	
 	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
@@ -110,7 +87,6 @@
 	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
 	var _Instructions = __webpack_require__(641);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 	
@@ -54380,19 +54356,9 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-<<<<<<< HEAD
-	var _MapContainer = __webpack_require__(656);
-	
-	var _MapContainer2 = _interopRequireDefault(_MapContainer);
-	
-	var _LanguageMessage = __webpack_require__(689);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
-=======
 	var _MapContainer = __webpack_require__(666);
 	
 	var _MapContainer2 = _interopRequireDefault(_MapContainer);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54447,19 +54413,11 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
-<<<<<<< HEAD
-	var _Instructions = __webpack_require__(631);
-	
-	var _Instructions2 = _interopRequireDefault(_Instructions);
-	
-	var _languages = __webpack_require__(655);
-=======
 	var _Instructions = __webpack_require__(641);
 	
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 	
 	var _languages = __webpack_require__(665);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _languages2 = _interopRequireDefault(_languages);
 	
@@ -54634,11 +54592,7 @@
 	exports.default = Navbar;
 
 /***/ },
-<<<<<<< HEAD
-/* 631 */
-=======
 /* 641 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -54657,21 +54611,6 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-<<<<<<< HEAD
-	var _reactModal = __webpack_require__(632);
-	
-	var _reactModal2 = _interopRequireDefault(_reactModal);
-	
-	var _sweetalert = __webpack_require__(642);
-	
-	var _sweetalert2 = _interopRequireDefault(_sweetalert);
-	
-	var _store = __webpack_require__(261);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactSimpleDropdown = __webpack_require__(651);
-=======
 	var _reactModal = __webpack_require__(642);
 	
 	var _reactModal2 = _interopRequireDefault(_reactModal);
@@ -54685,7 +54624,6 @@
 	var _store2 = _interopRequireDefault(_store);
 	
 	var _reactSimpleDropdown = __webpack_require__(661);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _reactSimpleDropdown2 = _interopRequireDefault(_reactSimpleDropdown);
 	
@@ -54844,45 +54782,25 @@
 	exports.default = InstructionMessage;
 
 /***/ },
-<<<<<<< HEAD
-/* 632 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(633);
-=======
 /* 642 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__(643);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 
 
 /***/ },
-<<<<<<< HEAD
-/* 633 */
-=======
 /* 643 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(87);
-<<<<<<< HEAD
-	var ExecutionEnvironment = __webpack_require__(634);
-	var ModalPortal = React.createFactory(__webpack_require__(635));
-	var ariaAppHider = __webpack_require__(640);
-	var elementClass = __webpack_require__(641);
-	var renderSubtreeIntoContainer = __webpack_require__(87).unstable_renderSubtreeIntoContainer;
-	var Assign = __webpack_require__(639);
-=======
 	var ExecutionEnvironment = __webpack_require__(644);
 	var ModalPortal = React.createFactory(__webpack_require__(645));
 	var ariaAppHider = __webpack_require__(650);
 	var elementClass = __webpack_require__(651);
 	var renderSubtreeIntoContainer = __webpack_require__(87).unstable_renderSubtreeIntoContainer;
 	var Assign = __webpack_require__(649);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
 	var AppElement = ExecutionEnvironment.canUseDOM ? document.body : {appendChild: function() {}};
@@ -54954,701 +54872,6 @@
 	
 	    this.renderPortal(newProps);
 	  },
-<<<<<<< HEAD
-	
-	  componentWillUnmount: function() {
-	    if (this.props.ariaHideApp) {
-	      ariaAppHider.show(this.props.appElement);
-	    }
-	
-	    ReactDOM.unmountComponentAtNode(this.node);
-	    var parent = getParentElement(this.props.parentSelector);
-	    parent.removeChild(this.node);
-	    elementClass(document.body).remove('ReactModal__Body--open');
-	  },
-	
-	  renderPortal: function(props) {
-	    if (props.isOpen) {
-	      elementClass(document.body).add('ReactModal__Body--open');
-	    } else {
-	      elementClass(document.body).remove('ReactModal__Body--open');
-	    }
-	
-	    if (props.ariaHideApp) {
-	      ariaAppHider.toggle(props.isOpen, props.appElement);
-	    }
-	
-	    this.portal = renderSubtreeIntoContainer(this, ModalPortal(Assign({}, props, {defaultStyles: Modal.defaultStyles})), this.node);
-	  },
-	
-	  render: function () {
-	    return React.DOM.noscript();
-	  }
-	});
-	
-	Modal.defaultStyles = {
-	  overlay: {
-	    position        : 'fixed',
-	    top             : 0,
-	    left            : 0,
-	    right           : 0,
-	    bottom          : 0,
-	    backgroundColor : 'rgba(255, 255, 255, 0.75)'
-	  },
-	  content: {
-	    position                : 'absolute',
-	    top                     : '40px',
-	    left                    : '40px',
-	    right                   : '40px',
-	    bottom                  : '40px',
-	    border                  : '1px solid #ccc',
-	    background              : '#fff',
-	    overflow                : 'auto',
-	    WebkitOverflowScrolling : 'touch',
-	    borderRadius            : '4px',
-	    outline                 : 'none',
-	    padding                 : '20px'
-	  }
-	}
-	
-	module.exports = Modal
-	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ },
-/* 634 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	  Copyright (c) 2015 Jed Watson.
-	  Based on code that is Copyright 2013-2015, Facebook, Inc.
-	  All rights reserved.
-	*/
-	
-	(function () {
-		'use strict';
-	
-		var canUseDOM = !!(
-			typeof window !== 'undefined' &&
-			window.document &&
-			window.document.createElement
-		);
-	
-		var ExecutionEnvironment = {
-	
-			canUseDOM: canUseDOM,
-	
-			canUseWorkers: typeof Worker !== 'undefined',
-	
-			canUseEventListeners:
-				canUseDOM && !!(window.addEventListener || window.attachEvent),
-	
-			canUseViewport: canUseDOM && !!window.screen
-	
-		};
-	
-		if (true) {
-			!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-				return ExecutionEnvironment;
-			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		} else if (typeof module !== 'undefined' && module.exports) {
-			module.exports = ExecutionEnvironment;
-		} else {
-			window.ExecutionEnvironment = ExecutionEnvironment;
-		}
-	
-	}());
-
-
-/***/ },
-/* 635 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var div = React.DOM.div;
-	var focusManager = __webpack_require__(636);
-	var scopeTab = __webpack_require__(638);
-	var Assign = __webpack_require__(639);
-	
-	// so that our CSS is statically analyzable
-	var CLASS_NAMES = {
-	  overlay: {
-	    base: 'ReactModal__Overlay',
-	    afterOpen: 'ReactModal__Overlay--after-open',
-	    beforeClose: 'ReactModal__Overlay--before-close'
-	  },
-	  content: {
-	    base: 'ReactModal__Content',
-	    afterOpen: 'ReactModal__Content--after-open',
-	    beforeClose: 'ReactModal__Content--before-close'
-	  }
-	};
-	
-	var ModalPortal = module.exports = React.createClass({
-	
-	  displayName: 'ModalPortal',
-	  shouldClose: null,
-	
-	  getDefaultProps: function() {
-	    return {
-	      style: {
-	        overlay: {},
-	        content: {}
-	      }
-	    };
-	  },
-	
-	  getInitialState: function() {
-	    return {
-	      afterOpen: false,
-	      beforeClose: false
-	    };
-	  },
-	
-	  componentDidMount: function() {
-	    // Focus needs to be set when mounting and already open
-	    if (this.props.isOpen) {
-	      this.setFocusAfterRender(true);
-	      this.open();
-	    }
-	  },
-	
-	  componentWillUnmount: function() {
-	    clearTimeout(this.closeTimer);
-	  },
-	
-	  componentWillReceiveProps: function(newProps) {
-	    // Focus only needs to be set once when the modal is being opened
-	    if (!this.props.isOpen && newProps.isOpen) {
-	      this.setFocusAfterRender(true);
-	      this.open();
-	    } else if (this.props.isOpen && !newProps.isOpen) {
-	      this.close();
-	    }
-	  },
-	
-	  componentDidUpdate: function () {
-	    if (this.focusAfterRender) {
-	      this.focusContent();
-	      this.setFocusAfterRender(false);
-	    }
-	  },
-	
-	  setFocusAfterRender: function (focus) {
-	    this.focusAfterRender = focus;
-	  },
-	
-	  open: function() {
-	    if (this.state.afterOpen && this.state.beforeClose) {
-	      clearTimeout(this.closeTimer);
-	      this.setState({ beforeClose: false });
-	    } else {
-	      focusManager.setupScopedFocus(this.node);
-	      focusManager.markForFocusLater();
-	      this.setState({isOpen: true}, function() {
-	        this.setState({afterOpen: true});
-	
-	        if (this.props.isOpen && this.props.onAfterOpen) {
-	          this.props.onAfterOpen();
-	        }
-	      }.bind(this));
-	    }
-	  },
-	
-	  close: function() {
-	    if (this.props.closeTimeoutMS > 0)
-	      this.closeWithTimeout();
-	    else
-	      this.closeWithoutTimeout();
-	  },
-	
-	  focusContent: function() {
-	    // Don't steal focus from inner elements
-	    if (!this.contentHasFocus()) {
-	      this.refs.content.focus();
-	    }
-	  },
-	
-	  closeWithTimeout: function() {
-	    this.setState({beforeClose: true}, function() {
-	      this.closeTimer = setTimeout(this.closeWithoutTimeout, this.props.closeTimeoutMS);
-	    }.bind(this));
-	  },
-	
-	  closeWithoutTimeout: function() {
-	    this.setState({
-	      beforeClose: false,
-	      isOpen: false,
-	      afterOpen: false,
-	    }, this.afterClose);
-	  },
-	
-	  afterClose: function() {
-	    focusManager.returnFocus();
-	    focusManager.teardownScopedFocus();
-	  },
-	
-	  handleKeyDown: function(event) {
-	    if (event.keyCode == 9 /*tab*/) scopeTab(this.refs.content, event);
-	    if (event.keyCode == 27 /*esc*/) {
-	      event.preventDefault();
-	      this.requestClose(event);
-	    }
-	  },
-	
-	  handleOverlayMouseDown: function(event) {
-	    if (this.shouldClose === null) {
-	      this.shouldClose = true;
-	    }
-	  },
-	
-	  handleOverlayMouseUp: function(event) {
-	    if (this.shouldClose && this.props.shouldCloseOnOverlayClick) {
-	      if (this.ownerHandlesClose())
-	        this.requestClose(event);
-	      else
-	        this.focusContent();
-	    }
-	    this.shouldClose = null;
-	  },
-	
-	  handleContentMouseDown: function(event) {
-	    this.shouldClose = false;
-	  },
-	
-	  handleContentMouseUp: function(event) {
-	    this.shouldClose = false;
-	  },
-	
-	  requestClose: function(event) {
-	    if (this.ownerHandlesClose())
-	      this.props.onRequestClose(event);
-	  },
-	
-	  ownerHandlesClose: function() {
-	    return this.props.onRequestClose;
-	  },
-	
-	  shouldBeClosed: function() {
-	    return !this.props.isOpen && !this.state.beforeClose;
-	  },
-	
-	  contentHasFocus: function() {
-	    return document.activeElement === this.refs.content || this.refs.content.contains(document.activeElement);
-	  },
-	
-	  buildClassName: function(which, additional) {
-	    var className = CLASS_NAMES[which].base;
-	    if (this.state.afterOpen)
-	      className += ' '+CLASS_NAMES[which].afterOpen;
-	    if (this.state.beforeClose)
-	      className += ' '+CLASS_NAMES[which].beforeClose;
-	    return additional ? className + ' ' + additional : className;
-	  },
-	
-	  render: function() {
-	    var contentStyles = (this.props.className) ? {} : this.props.defaultStyles.content;
-	    var overlayStyles = (this.props.overlayClassName) ? {} : this.props.defaultStyles.overlay;
-	
-	    return this.shouldBeClosed() ? div() : (
-	      div({
-	        ref: "overlay",
-	        className: this.buildClassName('overlay', this.props.overlayClassName),
-	        style: Assign({}, overlayStyles, this.props.style.overlay || {}),
-	        onMouseDown: this.handleOverlayMouseDown,
-	        onMouseUp: this.handleOverlayMouseUp
-	      },
-	        div({
-	          ref: "content",
-	          style: Assign({}, contentStyles, this.props.style.content || {}),
-	          className: this.buildClassName('content', this.props.className),
-	          tabIndex: "-1",
-	          onKeyDown: this.handleKeyDown,
-	          onMouseDown: this.handleContentMouseDown,
-	          onMouseUp: this.handleContentMouseUp,
-	          role: this.props.role,
-	          "aria-label": this.props.contentLabel
-	        },
-	          this.props.children
-	        )
-	      )
-	    );
-	  }
-	});
-
-
-/***/ },
-/* 636 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var findTabbable = __webpack_require__(637);
-	var modalElement = null;
-	var focusLaterElement = null;
-	var needToFocus = false;
-	
-	function handleBlur(event) {
-	  needToFocus = true;
-	}
-	
-	function handleFocus(event) {
-	  if (needToFocus) {
-	    needToFocus = false;
-	    if (!modalElement) {
-	      return;
-	    }
-	    // need to see how jQuery shims document.on('focusin') so we don't need the
-	    // setTimeout, firefox doesn't support focusin, if it did, we could focus
-	    // the element outside of a setTimeout. Side-effect of this implementation 
-	    // is that the document.body gets focus, and then we focus our element right 
-	    // after, seems fine.
-	    setTimeout(function() {
-	      if (modalElement.contains(document.activeElement))
-	        return;
-	      var el = (findTabbable(modalElement)[0] || modalElement);
-	      el.focus();
-	    }, 0);
-	  }
-	}
-	
-	exports.markForFocusLater = function() {
-	  focusLaterElement = document.activeElement;
-	};
-	
-	exports.returnFocus = function() {
-	  try {
-	    focusLaterElement.focus();
-	  }
-	  catch (e) {
-	    console.warn('You tried to return focus to '+focusLaterElement+' but it is not in the DOM anymore');
-	  }
-	  focusLaterElement = null;
-	};
-	
-	exports.setupScopedFocus = function(element) {
-	  modalElement = element;
-	
-	  if (window.addEventListener) {
-	    window.addEventListener('blur', handleBlur, false);
-	    document.addEventListener('focus', handleFocus, true);
-	  } else {
-	    window.attachEvent('onBlur', handleBlur);
-	    document.attachEvent('onFocus', handleFocus);
-	  }
-	};
-	
-	exports.teardownScopedFocus = function() {
-	  modalElement = null;
-	
-	  if (window.addEventListener) {
-	    window.removeEventListener('blur', handleBlur);
-	    document.removeEventListener('focus', handleFocus);
-	  } else {
-	    window.detachEvent('onBlur', handleBlur);
-	    document.detachEvent('onFocus', handleFocus);
-	  }
-	};
-	
-	
-
-
-/***/ },
-/* 637 */
-/***/ function(module, exports) {
-
-	/*!
-	 * Adapted from jQuery UI core
-	 *
-	 * http://jqueryui.com
-	 *
-	 * Copyright 2014 jQuery Foundation and other contributors
-	 * Released under the MIT license.
-	 * http://jquery.org/license
-	 *
-	 * http://api.jqueryui.com/category/ui-core/
-	 */
-	
-	function focusable(element, isTabIndexNotNaN) {
-	  var nodeName = element.nodeName.toLowerCase();
-	  return (/input|select|textarea|button|object/.test(nodeName) ?
-	    !element.disabled :
-	    "a" === nodeName ?
-	      element.href || isTabIndexNotNaN :
-	      isTabIndexNotNaN) && visible(element);
-	}
-	
-	function hidden(el) {
-	  return (el.offsetWidth <= 0 && el.offsetHeight <= 0) ||
-	    el.style.display === 'none';
-	}
-	
-	function visible(element) {
-	  while (element) {
-	    if (element === document.body) break;
-	    if (hidden(element)) return false;
-	    element = element.parentNode;
-	  }
-	  return true;
-	}
-	
-	function tabbable(element) {
-	  var tabIndex = element.getAttribute('tabindex');
-	  if (tabIndex === null) tabIndex = undefined;
-	  var isTabIndexNaN = isNaN(tabIndex);
-	  return (isTabIndexNaN || tabIndex >= 0) && focusable(element, !isTabIndexNaN);
-	}
-	
-	function findTabbableDescendants(element) {
-	  return [].slice.call(element.querySelectorAll('*'), 0).filter(function(el) {
-	    return tabbable(el);
-	  });
-	}
-	
-	module.exports = findTabbableDescendants;
-	
-
-
-/***/ },
-/* 638 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var findTabbable = __webpack_require__(637);
-	
-	module.exports = function(node, event) {
-	  var tabbable = findTabbable(node);
-	  if (!tabbable.length) {
-	      event.preventDefault();
-	      return;
-	  }
-	  var finalTabbable = tabbable[event.shiftKey ? 0 : tabbable.length - 1];
-	  var leavingFinalTabbable = (
-	    finalTabbable === document.activeElement ||
-	    // handle immediate shift+tab after opening with mouse
-	    node === document.activeElement
-	  );
-	  if (!leavingFinalTabbable) return;
-	  event.preventDefault();
-	  var target = tabbable[event.shiftKey ? tabbable.length - 1 : 0];
-	  target.focus();
-	};
-
-
-/***/ },
-/* 639 */
-/***/ function(module, exports) {
-
-	/**
-	 * lodash (Custom Build) <https://lodash.com/>
-	 * Build: `lodash modularize exports="npm" -o ./`
-	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
-	 * Released under MIT license <https://lodash.com/license>
-	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
-	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 */
-	
-	/** Used as references for various `Number` constants. */
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	/** `Object#toString` result references. */
-	var argsTag = '[object Arguments]',
-	    funcTag = '[object Function]',
-	    genTag = '[object GeneratorFunction]';
-	
-	/** Used to detect unsigned integer values. */
-	var reIsUint = /^(?:0|[1-9]\d*)$/;
-	
-	/**
-	 * A faster alternative to `Function#apply`, this function invokes `func`
-	 * with the `this` binding of `thisArg` and the arguments of `args`.
-	 *
-	 * @private
-	 * @param {Function} func The function to invoke.
-	 * @param {*} thisArg The `this` binding of `func`.
-	 * @param {Array} args The arguments to invoke `func` with.
-	 * @returns {*} Returns the result of `func`.
-	 */
-	function apply(func, thisArg, args) {
-	  switch (args.length) {
-	    case 0: return func.call(thisArg);
-	    case 1: return func.call(thisArg, args[0]);
-	    case 2: return func.call(thisArg, args[0], args[1]);
-	    case 3: return func.call(thisArg, args[0], args[1], args[2]);
-	  }
-	  return func.apply(thisArg, args);
-	}
-	
-	/**
-	 * The base implementation of `_.times` without support for iteratee shorthands
-	 * or max array length checks.
-	 *
-	 * @private
-	 * @param {number} n The number of times to invoke `iteratee`.
-	 * @param {Function} iteratee The function invoked per iteration.
-	 * @returns {Array} Returns the array of results.
-	 */
-	function baseTimes(n, iteratee) {
-	  var index = -1,
-	      result = Array(n);
-	
-	  while (++index < n) {
-	    result[index] = iteratee(index);
-	  }
-	  return result;
-	}
-	
-	/**
-	 * Creates a unary function that invokes `func` with its argument transformed.
-	 *
-	 * @private
-	 * @param {Function} func The function to wrap.
-	 * @param {Function} transform The argument transform.
-	 * @returns {Function} Returns the new function.
-	 */
-	function overArg(func, transform) {
-	  return function(arg) {
-	    return func(transform(arg));
-	  };
-	}
-	
-	/** Used for built-in method references. */
-	var objectProto = Object.prototype;
-	
-	/** Used to check objects for own properties. */
-	var hasOwnProperty = objectProto.hasOwnProperty;
-	
-	/**
-	 * Used to resolve the
-	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
-	 * of values.
-	 */
-	var objectToString = objectProto.toString;
-	
-	/** Built-in value references. */
-	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
-	
-	/* Built-in method references for those with the same name as other `lodash` methods. */
-	var nativeKeys = overArg(Object.keys, Object),
-	    nativeMax = Math.max;
-	
-	/** Detect if properties shadowing those on `Object.prototype` are non-enumerable. */
-	var nonEnumShadows = !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf');
-	
-	/**
-	 * Creates an array of the enumerable property names of the array-like `value`.
-	 *
-	 * @private
-	 * @param {*} value The value to query.
-	 * @param {boolean} inherited Specify returning inherited property names.
-	 * @returns {Array} Returns the array of property names.
-	 */
-	function arrayLikeKeys(value, inherited) {
-	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-	  // Safari 9 makes `arguments.length` enumerable in strict mode.
-	  var result = (isArray(value) || isArguments(value))
-	    ? baseTimes(value.length, String)
-	    : [];
-	
-	  var length = result.length,
-	      skipIndexes = !!length;
-	
-	  for (var key in value) {
-	    if ((inherited || hasOwnProperty.call(value, key)) &&
-	        !(skipIndexes && (key == 'length' || isIndex(key, length)))) {
-	      result.push(key);
-	    }
-	  }
-	  return result;
-	}
-	
-	/**
-	 * Assigns `value` to `key` of `object` if the existing value is not equivalent
-	 * using [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
-	 * for equality comparisons.
-	 *
-	 * @private
-	 * @param {Object} object The object to modify.
-	 * @param {string} key The key of the property to assign.
-	 * @param {*} value The value to assign.
-	 */
-	function assignValue(object, key, value) {
-	  var objValue = object[key];
-	  if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) ||
-	      (value === undefined && !(key in object))) {
-	    object[key] = value;
-	  }
-	}
-	
-	/**
-	 * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {Array} Returns the array of property names.
-	 */
-	function baseKeys(object) {
-	  if (!isPrototype(object)) {
-	    return nativeKeys(object);
-	  }
-	  var result = [];
-	  for (var key in Object(object)) {
-	    if (hasOwnProperty.call(object, key) && key != 'constructor') {
-	      result.push(key);
-	    }
-	  }
-	  return result;
-	}
-	
-	/**
-	 * The base implementation of `_.rest` which doesn't validate or coerce arguments.
-	 *
-	 * @private
-	 * @param {Function} func The function to apply a rest parameter to.
-	 * @param {number} [start=func.length-1] The start position of the rest parameter.
-	 * @returns {Function} Returns the new function.
-	 */
-	function baseRest(func, start) {
-	  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
-	  return function() {
-	    var args = arguments,
-	        index = -1,
-	        length = nativeMax(args.length - start, 0),
-	        array = Array(length);
-	
-	    while (++index < length) {
-	      array[index] = args[start + index];
-	    }
-	    index = -1;
-	    var otherArgs = Array(start + 1);
-	    while (++index < start) {
-	      otherArgs[index] = args[index];
-	    }
-	    otherArgs[start] = array;
-	    return apply(func, this, otherArgs);
-	  };
-	}
-	
-	/**
-	 * Copies properties of `source` to `object`.
-	 *
-	 * @private
-	 * @param {Object} source The object to copy properties from.
-	 * @param {Array} props The property identifiers to copy.
-	 * @param {Object} [object={}] The object to copy properties to.
-	 * @param {Function} [customizer] The function to customize copied values.
-	 * @returns {Object} Returns `object`.
-	 */
-	function copyObject(source, props, object, customizer) {
-	  object || (object = {});
-	
-	  var index = -1,
-	      length = props.length;
-	
-	  while (++index < length) {
-	    var key = props[index];
-	
-	    var newValue = customizer
-	      ? customizer(object[key], source[key], key, object, source)
-	      : undefined;
-=======
 	
 	  componentWillUnmount: function() {
 	    if (this.props.ariaHideApp) {
@@ -56041,477 +55264,8 @@
 	    document.detachEvent('onFocus', handleFocus);
 	  }
 	};
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
-	    assignValue(object, key, newValue === undefined ? source[key] : newValue);
-	  }
-	  return object;
-	}
 	
-<<<<<<< HEAD
-	/**
-	 * Creates a function like `_.assign`.
-	 *
-	 * @private
-	 * @param {Function} assigner The function to assign values.
-	 * @returns {Function} Returns the new assigner function.
-	 */
-	function createAssigner(assigner) {
-	  return baseRest(function(object, sources) {
-	    var index = -1,
-	        length = sources.length,
-	        customizer = length > 1 ? sources[length - 1] : undefined,
-	        guard = length > 2 ? sources[2] : undefined;
-	
-	    customizer = (assigner.length > 3 && typeof customizer == 'function')
-	      ? (length--, customizer)
-	      : undefined;
-	
-	    if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-	      customizer = length < 3 ? undefined : customizer;
-	      length = 1;
-	    }
-	    object = Object(object);
-	    while (++index < length) {
-	      var source = sources[index];
-	      if (source) {
-	        assigner(object, source, index, customizer);
-	      }
-	    }
-	    return object;
-	  });
-	}
-	
-	/**
-	 * Checks if `value` is a valid array-like index.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-	 */
-	function isIndex(value, length) {
-	  length = length == null ? MAX_SAFE_INTEGER : length;
-	  return !!length &&
-	    (typeof value == 'number' || reIsUint.test(value)) &&
-	    (value > -1 && value % 1 == 0 && value < length);
-	}
-	
-	/**
-	 * Checks if the given arguments are from an iteratee call.
-	 *
-	 * @private
-	 * @param {*} value The potential iteratee value argument.
-	 * @param {*} index The potential iteratee index or key argument.
-	 * @param {*} object The potential iteratee object argument.
-	 * @returns {boolean} Returns `true` if the arguments are from an iteratee call,
-	 *  else `false`.
-	 */
-	function isIterateeCall(value, index, object) {
-	  if (!isObject(object)) {
-	    return false;
-	  }
-	  var type = typeof index;
-	  if (type == 'number'
-	        ? (isArrayLike(object) && isIndex(index, object.length))
-	        : (type == 'string' && index in object)
-	      ) {
-	    return eq(object[index], value);
-	  }
-	  return false;
-	}
-	
-	/**
-	 * Checks if `value` is likely a prototype object.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
-	 */
-	function isPrototype(value) {
-	  var Ctor = value && value.constructor,
-	      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
-	
-	  return value === proto;
-	}
-	
-	/**
-	 * Performs a
-	 * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
-	 * comparison between two values to determine if they are equivalent.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to compare.
-	 * @param {*} other The other value to compare.
-	 * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
-	 * @example
-	 *
-	 * var object = { 'a': 1 };
-	 * var other = { 'a': 1 };
-	 *
-	 * _.eq(object, object);
-	 * // => true
-	 *
-	 * _.eq(object, other);
-	 * // => false
-	 *
-	 * _.eq('a', 'a');
-	 * // => true
-	 *
-	 * _.eq('a', Object('a'));
-	 * // => false
-	 *
-	 * _.eq(NaN, NaN);
-	 * // => true
-	 */
-	function eq(value, other) {
-	  return value === other || (value !== value && other !== other);
-	}
-	
-	/**
-	 * Checks if `value` is likely an `arguments` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an `arguments` object,
-	 *  else `false`.
-	 * @example
-	 *
-	 * _.isArguments(function() { return arguments; }());
-	 * // => true
-	 *
-	 * _.isArguments([1, 2, 3]);
-	 * // => false
-	 */
-	function isArguments(value) {
-	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
-	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
-	    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
-	}
-	
-	/**
-	 * Checks if `value` is classified as an `Array` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an array, else `false`.
-	 * @example
-	 *
-	 * _.isArray([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isArray(document.body.children);
-	 * // => false
-	 *
-	 * _.isArray('abc');
-	 * // => false
-	 *
-	 * _.isArray(_.noop);
-	 * // => false
-	 */
-	var isArray = Array.isArray;
-	
-	/**
-	 * Checks if `value` is array-like. A value is considered array-like if it's
-	 * not a function and has a `value.length` that's an integer greater than or
-	 * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
-	 * @example
-	 *
-	 * _.isArrayLike([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isArrayLike(document.body.children);
-	 * // => true
-	 *
-	 * _.isArrayLike('abc');
-	 * // => true
-	 *
-	 * _.isArrayLike(_.noop);
-	 * // => false
-	 */
-	function isArrayLike(value) {
-	  return value != null && isLength(value.length) && !isFunction(value);
-	}
-	
-	/**
-	 * This method is like `_.isArrayLike` except that it also checks if `value`
-	 * is an object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an array-like object,
-	 *  else `false`.
-	 * @example
-	 *
-	 * _.isArrayLikeObject([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isArrayLikeObject(document.body.children);
-	 * // => true
-	 *
-	 * _.isArrayLikeObject('abc');
-	 * // => false
-	 *
-	 * _.isArrayLikeObject(_.noop);
-	 * // => false
-	 */
-	function isArrayLikeObject(value) {
-	  return isObjectLike(value) && isArrayLike(value);
-	}
-	
-	/**
-	 * Checks if `value` is classified as a `Function` object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a function, else `false`.
-	 * @example
-	 *
-	 * _.isFunction(_);
-	 * // => true
-	 *
-	 * _.isFunction(/abc/);
-	 * // => false
-	 */
-	function isFunction(value) {
-	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8-9 which returns 'object' for typed array and other constructors.
-	  var tag = isObject(value) ? objectToString.call(value) : '';
-	  return tag == funcTag || tag == genTag;
-	}
-	
-	/**
-	 * Checks if `value` is a valid array-like length.
-	 *
-	 * **Note:** This method is loosely based on
-	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
-	 * @example
-	 *
-	 * _.isLength(3);
-	 * // => true
-	 *
-	 * _.isLength(Number.MIN_VALUE);
-	 * // => false
-	 *
-	 * _.isLength(Infinity);
-	 * // => false
-	 *
-	 * _.isLength('3');
-	 * // => false
-	 */
-	function isLength(value) {
-	  return typeof value == 'number' &&
-	    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-	}
-	
-	/**
-	 * Checks if `value` is the
-	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
-	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.1.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
-	 * @example
-	 *
-	 * _.isObject({});
-	 * // => true
-	 *
-	 * _.isObject([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isObject(_.noop);
-	 * // => true
-	 *
-	 * _.isObject(null);
-	 * // => false
-	 */
-	function isObject(value) {
-	  var type = typeof value;
-	  return !!value && (type == 'object' || type == 'function');
-	}
-	
-	/**
-	 * Checks if `value` is object-like. A value is object-like if it's not `null`
-	 * and has a `typeof` result of "object".
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
-	 * @example
-	 *
-	 * _.isObjectLike({});
-	 * // => true
-	 *
-	 * _.isObjectLike([1, 2, 3]);
-	 * // => true
-	 *
-	 * _.isObjectLike(_.noop);
-	 * // => false
-	 *
-	 * _.isObjectLike(null);
-	 * // => false
-	 */
-	function isObjectLike(value) {
-	  return !!value && typeof value == 'object';
-	}
-	
-	/**
-	 * Assigns own enumerable string keyed properties of source objects to the
-	 * destination object. Source objects are applied from left to right.
-	 * Subsequent sources overwrite property assignments of previous sources.
-	 *
-	 * **Note:** This method mutates `object` and is loosely based on
-	 * [`Object.assign`](https://mdn.io/Object/assign).
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 0.10.0
-	 * @category Object
-	 * @param {Object} object The destination object.
-	 * @param {...Object} [sources] The source objects.
-	 * @returns {Object} Returns `object`.
-	 * @see _.assignIn
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1;
-	 * }
-	 *
-	 * function Bar() {
-	 *   this.c = 3;
-	 * }
-	 *
-	 * Foo.prototype.b = 2;
-	 * Bar.prototype.d = 4;
-	 *
-	 * _.assign({ 'a': 0 }, new Foo, new Bar);
-	 * // => { 'a': 1, 'c': 3 }
-	 */
-	var assign = createAssigner(function(object, source) {
-	  if (nonEnumShadows || isPrototype(source) || isArrayLike(source)) {
-	    copyObject(source, keys(source), object);
-	    return;
-	  }
-	  for (var key in source) {
-	    if (hasOwnProperty.call(source, key)) {
-	      assignValue(object, key, source[key]);
-	    }
-	  }
-	});
-	
-	/**
-	 * Creates an array of the own enumerable property names of `object`.
-	 *
-	 * **Note:** Non-object values are coerced to objects. See the
-	 * [ES spec](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
-	 * for more details.
-	 *
-	 * @static
-	 * @since 0.1.0
-	 * @memberOf _
-	 * @category Object
-	 * @param {Object} object The object to query.
-	 * @returns {Array} Returns the array of property names.
-	 * @example
-	 *
-	 * function Foo() {
-	 *   this.a = 1;
-	 *   this.b = 2;
-	 * }
-	 *
-	 * Foo.prototype.c = 3;
-	 *
-	 * _.keys(new Foo);
-	 * // => ['a', 'b'] (iteration order is not guaranteed)
-	 *
-	 * _.keys('hi');
-	 * // => ['0', '1']
-	 */
-	function keys(object) {
-	  return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
-	}
-	
-	module.exports = assign;
-
-
-/***/ },
-/* 640 */
-/***/ function(module, exports) {
-
-	var _element = typeof document !== 'undefined' ? document.body : null;
-	
-	function setElement(element) {
-	  if (typeof element === 'string') {
-	    var el = document.querySelectorAll(element);
-	    element = 'length' in el ? el[0] : el;
-	  }
-	  _element = element || _element;
-	  return _element;
-	}
-	
-	function hide(appElement) {
-	  validateElement(appElement);
-	  (appElement || _element).setAttribute('aria-hidden', 'true');
-	}
-	
-	function show(appElement) {
-	  validateElement(appElement);
-	  (appElement || _element).removeAttribute('aria-hidden');
-	}
-	
-	function toggle(shouldHide, appElement) {
-	  if (shouldHide)
-	    hide(appElement);
-	  else
-	    show(appElement);
-	}
-	
-	function validateElement(appElement) {
-	  if (!appElement && !_element)
-	    throw new Error('react-modal: You must set an element with `Modal.setAppElement(el)` to make this accessible');
-	}
-	
-	function resetForTesting() {
-	  _element = document.body;
-	}
-	
-=======
 
 
 /***/ },
@@ -57279,7 +56033,6 @@
 	  _element = document.body;
 	}
 	
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	exports.toggle = toggle;
 	exports.setElement = setElement;
 	exports.show = show;
@@ -57288,11 +56041,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 641 */
-=======
 /* 651 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = function(opts) {
@@ -57357,11 +56106,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 642 */
-=======
 /* 652 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57379,35 +56124,18 @@
 	 * jQuery-like functions for manipulating the DOM
 	 */
 	
-<<<<<<< HEAD
-	var _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide$isDescendant$getTopMargin$fadeIn$fadeOut$fireClick$stopEventPropagation = __webpack_require__(643);
-=======
 	var _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide$isDescendant$getTopMargin$fadeIn$fadeOut$fireClick$stopEventPropagation = __webpack_require__(653);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/*
 	 * Handy utilities
 	 */
 	
-<<<<<<< HEAD
-	var _extend$hexToRgb$isIE8$logStr$colorLuminance = __webpack_require__(644);
-=======
 	var _extend$hexToRgb$isIE8$logStr$colorLuminance = __webpack_require__(654);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/*
 	 *  Handle sweetAlert's DOM elements
 	 */
 	
-<<<<<<< HEAD
-	var _sweetAlertInitialize$getModal$getOverlay$getInput$setFocusStyle$openModal$resetInput$fixVerticalPosition = __webpack_require__(645);
-	
-	// Handle button events and keyboard events
-	
-	var _handleButton$handleConfirm$handleCancel = __webpack_require__(648);
-	
-	var _handleKeyDown = __webpack_require__(649);
-=======
 	var _sweetAlertInitialize$getModal$getOverlay$getInput$setFocusStyle$openModal$resetInput$fixVerticalPosition = __webpack_require__(655);
 	
 	// Handle button events and keyboard events
@@ -57415,25 +56143,16 @@
 	var _handleButton$handleConfirm$handleCancel = __webpack_require__(658);
 	
 	var _handleKeyDown = __webpack_require__(659);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _handleKeyDown2 = _interopRequireWildcard(_handleKeyDown);
 	
 	// Default values
 	
-<<<<<<< HEAD
-	var _defaultParams = __webpack_require__(646);
-	
-	var _defaultParams2 = _interopRequireWildcard(_defaultParams);
-	
-	var _setParameters = __webpack_require__(650);
-=======
 	var _defaultParams = __webpack_require__(656);
 	
 	var _defaultParams2 = _interopRequireWildcard(_defaultParams);
 	
 	var _setParameters = __webpack_require__(660);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _setParameters2 = _interopRequireWildcard(_setParameters);
 	
@@ -57695,11 +56414,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< HEAD
-/* 643 */
-=======
 /* 653 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -57895,11 +56610,7 @@
 	exports.stopEventPropagation = stopEventPropagation;
 
 /***/ },
-<<<<<<< HEAD
-/* 644 */
-=======
 /* 654 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -57977,11 +56688,7 @@
 	exports.colorLuminance = colorLuminance;
 
 /***/ },
-<<<<<<< HEAD
-/* 645 */
-=======
 /* 655 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -57992,19 +56699,11 @@
 	  value: true
 	});
 	
-<<<<<<< HEAD
-	var _hexToRgb = __webpack_require__(644);
-	
-	var _removeClass$getTopMargin$fadeIn$show$addClass = __webpack_require__(643);
-	
-	var _defaultParams = __webpack_require__(646);
-=======
 	var _hexToRgb = __webpack_require__(654);
 	
 	var _removeClass$getTopMargin$fadeIn$show$addClass = __webpack_require__(653);
 	
 	var _defaultParams = __webpack_require__(656);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _defaultParams2 = _interopRequireWildcard(_defaultParams);
 	
@@ -58012,11 +56711,7 @@
 	 * Add modal + overlay to DOM
 	 */
 	
-<<<<<<< HEAD
-	var _injectedHTML = __webpack_require__(647);
-=======
 	var _injectedHTML = __webpack_require__(657);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _injectedHTML2 = _interopRequireWildcard(_injectedHTML);
 	
@@ -58165,11 +56860,7 @@
 	exports.fixVerticalPosition = fixVerticalPosition;
 
 /***/ },
-<<<<<<< HEAD
-/* 646 */
-=======
 /* 656 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -58206,11 +56897,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< HEAD
-/* 647 */
-=======
 /* 657 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	"use strict";
@@ -58257,11 +56944,7 @@
 	module.exports = exports["default"];
 
 /***/ },
-<<<<<<< HEAD
-/* 648 */
-=======
 /* 658 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58270,19 +56953,11 @@
 	  value: true
 	});
 	
-<<<<<<< HEAD
-	var _colorLuminance = __webpack_require__(644);
-	
-	var _getModal = __webpack_require__(645);
-	
-	var _hasClass$isDescendant = __webpack_require__(643);
-=======
 	var _colorLuminance = __webpack_require__(654);
 	
 	var _getModal = __webpack_require__(655);
 	
 	var _hasClass$isDescendant = __webpack_require__(653);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/*
 	 * User clicked on "Confirm"/"OK" or "Cancel"
@@ -58409,11 +57084,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< HEAD
-/* 649 */
-=======
 /* 659 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58422,15 +57093,9 @@
 	  value: true
 	});
 	
-<<<<<<< HEAD
-	var _stopEventPropagation$fireClick = __webpack_require__(643);
-	
-	var _setFocusStyle = __webpack_require__(645);
-=======
 	var _stopEventPropagation$fireClick = __webpack_require__(653);
 	
 	var _setFocusStyle = __webpack_require__(655);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var handleKeyDown = function handleKeyDown(event, params, modal) {
 	  var e = event || window.event;
@@ -58503,11 +57168,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< HEAD
-/* 650 */
-=======
 /* 660 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58516,19 +57177,11 @@
 	  value: true
 	});
 	
-<<<<<<< HEAD
-	var _isIE8 = __webpack_require__(644);
-	
-	var _getModal$getInput$setFocusStyle = __webpack_require__(645);
-	
-	var _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide = __webpack_require__(643);
-=======
 	var _isIE8 = __webpack_require__(654);
 	
 	var _getModal$getInput$setFocusStyle = __webpack_require__(655);
 	
 	var _hasClass$addClass$removeClass$escapeHtml$_show$show$_hide$hide = __webpack_require__(653);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var alertTypes = ['error', 'warning', 'info', 'success', 'input', 'prompt'];
 	
@@ -58745,11 +57398,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< HEAD
-/* 651 */
-=======
 /* 661 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -58765,17 +57414,6 @@
 	
 	var _reactDom = __webpack_require__(87);
 	
-<<<<<<< HEAD
-	var _classnames = __webpack_require__(652);
-	
-	var _classnames2 = _interopRequireDefault(_classnames);
-	
-	var _DropdownTrigger = __webpack_require__(653);
-	
-	var _DropdownTrigger2 = _interopRequireDefault(_DropdownTrigger);
-	
-	var _DropdownContent = __webpack_require__(654);
-=======
 	var _classnames = __webpack_require__(662);
 	
 	var _classnames2 = _interopRequireDefault(_classnames);
@@ -58785,7 +57423,6 @@
 	var _DropdownTrigger2 = _interopRequireDefault(_DropdownTrigger);
 	
 	var _DropdownContent = __webpack_require__(664);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _DropdownContent2 = _interopRequireDefault(_DropdownContent);
 	
@@ -58893,11 +57530,7 @@
 	exports.default = Dropdown;
 
 /***/ },
-<<<<<<< HEAD
-/* 652 */
-=======
 /* 662 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -58951,11 +57584,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 653 */
-=======
 /* 663 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59005,11 +57634,7 @@
 	exports.default = DropdownTrigger;
 
 /***/ },
-<<<<<<< HEAD
-/* 654 */
-=======
 /* 664 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59059,11 +57684,7 @@
 	exports.default = DropdownContent;
 
 /***/ },
-<<<<<<< HEAD
-/* 655 */
-=======
 /* 665 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -59076,11 +57697,7 @@
 	exports.default = languages;
 
 /***/ },
-<<<<<<< HEAD
-/* 656 */
-=======
 /* 666 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59091,29 +57708,17 @@
 	
 	var _reactRedux = __webpack_require__(233);
 	
-<<<<<<< HEAD
-	var _Map = __webpack_require__(657);
-	
-	var _Map2 = _interopRequireDefault(_Map);
-	
-	var _map = __webpack_require__(611);
-=======
 	var _Map = __webpack_require__(667);
 	
 	var _Map2 = _interopRequireDefault(_Map);
 	
 	var _map = __webpack_require__(621);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function mapStateToProps(state, ownProps) {
 	  var america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
-<<<<<<< HEAD
 	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
-=======
-	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 5 };
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	  var spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
 	  var france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
 	  var korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
@@ -59157,11 +57762,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Map2.default);
 
 /***/ },
-<<<<<<< HEAD
-/* 657 */
-=======
 /* 667 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59176,23 +57777,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _mapbox = __webpack_require__(658);
-	
-	var _mapbox2 = _interopRequireDefault(_mapbox);
-	
-	var _countryCoordinates = __webpack_require__(688);
-	
-	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
-	
-	var _LanguageMessage = __webpack_require__(689);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
-	
-	var _reactRouter = __webpack_require__(32);
-	
-	var _utilities = __webpack_require__(690);
-=======
 	var _mapbox = __webpack_require__(668);
 	
 	var _mapbox2 = _interopRequireDefault(_mapbox);
@@ -59204,7 +57788,6 @@
 	var _reactRouter = __webpack_require__(32);
 	
 	var _utilities = __webpack_require__(699);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _utilities2 = _interopRequireDefault(_utilities);
 	
@@ -59377,10 +57960,7 @@
 	      this.map.removeLayer(this.chinaMarker);
 	      this.map.removeLayer(this.koreaMarker);
 	      this.map.removeLayer(this.franceMarker);
-<<<<<<< HEAD
 	      _reactRouter.browserHistory.push('/country-transition');
-=======
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	    }
 	  }, {
 	    key: 'repositionMap',
@@ -59508,39 +58088,19 @@
 	exports.default = Map;
 
 /***/ },
-<<<<<<< HEAD
-/* 658 */
-=======
 /* 668 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var leaflet = __webpack_require__(659);
-	
-	__webpack_require__(661);
-=======
 	var leaflet = __webpack_require__(669);
 	
 	__webpack_require__(671);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	module.exports = leaflet;
 
 
 /***/ },
-<<<<<<< HEAD
-/* 659 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = window.L = __webpack_require__(660);
-
-
-/***/ },
-/* 660 */
-=======
 /* 669 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -59549,7 +58109,6 @@
 
 /***/ },
 /* 670 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -72724,32 +71283,11 @@
 	//# sourceMappingURL=leaflet-src.map
 
 /***/ },
-<<<<<<< HEAD
-/* 661 */
-=======
 /* 671 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var geocoderControl = __webpack_require__(662),
-	    gridControl = __webpack_require__(672),
-	    featureLayer = __webpack_require__(676),
-	    legendControl = __webpack_require__(679),
-	    shareControl = __webpack_require__(680),
-	    tileLayer = __webpack_require__(682),
-	    map = __webpack_require__(683),
-	    gridLayer = __webpack_require__(684),
-	    styleLayer = __webpack_require__(687);
-	
-	L.mapbox = module.exports = {
-	    VERSION: __webpack_require__(668).version,
-	    geocoder: __webpack_require__(663),
-	    marker: __webpack_require__(677),
-	    simplestyle: __webpack_require__(678),
-=======
 	var geocoderControl = __webpack_require__(672),
 	    gridControl = __webpack_require__(682),
 	    featureLayer = __webpack_require__(686),
@@ -72765,7 +71303,6 @@
 	    geocoder: __webpack_require__(673),
 	    marker: __webpack_require__(687),
 	    simplestyle: __webpack_require__(688),
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	    tileLayer: tileLayer.tileLayer,
 	    TileLayer: tileLayer.TileLayer,
 	    styleLayer: styleLayer.styleLayer,
@@ -72784,17 +71321,10 @@
 	    FeatureLayer: featureLayer.FeatureLayer,
 	    map: map.map,
 	    Map: map.Map,
-<<<<<<< HEAD
-	    config: __webpack_require__(667),
-	    sanitize: __webpack_require__(674),
-	    template: __webpack_require__(673).to_html,
-	    feedback: __webpack_require__(669)
-=======
 	    config: __webpack_require__(677),
 	    sanitize: __webpack_require__(684),
 	    template: __webpack_require__(683).to_html,
 	    feedback: __webpack_require__(679)
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	};
 	
 	
@@ -72806,30 +71336,17 @@
 	    ((document.location.protocol === 'https:' ||
 	    document.location.protocol === 'http:') ? '' : 'https:') +
 	    '//api.tiles.mapbox.com/mapbox.js/' + 'v' +
-<<<<<<< HEAD
-	    __webpack_require__(668).version + '/images/';
-
-
-/***/ },
-/* 662 */
-=======
 	    __webpack_require__(678).version + '/images/';
 
 
 /***/ },
 /* 672 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var geocoder = __webpack_require__(663),
-	    util = __webpack_require__(665);
-=======
 	var geocoder = __webpack_require__(673),
 	    util = __webpack_require__(675);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var GeocoderControl = L.Control.extend({
 	    includes: L.Mixin.Events,
@@ -73033,28 +71550,16 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 663 */
-=======
 /* 673 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var isArray = __webpack_require__(664),
-	    util = __webpack_require__(665),
-	    format_url = __webpack_require__(666),
-	    feedback = __webpack_require__(669),
-	    request = __webpack_require__(670);
-=======
 	var isArray = __webpack_require__(674),
 	    util = __webpack_require__(675),
 	    format_url = __webpack_require__(676),
 	    feedback = __webpack_require__(679),
 	    request = __webpack_require__(680);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	// Low-level geocoding interface - wraps specific API calls and their
 	// return values.
@@ -73193,11 +71698,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 664 */
-=======
 /* 674 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -73206,11 +71707,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 665 */
-=======
 /* 675 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -73261,22 +71758,13 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 666 */
-=======
 /* 676 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var config = __webpack_require__(667),
-	    version = __webpack_require__(668).version;
-=======
 	var config = __webpack_require__(677),
 	    version = __webpack_require__(678).version;
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	module.exports = function(path, accessToken) {
 	    accessToken = accessToken || L.mapbox.accessToken;
@@ -73336,11 +71824,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 667 */
-=======
 /* 677 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -73354,31 +71838,13 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 668 */
-=======
 /* 678 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = {
 		"_args": [
 			[
 				{
-<<<<<<< HEAD
-					"raw": "mapbox.js",
-					"scope": null,
-					"escapedName": "mapbox.js",
-					"name": "mapbox.js",
-					"rawSpec": "",
-					"spec": "latest",
-					"type": "tag"
-				},
-				"/Users/EunLee/Desktop/autolingo"
-			]
-		],
-		"_from": "mapbox.js@latest",
-=======
 					"raw": "mapbox.js@^3.0.1",
 					"scope": null,
 					"escapedName": "mapbox.js",
@@ -73391,7 +71857,6 @@
 			]
 		],
 		"_from": "mapbox.js@>=3.0.1 <4.0.0",
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 		"_id": "mapbox.js@3.0.1",
 		"_inCache": true,
 		"_location": "/mapbox.js",
@@ -73407,19 +71872,6 @@
 		"_npmVersion": "2.15.9",
 		"_phantomChildren": {},
 		"_requested": {
-<<<<<<< HEAD
-			"raw": "mapbox.js",
-			"scope": null,
-			"escapedName": "mapbox.js",
-			"name": "mapbox.js",
-			"rawSpec": "",
-			"spec": "latest",
-			"type": "tag"
-		},
-		"_requiredBy": [
-			"#USER",
-			"/"
-=======
 			"raw": "mapbox.js@^3.0.1",
 			"scope": null,
 			"escapedName": "mapbox.js",
@@ -73431,18 +71883,12 @@
 		"_requiredBy": [
 			"/",
 			"/autolingo"
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 		],
 		"_resolved": "https://registry.npmjs.org/mapbox.js/-/mapbox.js-3.0.1.tgz",
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
-<<<<<<< HEAD
-		"_spec": "mapbox.js",
-		"_where": "/Users/EunLee/Desktop/autolingo",
-=======
 		"_spec": "mapbox.js@^3.0.1",
 		"_where": "/Users/jodev/autolingo",
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 		"author": {
 			"name": "Mapbox"
 		},
@@ -73690,2400 +72136,6 @@
 			"test": "eslint --no-eslintrc -c .eslintrc src && phantomjs node_modules/mocha-phantomjs-core/mocha-phantomjs-core.js test/index.html"
 		},
 		"version": "3.0.1"
-<<<<<<< HEAD
-	};
-
-/***/ },
-/* 669 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	var Feedback = L.Class.extend({
-	    includes: L.Mixin.Events,
-	    data: {},
-	    record: function(data) {
-	        L.extend(this.data, data);
-	        this.fire('change');
-	    }
-	});
-	
-	module.exports = new Feedback();
-
-
-/***/ },
-/* 670 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var corslite = __webpack_require__(671),
-	    strict = __webpack_require__(665).strict,
-	    config = __webpack_require__(667);
-	
-	var protocol = /^(https?:)?(?=\/\/(.|api)\.tiles\.mapbox\.com\/)/;
-	
-	module.exports = function(url, callback) {
-	    strict(url, 'string');
-	    strict(callback, 'function');
-	
-	    url = url.replace(protocol, function(match, protocol) {
-	        if (!('withCredentials' in new window.XMLHttpRequest())) {
-	            // XDomainRequest in use; doesn't support cross-protocol requests
-	            return document.location.protocol;
-	        } else if (protocol === 'https:' || document.location.protocol === 'https:' || config.FORCE_HTTPS) {
-	            return 'https:';
-	        } else {
-	            return 'http:';
-	        }
-	    });
-	
-	    function onload(err, resp) {
-	        if (!err && resp) {
-	            resp = JSON.parse(resp.responseText);
-	        }
-	        callback(err, resp);
-	    }
-	
-	    return corslite(url, onload);
-	};
-
-
-/***/ },
-/* 671 */
-/***/ function(module, exports, __webpack_require__) {
-
-	function corslite(url, callback, cors) {
-	    var sent = false;
-	
-	    if (typeof window.XMLHttpRequest === 'undefined') {
-	        return callback(Error('Browser not supported'));
-	    }
-	
-	    if (typeof cors === 'undefined') {
-	        var m = url.match(/^\s*https?:\/\/[^\/]*/);
-	        cors = m && (m[0] !== location.protocol + '//' + location.domain +
-	                (location.port ? ':' + location.port : ''));
-	    }
-	
-	    var x = new window.XMLHttpRequest();
-	
-	    function isSuccessful(status) {
-	        return status >= 200 && status < 300 || status === 304;
-	    }
-	
-	    if (cors && !('withCredentials' in x)) {
-	        // IE8-9
-	        x = new window.XDomainRequest();
-	
-	        // Ensure callback is never called synchronously, i.e., before
-	        // x.send() returns (this has been observed in the wild).
-	        // See https://github.com/mapbox/mapbox.js/issues/472
-	        var original = callback;
-	        callback = function() {
-	            if (sent) {
-	                original.apply(this, arguments);
-	            } else {
-	                var that = this, args = arguments;
-	                setTimeout(function() {
-	                    original.apply(that, args);
-	                }, 0);
-	            }
-	        }
-	    }
-	
-	    function loaded() {
-	        if (
-	            // XDomainRequest
-	            x.status === undefined ||
-	            // modern browsers
-	            isSuccessful(x.status)) callback.call(x, null, x);
-	        else callback.call(x, x, null);
-	    }
-	
-	    // Both `onreadystatechange` and `onload` can fire. `onreadystatechange`
-	    // has [been supported for longer](http://stackoverflow.com/a/9181508/229001).
-	    if ('onload' in x) {
-	        x.onload = loaded;
-	    } else {
-	        x.onreadystatechange = function readystate() {
-	            if (x.readyState === 4) {
-	                loaded();
-	            }
-	        };
-	    }
-	
-	    // Call the callback with the XMLHttpRequest object as an error and prevent
-	    // it from ever being called again by reassigning it to `noop`
-	    x.onerror = function error(evt) {
-	        // XDomainRequest provides no evt parameter
-	        callback.call(this, evt || true, null);
-	        callback = function() { };
-	    };
-	
-	    // IE9 must have onprogress be set to a unique function.
-	    x.onprogress = function() { };
-	
-	    x.ontimeout = function(evt) {
-	        callback.call(this, evt, null);
-	        callback = function() { };
-	    };
-	
-	    x.onabort = function(evt) {
-	        callback.call(this, evt, null);
-	        callback = function() { };
-	    };
-	
-	    // GET is the only supported HTTP Verb by XDomainRequest and is the
-	    // only one supported here.
-	    x.open('GET', url, true);
-	
-	    // Send the request. Sending data is not supported.
-	    x.send(null);
-	    sent = true;
-	
-	    return x;
-	}
-	
-	if (true) module.exports = corslite;
-
-
-/***/ },
-/* 672 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var util = __webpack_require__(665),
-	    Mustache = __webpack_require__(673);
-	
-	var GridControl = L.Control.extend({
-	
-	    options: {
-	        pinnable: true,
-	        follow: false,
-	        sanitizer: __webpack_require__(674),
-	        touchTeaser: true,
-	        location: true
-	    },
-	
-	    _currentContent: '',
-	
-	    // pinned means that this control is on a feature and the user has likely
-	    // clicked. pinned will not become false unless the user clicks off
-	    // of the feature onto another or clicks x
-	    _pinned: false,
-	
-	    initialize: function(_, options) {
-	        L.Util.setOptions(this, options);
-	        util.strict_instance(_, L.Class, 'L.mapbox.gridLayer');
-	        this._layer = _;
-	    },
-	
-	    setTemplate: function(template) {
-	        util.strict(template, 'string');
-	        this.options.template = template;
-	        return this;
-	    },
-	
-	    _template: function(format, data) {
-	        if (!data) return;
-	        var template = this.options.template || this._layer.getTileJSON().template;
-	        if (template) {
-	            var d = {};
-	            d['__' + format + '__'] = true;
-	            return this.options.sanitizer(
-	                Mustache.to_html(template, L.extend(d, data)));
-	        }
-	    },
-	
-	    // change the content of the tooltip HTML if it has changed, otherwise
-	    // noop
-	    _show: function(content, o) {
-	        if (content === this._currentContent) return;
-	
-	        this._currentContent = content;
-	
-	        if (this.options.follow) {
-	            this._popup.setContent(content)
-	                .setLatLng(o.latLng);
-	            if (this._map._popup !== this._popup) this._popup.openOn(this._map);
-	        } else {
-	            this._container.style.display = 'block';
-	            this._contentWrapper.innerHTML = content;
-	        }
-	    },
-	
-	    hide: function() {
-	        this._pinned = false;
-	        this._currentContent = '';
-	
-	        this._map.closePopup();
-	        this._container.style.display = 'none';
-	        this._contentWrapper.innerHTML = '';
-	
-	        L.DomUtil.removeClass(this._container, 'closable');
-	
-	        return this;
-	    },
-	
-	    _mouseover: function(o) {
-	        if (o.data) {
-	            L.DomUtil.addClass(this._map._container, 'map-clickable');
-	        } else {
-	            L.DomUtil.removeClass(this._map._container, 'map-clickable');
-	        }
-	
-	        if (this._pinned) return;
-	
-	        var content = this._template('teaser', o.data);
-	        if (content) {
-	            this._show(content, o);
-	        } else {
-	            this.hide();
-	        }
-	    },
-	
-	    _mousemove: function(o) {
-	        if (this._pinned) return;
-	        if (!this.options.follow) return;
-	
-	        this._popup.setLatLng(o.latLng);
-	    },
-	
-	    _navigateTo: function(url) {
-	        window.top.location.href = url;
-	    },
-	
-	    _click: function(o) {
-	
-	        var location_formatted = this._template('location', o.data);
-	        if (this.options.location && location_formatted &&
-	            location_formatted.search(/^https?:/) === 0) {
-	            return this._navigateTo(this._template('location', o.data));
-	        }
-	
-	        if (!this.options.pinnable) return;
-	
-	        var content = this._template('full', o.data);
-	
-	        if (!content && this.options.touchTeaser && L.Browser.touch) {
-	            content = this._template('teaser', o.data);
-	        }
-	
-	        if (content) {
-	            L.DomUtil.addClass(this._container, 'closable');
-	            this._pinned = true;
-	            this._show(content, o);
-	        } else if (this._pinned) {
-	            L.DomUtil.removeClass(this._container, 'closable');
-	            this._pinned = false;
-	            this.hide();
-	        }
-	    },
-	
-	    _onPopupClose: function() {
-	        this._currentContent = null;
-	        this._pinned = false;
-	    },
-	
-	    _createClosebutton: function(container, fn) {
-	        var link = L.DomUtil.create('a', 'close', container);
-	
-	        link.innerHTML = 'close';
-	        link.href = '#';
-	        link.title = 'close';
-	
-	        L.DomEvent
-	            .on(link, 'click', L.DomEvent.stopPropagation)
-	            .on(link, 'mousedown', L.DomEvent.stopPropagation)
-	            .on(link, 'dblclick', L.DomEvent.stopPropagation)
-	            .on(link, 'click', L.DomEvent.preventDefault)
-	            .on(link, 'click', fn, this);
-	
-	        return link;
-	    },
-	
-	    onAdd: function(map) {
-	        this._map = map;
-	
-	        var className = 'leaflet-control-grid map-tooltip',
-	            container = L.DomUtil.create('div', className),
-	            contentWrapper = L.DomUtil.create('div', 'map-tooltip-content');
-	
-	        // hide the container element initially
-	        container.style.display = 'none';
-	        this._createClosebutton(container, this.hide);
-	        container.appendChild(contentWrapper);
-	
-	        this._contentWrapper = contentWrapper;
-	        this._popup = new L.Popup({ autoPan: false, closeOnClick: false });
-	
-	        map.on('popupclose', this._onPopupClose, this);
-	
-	        L.DomEvent
-	            .disableClickPropagation(container)
-	            // allow people to scroll tooltips with mousewheel
-	            .addListener(container, 'mousewheel', L.DomEvent.stopPropagation);
-	
-	        this._layer
-	            .on('mouseover', this._mouseover, this)
-	            .on('mousemove', this._mousemove, this)
-	            .on('click', this._click, this);
-	
-	        return container;
-	    },
-	
-	    onRemove: function (map) {
-	
-	        map.off('popupclose', this._onPopupClose, this);
-	
-	        this._layer
-	            .off('mouseover', this._mouseover, this)
-	            .off('mousemove', this._mousemove, this)
-	            .off('click', this._click, this);
-	    }
-	});
-	
-	module.exports.GridControl = GridControl;
-	
-	module.exports.gridControl = function(_, options) {
-	    return new GridControl(_, options);
-	};
-
-
-/***/ },
-/* 673 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * mustache.js - Logic-less {{mustache}} templates with JavaScript
-	 * http://github.com/janl/mustache.js
-	 */
-	
-	/*global define: false Mustache: true*/
-	
-	(function defineMustache (global, factory) {
-	  if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
-	    factory(exports); // CommonJS
-	  } else if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // AMD
-	  } else {
-	    global.Mustache = {};
-	    factory(global.Mustache); // script, wsh, asp
-	  }
-	}(this, function mustacheFactory (mustache) {
-	
-	  var objectToString = Object.prototype.toString;
-	  var isArray = Array.isArray || function isArrayPolyfill (object) {
-	    return objectToString.call(object) === '[object Array]';
-	  };
-	
-	  function isFunction (object) {
-	    return typeof object === 'function';
-	  }
-	
-	  /**
-	   * More correct typeof string handling array
-	   * which normally returns typeof 'object'
-	   */
-	  function typeStr (obj) {
-	    return isArray(obj) ? 'array' : typeof obj;
-	  }
-	
-	  function escapeRegExp (string) {
-	    return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
-	  }
-	
-	  /**
-	   * Null safe way of checking whether or not an object,
-	   * including its prototype, has a given property
-	   */
-	  function hasProperty (obj, propName) {
-	    return obj != null && typeof obj === 'object' && (propName in obj);
-	  }
-	
-	  // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
-	  // See https://github.com/janl/mustache.js/issues/189
-	  var regExpTest = RegExp.prototype.test;
-	  function testRegExp (re, string) {
-	    return regExpTest.call(re, string);
-	  }
-	
-	  var nonSpaceRe = /\S/;
-	  function isWhitespace (string) {
-	    return !testRegExp(nonSpaceRe, string);
-	  }
-	
-	  var entityMap = {
-	    '&': '&amp;',
-	    '<': '&lt;',
-	    '>': '&gt;',
-	    '"': '&quot;',
-	    "'": '&#39;',
-	    '/': '&#x2F;',
-	    '`': '&#x60;',
-	    '=': '&#x3D;'
-	  };
-	
-	  function escapeHtml (string) {
-	    return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap (s) {
-	      return entityMap[s];
-	    });
-	  }
-	
-	  var whiteRe = /\s*/;
-	  var spaceRe = /\s+/;
-	  var equalsRe = /\s*=/;
-	  var curlyRe = /\s*\}/;
-	  var tagRe = /#|\^|\/|>|\{|&|=|!/;
-	
-	  /**
-	   * Breaks up the given `template` string into a tree of tokens. If the `tags`
-	   * argument is given here it must be an array with two string values: the
-	   * opening and closing tags used in the template (e.g. [ "<%", "%>" ]). Of
-	   * course, the default is to use mustaches (i.e. mustache.tags).
-	   *
-	   * A token is an array with at least 4 elements. The first element is the
-	   * mustache symbol that was used inside the tag, e.g. "#" or "&". If the tag
-	   * did not contain a symbol (i.e. {{myValue}}) this element is "name". For
-	   * all text that appears outside a symbol this element is "text".
-	   *
-	   * The second element of a token is its "value". For mustache tags this is
-	   * whatever else was inside the tag besides the opening symbol. For text tokens
-	   * this is the text itself.
-	   *
-	   * The third and fourth elements of the token are the start and end indices,
-	   * respectively, of the token in the original template.
-	   *
-	   * Tokens that are the root node of a subtree contain two more elements: 1) an
-	   * array of tokens in the subtree and 2) the index in the original template at
-	   * which the closing tag for that section begins.
-	   */
-	  function parseTemplate (template, tags) {
-	    if (!template)
-	      return [];
-	
-	    var sections = [];     // Stack to hold section tokens
-	    var tokens = [];       // Buffer to hold the tokens
-	    var spaces = [];       // Indices of whitespace tokens on the current line
-	    var hasTag = false;    // Is there a {{tag}} on the current line?
-	    var nonSpace = false;  // Is there a non-space char on the current line?
-	
-	    // Strips all whitespace tokens array for the current line
-	    // if there was a {{#tag}} on it and otherwise only space.
-	    function stripSpace () {
-	      if (hasTag && !nonSpace) {
-	        while (spaces.length)
-	          delete tokens[spaces.pop()];
-	      } else {
-	        spaces = [];
-	      }
-	
-	      hasTag = false;
-	      nonSpace = false;
-	    }
-	
-	    var openingTagRe, closingTagRe, closingCurlyRe;
-	    function compileTags (tagsToCompile) {
-	      if (typeof tagsToCompile === 'string')
-	        tagsToCompile = tagsToCompile.split(spaceRe, 2);
-	
-	      if (!isArray(tagsToCompile) || tagsToCompile.length !== 2)
-	        throw new Error('Invalid tags: ' + tagsToCompile);
-	
-	      openingTagRe = new RegExp(escapeRegExp(tagsToCompile[0]) + '\\s*');
-	      closingTagRe = new RegExp('\\s*' + escapeRegExp(tagsToCompile[1]));
-	      closingCurlyRe = new RegExp('\\s*' + escapeRegExp('}' + tagsToCompile[1]));
-	    }
-	
-	    compileTags(tags || mustache.tags);
-	
-	    var scanner = new Scanner(template);
-	
-	    var start, type, value, chr, token, openSection;
-	    while (!scanner.eos()) {
-	      start = scanner.pos;
-	
-	      // Match any text between tags.
-	      value = scanner.scanUntil(openingTagRe);
-	
-	      if (value) {
-	        for (var i = 0, valueLength = value.length; i < valueLength; ++i) {
-	          chr = value.charAt(i);
-	
-	          if (isWhitespace(chr)) {
-	            spaces.push(tokens.length);
-	          } else {
-	            nonSpace = true;
-	          }
-	
-	          tokens.push([ 'text', chr, start, start + 1 ]);
-	          start += 1;
-	
-	          // Check for whitespace on the current line.
-	          if (chr === '\n')
-	            stripSpace();
-	        }
-	      }
-	
-	      // Match the opening tag.
-	      if (!scanner.scan(openingTagRe))
-	        break;
-	
-	      hasTag = true;
-	
-	      // Get the tag type.
-	      type = scanner.scan(tagRe) || 'name';
-	      scanner.scan(whiteRe);
-	
-	      // Get the tag value.
-	      if (type === '=') {
-	        value = scanner.scanUntil(equalsRe);
-	        scanner.scan(equalsRe);
-	        scanner.scanUntil(closingTagRe);
-	      } else if (type === '{') {
-	        value = scanner.scanUntil(closingCurlyRe);
-	        scanner.scan(curlyRe);
-	        scanner.scanUntil(closingTagRe);
-	        type = '&';
-	      } else {
-	        value = scanner.scanUntil(closingTagRe);
-	      }
-	
-	      // Match the closing tag.
-	      if (!scanner.scan(closingTagRe))
-	        throw new Error('Unclosed tag at ' + scanner.pos);
-	
-	      token = [ type, value, start, scanner.pos ];
-	      tokens.push(token);
-	
-	      if (type === '#' || type === '^') {
-	        sections.push(token);
-	      } else if (type === '/') {
-	        // Check section nesting.
-	        openSection = sections.pop();
-	
-	        if (!openSection)
-	          throw new Error('Unopened section "' + value + '" at ' + start);
-	
-	        if (openSection[1] !== value)
-	          throw new Error('Unclosed section "' + openSection[1] + '" at ' + start);
-	      } else if (type === 'name' || type === '{' || type === '&') {
-	        nonSpace = true;
-	      } else if (type === '=') {
-	        // Set the tags for the next time around.
-	        compileTags(value);
-	      }
-	    }
-	
-	    // Make sure there are no open sections when we're done.
-	    openSection = sections.pop();
-	
-	    if (openSection)
-	      throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-	
-	    return nestTokens(squashTokens(tokens));
-	  }
-	
-	  /**
-	   * Combines the values of consecutive text tokens in the given `tokens` array
-	   * to a single token.
-	   */
-	  function squashTokens (tokens) {
-	    var squashedTokens = [];
-	
-	    var token, lastToken;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      token = tokens[i];
-	
-	      if (token) {
-	        if (token[0] === 'text' && lastToken && lastToken[0] === 'text') {
-	          lastToken[1] += token[1];
-	          lastToken[3] = token[3];
-	        } else {
-	          squashedTokens.push(token);
-	          lastToken = token;
-	        }
-	      }
-	    }
-	
-	    return squashedTokens;
-	  }
-	
-	  /**
-	   * Forms the given array of `tokens` into a nested tree structure where
-	   * tokens that represent a section have two additional items: 1) an array of
-	   * all tokens that appear in that section and 2) the index in the original
-	   * template that represents the end of that section.
-	   */
-	  function nestTokens (tokens) {
-	    var nestedTokens = [];
-	    var collector = nestedTokens;
-	    var sections = [];
-	
-	    var token, section;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      token = tokens[i];
-	
-	      switch (token[0]) {
-	        case '#':
-	        case '^':
-	          collector.push(token);
-	          sections.push(token);
-	          collector = token[4] = [];
-	          break;
-	        case '/':
-	          section = sections.pop();
-	          section[5] = token[2];
-	          collector = sections.length > 0 ? sections[sections.length - 1][4] : nestedTokens;
-	          break;
-	        default:
-	          collector.push(token);
-	      }
-	    }
-	
-	    return nestedTokens;
-	  }
-	
-	  /**
-	   * A simple string scanner that is used by the template parser to find
-	   * tokens in template strings.
-	   */
-	  function Scanner (string) {
-	    this.string = string;
-	    this.tail = string;
-	    this.pos = 0;
-	  }
-	
-	  /**
-	   * Returns `true` if the tail is empty (end of string).
-	   */
-	  Scanner.prototype.eos = function eos () {
-	    return this.tail === '';
-	  };
-	
-	  /**
-	   * Tries to match the given regular expression at the current position.
-	   * Returns the matched text if it can match, the empty string otherwise.
-	   */
-	  Scanner.prototype.scan = function scan (re) {
-	    var match = this.tail.match(re);
-	
-	    if (!match || match.index !== 0)
-	      return '';
-	
-	    var string = match[0];
-	
-	    this.tail = this.tail.substring(string.length);
-	    this.pos += string.length;
-	
-	    return string;
-	  };
-	
-	  /**
-	   * Skips all text until the given regular expression can be matched. Returns
-	   * the skipped string, which is the entire tail if no match can be made.
-	   */
-	  Scanner.prototype.scanUntil = function scanUntil (re) {
-	    var index = this.tail.search(re), match;
-	
-	    switch (index) {
-	      case -1:
-	        match = this.tail;
-	        this.tail = '';
-	        break;
-	      case 0:
-	        match = '';
-	        break;
-	      default:
-	        match = this.tail.substring(0, index);
-	        this.tail = this.tail.substring(index);
-	    }
-	
-	    this.pos += match.length;
-	
-	    return match;
-	  };
-	
-	  /**
-	   * Represents a rendering context by wrapping a view object and
-	   * maintaining a reference to the parent context.
-	   */
-	  function Context (view, parentContext) {
-	    this.view = view;
-	    this.cache = { '.': this.view };
-	    this.parent = parentContext;
-	  }
-	
-	  /**
-	   * Creates a new context using the given view with this context
-	   * as the parent.
-	   */
-	  Context.prototype.push = function push (view) {
-	    return new Context(view, this);
-	  };
-	
-	  /**
-	   * Returns the value of the given name in this context, traversing
-	   * up the context hierarchy if the value is absent in this context's view.
-	   */
-	  Context.prototype.lookup = function lookup (name) {
-	    var cache = this.cache;
-	
-	    var value;
-	    if (cache.hasOwnProperty(name)) {
-	      value = cache[name];
-	    } else {
-	      var context = this, names, index, lookupHit = false;
-	
-	      while (context) {
-	        if (name.indexOf('.') > 0) {
-	          value = context.view;
-	          names = name.split('.');
-	          index = 0;
-	
-	          /**
-	           * Using the dot notion path in `name`, we descend through the
-	           * nested objects.
-	           *
-	           * To be certain that the lookup has been successful, we have to
-	           * check if the last object in the path actually has the property
-	           * we are looking for. We store the result in `lookupHit`.
-	           *
-	           * This is specially necessary for when the value has been set to
-	           * `undefined` and we want to avoid looking up parent contexts.
-	           **/
-	          while (value != null && index < names.length) {
-	            if (index === names.length - 1)
-	              lookupHit = hasProperty(value, names[index]);
-	
-	            value = value[names[index++]];
-	          }
-	        } else {
-	          value = context.view[name];
-	          lookupHit = hasProperty(context.view, name);
-	        }
-	
-	        if (lookupHit)
-	          break;
-	
-	        context = context.parent;
-	      }
-	
-	      cache[name] = value;
-	    }
-	
-	    if (isFunction(value))
-	      value = value.call(this.view);
-	
-	    return value;
-	  };
-	
-	  /**
-	   * A Writer knows how to take a stream of tokens and render them to a
-	   * string, given a context. It also maintains a cache of templates to
-	   * avoid the need to parse the same template twice.
-	   */
-	  function Writer () {
-	    this.cache = {};
-	  }
-	
-	  /**
-	   * Clears all cached templates in this writer.
-	   */
-	  Writer.prototype.clearCache = function clearCache () {
-	    this.cache = {};
-	  };
-	
-	  /**
-	   * Parses and caches the given `template` and returns the array of tokens
-	   * that is generated from the parse.
-	   */
-	  Writer.prototype.parse = function parse (template, tags) {
-	    var cache = this.cache;
-	    var tokens = cache[template];
-	
-	    if (tokens == null)
-	      tokens = cache[template] = parseTemplate(template, tags);
-	
-	    return tokens;
-	  };
-	
-	  /**
-	   * High-level method that is used to render the given `template` with
-	   * the given `view`.
-	   *
-	   * The optional `partials` argument may be an object that contains the
-	   * names and templates of partials that are used in the template. It may
-	   * also be a function that is used to load partial templates on the fly
-	   * that takes a single argument: the name of the partial.
-	   */
-	  Writer.prototype.render = function render (template, view, partials) {
-	    var tokens = this.parse(template);
-	    var context = (view instanceof Context) ? view : new Context(view);
-	    return this.renderTokens(tokens, context, partials, template);
-	  };
-	
-	  /**
-	   * Low-level method that renders the given array of `tokens` using
-	   * the given `context` and `partials`.
-	   *
-	   * Note: The `originalTemplate` is only ever used to extract the portion
-	   * of the original template that was contained in a higher-order section.
-	   * If the template doesn't use higher-order sections, this argument may
-	   * be omitted.
-	   */
-	  Writer.prototype.renderTokens = function renderTokens (tokens, context, partials, originalTemplate) {
-	    var buffer = '';
-	
-	    var token, symbol, value;
-	    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-	      value = undefined;
-	      token = tokens[i];
-	      symbol = token[0];
-	
-	      if (symbol === '#') value = this.renderSection(token, context, partials, originalTemplate);
-	      else if (symbol === '^') value = this.renderInverted(token, context, partials, originalTemplate);
-	      else if (symbol === '>') value = this.renderPartial(token, context, partials, originalTemplate);
-	      else if (symbol === '&') value = this.unescapedValue(token, context);
-	      else if (symbol === 'name') value = this.escapedValue(token, context);
-	      else if (symbol === 'text') value = this.rawValue(token);
-	
-	      if (value !== undefined)
-	        buffer += value;
-	    }
-	
-	    return buffer;
-	  };
-	
-	  Writer.prototype.renderSection = function renderSection (token, context, partials, originalTemplate) {
-	    var self = this;
-	    var buffer = '';
-	    var value = context.lookup(token[1]);
-	
-	    // This function is used to render an arbitrary template
-	    // in the current context by higher-order sections.
-	    function subRender (template) {
-	      return self.render(template, context, partials);
-	    }
-	
-	    if (!value) return;
-	
-	    if (isArray(value)) {
-	      for (var j = 0, valueLength = value.length; j < valueLength; ++j) {
-	        buffer += this.renderTokens(token[4], context.push(value[j]), partials, originalTemplate);
-	      }
-	    } else if (typeof value === 'object' || typeof value === 'string' || typeof value === 'number') {
-	      buffer += this.renderTokens(token[4], context.push(value), partials, originalTemplate);
-	    } else if (isFunction(value)) {
-	      if (typeof originalTemplate !== 'string')
-	        throw new Error('Cannot use higher-order sections without the original template');
-	
-	      // Extract the portion of the original template that the section contains.
-	      value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
-	
-	      if (value != null)
-	        buffer += value;
-	    } else {
-	      buffer += this.renderTokens(token[4], context, partials, originalTemplate);
-	    }
-	    return buffer;
-	  };
-	
-	  Writer.prototype.renderInverted = function renderInverted (token, context, partials, originalTemplate) {
-	    var value = context.lookup(token[1]);
-	
-	    // Use JavaScript's definition of falsy. Include empty arrays.
-	    // See https://github.com/janl/mustache.js/issues/186
-	    if (!value || (isArray(value) && value.length === 0))
-	      return this.renderTokens(token[4], context, partials, originalTemplate);
-	  };
-	
-	  Writer.prototype.renderPartial = function renderPartial (token, context, partials) {
-	    if (!partials) return;
-	
-	    var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
-	    if (value != null)
-	      return this.renderTokens(this.parse(value), context, partials, value);
-	  };
-	
-	  Writer.prototype.unescapedValue = function unescapedValue (token, context) {
-	    var value = context.lookup(token[1]);
-	    if (value != null)
-	      return value;
-	  };
-	
-	  Writer.prototype.escapedValue = function escapedValue (token, context) {
-	    var value = context.lookup(token[1]);
-	    if (value != null)
-	      return mustache.escape(value);
-	  };
-	
-	  Writer.prototype.rawValue = function rawValue (token) {
-	    return token[1];
-	  };
-	
-	  mustache.name = 'mustache.js';
-	  mustache.version = '2.2.1';
-	  mustache.tags = [ '{{', '}}' ];
-	
-	  // All high-level mustache.* functions use this writer.
-	  var defaultWriter = new Writer();
-	
-	  /**
-	   * Clears all cached templates in the default writer.
-	   */
-	  mustache.clearCache = function clearCache () {
-	    return defaultWriter.clearCache();
-	  };
-	
-	  /**
-	   * Parses and caches the given template in the default writer and returns the
-	   * array of tokens it contains. Doing this ahead of time avoids the need to
-	   * parse templates on the fly as they are rendered.
-	   */
-	  mustache.parse = function parse (template, tags) {
-	    return defaultWriter.parse(template, tags);
-	  };
-	
-	  /**
-	   * Renders the `template` with the given `view` and `partials` using the
-	   * default writer.
-	   */
-	  mustache.render = function render (template, view, partials) {
-	    if (typeof template !== 'string') {
-	      throw new TypeError('Invalid template! Template should be a "string" ' +
-	                          'but "' + typeStr(template) + '" was given as the first ' +
-	                          'argument for mustache#render(template, view, partials)');
-	    }
-	
-	    return defaultWriter.render(template, view, partials);
-	  };
-	
-	  // This is here for backwards compatibility with 0.4.x.,
-	  /*eslint-disable */ // eslint wants camel cased function name
-	  mustache.to_html = function to_html (template, view, partials, send) {
-	    /*eslint-enable*/
-	
-	    var result = mustache.render(template, view, partials);
-	
-	    if (isFunction(send)) {
-	      send(result);
-	    } else {
-	      return result;
-	    }
-	  };
-	
-	  // Export the escaping function so that the user may override it.
-	  // See https://github.com/janl/mustache.js/issues/244
-	  mustache.escape = escapeHtml;
-	
-	  // Export these mainly for testing, but also for advanced usage.
-	  mustache.Scanner = Scanner;
-	  mustache.Context = Context;
-	  mustache.Writer = Writer;
-	
-	}));
-
-
-/***/ },
-/* 674 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var html_sanitize = __webpack_require__(675);
-	
-	module.exports = function(_) {
-	    if (!_) return '';
-	    return html_sanitize(_, cleanUrl, cleanId);
-	};
-	
-	// https://bugzilla.mozilla.org/show_bug.cgi?id=255107
-	function cleanUrl(url) {
-	    'use strict';
-	    if (/^https?/.test(url.getScheme())) return url.toString();
-	    if (/^mailto?/.test(url.getScheme())) return url.toString();
-	    if ('data' == url.getScheme() && /^image/.test(url.getPath())) {
-	        return url.toString();
-	    }
-	}
-	
-	function cleanId(id) { return id; }
-
-
-/***/ },
-/* 675 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	// Copyright (C) 2010 Google Inc.
-	//
-	// Licensed under the Apache License, Version 2.0 (the "License");
-	// you may not use this file except in compliance with the License.
-	// You may obtain a copy of the License at
-	//
-	//      http://www.apache.org/licenses/LICENSE-2.0
-	//
-	// Unless required by applicable law or agreed to in writing, software
-	// distributed under the License is distributed on an "AS IS" BASIS,
-	// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	// See the License for the specific language governing permissions and
-	// limitations under the License.
-	
-	/**
-	 * @fileoverview
-	 * Implements RFC 3986 for parsing/formatting URIs.
-	 *
-	 * @author mikesamuel@gmail.com
-	 * \@provides URI
-	 * \@overrides window
-	 */
-	
-	var URI = (function () {
-	
-	/**
-	 * creates a uri from the string form.  The parser is relaxed, so special
-	 * characters that aren't escaped but don't cause ambiguities will not cause
-	 * parse failures.
-	 *
-	 * @return {URI|null}
-	 */
-	function parse(uriStr) {
-	  var m = ('' + uriStr).match(URI_RE_);
-	  if (!m) { return null; }
-	  return new URI(
-	      nullIfAbsent(m[1]),
-	      nullIfAbsent(m[2]),
-	      nullIfAbsent(m[3]),
-	      nullIfAbsent(m[4]),
-	      nullIfAbsent(m[5]),
-	      nullIfAbsent(m[6]),
-	      nullIfAbsent(m[7]));
-	}
-	
-	
-	/**
-	 * creates a uri from the given parts.
-	 *
-	 * @param scheme {string} an unencoded scheme such as "http" or null
-	 * @param credentials {string} unencoded user credentials or null
-	 * @param domain {string} an unencoded domain name or null
-	 * @param port {number} a port number in [1, 32768].
-	 *    -1 indicates no port, as does null.
-	 * @param path {string} an unencoded path
-	 * @param query {Array.<string>|string|null} a list of unencoded cgi
-	 *   parameters where even values are keys and odds the corresponding values
-	 *   or an unencoded query.
-	 * @param fragment {string} an unencoded fragment without the "#" or null.
-	 * @return {URI}
-	 */
-	function create(scheme, credentials, domain, port, path, query, fragment) {
-	  var uri = new URI(
-	      encodeIfExists2(scheme, URI_DISALLOWED_IN_SCHEME_OR_CREDENTIALS_),
-	      encodeIfExists2(
-	          credentials, URI_DISALLOWED_IN_SCHEME_OR_CREDENTIALS_),
-	      encodeIfExists(domain),
-	      port > 0 ? port.toString() : null,
-	      encodeIfExists2(path, URI_DISALLOWED_IN_PATH_),
-	      null,
-	      encodeIfExists(fragment));
-	  if (query) {
-	    if ('string' === typeof query) {
-	      uri.setRawQuery(query.replace(/[^?&=0-9A-Za-z_\-~.%]/g, encodeOne));
-	    } else {
-	      uri.setAllParameters(query);
-	    }
-	  }
-	  return uri;
-	}
-	function encodeIfExists(unescapedPart) {
-	  if ('string' == typeof unescapedPart) {
-	    return encodeURIComponent(unescapedPart);
-	  }
-	  return null;
-	};
-	/**
-	 * if unescapedPart is non null, then escapes any characters in it that aren't
-	 * valid characters in a url and also escapes any special characters that
-	 * appear in extra.
-	 *
-	 * @param unescapedPart {string}
-	 * @param extra {RegExp} a character set of characters in [\01-\177].
-	 * @return {string|null} null iff unescapedPart == null.
-	 */
-	function encodeIfExists2(unescapedPart, extra) {
-	  if ('string' == typeof unescapedPart) {
-	    return encodeURI(unescapedPart).replace(extra, encodeOne);
-	  }
-	  return null;
-	};
-	/** converts a character in [\01-\177] to its url encoded equivalent. */
-	function encodeOne(ch) {
-	  var n = ch.charCodeAt(0);
-	  return '%' + '0123456789ABCDEF'.charAt((n >> 4) & 0xf) +
-	      '0123456789ABCDEF'.charAt(n & 0xf);
-	}
-	
-	/**
-	 * {@updoc
-	 *  $ normPath('foo/./bar')
-	 *  # 'foo/bar'
-	 *  $ normPath('./foo')
-	 *  # 'foo'
-	 *  $ normPath('foo/.')
-	 *  # 'foo'
-	 *  $ normPath('foo//bar')
-	 *  # 'foo/bar'
-	 * }
-	 */
-	function normPath(path) {
-	  return path.replace(/(^|\/)\.(?:\/|$)/g, '$1').replace(/\/{2,}/g, '/');
-	}
-	
-	var PARENT_DIRECTORY_HANDLER = new RegExp(
-	    ''
-	    // A path break
-	    + '(/|^)'
-	    // followed by a non .. path element
-	    // (cannot be . because normPath is used prior to this RegExp)
-	    + '(?:[^./][^/]*|\\.{2,}(?:[^./][^/]*)|\\.{3,}[^/]*)'
-	    // followed by .. followed by a path break.
-	    + '/\\.\\.(?:/|$)');
-	
-	var PARENT_DIRECTORY_HANDLER_RE = new RegExp(PARENT_DIRECTORY_HANDLER);
-	
-	var EXTRA_PARENT_PATHS_RE = /^(?:\.\.\/)*(?:\.\.$)?/;
-	
-	/**
-	 * Normalizes its input path and collapses all . and .. sequences except for
-	 * .. sequences that would take it above the root of the current parent
-	 * directory.
-	 * {@updoc
-	 *  $ collapse_dots('foo/../bar')
-	 *  # 'bar'
-	 *  $ collapse_dots('foo/./bar')
-	 *  # 'foo/bar'
-	 *  $ collapse_dots('foo/../bar/./../../baz')
-	 *  # 'baz'
-	 *  $ collapse_dots('../foo')
-	 *  # '../foo'
-	 *  $ collapse_dots('../foo').replace(EXTRA_PARENT_PATHS_RE, '')
-	 *  # 'foo'
-	 * }
-	 */
-	function collapse_dots(path) {
-	  if (path === null) { return null; }
-	  var p = normPath(path);
-	  // Only /../ left to flatten
-	  var r = PARENT_DIRECTORY_HANDLER_RE;
-	  // We replace with $1 which matches a / before the .. because this
-	  // guarantees that:
-	  // (1) we have at most 1 / between the adjacent place,
-	  // (2) always have a slash if there is a preceding path section, and
-	  // (3) we never turn a relative path into an absolute path.
-	  for (var q; (q = p.replace(r, '$1')) != p; p = q) {};
-	  return p;
-	}
-	
-	/**
-	 * resolves a relative url string to a base uri.
-	 * @return {URI}
-	 */
-	function resolve(baseUri, relativeUri) {
-	  // there are several kinds of relative urls:
-	  // 1. //foo - replaces everything from the domain on.  foo is a domain name
-	  // 2. foo - replaces the last part of the path, the whole query and fragment
-	  // 3. /foo - replaces the the path, the query and fragment
-	  // 4. ?foo - replace the query and fragment
-	  // 5. #foo - replace the fragment only
-	
-	  var absoluteUri = baseUri.clone();
-	  // we satisfy these conditions by looking for the first part of relativeUri
-	  // that is not blank and applying defaults to the rest
-	
-	  var overridden = relativeUri.hasScheme();
-	
-	  if (overridden) {
-	    absoluteUri.setRawScheme(relativeUri.getRawScheme());
-	  } else {
-	    overridden = relativeUri.hasCredentials();
-	  }
-	
-	  if (overridden) {
-	    absoluteUri.setRawCredentials(relativeUri.getRawCredentials());
-	  } else {
-	    overridden = relativeUri.hasDomain();
-	  }
-	
-	  if (overridden) {
-	    absoluteUri.setRawDomain(relativeUri.getRawDomain());
-	  } else {
-	    overridden = relativeUri.hasPort();
-	  }
-	
-	  var rawPath = relativeUri.getRawPath();
-	  var simplifiedPath = collapse_dots(rawPath);
-	  if (overridden) {
-	    absoluteUri.setPort(relativeUri.getPort());
-	    simplifiedPath = simplifiedPath
-	        && simplifiedPath.replace(EXTRA_PARENT_PATHS_RE, '');
-	  } else {
-	    overridden = !!rawPath;
-	    if (overridden) {
-	      // resolve path properly
-	      if (simplifiedPath.charCodeAt(0) !== 0x2f /* / */) {  // path is relative
-	        var absRawPath = collapse_dots(absoluteUri.getRawPath() || '')
-	            .replace(EXTRA_PARENT_PATHS_RE, '');
-	        var slash = absRawPath.lastIndexOf('/') + 1;
-	        simplifiedPath = collapse_dots(
-	            (slash ? absRawPath.substring(0, slash) : '')
-	            + collapse_dots(rawPath))
-	            .replace(EXTRA_PARENT_PATHS_RE, '');
-	      }
-	    } else {
-	      simplifiedPath = simplifiedPath
-	          && simplifiedPath.replace(EXTRA_PARENT_PATHS_RE, '');
-	      if (simplifiedPath !== rawPath) {
-	        absoluteUri.setRawPath(simplifiedPath);
-	      }
-	    }
-	  }
-	
-	  if (overridden) {
-	    absoluteUri.setRawPath(simplifiedPath);
-	  } else {
-	    overridden = relativeUri.hasQuery();
-	  }
-	
-	  if (overridden) {
-	    absoluteUri.setRawQuery(relativeUri.getRawQuery());
-	  } else {
-	    overridden = relativeUri.hasFragment();
-	  }
-	
-	  if (overridden) {
-	    absoluteUri.setRawFragment(relativeUri.getRawFragment());
-	  }
-	
-	  return absoluteUri;
-	}
-	
-	/**
-	 * a mutable URI.
-	 *
-	 * This class contains setters and getters for the parts of the URI.
-	 * The <tt>getXYZ</tt>/<tt>setXYZ</tt> methods return the decoded part -- so
-	 * <code>uri.parse('/foo%20bar').getPath()</code> will return the decoded path,
-	 * <tt>/foo bar</tt>.
-	 *
-	 * <p>The raw versions of fields are available too.
-	 * <code>uri.parse('/foo%20bar').getRawPath()</code> will return the raw path,
-	 * <tt>/foo%20bar</tt>.  Use the raw setters with care, since
-	 * <code>URI::toString</code> is not guaranteed to return a valid url if a
-	 * raw setter was used.
-	 *
-	 * <p>All setters return <tt>this</tt> and so may be chained, a la
-	 * <code>uri.parse('/foo').setFragment('part').toString()</code>.
-	 *
-	 * <p>You should not use this constructor directly -- please prefer the factory
-	 * functions {@link uri.parse}, {@link uri.create}, {@link uri.resolve}
-	 * instead.</p>
-	 *
-	 * <p>The parameters are all raw (assumed to be properly escaped) parts, and
-	 * any (but not all) may be null.  Undefined is not allowed.</p>
-	 *
-	 * @constructor
-	 */
-	function URI(
-	    rawScheme,
-	    rawCredentials, rawDomain, port,
-	    rawPath, rawQuery, rawFragment) {
-	  this.scheme_ = rawScheme;
-	  this.credentials_ = rawCredentials;
-	  this.domain_ = rawDomain;
-	  this.port_ = port;
-	  this.path_ = rawPath;
-	  this.query_ = rawQuery;
-	  this.fragment_ = rawFragment;
-	  /**
-	   * @type {Array|null}
-	   */
-	  this.paramCache_ = null;
-	}
-	
-	/** returns the string form of the url. */
-	URI.prototype.toString = function () {
-	  var out = [];
-	  if (null !== this.scheme_) { out.push(this.scheme_, ':'); }
-	  if (null !== this.domain_) {
-	    out.push('//');
-	    if (null !== this.credentials_) { out.push(this.credentials_, '@'); }
-	    out.push(this.domain_);
-	    if (null !== this.port_) { out.push(':', this.port_.toString()); }
-	  }
-	  if (null !== this.path_) { out.push(this.path_); }
-	  if (null !== this.query_) { out.push('?', this.query_); }
-	  if (null !== this.fragment_) { out.push('#', this.fragment_); }
-	  return out.join('');
-	};
-	
-	URI.prototype.clone = function () {
-	  return new URI(this.scheme_, this.credentials_, this.domain_, this.port_,
-	                 this.path_, this.query_, this.fragment_);
-	};
-	
-	URI.prototype.getScheme = function () {
-	  // HTML5 spec does not require the scheme to be lowercased but
-	  // all common browsers except Safari lowercase the scheme.
-	  return this.scheme_ && decodeURIComponent(this.scheme_).toLowerCase();
-	};
-	URI.prototype.getRawScheme = function () {
-	  return this.scheme_;
-	};
-	URI.prototype.setScheme = function (newScheme) {
-	  this.scheme_ = encodeIfExists2(
-	      newScheme, URI_DISALLOWED_IN_SCHEME_OR_CREDENTIALS_);
-	  return this;
-	};
-	URI.prototype.setRawScheme = function (newScheme) {
-	  this.scheme_ = newScheme ? newScheme : null;
-	  return this;
-	};
-	URI.prototype.hasScheme = function () {
-	  return null !== this.scheme_;
-	};
-	
-	
-	URI.prototype.getCredentials = function () {
-	  return this.credentials_ && decodeURIComponent(this.credentials_);
-	};
-	URI.prototype.getRawCredentials = function () {
-	  return this.credentials_;
-	};
-	URI.prototype.setCredentials = function (newCredentials) {
-	  this.credentials_ = encodeIfExists2(
-	      newCredentials, URI_DISALLOWED_IN_SCHEME_OR_CREDENTIALS_);
-	
-	  return this;
-	};
-	URI.prototype.setRawCredentials = function (newCredentials) {
-	  this.credentials_ = newCredentials ? newCredentials : null;
-	  return this;
-	};
-	URI.prototype.hasCredentials = function () {
-	  return null !== this.credentials_;
-	};
-	
-	
-	URI.prototype.getDomain = function () {
-	  return this.domain_ && decodeURIComponent(this.domain_);
-	};
-	URI.prototype.getRawDomain = function () {
-	  return this.domain_;
-	};
-	URI.prototype.setDomain = function (newDomain) {
-	  return this.setRawDomain(newDomain && encodeURIComponent(newDomain));
-	};
-	URI.prototype.setRawDomain = function (newDomain) {
-	  this.domain_ = newDomain ? newDomain : null;
-	  // Maintain the invariant that paths must start with a slash when the URI
-	  // is not path-relative.
-	  return this.setRawPath(this.path_);
-	};
-	URI.prototype.hasDomain = function () {
-	  return null !== this.domain_;
-	};
-	
-	
-	URI.prototype.getPort = function () {
-	  return this.port_ && decodeURIComponent(this.port_);
-	};
-	URI.prototype.setPort = function (newPort) {
-	  if (newPort) {
-	    newPort = Number(newPort);
-	    if (newPort !== (newPort & 0xffff)) {
-	      throw new Error('Bad port number ' + newPort);
-	    }
-	    this.port_ = '' + newPort;
-	  } else {
-	    this.port_ = null;
-	  }
-	  return this;
-	};
-	URI.prototype.hasPort = function () {
-	  return null !== this.port_;
-	};
-	
-	
-	URI.prototype.getPath = function () {
-	  return this.path_ && decodeURIComponent(this.path_);
-	};
-	URI.prototype.getRawPath = function () {
-	  return this.path_;
-	};
-	URI.prototype.setPath = function (newPath) {
-	  return this.setRawPath(encodeIfExists2(newPath, URI_DISALLOWED_IN_PATH_));
-	};
-	URI.prototype.setRawPath = function (newPath) {
-	  if (newPath) {
-	    newPath = String(newPath);
-	    this.path_ = 
-	      // Paths must start with '/' unless this is a path-relative URL.
-	      (!this.domain_ || /^\//.test(newPath)) ? newPath : '/' + newPath;
-	  } else {
-	    this.path_ = null;
-	  }
-	  return this;
-	};
-	URI.prototype.hasPath = function () {
-	  return null !== this.path_;
-	};
-	
-	
-	URI.prototype.getQuery = function () {
-	  // From http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
-	  // Within the query string, the plus sign is reserved as shorthand notation
-	  // for a space.
-	  return this.query_ && decodeURIComponent(this.query_).replace(/\+/g, ' ');
-	};
-	URI.prototype.getRawQuery = function () {
-	  return this.query_;
-	};
-	URI.prototype.setQuery = function (newQuery) {
-	  this.paramCache_ = null;
-	  this.query_ = encodeIfExists(newQuery);
-	  return this;
-	};
-	URI.prototype.setRawQuery = function (newQuery) {
-	  this.paramCache_ = null;
-	  this.query_ = newQuery ? newQuery : null;
-	  return this;
-	};
-	URI.prototype.hasQuery = function () {
-	  return null !== this.query_;
-	};
-	
-	/**
-	 * sets the query given a list of strings of the form
-	 * [ key0, value0, key1, value1, ... ].
-	 *
-	 * <p><code>uri.setAllParameters(['a', 'b', 'c', 'd']).getQuery()</code>
-	 * will yield <code>'a=b&c=d'</code>.
-	 */
-	URI.prototype.setAllParameters = function (params) {
-	  if (typeof params === 'object') {
-	    if (!(params instanceof Array)
-	        && (params instanceof Object
-	            || Object.prototype.toString.call(params) !== '[object Array]')) {
-	      var newParams = [];
-	      var i = -1;
-	      for (var k in params) {
-	        var v = params[k];
-	        if ('string' === typeof v) {
-	          newParams[++i] = k;
-	          newParams[++i] = v;
-	        }
-	      }
-	      params = newParams;
-	    }
-	  }
-	  this.paramCache_ = null;
-	  var queryBuf = [];
-	  var separator = '';
-	  for (var j = 0; j < params.length;) {
-	    var k = params[j++];
-	    var v = params[j++];
-	    queryBuf.push(separator, encodeURIComponent(k.toString()));
-	    separator = '&';
-	    if (v) {
-	      queryBuf.push('=', encodeURIComponent(v.toString()));
-	    }
-	  }
-	  this.query_ = queryBuf.join('');
-	  return this;
-	};
-	URI.prototype.checkParameterCache_ = function () {
-	  if (!this.paramCache_) {
-	    var q = this.query_;
-	    if (!q) {
-	      this.paramCache_ = [];
-	    } else {
-	      var cgiParams = q.split(/[&\?]/);
-	      var out = [];
-	      var k = -1;
-	      for (var i = 0; i < cgiParams.length; ++i) {
-	        var m = cgiParams[i].match(/^([^=]*)(?:=(.*))?$/);
-	        // From http://www.w3.org/Addressing/URL/4_URI_Recommentations.html
-	        // Within the query string, the plus sign is reserved as shorthand
-	        // notation for a space.
-	        out[++k] = decodeURIComponent(m[1]).replace(/\+/g, ' ');
-	        out[++k] = decodeURIComponent(m[2] || '').replace(/\+/g, ' ');
-	      }
-	      this.paramCache_ = out;
-	    }
-	  }
-	};
-	/**
-	 * sets the values of the named cgi parameters.
-	 *
-	 * <p>So, <code>uri.parse('foo?a=b&c=d&e=f').setParameterValues('c', ['new'])
-	 * </code> yields <tt>foo?a=b&c=new&e=f</tt>.</p>
-	 *
-	 * @param key {string}
-	 * @param values {Array.<string>} the new values.  If values is a single string
-	 *   then it will be treated as the sole value.
-	 */
-	URI.prototype.setParameterValues = function (key, values) {
-	  // be nice and avoid subtle bugs where [] operator on string performs charAt
-	  // on some browsers and crashes on IE
-	  if (typeof values === 'string') {
-	    values = [ values ];
-	  }
-	
-	  this.checkParameterCache_();
-	  var newValueIndex = 0;
-	  var pc = this.paramCache_;
-	  var params = [];
-	  for (var i = 0, k = 0; i < pc.length; i += 2) {
-	    if (key === pc[i]) {
-	      if (newValueIndex < values.length) {
-	        params.push(key, values[newValueIndex++]);
-	      }
-	    } else {
-	      params.push(pc[i], pc[i + 1]);
-	    }
-	  }
-	  while (newValueIndex < values.length) {
-	    params.push(key, values[newValueIndex++]);
-	  }
-	  this.setAllParameters(params);
-	  return this;
-	};
-	URI.prototype.removeParameter = function (key) {
-	  return this.setParameterValues(key, []);
-	};
-	/**
-	 * returns the parameters specified in the query part of the uri as a list of
-	 * keys and values like [ key0, value0, key1, value1, ... ].
-	 *
-	 * @return {Array.<string>}
-	 */
-	URI.prototype.getAllParameters = function () {
-	  this.checkParameterCache_();
-	  return this.paramCache_.slice(0, this.paramCache_.length);
-	};
-	/**
-	 * returns the value<b>s</b> for a given cgi parameter as a list of decoded
-	 * query parameter values.
-	 * @return {Array.<string>}
-	 */
-	URI.prototype.getParameterValues = function (paramNameUnescaped) {
-	  this.checkParameterCache_();
-	  var values = [];
-	  for (var i = 0; i < this.paramCache_.length; i += 2) {
-	    if (paramNameUnescaped === this.paramCache_[i]) {
-	      values.push(this.paramCache_[i + 1]);
-	    }
-	  }
-	  return values;
-	};
-	/**
-	 * returns a map of cgi parameter names to (non-empty) lists of values.
-	 * @return {Object.<string,Array.<string>>}
-	 */
-	URI.prototype.getParameterMap = function (paramNameUnescaped) {
-	  this.checkParameterCache_();
-	  var paramMap = {};
-	  for (var i = 0; i < this.paramCache_.length; i += 2) {
-	    var key = this.paramCache_[i++],
-	      value = this.paramCache_[i++];
-	    if (!(key in paramMap)) {
-	      paramMap[key] = [value];
-	    } else {
-	      paramMap[key].push(value);
-	    }
-	  }
-	  return paramMap;
-	};
-	/**
-	 * returns the first value for a given cgi parameter or null if the given
-	 * parameter name does not appear in the query string.
-	 * If the given parameter name does appear, but has no '<tt>=</tt>' following
-	 * it, then the empty string will be returned.
-	 * @return {string|null}
-	 */
-	URI.prototype.getParameterValue = function (paramNameUnescaped) {
-	  this.checkParameterCache_();
-	  for (var i = 0; i < this.paramCache_.length; i += 2) {
-	    if (paramNameUnescaped === this.paramCache_[i]) {
-	      return this.paramCache_[i + 1];
-	    }
-	  }
-	  return null;
-	};
-	
-	URI.prototype.getFragment = function () {
-	  return this.fragment_ && decodeURIComponent(this.fragment_);
-	};
-	URI.prototype.getRawFragment = function () {
-	  return this.fragment_;
-	};
-	URI.prototype.setFragment = function (newFragment) {
-	  this.fragment_ = newFragment ? encodeURIComponent(newFragment) : null;
-	  return this;
-	};
-	URI.prototype.setRawFragment = function (newFragment) {
-	  this.fragment_ = newFragment ? newFragment : null;
-	  return this;
-	};
-	URI.prototype.hasFragment = function () {
-	  return null !== this.fragment_;
-	};
-	
-	function nullIfAbsent(matchPart) {
-	  return ('string' == typeof matchPart) && (matchPart.length > 0)
-	         ? matchPart
-	         : null;
-	}
-	
-	
-	
-	
-	/**
-	 * a regular expression for breaking a URI into its component parts.
-	 *
-	 * <p>http://www.gbiv.com/protocols/uri/rfc/rfc3986.html#RFC2234 says
-	 * As the "first-match-wins" algorithm is identical to the "greedy"
-	 * disambiguation method used by POSIX regular expressions, it is natural and
-	 * commonplace to use a regular expression for parsing the potential five
-	 * components of a URI reference.
-	 *
-	 * <p>The following line is the regular expression for breaking-down a
-	 * well-formed URI reference into its components.
-	 *
-	 * <pre>
-	 * ^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?
-	 *  12            3  4          5       6  7        8 9
-	 * </pre>
-	 *
-	 * <p>The numbers in the second line above are only to assist readability; they
-	 * indicate the reference points for each subexpression (i.e., each paired
-	 * parenthesis). We refer to the value matched for subexpression <n> as $<n>.
-	 * For example, matching the above expression to
-	 * <pre>
-	 *     http://www.ics.uci.edu/pub/ietf/uri/#Related
-	 * </pre>
-	 * results in the following subexpression matches:
-	 * <pre>
-	 *    $1 = http:
-	 *    $2 = http
-	 *    $3 = //www.ics.uci.edu
-	 *    $4 = www.ics.uci.edu
-	 *    $5 = /pub/ietf/uri/
-	 *    $6 = <undefined>
-	 *    $7 = <undefined>
-	 *    $8 = #Related
-	 *    $9 = Related
-	 * </pre>
-	 * where <undefined> indicates that the component is not present, as is the
-	 * case for the query component in the above example. Therefore, we can
-	 * determine the value of the five components as
-	 * <pre>
-	 *    scheme    = $2
-	 *    authority = $4
-	 *    path      = $5
-	 *    query     = $7
-	 *    fragment  = $9
-	 * </pre>
-	 *
-	 * <p>msamuel: I have modified the regular expression slightly to expose the
-	 * credentials, domain, and port separately from the authority.
-	 * The modified version yields
-	 * <pre>
-	 *    $1 = http              scheme
-	 *    $2 = <undefined>       credentials -\
-	 *    $3 = www.ics.uci.edu   domain       | authority
-	 *    $4 = <undefined>       port        -/
-	 *    $5 = /pub/ietf/uri/    path
-	 *    $6 = <undefined>       query without ?
-	 *    $7 = Related           fragment without #
-	 * </pre>
-	 */
-	var URI_RE_ = new RegExp(
-	      "^" +
-	      "(?:" +
-	        "([^:/?#]+)" +         // scheme
-	      ":)?" +
-	      "(?://" +
-	        "(?:([^/?#]*)@)?" +    // credentials
-	        "([^/?#:@]*)" +        // domain
-	        "(?::([0-9]+))?" +     // port
-	      ")?" +
-	      "([^?#]+)?" +            // path
-	      "(?:\\?([^#]*))?" +      // query
-	      "(?:#(.*))?" +           // fragment
-	      "$"
-	      );
-	
-	var URI_DISALLOWED_IN_SCHEME_OR_CREDENTIALS_ = /[#\/\?@]/g;
-	var URI_DISALLOWED_IN_PATH_ = /[\#\?]/g;
-	
-	URI.parse = parse;
-	URI.create = create;
-	URI.resolve = resolve;
-	URI.collapse_dots = collapse_dots;  // Visible for testing.
-	
-	// lightweight string-based api for loadModuleMaker
-	URI.utils = {
-	  mimeTypeOf: function (uri) {
-	    var uriObj = parse(uri);
-	    if (/\.html$/.test(uriObj.getPath())) {
-	      return 'text/html';
-	    } else {
-	      return 'application/javascript';
-	    }
-	  },
-	  resolve: function (base, uri) {
-	    if (base) {
-	      return resolve(parse(base), parse(uri)).toString();
-	    } else {
-	      return '' + uri;
-	    }
-	  }
-	};
-	
-	
-	return URI;
-	})();
-	
-	// Copyright Google Inc.
-	// Licensed under the Apache Licence Version 2.0
-	// Autogenerated at Mon Feb 25 13:05:42 EST 2013
-	// @overrides window
-	// @provides html4
-	var html4 = {};
-	html4.atype = {
-	  'NONE': 0,
-	  'URI': 1,
-	  'URI_FRAGMENT': 11,
-	  'SCRIPT': 2,
-	  'STYLE': 3,
-	  'HTML': 12,
-	  'ID': 4,
-	  'IDREF': 5,
-	  'IDREFS': 6,
-	  'GLOBAL_NAME': 7,
-	  'LOCAL_NAME': 8,
-	  'CLASSES': 9,
-	  'FRAME_TARGET': 10,
-	  'MEDIA_QUERY': 13
-	};
-	html4[ 'atype' ] = html4.atype;
-	html4.ATTRIBS = {
-	  '*::class': 9,
-	  '*::dir': 0,
-	  '*::draggable': 0,
-	  '*::hidden': 0,
-	  '*::id': 4,
-	  '*::inert': 0,
-	  '*::itemprop': 0,
-	  '*::itemref': 6,
-	  '*::itemscope': 0,
-	  '*::lang': 0,
-	  '*::onblur': 2,
-	  '*::onchange': 2,
-	  '*::onclick': 2,
-	  '*::ondblclick': 2,
-	  '*::onfocus': 2,
-	  '*::onkeydown': 2,
-	  '*::onkeypress': 2,
-	  '*::onkeyup': 2,
-	  '*::onload': 2,
-	  '*::onmousedown': 2,
-	  '*::onmousemove': 2,
-	  '*::onmouseout': 2,
-	  '*::onmouseover': 2,
-	  '*::onmouseup': 2,
-	  '*::onreset': 2,
-	  '*::onscroll': 2,
-	  '*::onselect': 2,
-	  '*::onsubmit': 2,
-	  '*::onunload': 2,
-	  '*::spellcheck': 0,
-	  '*::style': 3,
-	  '*::title': 0,
-	  '*::translate': 0,
-	  'a::accesskey': 0,
-	  'a::coords': 0,
-	  'a::href': 1,
-	  'a::hreflang': 0,
-	  'a::name': 7,
-	  'a::onblur': 2,
-	  'a::onfocus': 2,
-	  'a::shape': 0,
-	  'a::tabindex': 0,
-	  'a::target': 10,
-	  'a::type': 0,
-	  'area::accesskey': 0,
-	  'area::alt': 0,
-	  'area::coords': 0,
-	  'area::href': 1,
-	  'area::nohref': 0,
-	  'area::onblur': 2,
-	  'area::onfocus': 2,
-	  'area::shape': 0,
-	  'area::tabindex': 0,
-	  'area::target': 10,
-	  'audio::controls': 0,
-	  'audio::loop': 0,
-	  'audio::mediagroup': 5,
-	  'audio::muted': 0,
-	  'audio::preload': 0,
-	  'bdo::dir': 0,
-	  'blockquote::cite': 1,
-	  'br::clear': 0,
-	  'button::accesskey': 0,
-	  'button::disabled': 0,
-	  'button::name': 8,
-	  'button::onblur': 2,
-	  'button::onfocus': 2,
-	  'button::tabindex': 0,
-	  'button::type': 0,
-	  'button::value': 0,
-	  'canvas::height': 0,
-	  'canvas::width': 0,
-	  'caption::align': 0,
-	  'col::align': 0,
-	  'col::char': 0,
-	  'col::charoff': 0,
-	  'col::span': 0,
-	  'col::valign': 0,
-	  'col::width': 0,
-	  'colgroup::align': 0,
-	  'colgroup::char': 0,
-	  'colgroup::charoff': 0,
-	  'colgroup::span': 0,
-	  'colgroup::valign': 0,
-	  'colgroup::width': 0,
-	  'command::checked': 0,
-	  'command::command': 5,
-	  'command::disabled': 0,
-	  'command::icon': 1,
-	  'command::label': 0,
-	  'command::radiogroup': 0,
-	  'command::type': 0,
-	  'data::value': 0,
-	  'del::cite': 1,
-	  'del::datetime': 0,
-	  'details::open': 0,
-	  'dir::compact': 0,
-	  'div::align': 0,
-	  'dl::compact': 0,
-	  'fieldset::disabled': 0,
-	  'font::color': 0,
-	  'font::face': 0,
-	  'font::size': 0,
-	  'form::accept': 0,
-	  'form::action': 1,
-	  'form::autocomplete': 0,
-	  'form::enctype': 0,
-	  'form::method': 0,
-	  'form::name': 7,
-	  'form::novalidate': 0,
-	  'form::onreset': 2,
-	  'form::onsubmit': 2,
-	  'form::target': 10,
-	  'h1::align': 0,
-	  'h2::align': 0,
-	  'h3::align': 0,
-	  'h4::align': 0,
-	  'h5::align': 0,
-	  'h6::align': 0,
-	  'hr::align': 0,
-	  'hr::noshade': 0,
-	  'hr::size': 0,
-	  'hr::width': 0,
-	  'iframe::align': 0,
-	  'iframe::frameborder': 0,
-	  'iframe::height': 0,
-	  'iframe::marginheight': 0,
-	  'iframe::marginwidth': 0,
-	  'iframe::width': 0,
-	  'img::align': 0,
-	  'img::alt': 0,
-	  'img::border': 0,
-	  'img::height': 0,
-	  'img::hspace': 0,
-	  'img::ismap': 0,
-	  'img::name': 7,
-	  'img::src': 1,
-	  'img::usemap': 11,
-	  'img::vspace': 0,
-	  'img::width': 0,
-	  'input::accept': 0,
-	  'input::accesskey': 0,
-	  'input::align': 0,
-	  'input::alt': 0,
-	  'input::autocomplete': 0,
-	  'input::checked': 0,
-	  'input::disabled': 0,
-	  'input::inputmode': 0,
-	  'input::ismap': 0,
-	  'input::list': 5,
-	  'input::max': 0,
-	  'input::maxlength': 0,
-	  'input::min': 0,
-	  'input::multiple': 0,
-	  'input::name': 8,
-	  'input::onblur': 2,
-	  'input::onchange': 2,
-	  'input::onfocus': 2,
-	  'input::onselect': 2,
-	  'input::placeholder': 0,
-	  'input::readonly': 0,
-	  'input::required': 0,
-	  'input::size': 0,
-	  'input::src': 1,
-	  'input::step': 0,
-	  'input::tabindex': 0,
-	  'input::type': 0,
-	  'input::usemap': 11,
-	  'input::value': 0,
-	  'ins::cite': 1,
-	  'ins::datetime': 0,
-	  'label::accesskey': 0,
-	  'label::for': 5,
-	  'label::onblur': 2,
-	  'label::onfocus': 2,
-	  'legend::accesskey': 0,
-	  'legend::align': 0,
-	  'li::type': 0,
-	  'li::value': 0,
-	  'map::name': 7,
-	  'menu::compact': 0,
-	  'menu::label': 0,
-	  'menu::type': 0,
-	  'meter::high': 0,
-	  'meter::low': 0,
-	  'meter::max': 0,
-	  'meter::min': 0,
-	  'meter::value': 0,
-	  'ol::compact': 0,
-	  'ol::reversed': 0,
-	  'ol::start': 0,
-	  'ol::type': 0,
-	  'optgroup::disabled': 0,
-	  'optgroup::label': 0,
-	  'option::disabled': 0,
-	  'option::label': 0,
-	  'option::selected': 0,
-	  'option::value': 0,
-	  'output::for': 6,
-	  'output::name': 8,
-	  'p::align': 0,
-	  'pre::width': 0,
-	  'progress::max': 0,
-	  'progress::min': 0,
-	  'progress::value': 0,
-	  'q::cite': 1,
-	  'select::autocomplete': 0,
-	  'select::disabled': 0,
-	  'select::multiple': 0,
-	  'select::name': 8,
-	  'select::onblur': 2,
-	  'select::onchange': 2,
-	  'select::onfocus': 2,
-	  'select::required': 0,
-	  'select::size': 0,
-	  'select::tabindex': 0,
-	  'source::type': 0,
-	  'table::align': 0,
-	  'table::bgcolor': 0,
-	  'table::border': 0,
-	  'table::cellpadding': 0,
-	  'table::cellspacing': 0,
-	  'table::frame': 0,
-	  'table::rules': 0,
-	  'table::summary': 0,
-	  'table::width': 0,
-	  'tbody::align': 0,
-	  'tbody::char': 0,
-	  'tbody::charoff': 0,
-	  'tbody::valign': 0,
-	  'td::abbr': 0,
-	  'td::align': 0,
-	  'td::axis': 0,
-	  'td::bgcolor': 0,
-	  'td::char': 0,
-	  'td::charoff': 0,
-	  'td::colspan': 0,
-	  'td::headers': 6,
-	  'td::height': 0,
-	  'td::nowrap': 0,
-	  'td::rowspan': 0,
-	  'td::scope': 0,
-	  'td::valign': 0,
-	  'td::width': 0,
-	  'textarea::accesskey': 0,
-	  'textarea::autocomplete': 0,
-	  'textarea::cols': 0,
-	  'textarea::disabled': 0,
-	  'textarea::inputmode': 0,
-	  'textarea::name': 8,
-	  'textarea::onblur': 2,
-	  'textarea::onchange': 2,
-	  'textarea::onfocus': 2,
-	  'textarea::onselect': 2,
-	  'textarea::placeholder': 0,
-	  'textarea::readonly': 0,
-	  'textarea::required': 0,
-	  'textarea::rows': 0,
-	  'textarea::tabindex': 0,
-	  'textarea::wrap': 0,
-	  'tfoot::align': 0,
-	  'tfoot::char': 0,
-	  'tfoot::charoff': 0,
-	  'tfoot::valign': 0,
-	  'th::abbr': 0,
-	  'th::align': 0,
-	  'th::axis': 0,
-	  'th::bgcolor': 0,
-	  'th::char': 0,
-	  'th::charoff': 0,
-	  'th::colspan': 0,
-	  'th::headers': 6,
-	  'th::height': 0,
-	  'th::nowrap': 0,
-	  'th::rowspan': 0,
-	  'th::scope': 0,
-	  'th::valign': 0,
-	  'th::width': 0,
-	  'thead::align': 0,
-	  'thead::char': 0,
-	  'thead::charoff': 0,
-	  'thead::valign': 0,
-	  'tr::align': 0,
-	  'tr::bgcolor': 0,
-	  'tr::char': 0,
-	  'tr::charoff': 0,
-	  'tr::valign': 0,
-	  'track::default': 0,
-	  'track::kind': 0,
-	  'track::label': 0,
-	  'track::srclang': 0,
-	  'ul::compact': 0,
-	  'ul::type': 0,
-	  'video::controls': 0,
-	  'video::height': 0,
-	  'video::loop': 0,
-	  'video::mediagroup': 5,
-	  'video::muted': 0,
-	  'video::poster': 1,
-	  'video::preload': 0,
-	  'video::width': 0
-	};
-	html4[ 'ATTRIBS' ] = html4.ATTRIBS;
-	html4.eflags = {
-	  'OPTIONAL_ENDTAG': 1,
-	  'EMPTY': 2,
-	  'CDATA': 4,
-	  'RCDATA': 8,
-	  'UNSAFE': 16,
-	  'FOLDABLE': 32,
-	  'SCRIPT': 64,
-	  'STYLE': 128,
-	  'VIRTUALIZED': 256
-	};
-	html4[ 'eflags' ] = html4.eflags;
-	// these are bitmasks of the eflags above.
-	html4.ELEMENTS = {
-	  'a': 0,
-	  'abbr': 0,
-	  'acronym': 0,
-	  'address': 0,
-	  'applet': 272,
-	  'area': 2,
-	  'article': 0,
-	  'aside': 0,
-	  'audio': 0,
-	  'b': 0,
-	  'base': 274,
-	  'basefont': 274,
-	  'bdi': 0,
-	  'bdo': 0,
-	  'big': 0,
-	  'blockquote': 0,
-	  'body': 305,
-	  'br': 2,
-	  'button': 0,
-	  'canvas': 0,
-	  'caption': 0,
-	  'center': 0,
-	  'cite': 0,
-	  'code': 0,
-	  'col': 2,
-	  'colgroup': 1,
-	  'command': 2,
-	  'data': 0,
-	  'datalist': 0,
-	  'dd': 1,
-	  'del': 0,
-	  'details': 0,
-	  'dfn': 0,
-	  'dialog': 272,
-	  'dir': 0,
-	  'div': 0,
-	  'dl': 0,
-	  'dt': 1,
-	  'em': 0,
-	  'fieldset': 0,
-	  'figcaption': 0,
-	  'figure': 0,
-	  'font': 0,
-	  'footer': 0,
-	  'form': 0,
-	  'frame': 274,
-	  'frameset': 272,
-	  'h1': 0,
-	  'h2': 0,
-	  'h3': 0,
-	  'h4': 0,
-	  'h5': 0,
-	  'h6': 0,
-	  'head': 305,
-	  'header': 0,
-	  'hgroup': 0,
-	  'hr': 2,
-	  'html': 305,
-	  'i': 0,
-	  'iframe': 16,
-	  'img': 2,
-	  'input': 2,
-	  'ins': 0,
-	  'isindex': 274,
-	  'kbd': 0,
-	  'keygen': 274,
-	  'label': 0,
-	  'legend': 0,
-	  'li': 1,
-	  'link': 274,
-	  'map': 0,
-	  'mark': 0,
-	  'menu': 0,
-	  'meta': 274,
-	  'meter': 0,
-	  'nav': 0,
-	  'nobr': 0,
-	  'noembed': 276,
-	  'noframes': 276,
-	  'noscript': 276,
-	  'object': 272,
-	  'ol': 0,
-	  'optgroup': 0,
-	  'option': 1,
-	  'output': 0,
-	  'p': 1,
-	  'param': 274,
-	  'pre': 0,
-	  'progress': 0,
-	  'q': 0,
-	  's': 0,
-	  'samp': 0,
-	  'script': 84,
-	  'section': 0,
-	  'select': 0,
-	  'small': 0,
-	  'source': 2,
-	  'span': 0,
-	  'strike': 0,
-	  'strong': 0,
-	  'style': 148,
-	  'sub': 0,
-	  'summary': 0,
-	  'sup': 0,
-	  'table': 0,
-	  'tbody': 1,
-	  'td': 1,
-	  'textarea': 8,
-	  'tfoot': 1,
-	  'th': 1,
-	  'thead': 1,
-	  'time': 0,
-	  'title': 280,
-	  'tr': 1,
-	  'track': 2,
-	  'tt': 0,
-	  'u': 0,
-	  'ul': 0,
-	  'var': 0,
-	  'video': 0,
-	  'wbr': 2
-	};
-	html4[ 'ELEMENTS' ] = html4.ELEMENTS;
-	html4.ELEMENT_DOM_INTERFACES = {
-	  'a': 'HTMLAnchorElement',
-	  'abbr': 'HTMLElement',
-	  'acronym': 'HTMLElement',
-	  'address': 'HTMLElement',
-	  'applet': 'HTMLAppletElement',
-	  'area': 'HTMLAreaElement',
-	  'article': 'HTMLElement',
-	  'aside': 'HTMLElement',
-	  'audio': 'HTMLAudioElement',
-	  'b': 'HTMLElement',
-	  'base': 'HTMLBaseElement',
-	  'basefont': 'HTMLBaseFontElement',
-	  'bdi': 'HTMLElement',
-	  'bdo': 'HTMLElement',
-	  'big': 'HTMLElement',
-	  'blockquote': 'HTMLQuoteElement',
-	  'body': 'HTMLBodyElement',
-	  'br': 'HTMLBRElement',
-	  'button': 'HTMLButtonElement',
-	  'canvas': 'HTMLCanvasElement',
-	  'caption': 'HTMLTableCaptionElement',
-	  'center': 'HTMLElement',
-	  'cite': 'HTMLElement',
-	  'code': 'HTMLElement',
-	  'col': 'HTMLTableColElement',
-	  'colgroup': 'HTMLTableColElement',
-	  'command': 'HTMLCommandElement',
-	  'data': 'HTMLElement',
-	  'datalist': 'HTMLDataListElement',
-	  'dd': 'HTMLElement',
-	  'del': 'HTMLModElement',
-	  'details': 'HTMLDetailsElement',
-	  'dfn': 'HTMLElement',
-	  'dialog': 'HTMLDialogElement',
-	  'dir': 'HTMLDirectoryElement',
-	  'div': 'HTMLDivElement',
-	  'dl': 'HTMLDListElement',
-	  'dt': 'HTMLElement',
-	  'em': 'HTMLElement',
-	  'fieldset': 'HTMLFieldSetElement',
-	  'figcaption': 'HTMLElement',
-	  'figure': 'HTMLElement',
-	  'font': 'HTMLFontElement',
-	  'footer': 'HTMLElement',
-	  'form': 'HTMLFormElement',
-	  'frame': 'HTMLFrameElement',
-	  'frameset': 'HTMLFrameSetElement',
-	  'h1': 'HTMLHeadingElement',
-	  'h2': 'HTMLHeadingElement',
-	  'h3': 'HTMLHeadingElement',
-	  'h4': 'HTMLHeadingElement',
-	  'h5': 'HTMLHeadingElement',
-	  'h6': 'HTMLHeadingElement',
-	  'head': 'HTMLHeadElement',
-	  'header': 'HTMLElement',
-	  'hgroup': 'HTMLElement',
-	  'hr': 'HTMLHRElement',
-	  'html': 'HTMLHtmlElement',
-	  'i': 'HTMLElement',
-	  'iframe': 'HTMLIFrameElement',
-	  'img': 'HTMLImageElement',
-	  'input': 'HTMLInputElement',
-	  'ins': 'HTMLModElement',
-	  'isindex': 'HTMLUnknownElement',
-	  'kbd': 'HTMLElement',
-	  'keygen': 'HTMLKeygenElement',
-	  'label': 'HTMLLabelElement',
-	  'legend': 'HTMLLegendElement',
-	  'li': 'HTMLLIElement',
-	  'link': 'HTMLLinkElement',
-	  'map': 'HTMLMapElement',
-	  'mark': 'HTMLElement',
-	  'menu': 'HTMLMenuElement',
-	  'meta': 'HTMLMetaElement',
-	  'meter': 'HTMLMeterElement',
-	  'nav': 'HTMLElement',
-	  'nobr': 'HTMLElement',
-	  'noembed': 'HTMLElement',
-	  'noframes': 'HTMLElement',
-	  'noscript': 'HTMLElement',
-	  'object': 'HTMLObjectElement',
-	  'ol': 'HTMLOListElement',
-	  'optgroup': 'HTMLOptGroupElement',
-	  'option': 'HTMLOptionElement',
-	  'output': 'HTMLOutputElement',
-	  'p': 'HTMLParagraphElement',
-	  'param': 'HTMLParamElement',
-	  'pre': 'HTMLPreElement',
-	  'progress': 'HTMLProgressElement',
-	  'q': 'HTMLQuoteElement',
-	  's': 'HTMLElement',
-	  'samp': 'HTMLElement',
-	  'script': 'HTMLScriptElement',
-	  'section': 'HTMLElement',
-	  'select': 'HTMLSelectElement',
-	  'small': 'HTMLElement',
-	  'source': 'HTMLSourceElement',
-	  'span': 'HTMLSpanElement',
-	  'strike': 'HTMLElement',
-	  'strong': 'HTMLElement',
-	  'style': 'HTMLStyleElement',
-	  'sub': 'HTMLElement',
-	  'summary': 'HTMLElement',
-	  'sup': 'HTMLElement',
-	  'table': 'HTMLTableElement',
-	  'tbody': 'HTMLTableSectionElement',
-	  'td': 'HTMLTableDataCellElement',
-	  'textarea': 'HTMLTextAreaElement',
-	  'tfoot': 'HTMLTableSectionElement',
-	  'th': 'HTMLTableHeaderCellElement',
-	  'thead': 'HTMLTableSectionElement',
-	  'time': 'HTMLTimeElement',
-	  'title': 'HTMLTitleElement',
-	  'tr': 'HTMLTableRowElement',
-	  'track': 'HTMLTrackElement',
-	  'tt': 'HTMLElement',
-	  'u': 'HTMLElement',
-	  'ul': 'HTMLUListElement',
-	  'var': 'HTMLElement',
-	  'video': 'HTMLVideoElement',
-	  'wbr': 'HTMLElement'
-	};
-	html4[ 'ELEMENT_DOM_INTERFACES' ] = html4.ELEMENT_DOM_INTERFACES;
-	html4.ueffects = {
-	  'NOT_LOADED': 0,
-	  'SAME_DOCUMENT': 1,
-	  'NEW_DOCUMENT': 2
-	};
-	html4[ 'ueffects' ] = html4.ueffects;
-	html4.URIEFFECTS = {
-	  'a::href': 2,
-	  'area::href': 2,
-	  'blockquote::cite': 0,
-	  'command::icon': 1,
-	  'del::cite': 0,
-	  'form::action': 2,
-	  'img::src': 1,
-	  'input::src': 1,
-	  'ins::cite': 0,
-	  'q::cite': 0,
-	  'video::poster': 1
-	};
-	html4[ 'URIEFFECTS' ] = html4.URIEFFECTS;
-	html4.ltypes = {
-	  'UNSANDBOXED': 2,
-	  'SANDBOXED': 1,
-	  'DATA': 0
-	};
-	html4[ 'ltypes' ] = html4.ltypes;
-	html4.LOADERTYPES = {
-	  'a::href': 2,
-	  'area::href': 2,
-	  'blockquote::cite': 2,
-	  'command::icon': 1,
-	  'del::cite': 2,
-	  'form::action': 2,
-	  'img::src': 1,
-	  'input::src': 1,
-	  'ins::cite': 2,
-	  'q::cite': 2,
-	  'video::poster': 1
-	};
-=======
 	};
 
 /***/ },
@@ -78476,7 +74528,6 @@
 	  'q::cite': 2,
 	  'video::poster': 1
 	};
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	html4[ 'LOADERTYPES' ] = html4.LOADERTYPES;
 	
 	// Copyright (C) 2006 Google Inc.
@@ -78521,97 +74572,6 @@
 	 * \@namespace
 	 */
 	var html = (function(html4) {
-<<<<<<< HEAD
-	
-	  // For closure compiler
-	  var parseCssDeclarations, sanitizeCssProperty, cssSchema;
-	  if ('undefined' !== typeof window) {
-	    parseCssDeclarations = window['parseCssDeclarations'];
-	    sanitizeCssProperty = window['sanitizeCssProperty'];
-	    cssSchema = window['cssSchema'];
-	  }
-	
-	  // The keys of this object must be 'quoted' or JSCompiler will mangle them!
-	  // This is a partial list -- lookupEntity() uses the host browser's parser
-	  // (when available) to implement full entity lookup.
-	  // Note that entities are in general case-sensitive; the uppercase ones are
-	  // explicitly defined by HTML5 (presumably as compatibility).
-	  var ENTITIES = {
-	    'lt': '<',
-	    'LT': '<',
-	    'gt': '>',
-	    'GT': '>',
-	    'amp': '&',
-	    'AMP': '&',
-	    'quot': '"',
-	    'apos': '\'',
-	    'nbsp': '\u00A0'
-	  };
-	
-	  // Patterns for types of entity/character reference names.
-	  var decimalEscapeRe = /^#(\d+)$/;
-	  var hexEscapeRe = /^#x([0-9A-Fa-f]+)$/;
-	  // contains every entity per http://www.w3.org/TR/2011/WD-html5-20110113/named-character-references.html
-	  var safeEntityNameRe = /^[A-Za-z][A-za-z0-9]+$/;
-	  // Used as a hook to invoke the browser's entity parsing. <textarea> is used
-	  // because its content is parsed for entities but not tags.
-	  // TODO(kpreid): This retrieval is a kludge and leads to silent loss of
-	  // functionality if the document isn't available.
-	  var entityLookupElement =
-	      ('undefined' !== typeof window && window['document'])
-	          ? window['document'].createElement('textarea') : null;
-	  /**
-	   * Decodes an HTML entity.
-	   *
-	   * {\@updoc
-	   * $ lookupEntity('lt')
-	   * # '<'
-	   * $ lookupEntity('GT')
-	   * # '>'
-	   * $ lookupEntity('amp')
-	   * # '&'
-	   * $ lookupEntity('nbsp')
-	   * # '\xA0'
-	   * $ lookupEntity('apos')
-	   * # "'"
-	   * $ lookupEntity('quot')
-	   * # '"'
-	   * $ lookupEntity('#xa')
-	   * # '\n'
-	   * $ lookupEntity('#10')
-	   * # '\n'
-	   * $ lookupEntity('#x0a')
-	   * # '\n'
-	   * $ lookupEntity('#010')
-	   * # '\n'
-	   * $ lookupEntity('#x00A')
-	   * # '\n'
-	   * $ lookupEntity('Pi')      // Known failure
-	   * # '\u03A0'
-	   * $ lookupEntity('pi')      // Known failure
-	   * # '\u03C0'
-	   * }
-	   *
-	   * @param {string} name the content between the '&' and the ';'.
-	   * @return {string} a single unicode code-point as a string.
-	   */
-	  function lookupEntity(name) {
-	    // TODO: entity lookup as specified by HTML5 actually depends on the
-	    // presence of the ";".
-	    if (ENTITIES.hasOwnProperty(name)) { return ENTITIES[name]; }
-	    var m = name.match(decimalEscapeRe);
-	    if (m) {
-	      return String.fromCharCode(parseInt(m[1], 10));
-	    } else if (!!(m = name.match(hexEscapeRe))) {
-	      return String.fromCharCode(parseInt(m[1], 16));
-	    } else if (entityLookupElement && safeEntityNameRe.test(name)) {
-	      entityLookupElement.innerHTML = '&' + name + ';';
-	      var text = entityLookupElement.textContent;
-	      ENTITIES[name] = text;
-	      return text;
-	    } else {
-	      return '&' + name + ';';
-=======
 	
 	  // For closure compiler
 	  var parseCssDeclarations, sanitizeCssProperty, cssSchema;
@@ -79215,1090 +75175,9 @@
 	    var q = v.charCodeAt(0);
 	    if (q === 0x22 || q === 0x27) { // " or '
 	      v = v.substr(1, v.length - 2);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	    }
 	    return unescapeEntities(stripNULs(v));
 	  }
-<<<<<<< HEAD
-	
-	  function decodeOneEntity(_, name) {
-	    return lookupEntity(name);
-	  }
-	
-	  var nulRe = /\0/g;
-	  function stripNULs(s) {
-	    return s.replace(nulRe, '');
-	  }
-	
-	  var ENTITY_RE_1 = /&(#[0-9]+|#[xX][0-9A-Fa-f]+|\w+);/g;
-	  var ENTITY_RE_2 = /^(#[0-9]+|#[xX][0-9A-Fa-f]+|\w+);/;
-	  /**
-	   * The plain text of a chunk of HTML CDATA which possibly containing.
-	   *
-	   * {\@updoc
-	   * $ unescapeEntities('')
-	   * # ''
-	   * $ unescapeEntities('hello World!')
-	   * # 'hello World!'
-	   * $ unescapeEntities('1 &lt; 2 &amp;&AMP; 4 &gt; 3&#10;')
-	   * # '1 < 2 && 4 > 3\n'
-	   * $ unescapeEntities('&lt;&lt <- unfinished entity&gt;')
-	   * # '<&lt <- unfinished entity>'
-	   * $ unescapeEntities('/foo?bar=baz&copy=true')  // & often unescaped in URLS
-	   * # '/foo?bar=baz&copy=true'
-	   * $ unescapeEntities('pi=&pi;&#x3c0;, Pi=&Pi;\u03A0') // FIXME: known failure
-	   * # 'pi=\u03C0\u03c0, Pi=\u03A0\u03A0'
-	   * }
-	   *
-	   * @param {string} s a chunk of HTML CDATA.  It must not start or end inside
-	   *     an HTML entity.
-	   */
-	  function unescapeEntities(s) {
-	    return s.replace(ENTITY_RE_1, decodeOneEntity);
-	  }
-	
-	  var ampRe = /&/g;
-	  var looseAmpRe = /&([^a-z#]|#(?:[^0-9x]|x(?:[^0-9a-f]|$)|$)|$)/gi;
-	  var ltRe = /[<]/g;
-	  var gtRe = />/g;
-	  var quotRe = /\"/g;
-	
-	  /**
-	   * Escapes HTML special characters in attribute values.
-	   *
-	   * {\@updoc
-	   * $ escapeAttrib('')
-	   * # ''
-	   * $ escapeAttrib('"<<&==&>>"')  // Do not just escape the first occurrence.
-	   * # '&#34;&lt;&lt;&amp;&#61;&#61;&amp;&gt;&gt;&#34;'
-	   * $ escapeAttrib('Hello <World>!')
-	   * # 'Hello &lt;World&gt;!'
-	   * }
-	   */
-	  function escapeAttrib(s) {
-	    return ('' + s).replace(ampRe, '&amp;').replace(ltRe, '&lt;')
-	        .replace(gtRe, '&gt;').replace(quotRe, '&#34;');
-	  }
-	
-	  /**
-	   * Escape entities in RCDATA that can be escaped without changing the meaning.
-	   * {\@updoc
-	   * $ normalizeRCData('1 < 2 &&amp; 3 > 4 &amp;& 5 &lt; 7&8')
-	   * # '1 &lt; 2 &amp;&amp; 3 &gt; 4 &amp;&amp; 5 &lt; 7&amp;8'
-	   * }
-	   */
-	  function normalizeRCData(rcdata) {
-	    return rcdata
-	        .replace(looseAmpRe, '&amp;$1')
-	        .replace(ltRe, '&lt;')
-	        .replace(gtRe, '&gt;');
-	  }
-	
-	  // TODO(felix8a): validate sanitizer regexs against the HTML5 grammar at
-	  // http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html
-	  // http://www.whatwg.org/specs/web-apps/current-work/multipage/parsing.html
-	  // http://www.whatwg.org/specs/web-apps/current-work/multipage/tokenization.html
-	  // http://www.whatwg.org/specs/web-apps/current-work/multipage/tree-construction.html
-	
-	  // We initially split input so that potentially meaningful characters
-	  // like '<' and '>' are separate tokens, using a fast dumb process that
-	  // ignores quoting.  Then we walk that token stream, and when we see a
-	  // '<' that's the start of a tag, we use ATTR_RE to extract tag
-	  // attributes from the next token.  That token will never have a '>'
-	  // character.  However, it might have an unbalanced quote character, and
-	  // when we see that, we combine additional tokens to balance the quote.
-	
-	  var ATTR_RE = new RegExp(
-	    '^\\s*' +
-	    '([-.:\\w]+)' +             // 1 = Attribute name
-	    '(?:' + (
-	      '\\s*(=)\\s*' +           // 2 = Is there a value?
-	      '(' + (                   // 3 = Attribute value
-	        // TODO(felix8a): maybe use backref to match quotes
-	        '(\")[^\"]*(\"|$)' +    // 4, 5 = Double-quoted string
-	        '|' +
-	        '(\')[^\']*(\'|$)' +    // 6, 7 = Single-quoted string
-	        '|' +
-	        // Positive lookahead to prevent interpretation of
-	        // <foo a= b=c> as <foo a='b=c'>
-	        // TODO(felix8a): might be able to drop this case
-	        '(?=[a-z][-\\w]*\\s*=)' +
-	        '|' +
-	        // Unquoted value that isn't an attribute name
-	        // (since we didn't match the positive lookahead above)
-	        '[^\"\'\\s]*' ) +
-	      ')' ) +
-	    ')?',
-	    'i');
-	
-	  // false on IE<=8, true on most other browsers
-	  var splitWillCapture = ('a,b'.split(/(,)/).length === 3);
-	
-	  // bitmask for tags with special parsing, like <script> and <textarea>
-	  var EFLAGS_TEXT = html4.eflags['CDATA'] | html4.eflags['RCDATA'];
-	
-	  /**
-	   * Given a SAX-like event handler, produce a function that feeds those
-	   * events and a parameter to the event handler.
-	   *
-	   * The event handler has the form:{@code
-	   * {
-	   *   // Name is an upper-case HTML tag name.  Attribs is an array of
-	   *   // alternating upper-case attribute names, and attribute values.  The
-	   *   // attribs array is reused by the parser.  Param is the value passed to
-	   *   // the saxParser.
-	   *   startTag: function (name, attribs, param) { ... },
-	   *   endTag:   function (name, param) { ... },
-	   *   pcdata:   function (text, param) { ... },
-	   *   rcdata:   function (text, param) { ... },
-	   *   cdata:    function (text, param) { ... },
-	   *   startDoc: function (param) { ... },
-	   *   endDoc:   function (param) { ... }
-	   * }}
-	   *
-	   * @param {Object} handler a record containing event handlers.
-	   * @return {function(string, Object)} A function that takes a chunk of HTML
-	   *     and a parameter.  The parameter is passed on to the handler methods.
-	   */
-	  function makeSaxParser(handler) {
-	    // Accept quoted or unquoted keys (Closure compat)
-	    var hcopy = {
-	      cdata: handler.cdata || handler['cdata'],
-	      comment: handler.comment || handler['comment'],
-	      endDoc: handler.endDoc || handler['endDoc'],
-	      endTag: handler.endTag || handler['endTag'],
-	      pcdata: handler.pcdata || handler['pcdata'],
-	      rcdata: handler.rcdata || handler['rcdata'],
-	      startDoc: handler.startDoc || handler['startDoc'],
-	      startTag: handler.startTag || handler['startTag']
-	    };
-	    return function(htmlText, param) {
-	      return parse(htmlText, hcopy, param);
-	    };
-	  }
-	
-	  // Parsing strategy is to split input into parts that might be lexically
-	  // meaningful (every ">" becomes a separate part), and then recombine
-	  // parts if we discover they're in a different context.
-	
-	  // TODO(felix8a): Significant performance regressions from -legacy,
-	  // tested on
-	  //    Chrome 18.0
-	  //    Firefox 11.0
-	  //    IE 6, 7, 8, 9
-	  //    Opera 11.61
-	  //    Safari 5.1.3
-	  // Many of these are unusual patterns that are linearly slower and still
-	  // pretty fast (eg 1ms to 5ms), so not necessarily worth fixing.
-	
-	  // TODO(felix8a): "<script> && && && ... <\/script>" is slower on all
-	  // browsers.  The hotspot is htmlSplit.
-	
-	  // TODO(felix8a): "<p title='>>>>...'><\/p>" is slower on all browsers.
-	  // This is partly htmlSplit, but the hotspot is parseTagAndAttrs.
-	
-	  // TODO(felix8a): "<a><\/a><a><\/a>..." is slower on IE9.
-	  // "<a>1<\/a><a>1<\/a>..." is faster, "<a><\/a>2<a><\/a>2..." is faster.
-	
-	  // TODO(felix8a): "<p<p<p..." is slower on IE[6-8]
-	
-	  var continuationMarker = {};
-	  function parse(htmlText, handler, param) {
-	    var m, p, tagName;
-	    var parts = htmlSplit(htmlText);
-	    var state = {
-	      noMoreGT: false,
-	      noMoreEndComments: false
-	    };
-	    parseCPS(handler, parts, 0, state, param);
-	  }
-	
-	  function continuationMaker(h, parts, initial, state, param) {
-	    return function () {
-	      parseCPS(h, parts, initial, state, param);
-	    };
-	  }
-	
-	  function parseCPS(h, parts, initial, state, param) {
-	    try {
-	      if (h.startDoc && initial == 0) { h.startDoc(param); }
-	      var m, p, tagName;
-	      for (var pos = initial, end = parts.length; pos < end;) {
-	        var current = parts[pos++];
-	        var next = parts[pos];
-	        switch (current) {
-	        case '&':
-	          if (ENTITY_RE_2.test(next)) {
-	            if (h.pcdata) {
-	              h.pcdata('&' + next, param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	            pos++;
-	          } else {
-	            if (h.pcdata) { h.pcdata("&amp;", param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          }
-	          break;
-	        case '<\/':
-	          if (m = /^([-\w:]+)[^\'\"]*/.exec(next)) {
-	            if (m[0].length === next.length && parts[pos + 1] === '>') {
-	              // fast case, no attribute parsing needed
-	              pos += 2;
-	              tagName = m[1].toLowerCase();
-	              if (h.endTag) {
-	                h.endTag(tagName, param, continuationMarker,
-	                  continuationMaker(h, parts, pos, state, param));
-	              }
-	            } else {
-	              // slow case, need to parse attributes
-	              // TODO(felix8a): do we really care about misparsing this?
-	              pos = parseEndTag(
-	                parts, pos, h, param, continuationMarker, state);
-	            }
-	          } else {
-	            if (h.pcdata) {
-	              h.pcdata('&lt;/', param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          }
-	          break;
-	        case '<':
-	          if (m = /^([-\w:]+)\s*\/?/.exec(next)) {
-	            if (m[0].length === next.length && parts[pos + 1] === '>') {
-	              // fast case, no attribute parsing needed
-	              pos += 2;
-	              tagName = m[1].toLowerCase();
-	              if (h.startTag) {
-	                h.startTag(tagName, [], param, continuationMarker,
-	                  continuationMaker(h, parts, pos, state, param));
-	              }
-	              // tags like <script> and <textarea> have special parsing
-	              var eflags = html4.ELEMENTS[tagName];
-	              if (eflags & EFLAGS_TEXT) {
-	                var tag = { name: tagName, next: pos, eflags: eflags };
-	                pos = parseText(
-	                  parts, tag, h, param, continuationMarker, state);
-	              }
-	            } else {
-	              // slow case, need to parse attributes
-	              pos = parseStartTag(
-	                parts, pos, h, param, continuationMarker, state);
-	            }
-	          } else {
-	            if (h.pcdata) {
-	              h.pcdata('&lt;', param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          }
-	          break;
-	        case '<\!--':
-	          // The pathological case is n copies of '<\!--' without '-->', and
-	          // repeated failure to find '-->' is quadratic.  We avoid that by
-	          // remembering when search for '-->' fails.
-	          if (!state.noMoreEndComments) {
-	            // A comment <\!--x--> is split into three tokens:
-	            //   '<\!--', 'x--', '>'
-	            // We want to find the next '>' token that has a preceding '--'.
-	            // pos is at the 'x--'.
-	            for (p = pos + 1; p < end; p++) {
-	              if (parts[p] === '>' && /--$/.test(parts[p - 1])) { break; }
-	            }
-	            if (p < end) {
-	              if (h.comment) {
-	                var comment = parts.slice(pos, p).join('');
-	                h.comment(
-	                  comment.substr(0, comment.length - 2), param,
-	                  continuationMarker,
-	                  continuationMaker(h, parts, p + 1, state, param));
-	              }
-	              pos = p + 1;
-	            } else {
-	              state.noMoreEndComments = true;
-	            }
-	          }
-	          if (state.noMoreEndComments) {
-	            if (h.pcdata) {
-	              h.pcdata('&lt;!--', param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          }
-	          break;
-	        case '<\!':
-	          if (!/^\w/.test(next)) {
-	            if (h.pcdata) {
-	              h.pcdata('&lt;!', param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          } else {
-	            // similar to noMoreEndComment logic
-	            if (!state.noMoreGT) {
-	              for (p = pos + 1; p < end; p++) {
-	                if (parts[p] === '>') { break; }
-	              }
-	              if (p < end) {
-	                pos = p + 1;
-	              } else {
-	                state.noMoreGT = true;
-	              }
-	            }
-	            if (state.noMoreGT) {
-	              if (h.pcdata) {
-	                h.pcdata('&lt;!', param, continuationMarker,
-	                  continuationMaker(h, parts, pos, state, param));
-	              }
-	            }
-	          }
-	          break;
-	        case '<?':
-	          // similar to noMoreEndComment logic
-	          if (!state.noMoreGT) {
-	            for (p = pos + 1; p < end; p++) {
-	              if (parts[p] === '>') { break; }
-	            }
-	            if (p < end) {
-	              pos = p + 1;
-	            } else {
-	              state.noMoreGT = true;
-	            }
-	          }
-	          if (state.noMoreGT) {
-	            if (h.pcdata) {
-	              h.pcdata('&lt;?', param, continuationMarker,
-	                continuationMaker(h, parts, pos, state, param));
-	            }
-	          }
-	          break;
-	        case '>':
-	          if (h.pcdata) {
-	            h.pcdata("&gt;", param, continuationMarker,
-	              continuationMaker(h, parts, pos, state, param));
-	          }
-	          break;
-	        case '':
-	          break;
-	        default:
-	          if (h.pcdata) {
-	            h.pcdata(current, param, continuationMarker,
-	              continuationMaker(h, parts, pos, state, param));
-	          }
-	          break;
-	        }
-	      }
-	      if (h.endDoc) { h.endDoc(param); }
-	    } catch (e) {
-	      if (e !== continuationMarker) { throw e; }
-	    }
-	  }
-	
-	  // Split str into parts for the html parser.
-	  function htmlSplit(str) {
-	    // can't hoist this out of the function because of the re.exec loop.
-	    var re = /(<\/|<\!--|<[!?]|[&<>])/g;
-	    str += '';
-	    if (splitWillCapture) {
-	      return str.split(re);
-	    } else {
-	      var parts = [];
-	      var lastPos = 0;
-	      var m;
-	      while ((m = re.exec(str)) !== null) {
-	        parts.push(str.substring(lastPos, m.index));
-	        parts.push(m[0]);
-	        lastPos = m.index + m[0].length;
-	      }
-	      parts.push(str.substring(lastPos));
-	      return parts;
-	    }
-	  }
-	
-	  function parseEndTag(parts, pos, h, param, continuationMarker, state) {
-	    var tag = parseTagAndAttrs(parts, pos);
-	    // drop unclosed tags
-	    if (!tag) { return parts.length; }
-	    if (h.endTag) {
-	      h.endTag(tag.name, param, continuationMarker,
-	        continuationMaker(h, parts, pos, state, param));
-	    }
-	    return tag.next;
-	  }
-	
-	  function parseStartTag(parts, pos, h, param, continuationMarker, state) {
-	    var tag = parseTagAndAttrs(parts, pos);
-	    // drop unclosed tags
-	    if (!tag) { return parts.length; }
-	    if (h.startTag) {
-	      h.startTag(tag.name, tag.attrs, param, continuationMarker,
-	        continuationMaker(h, parts, tag.next, state, param));
-	    }
-	    // tags like <script> and <textarea> have special parsing
-	    if (tag.eflags & EFLAGS_TEXT) {
-	      return parseText(parts, tag, h, param, continuationMarker, state);
-	    } else {
-	      return tag.next;
-	    }
-	  }
-	
-	  var endTagRe = {};
-	
-	  // Tags like <script> and <textarea> are flagged as CDATA or RCDATA,
-	  // which means everything is text until we see the correct closing tag.
-	  function parseText(parts, tag, h, param, continuationMarker, state) {
-	    var end = parts.length;
-	    if (!endTagRe.hasOwnProperty(tag.name)) {
-	      endTagRe[tag.name] = new RegExp('^' + tag.name + '(?:[\\s\\/]|$)', 'i');
-	    }
-	    var re = endTagRe[tag.name];
-	    var first = tag.next;
-	    var p = tag.next + 1;
-	    for (; p < end; p++) {
-	      if (parts[p - 1] === '<\/' && re.test(parts[p])) { break; }
-	    }
-	    if (p < end) { p -= 1; }
-	    var buf = parts.slice(first, p).join('');
-	    if (tag.eflags & html4.eflags['CDATA']) {
-	      if (h.cdata) {
-	        h.cdata(buf, param, continuationMarker,
-	          continuationMaker(h, parts, p, state, param));
-	      }
-	    } else if (tag.eflags & html4.eflags['RCDATA']) {
-	      if (h.rcdata) {
-	        h.rcdata(normalizeRCData(buf), param, continuationMarker,
-	          continuationMaker(h, parts, p, state, param));
-	      }
-	    } else {
-	      throw new Error('bug');
-	    }
-	    return p;
-	  }
-	
-	  // at this point, parts[pos-1] is either "<" or "<\/".
-	  function parseTagAndAttrs(parts, pos) {
-	    var m = /^([-\w:]+)/.exec(parts[pos]);
-	    var tag = {};
-	    tag.name = m[1].toLowerCase();
-	    tag.eflags = html4.ELEMENTS[tag.name];
-	    var buf = parts[pos].substr(m[0].length);
-	    // Find the next '>'.  We optimistically assume this '>' is not in a
-	    // quoted context, and further down we fix things up if it turns out to
-	    // be quoted.
-	    var p = pos + 1;
-	    var end = parts.length;
-	    for (; p < end; p++) {
-	      if (parts[p] === '>') { break; }
-	      buf += parts[p];
-	    }
-	    if (end <= p) { return void 0; }
-	    var attrs = [];
-	    while (buf !== '') {
-	      m = ATTR_RE.exec(buf);
-	      if (!m) {
-	        // No attribute found: skip garbage
-	        buf = buf.replace(/^[\s\S][^a-z\s]*/, '');
-	
-	      } else if ((m[4] && !m[5]) || (m[6] && !m[7])) {
-	        // Unterminated quote: slurp to the next unquoted '>'
-	        var quote = m[4] || m[6];
-	        var sawQuote = false;
-	        var abuf = [buf, parts[p++]];
-	        for (; p < end; p++) {
-	          if (sawQuote) {
-	            if (parts[p] === '>') { break; }
-	          } else if (0 <= parts[p].indexOf(quote)) {
-	            sawQuote = true;
-	          }
-	          abuf.push(parts[p]);
-	        }
-	        // Slurp failed: lose the garbage
-	        if (end <= p) { break; }
-	        // Otherwise retry attribute parsing
-	        buf = abuf.join('');
-	        continue;
-	
-	      } else {
-	        // We have an attribute
-	        var aName = m[1].toLowerCase();
-	        var aValue = m[2] ? decodeValue(m[3]) : '';
-	        attrs.push(aName, aValue);
-	        buf = buf.substr(m[0].length);
-	      }
-	    }
-	    tag.attrs = attrs;
-	    tag.next = p + 1;
-	    return tag;
-	  }
-	
-	  function decodeValue(v) {
-	    var q = v.charCodeAt(0);
-	    if (q === 0x22 || q === 0x27) { // " or '
-	      v = v.substr(1, v.length - 2);
-	    }
-	    return unescapeEntities(stripNULs(v));
-	  }
-	
-	  /**
-	   * Returns a function that strips unsafe tags and attributes from html.
-	   * @param {function(string, Array.<string>): ?Array.<string>} tagPolicy
-	   *     A function that takes (tagName, attribs[]), where tagName is a key in
-	   *     html4.ELEMENTS and attribs is an array of alternating attribute names
-	   *     and values.  It should return a record (as follows), or null to delete
-	   *     the element.  It's okay for tagPolicy to modify the attribs array,
-	   *     but the same array is reused, so it should not be held between calls.
-	   *     Record keys:
-	   *        attribs: (required) Sanitized attributes array.
-	   *        tagName: Replacement tag name.
-	   * @return {function(string, Array)} A function that sanitizes a string of
-	   *     HTML and appends result strings to the second argument, an array.
-	   */
-	  function makeHtmlSanitizer(tagPolicy) {
-	    var stack;
-	    var ignoring;
-	    var emit = function (text, out) {
-	      if (!ignoring) { out.push(text); }
-	    };
-	    return makeSaxParser({
-	      'startDoc': function(_) {
-	        stack = [];
-	        ignoring = false;
-	      },
-	      'startTag': function(tagNameOrig, attribs, out) {
-	        if (ignoring) { return; }
-	        if (!html4.ELEMENTS.hasOwnProperty(tagNameOrig)) { return; }
-	        var eflagsOrig = html4.ELEMENTS[tagNameOrig];
-	        if (eflagsOrig & html4.eflags['FOLDABLE']) {
-	          return;
-	        }
-	
-	        var decision = tagPolicy(tagNameOrig, attribs);
-	        if (!decision) {
-	          ignoring = !(eflagsOrig & html4.eflags['EMPTY']);
-	          return;
-	        } else if (typeof decision !== 'object') {
-	          throw new Error('tagPolicy did not return object (old API?)');
-	        }
-	        if ('attribs' in decision) {
-	          attribs = decision['attribs'];
-	        } else {
-	          throw new Error('tagPolicy gave no attribs');
-	        }
-	        var eflagsRep;
-	        var tagNameRep;
-	        if ('tagName' in decision) {
-	          tagNameRep = decision['tagName'];
-	          eflagsRep = html4.ELEMENTS[tagNameRep];
-	        } else {
-	          tagNameRep = tagNameOrig;
-	          eflagsRep = eflagsOrig;
-	        }
-	        // TODO(mikesamuel): relying on tagPolicy not to insert unsafe
-	        // attribute names.
-	
-	        // If this is an optional-end-tag element and either this element or its
-	        // previous like sibling was rewritten, then insert a close tag to
-	        // preserve structure.
-	        if (eflagsOrig & html4.eflags['OPTIONAL_ENDTAG']) {
-	          var onStack = stack[stack.length - 1];
-	          if (onStack && onStack.orig === tagNameOrig &&
-	              (onStack.rep !== tagNameRep || tagNameOrig !== tagNameRep)) {
-	                out.push('<\/', onStack.rep, '>');
-	          }
-	        }
-	
-	        if (!(eflagsOrig & html4.eflags['EMPTY'])) {
-	          stack.push({orig: tagNameOrig, rep: tagNameRep});
-	        }
-	
-	        out.push('<', tagNameRep);
-	        for (var i = 0, n = attribs.length; i < n; i += 2) {
-	          var attribName = attribs[i],
-	              value = attribs[i + 1];
-	          if (value !== null && value !== void 0) {
-	            out.push(' ', attribName, '="', escapeAttrib(value), '"');
-	          }
-	        }
-	        out.push('>');
-	
-	        if ((eflagsOrig & html4.eflags['EMPTY'])
-	            && !(eflagsRep & html4.eflags['EMPTY'])) {
-	          // replacement is non-empty, synthesize end tag
-	          out.push('<\/', tagNameRep, '>');
-	        }
-	      },
-	      'endTag': function(tagName, out) {
-	        if (ignoring) {
-	          ignoring = false;
-	          return;
-	        }
-	        if (!html4.ELEMENTS.hasOwnProperty(tagName)) { return; }
-	        var eflags = html4.ELEMENTS[tagName];
-	        if (!(eflags & (html4.eflags['EMPTY'] | html4.eflags['FOLDABLE']))) {
-	          var index;
-	          if (eflags & html4.eflags['OPTIONAL_ENDTAG']) {
-	            for (index = stack.length; --index >= 0;) {
-	              var stackElOrigTag = stack[index].orig;
-	              if (stackElOrigTag === tagName) { break; }
-	              if (!(html4.ELEMENTS[stackElOrigTag] &
-	                    html4.eflags['OPTIONAL_ENDTAG'])) {
-	                // Don't pop non optional end tags looking for a match.
-	                return;
-	              }
-	            }
-	          } else {
-	            for (index = stack.length; --index >= 0;) {
-	              if (stack[index].orig === tagName) { break; }
-	            }
-	          }
-	          if (index < 0) { return; }  // Not opened.
-	          for (var i = stack.length; --i > index;) {
-	            var stackElRepTag = stack[i].rep;
-	            if (!(html4.ELEMENTS[stackElRepTag] &
-	                  html4.eflags['OPTIONAL_ENDTAG'])) {
-	              out.push('<\/', stackElRepTag, '>');
-	            }
-	          }
-	          if (index < stack.length) {
-	            tagName = stack[index].rep;
-	          }
-	          stack.length = index;
-	          out.push('<\/', tagName, '>');
-	        }
-	      },
-	      'pcdata': emit,
-	      'rcdata': emit,
-	      'cdata': emit,
-	      'endDoc': function(out) {
-	        for (; stack.length; stack.length--) {
-	          out.push('<\/', stack[stack.length - 1].rep, '>');
-	        }
-	      }
-	    });
-	  }
-	
-	  var ALLOWED_URI_SCHEMES = /^(?:https?|mailto|data)$/i;
-	
-	  function safeUri(uri, effect, ltype, hints, naiveUriRewriter) {
-	    if (!naiveUriRewriter) { return null; }
-	    try {
-	      var parsed = URI.parse('' + uri);
-	      if (parsed) {
-	        if (!parsed.hasScheme() ||
-	            ALLOWED_URI_SCHEMES.test(parsed.getScheme())) {
-	          var safe = naiveUriRewriter(parsed, effect, ltype, hints);
-	          return safe ? safe.toString() : null;
-	        }
-	      }
-	    } catch (e) {
-	      return null;
-	    }
-	    return null;
-	  }
-	
-	  function log(logger, tagName, attribName, oldValue, newValue) {
-	    if (!attribName) {
-	      logger(tagName + " removed", {
-	        change: "removed",
-	        tagName: tagName
-	      });
-	    }
-	    if (oldValue !== newValue) {
-	      var changed = "changed";
-	      if (oldValue && !newValue) {
-	        changed = "removed";
-	      } else if (!oldValue && newValue)  {
-	        changed = "added";
-	      }
-	      logger(tagName + "." + attribName + " " + changed, {
-	        change: changed,
-	        tagName: tagName,
-	        attribName: attribName,
-	        oldValue: oldValue,
-	        newValue: newValue
-	      });
-	    }
-	  }
-	
-	  function lookupAttribute(map, tagName, attribName) {
-	    var attribKey;
-	    attribKey = tagName + '::' + attribName;
-	    if (map.hasOwnProperty(attribKey)) {
-	      return map[attribKey];
-	    }
-	    attribKey = '*::' + attribName;
-	    if (map.hasOwnProperty(attribKey)) {
-	      return map[attribKey];
-	    }
-	    return void 0;
-	  }
-	  function getAttributeType(tagName, attribName) {
-	    return lookupAttribute(html4.ATTRIBS, tagName, attribName);
-	  }
-	  function getLoaderType(tagName, attribName) {
-	    return lookupAttribute(html4.LOADERTYPES, tagName, attribName);
-	  }
-	  function getUriEffect(tagName, attribName) {
-	    return lookupAttribute(html4.URIEFFECTS, tagName, attribName);
-	  }
-	
-	  /**
-	   * Sanitizes attributes on an HTML tag.
-	   * @param {string} tagName An HTML tag name in lowercase.
-	   * @param {Array.<?string>} attribs An array of alternating names and values.
-	   * @param {?function(?string): ?string} opt_naiveUriRewriter A transform to
-	   *     apply to URI attributes; it can return a new string value, or null to
-	   *     delete the attribute.  If unspecified, URI attributes are deleted.
-	   * @param {function(?string): ?string} opt_nmTokenPolicy A transform to apply
-	   *     to attributes containing HTML names, element IDs, and space-separated
-	   *     lists of classes; it can return a new string value, or null to delete
-	   *     the attribute.  If unspecified, these attributes are kept unchanged.
-	   * @return {Array.<?string>} The sanitized attributes as a list of alternating
-	   *     names and values, where a null value means to omit the attribute.
-	   */
-	  function sanitizeAttribs(tagName, attribs,
-	    opt_naiveUriRewriter, opt_nmTokenPolicy, opt_logger) {
-	    // TODO(felix8a): it's obnoxious that domado duplicates much of this
-	    // TODO(felix8a): maybe consistently enforce constraints like target=
-	    for (var i = 0; i < attribs.length; i += 2) {
-	      var attribName = attribs[i];
-	      var value = attribs[i + 1];
-	      var oldValue = value;
-	      var atype = null, attribKey;
-	      if ((attribKey = tagName + '::' + attribName,
-	           html4.ATTRIBS.hasOwnProperty(attribKey)) ||
-	          (attribKey = '*::' + attribName,
-	           html4.ATTRIBS.hasOwnProperty(attribKey))) {
-	        atype = html4.ATTRIBS[attribKey];
-	      }
-	      if (atype !== null) {
-	        switch (atype) {
-	          case html4.atype['NONE']: break;
-	          case html4.atype['SCRIPT']:
-	            value = null;
-	            if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	          case html4.atype['STYLE']:
-	            if ('undefined' === typeof parseCssDeclarations) {
-	              value = null;
-	              if (opt_logger) {
-	                log(opt_logger, tagName, attribName, oldValue, value);
-		      }
-	              break;
-	            }
-	            var sanitizedDeclarations = [];
-	            parseCssDeclarations(
-	                value,
-	                {
-	                  declaration: function (property, tokens) {
-	                    var normProp = property.toLowerCase();
-	                    var schema = cssSchema[normProp];
-	                    if (!schema) {
-	                      return;
-	                    }
-	                    sanitizeCssProperty(
-	                        normProp, schema, tokens,
-	                        opt_naiveUriRewriter
-	                        ? function (url) {
-	                            return safeUri(
-	                                url, html4.ueffects.SAME_DOCUMENT,
-	                                html4.ltypes.SANDBOXED,
-	                                {
-	                                  "TYPE": "CSS",
-	                                  "CSS_PROP": normProp
-	                                }, opt_naiveUriRewriter);
-	                          }
-	                        : null);
-	                    sanitizedDeclarations.push(property + ': ' + tokens.join(' '));
-	                  }
-	                });
-	            value = sanitizedDeclarations.length > 0 ?
-	              sanitizedDeclarations.join(' ; ') : null;
-	            if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	          case html4.atype['ID']:
-	          case html4.atype['IDREF']:
-	          case html4.atype['IDREFS']:
-	          case html4.atype['GLOBAL_NAME']:
-	          case html4.atype['LOCAL_NAME']:
-	          case html4.atype['CLASSES']:
-	            value = opt_nmTokenPolicy ? opt_nmTokenPolicy(value) : value;
-	            if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	          case html4.atype['URI']:
-	            value = safeUri(value,
-	              getUriEffect(tagName, attribName),
-	              getLoaderType(tagName, attribName),
-	              {
-	                "TYPE": "MARKUP",
-	                "XML_ATTR": attribName,
-	                "XML_TAG": tagName
-	              }, opt_naiveUriRewriter);
-	              if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	          case html4.atype['URI_FRAGMENT']:
-	            if (value && '#' === value.charAt(0)) {
-	              value = value.substring(1);  // remove the leading '#'
-	              value = opt_nmTokenPolicy ? opt_nmTokenPolicy(value) : value;
-	              if (value !== null && value !== void 0) {
-	                value = '#' + value;  // restore the leading '#'
-	              }
-	            } else {
-	              value = null;
-	            }
-	            if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	          default:
-	            value = null;
-	            if (opt_logger) {
-	              log(opt_logger, tagName, attribName, oldValue, value);
-	            }
-	            break;
-	        }
-	      } else {
-	        value = null;
-	        if (opt_logger) {
-	          log(opt_logger, tagName, attribName, oldValue, value);
-	        }
-	      }
-	      attribs[i + 1] = value;
-	    }
-	    return attribs;
-	  }
-	
-	  /**
-	   * Creates a tag policy that omits all tags marked UNSAFE in html4-defs.js
-	   * and applies the default attribute sanitizer with the supplied policy for
-	   * URI attributes and NMTOKEN attributes.
-	   * @param {?function(?string): ?string} opt_naiveUriRewriter A transform to
-	   *     apply to URI attributes.  If not given, URI attributes are deleted.
-	   * @param {function(?string): ?string} opt_nmTokenPolicy A transform to apply
-	   *     to attributes containing HTML names, element IDs, and space-separated
-	   *     lists of classes.  If not given, such attributes are left unchanged.
-	   * @return {function(string, Array.<?string>)} A tagPolicy suitable for
-	   *     passing to html.sanitize.
-	   */
-	  function makeTagPolicy(
-	    opt_naiveUriRewriter, opt_nmTokenPolicy, opt_logger) {
-	    return function(tagName, attribs) {
-	      if (!(html4.ELEMENTS[tagName] & html4.eflags['UNSAFE'])) {
-	        return {
-	          'attribs': sanitizeAttribs(tagName, attribs,
-	            opt_naiveUriRewriter, opt_nmTokenPolicy, opt_logger)
-	        };
-	      } else {
-	        if (opt_logger) {
-	          log(opt_logger, tagName, undefined, undefined, undefined);
-	        }
-	      }
-	    };
-	  }
-	
-	  /**
-	   * Sanitizes HTML tags and attributes according to a given policy.
-	   * @param {string} inputHtml The HTML to sanitize.
-	   * @param {function(string, Array.<?string>)} tagPolicy A function that
-	   *     decides which tags to accept and sanitizes their attributes (see
-	   *     makeHtmlSanitizer above for details).
-	   * @return {string} The sanitized HTML.
-	   */
-	  function sanitizeWithPolicy(inputHtml, tagPolicy) {
-	    var outputArray = [];
-	    makeHtmlSanitizer(tagPolicy)(inputHtml, outputArray);
-	    return outputArray.join('');
-	  }
-	
-	  /**
-	   * Strips unsafe tags and attributes from HTML.
-	   * @param {string} inputHtml The HTML to sanitize.
-	   * @param {?function(?string): ?string} opt_naiveUriRewriter A transform to
-	   *     apply to URI attributes.  If not given, URI attributes are deleted.
-	   * @param {function(?string): ?string} opt_nmTokenPolicy A transform to apply
-	   *     to attributes containing HTML names, element IDs, and space-separated
-	   *     lists of classes.  If not given, such attributes are left unchanged.
-	   */
-	  function sanitize(inputHtml,
-	    opt_naiveUriRewriter, opt_nmTokenPolicy, opt_logger) {
-	    var tagPolicy = makeTagPolicy(
-	      opt_naiveUriRewriter, opt_nmTokenPolicy, opt_logger);
-	    return sanitizeWithPolicy(inputHtml, tagPolicy);
-	  }
-	
-	  // Export both quoted and unquoted names for Closure linkage.
-	  var html = {};
-	  html.escapeAttrib = html['escapeAttrib'] = escapeAttrib;
-	  html.makeHtmlSanitizer = html['makeHtmlSanitizer'] = makeHtmlSanitizer;
-	  html.makeSaxParser = html['makeSaxParser'] = makeSaxParser;
-	  html.makeTagPolicy = html['makeTagPolicy'] = makeTagPolicy;
-	  html.normalizeRCData = html['normalizeRCData'] = normalizeRCData;
-	  html.sanitize = html['sanitize'] = sanitize;
-	  html.sanitizeAttribs = html['sanitizeAttribs'] = sanitizeAttribs;
-	  html.sanitizeWithPolicy = html['sanitizeWithPolicy'] = sanitizeWithPolicy;
-	  html.unescapeEntities = html['unescapeEntities'] = unescapeEntities;
-	  return html;
-	})(html4);
-	
-	var html_sanitize = html['sanitize'];
-	
-	// Loosen restrictions of Caja's
-	// html-sanitizer to allow for styling
-	html4.ATTRIBS['*::style'] = 0;
-	html4.ELEMENTS['style'] = 0;
-	html4.ATTRIBS['a::target'] = 0;
-	html4.ELEMENTS['video'] = 0;
-	html4.ATTRIBS['video::src'] = 0;
-	html4.ATTRIBS['video::poster'] = 0;
-	html4.ATTRIBS['video::controls'] = 0;
-	html4.ELEMENTS['audio'] = 0;
-	html4.ATTRIBS['audio::src'] = 0;
-	html4.ATTRIBS['video::autoplay'] = 0;
-	html4.ATTRIBS['video::controls'] = 0;
-	
-	if (true) {
-	    module.exports = html_sanitize;
-	}
-
-
-/***/ },
-/* 676 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var util = __webpack_require__(665),
-	    format_url = __webpack_require__(666),
-	    request = __webpack_require__(670),
-	    marker = __webpack_require__(677),
-	    simplestyle = __webpack_require__(678);
-	
-	// # featureLayer
-	//
-	// A layer of features, loaded from Mapbox or else. Adds the ability
-	// to reset features, filter them, and load them from a GeoJSON URL.
-	var FeatureLayer = L.FeatureGroup.extend({
-	    options: {
-	        filter: function() { return true; },
-	        sanitizer: __webpack_require__(674),
-	        style: simplestyle.style,
-	        popupOptions: { closeButton: false }
-	    },
-	
-	    initialize: function(_, options) {
-	        L.setOptions(this, options);
-	
-	        this._layers = {};
-	
-	        if (typeof _ === 'string') {
-	            util.idUrl(_, this);
-	        // javascript object of TileJSON data
-	        } else if (_ && typeof _ === 'object') {
-	            this.setGeoJSON(_);
-	        }
-	    },
-	
-	    setGeoJSON: function(_) {
-	        this._geojson = _;
-	        this.clearLayers();
-	        this._initialize(_);
-	        return this;
-	    },
-	
-	    getGeoJSON: function() {
-	        return this._geojson;
-	    },
-	
-	    loadURL: function(url) {
-	        if (this._request && 'abort' in this._request) this._request.abort();
-	        this._request = request(url, L.bind(function(err, json) {
-	            this._request = null;
-	            if (err && err.type !== 'abort') {
-	                util.log('could not load features at ' + url);
-	                this.fire('error', {error: err});
-	            } else if (json) {
-	                this.setGeoJSON(json);
-	                this.fire('ready');
-	            }
-	        }, this));
-	        return this;
-	    },
-	
-	    loadID: function(id) {
-	        return this.loadURL(format_url('/v4/' + id + '/features.json', this.options.accessToken));
-	    },
-	
-	    setFilter: function(_) {
-	        this.options.filter = _;
-	        if (this._geojson) {
-	            this.clearLayers();
-	            this._initialize(this._geojson);
-	        }
-	        return this;
-	    },
-	
-	    getFilter: function() {
-	        return this.options.filter;
-	    },
-	
-	    _initialize: function(json) {
-	        var features = L.Util.isArray(json) ? json : json.features,
-	            i, len;
-	
-	        if (features) {
-	            for (i = 0, len = features.length; i < len; i++) {
-	                // Only add this if geometry or geometries are set and not null
-	                if (features[i].geometries || features[i].geometry || features[i].features) {
-	                    this._initialize(features[i]);
-	                }
-	            }
-	        } else if (this.options.filter(json)) {
-	
-	            var opts = {accessToken: this.options.accessToken},
-	                pointToLayer = this.options.pointToLayer || function(feature, latlon) {
-	                  return marker.style(feature, latlon, opts);
-	                },
-	                layer = L.GeoJSON.geometryToLayer(json, {
-	                    pointToLayer: pointToLayer
-	                }),
-	                popupHtml = marker.createPopup(json, this.options.sanitizer),
-	                style = this.options.style,
-	                defaultStyle = style === simplestyle.style;
-	
-	            if (style && 'setStyle' in layer &&
-	                // if the style method is the simplestyle default, then
-	                // never style L.Circle or L.CircleMarker because
-	                // simplestyle has no rules over them, only over geometry
-	                // primitives directly from GeoJSON
-	                (!(defaultStyle && (layer instanceof L.Circle ||
-	                  layer instanceof L.CircleMarker)))) {
-	                if (typeof style === 'function') {
-	                    style = style(json);
-	                }
-	                layer.setStyle(style);
-	            }
-	
-	            layer.feature = json;
-	
-	            if (popupHtml) {
-	                layer.bindPopup(popupHtml, this.options.popupOptions);
-	            }
-	
-	            this.addLayer(layer);
-	        }
-	    }
-	});
-	
-	module.exports.FeatureLayer = FeatureLayer;
-	
-	module.exports.featureLayer = function(_, options) {
-	    return new FeatureLayer(_, options);
-=======
 	
 	  /**
 	   * Returns a function that strips unsafe tags and attributes from html.
@@ -80933,131 +75812,10 @@
 	    icon: icon,
 	    style: style,
 	    createPopup: createPopup
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	};
 
 
 /***/ },
-<<<<<<< HEAD
-/* 677 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var format_url = __webpack_require__(666),
-	    util = __webpack_require__(665),
-	    sanitize = __webpack_require__(674);
-	
-	// mapbox-related markers functionality
-	// provide an icon from mapbox's simple-style spec and hosted markers
-	// service
-	function icon(fp, options) {
-	    fp = fp || {};
-	
-	    var sizes = {
-	            small: [20, 50],
-	            medium: [30, 70],
-	            large: [35, 90]
-	        },
-	        size = fp['marker-size'] || 'medium',
-	        symbol = ('marker-symbol' in fp && fp['marker-symbol'] !== '') ? '-' + fp['marker-symbol'] : '',
-	        color = (fp['marker-color'] || '7e7e7e').replace('#', '');
-	
-	    return L.icon({
-	        iconUrl: format_url('/v4/marker/' +
-	            'pin-' + size.charAt(0) + symbol + '+' + color +
-	            // detect and use retina markers, which are x2 resolution
-	            (L.Browser.retina ? '@2x' : '') + '.png', options && options.accessToken),
-	        iconSize: sizes[size],
-	        iconAnchor: [sizes[size][0] / 2, sizes[size][1] / 2],
-	        popupAnchor: [0, -sizes[size][1] / 2]
-	    });
-	}
-	
-	// a factory that provides markers for Leaflet from Mapbox's
-	// [simple-style specification](https://github.com/mapbox/simplestyle-spec)
-	// and [Markers API](http://mapbox.com/developers/api/#markers).
-	function style(f, latlon, options) {
-	    return L.marker(latlon, {
-	        icon: icon(f.properties, options),
-	        title: util.strip_tags(
-	            sanitize((f.properties && f.properties.title) || ''))
-	    });
-	}
-	
-	// Sanitize and format properties of a GeoJSON Feature object in order
-	// to form the HTML string used as the argument for `L.createPopup`
-	function createPopup(f, sanitizer) {
-	    if (!f || !f.properties) return '';
-	    var popup = '';
-	
-	    if (f.properties.title) {
-	        popup += '<div class="marker-title">' + f.properties.title + '</div>';
-	    }
-	
-	    if (f.properties.description) {
-	        popup += '<div class="marker-description">' + f.properties.description + '</div>';
-	    }
-	
-	    return (sanitizer || sanitize)(popup);
-	}
-	
-	module.exports = {
-	    icon: icon,
-	    style: style,
-	    createPopup: createPopup
-	};
-
-
-/***/ },
-/* 678 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	// an implementation of the simplestyle spec for polygon and linestring features
-	// https://github.com/mapbox/simplestyle-spec
-	var defaults = {
-	    stroke: '#555555',
-	    'stroke-width': 2,
-	    'stroke-opacity': 1,
-	    fill: '#555555',
-	    'fill-opacity': 0.5
-	};
-	
-	var mapping = [
-	    ['stroke', 'color'],
-	    ['stroke-width', 'weight'],
-	    ['stroke-opacity', 'opacity'],
-	    ['fill', 'fillColor'],
-	    ['fill-opacity', 'fillOpacity']
-	];
-	
-	function fallback(a, b) {
-	    var c = {};
-	    for (var k in b) {
-	        if (a[k] === undefined) c[k] = b[k];
-	        else c[k] = a[k];
-	    }
-	    return c;
-	}
-	
-	function remap(a) {
-	    var d = {};
-	    for (var i = 0; i < mapping.length; i++) {
-	        d[mapping[i][1]] = a[mapping[i][0]];
-	    }
-	    return d;
-	}
-	
-	function style(feature) {
-	    return remap(fallback(feature.properties || {}, defaults));
-	}
-	
-	module.exports = {
-	    style: style,
-	    defaults: defaults
-=======
 /* 688 */
 /***/ function(module, exports) {
 
@@ -81178,200 +75936,15 @@
 	
 	module.exports.legendControl = function(options) {
 	    return new LegendControl(options);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	};
 
 
 /***/ },
-<<<<<<< HEAD
-/* 679 */
-=======
 /* 690 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var LegendControl = L.Control.extend({
-	
-	    options: {
-	        position: 'bottomright',
-	        sanitizer: __webpack_require__(674)
-	    },
-	
-	    initialize: function(options) {
-	        L.setOptions(this, options);
-	        this._legends = {};
-	    },
-	
-	    onAdd: function() {
-	        this._container = L.DomUtil.create('div', 'map-legends wax-legends');
-	        L.DomEvent.disableClickPropagation(this._container);
-	
-	        this._update();
-	
-	        return this._container;
-	    },
-	
-	    addLegend: function(text) {
-	        if (!text) { return this; }
-	
-	        if (!this._legends[text]) {
-	            this._legends[text] = 0;
-	        }
-	
-	        this._legends[text]++;
-	        return this._update();
-	    },
-	
-	    removeLegend: function(text) {
-	        if (!text) { return this; }
-	        if (this._legends[text]) this._legends[text]--;
-	        return this._update();
-	    },
-	
-	    _update: function() {
-	        if (!this._map) { return this; }
-	
-	        this._container.innerHTML = '';
-	        var hide = 'none';
-	
-	        for (var i in this._legends) {
-	            if (this._legends.hasOwnProperty(i) && this._legends[i]) {
-	                var div = L.DomUtil.create('div', 'map-legend wax-legend', this._container);
-	                div.innerHTML = this.options.sanitizer(i);
-	                hide = 'block';
-	            }
-	        }
-	
-	        // hide the control entirely unless there is at least one legend;
-	        // otherwise there will be a small grey blemish on the map.
-	        this._container.style.display = hide;
-	
-	        return this;
-	    }
-	});
-	
-	module.exports.LegendControl = LegendControl;
-	
-	module.exports.legendControl = function(options) {
-	    return new LegendControl(options);
-	};
-
-
-/***/ },
-/* 680 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var format_url = __webpack_require__(666);
-	
-	var ShareControl = L.Control.extend({
-	    includes: [__webpack_require__(681)],
-	
-	    options: {
-	        position: 'topleft',
-	        url: ''
-	    },
-	
-	    initialize: function(_, options) {
-	        L.setOptions(this, options);
-	        this._loadTileJSON(_);
-	    },
-	
-	    _setTileJSON: function(json) {
-	        this._tilejson = json;
-	    },
-	
-	    onAdd: function(map) {
-	        this._map = map;
-	
-	        var container = L.DomUtil.create('div', 'leaflet-control-mapbox-share leaflet-bar');
-	        var link = L.DomUtil.create('a', 'mapbox-share mapbox-icon mapbox-icon-share', container);
-	        link.href = '#';
-	
-	        this._modal = L.DomUtil.create('div', 'mapbox-modal', this._map._container);
-	        this._mask = L.DomUtil.create('div', 'mapbox-modal-mask', this._modal);
-	        this._content = L.DomUtil.create('div', 'mapbox-modal-content', this._modal);
-	
-	        L.DomEvent.addListener(link, 'click', this._shareClick, this);
-	        L.DomEvent.disableClickPropagation(container);
-	
-	        this._map.on('mousedown', this._clickOut, this);
-	
-	        return container;
-	    },
-	
-	    _clickOut: function(e) {
-	        if (this._sharing) {
-	            L.DomEvent.preventDefault(e);
-	            L.DomUtil.removeClass(this._modal, 'active');
-	            this._content.innerHTML = '';
-	            this._sharing = null;
-	            return;
-	        }
-	    },
-	
-	    _shareClick: function(e) {
-	        L.DomEvent.stop(e);
-	        if (this._sharing) return this._clickOut(e);
-	
-	        var tilejson = this._tilejson || this._map._tilejson || {},
-	            url = encodeURIComponent(this.options.url || tilejson.webpage || window.location),
-	            name = encodeURIComponent(tilejson.name),
-	            image = format_url('/v4/' + tilejson.id + '/' + this._map.getCenter().lng + ',' + this._map.getCenter().lat + ',' + this._map.getZoom() + '/600x600.png', this.options.accessToken),
-	            embed = format_url('/v4/' + tilejson.id + '.html', this.options.accessToken),
-	            twitterURL = '//twitter.com/intent/tweet?status=' + name + ' ' + url,
-	            facebookURL = '//www.facebook.com/sharer.php?u=' + url + '&t=' + name,
-	            pinterestURL = '//www.pinterest.com/pin/create/button/?url=' + url + '&media=' + image + '&description=' + name,
-	            embedValue = '<iframe width="100%" height="500px" frameBorder="0" src="' + embed + '"></iframe>',
-	            embedLabel = 'Copy and paste this <strong>HTML code</strong> into documents to embed this map on web pages.';
-	
-	        function createShareButton(buttonClass, href, socialMediaName) {
-	            var elem = document.createElement('a');
-	            elem.setAttribute('class', buttonClass);
-	            elem.setAttribute('href', href);
-	            elem.setAttribute('target', '_blank');
-	            socialMediaName = document.createTextNode(socialMediaName);
-	            elem.appendChild(socialMediaName);
-	
-	            return elem;
-	        }
-	
-	        L.DomUtil.addClass(this._modal, 'active');
-	
-	        this._sharing = L.DomUtil.create('div', 'mapbox-modal-body', this._content);
-	
-	        var twitterButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-twitter', twitterURL, 'Twitter');
-	        var facebookButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-facebook', facebookURL, 'Facebook');
-	        var pinterestButton = createShareButton('mapbox-button mapbox-button-icon mapbox-icon-pinterest', pinterestURL, 'Pinterest');
-	
-	        var shareHeader = document.createElement('h3');
-	        var shareText = document.createTextNode('Share this map');
-	        shareHeader.appendChild(shareText);
-	
-	        var shareButtons = document.createElement('div');
-	        shareButtons.setAttribute('class', 'mapbox-share-buttons');
-	        shareButtons.appendChild(facebookButton);
-	        shareButtons.appendChild(twitterButton);
-	        shareButtons.appendChild(pinterestButton);
-	
-	        this._sharing.appendChild(shareHeader);
-	        this._sharing.appendChild(shareButtons);
-	
-	        var input = L.DomUtil.create('input', 'mapbox-embed', this._sharing);
-	        input.type = 'text';
-	        input.value = embedValue;
-	
-	        var label = L.DomUtil.create('label', 'mapbox-embed-description', this._sharing);
-	        label.innerHTML = embedLabel;
-	
-	        var close = L.DomUtil.create('a', 'leaflet-popup-close-button', this._sharing);
-	        close.href = '#';
-	
-=======
 	var format_url = __webpack_require__(676);
 	
 	var ShareControl = L.Control.extend({
@@ -81477,7 +76050,6 @@
 	        var close = L.DomUtil.create('a', 'leaflet-popup-close-button', this._sharing);
 	        close.href = '#';
 	
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	        L.DomEvent.disableClickPropagation(this._sharing);
 	        L.DomEvent.addListener(close, 'click', this._clickOut, this);
 	        L.DomEvent.addListener(input, 'click', function(e) {
@@ -81488,223 +76060,6 @@
 	});
 	
 	module.exports.ShareControl = ShareControl;
-<<<<<<< HEAD
-	
-	module.exports.shareControl = function(_, options) {
-	    return new ShareControl(_, options);
-	};
-
-
-/***/ },
-/* 681 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var request = __webpack_require__(670),
-	    format_url = __webpack_require__(666),
-	    util = __webpack_require__(665);
-	
-	module.exports = {
-	    _loadTileJSON: function(_) {
-	        if (typeof _ === 'string') {
-	            _ = format_url.tileJSON(_, this.options && this.options.accessToken);
-	            request(_, L.bind(function(err, json) {
-	                if (err) {
-	                    util.log('could not load TileJSON at ' + _);
-	                    this.fire('error', {error: err});
-	                } else if (json) {
-	                    this._setTileJSON(json);
-	                    this.fire('ready');
-	                }
-	            }, this));
-	        } else if (_ && typeof _ === 'object') {
-	            this._setTileJSON(_);
-	        }
-	    }
-	};
-
-
-/***/ },
-/* 682 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var util = __webpack_require__(665);
-	var formatPattern = /\.((?:png|jpg)\d*)(?=$|\?)/;
-	
-	var TileLayer = L.TileLayer.extend({
-	    includes: [__webpack_require__(681)],
-	
-	    options: {
-	        sanitizer: __webpack_require__(674)
-	    },
-	
-	    // http://mapbox.com/developers/api/#image_quality
-	    formats: [
-	        'png', 'jpg',
-	        // PNG
-	        'png32', 'png64', 'png128', 'png256',
-	        // JPG
-	        'jpg70', 'jpg80', 'jpg90'],
-	
-	    scalePrefix: '@2x.',
-	
-	    initialize: function(_, options) {
-	        L.TileLayer.prototype.initialize.call(this, undefined, options);
-	
-	        this._tilejson = {};
-	
-	        if (options && options.format) {
-	            util.strict_oneof(options.format, this.formats);
-	        }
-	
-	        this._loadTileJSON(_);
-	    },
-	
-	    setFormat: function(_) {
-	        util.strict(_, 'string');
-	        this.options.format = _;
-	        this.redraw();
-	        return this;
-	    },
-	
-	    // disable the setUrl function, which is not available on mapbox tilelayers
-	    setUrl: null,
-	
-	    _setTileJSON: function(json) {
-	        util.strict(json, 'object');
-	
-	        this.options.format = this.options.format ||
-	            json.tiles[0].match(formatPattern)[1];
-	
-	        L.extend(this.options, {
-	            tiles: json.tiles,
-	            attribution: this.options.sanitizer(json.attribution),
-	            minZoom: json.minzoom || 0,
-	            maxZoom: json.maxzoom || 18,
-	            tms: json.scheme === 'tms',
-	            bounds: json.bounds && util.lbounds(json.bounds)
-	        });
-	
-	        this._tilejson = json;
-	        this.redraw();
-	        return this;
-	    },
-	
-	    getTileJSON: function() {
-	        return this._tilejson;
-	    },
-	
-	    // this is an exception to mapbox.js naming rules because it's called
-	    // by `L.map`
-	    getTileUrl: function(tilePoint) {
-	        var tiles = this.options.tiles,
-	            index = Math.floor(Math.abs(tilePoint.x + tilePoint.y) % tiles.length),
-	            url = tiles[index];
-	
-	        var templated = L.Util.template(url, tilePoint);
-	        if (!templated) {
-	            return templated;
-	        } else {
-	            return templated.replace(formatPattern,
-	                (L.Browser.retina ? this.scalePrefix : '.') + this.options.format);
-	        }
-	    },
-	
-	    // TileJSON.TileLayers are added to the map immediately, so that they get
-	    // the desired z-index, but do not update until the TileJSON has been loaded.
-	    _update: function() {
-	        if (this.options.tiles) {
-	            L.TileLayer.prototype._update.call(this);
-	        }
-	    }
-	});
-	
-	module.exports.TileLayer = TileLayer;
-	
-	module.exports.tileLayer = function(_, options) {
-	    return new TileLayer(_, options);
-	};
-
-
-/***/ },
-/* 683 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var tileLayer = __webpack_require__(682).tileLayer,
-	    featureLayer = __webpack_require__(676).featureLayer,
-	    gridLayer = __webpack_require__(684).gridLayer,
-	    gridControl = __webpack_require__(672).gridControl,
-	    shareControl = __webpack_require__(680).shareControl,
-	    legendControl = __webpack_require__(679).legendControl,
-	    mapboxLogoControl = __webpack_require__(686).mapboxLogoControl,
-	    feedback = __webpack_require__(669);
-	
-	function withAccessToken(options, accessToken) {
-	    if (!accessToken || options.accessToken)
-	        return options;
-	    return L.extend({accessToken: accessToken}, options);
-	}
-	
-	var LMap = L.Map.extend({
-	    includes: [__webpack_require__(681)],
-	
-	    options: {
-	        tileLayer: {},
-	        featureLayer: {},
-	        gridLayer: {},
-	        legendControl: {},
-	        gridControl: {},
-	        shareControl: false,
-	        sanitizer: __webpack_require__(674)
-	    },
-	
-	    _tilejson: {},
-	
-	    initialize: function(element, _, options) {
-	
-	        L.Map.prototype.initialize.call(this, element,
-	            L.extend({}, L.Map.prototype.options, options));
-	
-	        // Disable the default 'Leaflet' text
-	        if (this.attributionControl) {
-	            this.attributionControl.setPrefix('');
-	
-	            var compact = this.options.attributionControl.compact;
-	            // Set a compact display if map container width is < 640 or
-	            // compact is set to `true` in attributionControl options.
-	            if (compact || (compact !== false && this._container.offsetWidth <= 640)) {
-	                L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
-	            }
-	
-	            if (compact === undefined) {
-	                this.on('resize', function() {
-	                    if (this._container.offsetWidth > 640) {
-	                        L.DomUtil.removeClass(this.attributionControl._container, 'leaflet-compact-attribution');
-	                    } else {
-	                        L.DomUtil.addClass(this.attributionControl._container, 'leaflet-compact-attribution');
-	                    }
-	                });
-	            }
-	        }
-	
-	        if (this.options.tileLayer) {
-	            this.tileLayer = tileLayer(undefined,
-	                withAccessToken(this.options.tileLayer, this.options.accessToken));
-	            this.addLayer(this.tileLayer);
-	        }
-	
-	        if (this.options.featureLayer) {
-	            this.featureLayer = featureLayer(undefined,
-	                withAccessToken(this.options.featureLayer, this.options.accessToken));
-	            this.addLayer(this.featureLayer);
-	        }
-	
-=======
 	
 	module.exports.shareControl = function(_, options) {
 	    return new ShareControl(_, options);
@@ -81920,13 +76275,11 @@
 	            this.addLayer(this.featureLayer);
 	        }
 	
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	        if (this.options.gridLayer) {
 	            this.gridLayer = gridLayer(undefined,
 	                withAccessToken(this.options.gridLayer, this.options.accessToken));
 	            this.addLayer(this.gridLayer);
 	        }
-<<<<<<< HEAD
 	
 	        if (this.options.gridLayer && this.options.gridControl) {
 	            this.gridControl = gridControl(this.gridLayer, this.options.gridControl);
@@ -82066,409 +76419,17 @@
 	
 	module.exports.Map = LMap;
 	
-=======
-	
-	        if (this.options.gridLayer && this.options.gridControl) {
-	            this.gridControl = gridControl(this.gridLayer, this.options.gridControl);
-	            this.addControl(this.gridControl);
-	        }
-	
-	        if (this.options.legendControl) {
-	            this.legendControl = legendControl(this.options.legendControl);
-	            this.addControl(this.legendControl);
-	        }
-	
-	        if (this.options.shareControl) {
-	            this.shareControl = shareControl(undefined,
-	                withAccessToken(this.options.shareControl, this.options.accessToken));
-	            this.addControl(this.shareControl);
-	        }
-	
-	        this._mapboxLogoControl = mapboxLogoControl(this.options.mapboxLogoControl);
-	        this.addControl(this._mapboxLogoControl);
-	
-	        this._loadTileJSON(_);
-	
-	        this.on('layeradd', this._onLayerAdd, this)
-	            .on('layerremove', this._onLayerRemove, this)
-	            .on('moveend', this._updateMapFeedbackLink, this);
-	
-	        this.whenReady(function () {
-	            feedback.on('change', this._updateMapFeedbackLink, this);
-	        });
-	
-	        this.on('unload', function () {
-	            feedback.off('change', this._updateMapFeedbackLink, this);
-	        });
-	    },
-	
-	    // use a javascript object of tilejson data to configure this layer
-	    _setTileJSON: function(_) {
-	        this._tilejson = _;
-	        this._initialize(_);
-	        return this;
-	    },
-	
-	    getTileJSON: function() {
-	        return this._tilejson;
-	    },
-	
-	    _initialize: function(json) {
-	        if (this.tileLayer) {
-	            this.tileLayer._setTileJSON(json);
-	            this._updateLayer(this.tileLayer);
-	        }
-	
-	        if (this.featureLayer && !this.featureLayer.getGeoJSON() && json.data && json.data[0]) {
-	            this.featureLayer.loadURL(json.data[0]);
-	        }
-	
-	        if (this.gridLayer) {
-	            this.gridLayer._setTileJSON(json);
-	            this._updateLayer(this.gridLayer);
-	        }
-	
-	        if (this.legendControl && json.legend) {
-	            this.legendControl.addLegend(json.legend);
-	        }
-	
-	        if (this.shareControl) {
-	            this.shareControl._setTileJSON(json);
-	        }
-	
-	        this._mapboxLogoControl._setTileJSON(json);
-	
-	        if (!this._loaded && json.center) {
-	            var zoom = this.getZoom() !== undefined ? this.getZoom() : json.center[2],
-	                center = L.latLng(json.center[1], json.center[0]);
-	
-	            this.setView(center, zoom);
-	        }
-	    },
-	
-	    _updateMapFeedbackLink: function() {
-	        if (!this._controlContainer.getElementsByClassName) return;
-	        var link = this._controlContainer.getElementsByClassName('mapbox-improve-map');
-	        if (link.length && this._loaded) {
-	            var center = this.getCenter().wrap();
-	            var tilejson = this._tilejson || {};
-	            var id = tilejson.id || '';
-	
-	            var hash = '#' + id + '/' +
-	                center.lng.toFixed(3) + '/' +
-	                center.lat.toFixed(3) + '/' +
-	                this.getZoom();
-	
-	            for (var key in feedback.data) {
-	                hash += '/' + key + '=' + feedback.data[key];
-	            }
-	
-	            for (var i = 0; i < link.length; i++) {
-	                link[i].hash = hash;
-	            }
-	        }
-	    },
-	
-	    _onLayerAdd: function(e) {
-	        if ('on' in e.layer) {
-	            e.layer.on('ready', this._onLayerReady, this);
-	        }
-	        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
-	    },
-	
-	    _onLayerRemove: function(e) {
-	        if ('on' in e.layer) {
-	            e.layer.off('ready', this._onLayerReady, this);
-	        }
-	        window.setTimeout(L.bind(this._updateMapFeedbackLink, this), 0); // Update after attribution control resets the HTML.
-	    },
-	
-	    _onLayerReady: function(e) {
-	        this._updateLayer(e.target);
-	    },
-	
-	    _updateLayer: function(layer) {
-	        if (!layer.options) return;
-	
-	        if (this.attributionControl && this._loaded && layer.getAttribution) {
-	            this.attributionControl.addAttribution(layer.getAttribution());
-	        }
-	
-	        if (!(L.stamp(layer) in this._zoomBoundLayers) &&
-	                (layer.options.maxZoom || layer.options.minZoom)) {
-	            this._zoomBoundLayers[L.stamp(layer)] = layer;
-	        }
-	
-	        this._updateMapFeedbackLink();
-	        this._updateZoomLevels();
-	    }
-	});
-	
-	module.exports.Map = LMap;
-	
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	module.exports.map = function(element, _, options) {
 	    return new LMap(element, _, options);
 	};
 
 
 /***/ },
-<<<<<<< HEAD
-/* 684 */
-=======
 /* 694 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-<<<<<<< HEAD
-	var util = __webpack_require__(665),
-	    request = __webpack_require__(670),
-	    grid = __webpack_require__(685);
-	
-	// forked from danzel/L.UTFGrid
-	var GridLayer = L.Layer.extend({
-	    includes: [__webpack_require__(681)],
-	
-	    options: {
-	        template: function() { return ''; }
-	    },
-	
-	    _mouseOn: null,
-	    _tilejson: {},
-	    _cache: {},
-	
-	    initialize: function(_, options) {
-	        L.Util.setOptions(this, options);
-	        this._loadTileJSON(_);
-	    },
-	
-	    _setTileJSON: function(json) {
-	        util.strict(json, 'object');
-	
-	        L.extend(this.options, {
-	            grids: json.grids,
-	            minZoom: json.minzoom,
-	            maxZoom: json.maxzoom,
-	            bounds: json.bounds && util.lbounds(json.bounds)
-	        });
-	
-	        this._tilejson = json;
-	        this._cache = {};
-	        this._update();
-	
-	        return this;
-	    },
-	
-	    getTileJSON: function() {
-	        return this._tilejson;
-	    },
-	
-	    active: function() {
-	        return !!(this._map && this.options.grids && this.options.grids.length);
-	    },
-	
-	    onAdd: function(map) {
-	        this._map = map;
-	        this._update();
-	
-	        this._map
-	            .on('click', this._click, this)
-	            .on('mousemove', this._move, this)
-	            .on('moveend', this._update, this);
-	    },
-	
-	    onRemove: function() {
-	        this._map
-	            .off('click', this._click, this)
-	            .off('mousemove', this._move, this)
-	            .off('moveend', this._update, this);
-	    },
-	
-	    getData: function(latlng, callback) {
-	        if (!this.active()) return;
-	
-	        var map = this._map,
-	            point = map.project(latlng.wrap()),
-	            tileSize = 256,
-	            resolution = 4,
-	            x = Math.floor(point.x / tileSize),
-	            y = Math.floor(point.y / tileSize),
-	            max = map.options.crs.scale(map.getZoom()) / tileSize;
-	
-	        x = (x + max) % max;
-	        y = (y + max) % max;
-	
-	        this._getTile(map.getZoom(), x, y, function(grid) {
-	            var gridX = Math.floor((point.x - (x * tileSize)) / resolution),
-	                gridY = Math.floor((point.y - (y * tileSize)) / resolution);
-	
-	            callback(grid(gridX, gridY));
-	        });
-	
-	        return this;
-	    },
-	
-	    _click: function(e) {
-	        this.getData(e.latlng, L.bind(function(data) {
-	            this.fire('click', {
-	                latLng: e.latlng,
-	                data: data
-	            });
-	        }, this));
-	    },
-	
-	    _move: function(e) {
-	        this.getData(e.latlng, L.bind(function(data) {
-	            if (data !== this._mouseOn) {
-	                if (this._mouseOn) {
-	                    this.fire('mouseout', {
-	                        latLng: e.latlng,
-	                        data: this._mouseOn
-	                    });
-	                }
-	
-	                this.fire('mouseover', {
-	                    latLng: e.latlng,
-	                    data: data
-	                });
-	
-	                this._mouseOn = data;
-	            } else {
-	                this.fire('mousemove', {
-	                    latLng: e.latlng,
-	                    data: data
-	                });
-	            }
-	        }, this));
-	    },
-	
-	    _getTileURL: function(tilePoint) {
-	        var urls = this.options.grids,
-	            index = (tilePoint.x + tilePoint.y) % urls.length,
-	            url = urls[index];
-	
-	        return L.Util.template(url, tilePoint);
-	    },
-	
-	    // Load up all required json grid files
-	    _update: function() {
-	        if (!this.active()) return;
-	
-	        var bounds = this._map.getPixelBounds(),
-	            z = this._map.getZoom(),
-	            tileSize = 256;
-	
-	        if (z > this.options.maxZoom || z < this.options.minZoom) return;
-	
-	        var tileBounds = L.bounds(
-	                bounds.min.divideBy(tileSize)._floor(),
-	                bounds.max.divideBy(tileSize)._floor()),
-	            max = this._map.options.crs.scale(z) / tileSize;
-	
-	        for (var x = tileBounds.min.x; x <= tileBounds.max.x; x++) {
-	            for (var y = tileBounds.min.y; y <= tileBounds.max.y; y++) {
-	                // x wrapped
-	                this._getTile(z, ((x % max) + max) % max, ((y % max) + max) % max);
-	            }
-	        }
-	    },
-	
-	    _getTile: function(z, x, y, callback) {
-	        var key = z + '_' + x + '_' + y,
-	            tilePoint = L.point(x, y);
-	
-	        tilePoint.z = z;
-	
-	        if (!this._tileShouldBeLoaded(tilePoint)) {
-	            return;
-	        }
-	
-	        if (key in this._cache) {
-	            if (!callback) return;
-	
-	            if (typeof this._cache[key] === 'function') {
-	                callback(this._cache[key]); // Already loaded
-	            } else {
-	                this._cache[key].push(callback); // Pending
-	            }
-	
-	            return;
-	        }
-	
-	        this._cache[key] = [];
-	
-	        if (callback) {
-	            this._cache[key].push(callback);
-	        }
-	
-	        request(this._getTileURL(tilePoint), L.bind(function(err, json) {
-	            var callbacks = this._cache[key];
-	            this._cache[key] = grid(json);
-	            for (var i = 0; i < callbacks.length; ++i) {
-	                callbacks[i](this._cache[key]);
-	            }
-	        }, this));
-	    },
-	
-	    _tileShouldBeLoaded: function(tilePoint) {
-	        if (tilePoint.z > this.options.maxZoom || tilePoint.z < this.options.minZoom) {
-	            return false;
-	        }
-	
-	        if (this.options.bounds) {
-	            var tileSize = 256,
-	                nwPoint = tilePoint.multiplyBy(tileSize),
-	                sePoint = nwPoint.add(new L.Point(tileSize, tileSize)),
-	                nw = this._map.unproject(nwPoint),
-	                se = this._map.unproject(sePoint),
-	                bounds = new L.LatLngBounds([nw, se]);
-	
-	            if (!this.options.bounds.intersects(bounds)) {
-	                return false;
-	            }
-	        }
-	
-	        return true;
-	    }
-	});
-	
-	module.exports.GridLayer = GridLayer;
-	
-	module.exports.gridLayer = function(_, options) {
-	    return new GridLayer(_, options);
-	};
-
-
-/***/ },
-/* 685 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	function utfDecode(c) {
-	    if (c >= 93) c--;
-	    if (c >= 35) c--;
-	    return c - 32;
-	}
-	
-	module.exports = function(data) {
-	    return function(x, y) {
-	        if (!data) return;
-	        var idx = utfDecode(data.grid[y].charCodeAt(x)),
-	            key = data.keys[idx];
-	        return data.data[key];
-	    };
-	};
-
-
-/***/ },
-/* 686 */
-/***/ function(module, exports) {
-
-	'use strict';
-=======
 	var util = __webpack_require__(675),
 	    request = __webpack_require__(680),
 	    grid = __webpack_require__(695);
@@ -85536,3184 +79497,9 @@
 	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
 	
 	var _reactRouter = __webpack_require__(32);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
-	
-	var MapboxLogoControl = L.Control.extend({
-	
-<<<<<<< HEAD
-	    options: {
-	        position: 'bottomleft'
-	    },
-	
-	    initialize: function(options) {
-	        L.setOptions(this, options);
-	    },
-	
-	    onAdd: function() {
-	        this._container = L.DomUtil.create('div', 'mapbox-logo');
-	        return this._container;
-	    },
-	
-	    _setTileJSON: function(json) {
-	        // Check if account referenced by the accessToken
-	        // is asscociated with the Mapbox Logo
-	        // as determined by mapbox-maps.
-	        if (json.mapbox_logo) {
-	            L.DomUtil.addClass(this._container, 'mapbox-logo-true');
-	        }
-	    }
-	});
-	
-	module.exports.MapboxLogoControl = MapboxLogoControl;
-	
-	module.exports.mapboxLogoControl = function(options) {
-	    return new MapboxLogoControl(options);
-	};
-
-
-/***/ },
-/* 687 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var util = __webpack_require__(665);
-	var format_url = __webpack_require__(666);
-	var request = __webpack_require__(670);
-	
-	var StyleLayer = L.TileLayer.extend({
-	
-	    options: {
-	        sanitizer: __webpack_require__(674)
-	    },
-	
-	    initialize: function(_, options) {
-	        L.TileLayer.prototype.initialize.call(this, undefined, L.extend({}, options, {
-	            tileSize: 512,
-	            zoomOffset: -1,
-	            minNativeZoom: 0,
-	            tms: false
-	        }));
-	        this._url = this._formatTileURL(_);
-	        this._getAttribution(_);
-	    },
-	
-	    _getAttribution: function(_) {
-	        var styleURL = format_url.style(_, this.options && this.options.accessToken);
-	        request(styleURL, L.bind(function(err, style) {
-	            if (err) {
-	                util.log('could not load Mapbox style at ' + styleURL);
-	                this.fire('error', {error: err});
-	            }
-	            var sources = [];
-	            for (var id in style.sources) {
-	                var source = style.sources[id].url.split('mapbox://')[1];
-	                sources.push(source);
-	            }
-	            request(format_url.tileJSON(sources.join(), this.options.accessToken), L.bind(function(err, json) {
-	                if (err) {
-	                    util.log('could not load TileJSON at ' + _);
-	                    this.fire('error', {error: err});
-	                } else if (json) {
-	                    util.strict(json, 'object');
-	
-	                    this.options.attribution = this.options.sanitizer(json.attribution);
-	
-	                    this._tilejson = json;
-	                    this.fire('ready');
-	                }
-	            }, this));
-	        }, this));
-	    },
-	
-	    // disable the setUrl function, which is not available on mapbox tilelayers
-	    setUrl: null,
-	
-	    _formatTileURL: function(style) {
-	        if (typeof style === 'string') {
-	            if (style.indexOf('mapbox://styles/') === -1) {
-	                util.log('Incorrectly formatted Mapbox style at ' + style);
-	                this.fire('error');
-	            }
-	            var ownerIDStyle = style.split('mapbox://styles/')[1];
-	            return format_url('/styles/v1/' + ownerIDStyle + '/tiles/{z}/{x}/{y}{r}', this.options.accessToken);
-	        } else if (typeof style === 'object') {
-	            return format_url('/styles/v1/' + style.owner + '/' + style.id + '/tiles/{z}/{x}/{y}{r}', this.options.accessToken);
-	        }
-	    }
-	});
-	
-	module.exports.StyleLayer = StyleLayer;
-	
-	module.exports.styleLayer = function(_, options) {
-	    return new StyleLayer(_, options);
-	};
-
-
-/***/ },
-/* 688 */
-/***/ function(module, exports) {
-
-	module.exports = {
-		"id": "thlee1122.2p09k2hg",
-		"type": "FeatureCollection",
-		"features": [
-			{
-				"type": "Feature",
-				"properties": {
-					"title": "France",
-					"description": "Area",
-					"stroke": "#1087bf",
-					"stroke-width": 4,
-					"stroke-opacity": 1,
-					"fill": "#3ca0d3",
-					"fill-opacity": 0.2
-				},
-				"geometry": {
-					"coordinates": [
-						[
-							[
-								-4.833984,
-								48.516604
-							],
-							[
-								-4.438476,
-								48.385442
-							],
-							[
-								-4.196777,
-								48.268569
-							],
-							[
-								-4.526367,
-								48.312427
-							],
-							[
-								-4.30664,
-								48.166085
-							],
-							[
-								-4.680175,
-								48.034019
-							],
-							[
-								-4.416503,
-								47.960502
-							],
-							[
-								-4.284667,
-								47.813154
-							],
-							[
-								-3.999023,
-								47.842657
-							],
-							[
-								-3.64746,
-								47.783634
-							],
-							[
-								-3.361816,
-								47.694974
-							],
-							[
-								-3.032226,
-								47.620975
-							],
-							[
-								-2.702636,
-								47.591346
-							],
-							[
-								-2.504882,
-								47.487513
-							],
-							[
-								-2.504882,
-								47.368594
-							],
-							[
-								-2.395019,
-								47.249406
-							],
-							[
-								-2.197265,
-								47.279229
-							],
-							[
-								-1.977539,
-								47.070121
-							],
-							[
-								-2.197265,
-								46.890231
-							],
-							[
-								-1.845703,
-								46.513515
-							],
-							[
-								-1.472167,
-								46.422712
-							],
-							[
-								-1.296386,
-								46.286223
-							],
-							[
-								-1.142578,
-								46.301406
-							],
-							[
-								-1.252441,
-								46.210249
-							],
-							[
-								-1.098632,
-								45.996961
-							],
-							[
-								-1.362304,
-								46.012223
-							],
-							[
-								-1.208496,
-								45.752193
-							],
-							[
-								-1.07666,
-								45.629404
-							],
-							[
-								-1.098632,
-								45.552525
-							],
-							[
-								-1.296386,
-								44.684277
-							],
-							[
-								-1.252441,
-								44.370986
-							],
-							[
-								-1.779785,
-								43.389081
-							],
-							[
-								-1.450195,
-								43.277205
-							],
-							[
-								-1.49414,
-								43.133061
-							],
-							[
-								-1.362304,
-								43.052833
-							],
-							[
-								-0.812988,
-								42.940339
-							],
-							[
-								-0.593261,
-								42.827638
-							],
-							[
-								-0.307617,
-								42.843751
-							],
-							[
-								-0.065917,
-								42.714732
-							],
-							[
-								0.109863,
-								42.730874
-							],
-							[
-								0.593261,
-								42.698585
-							],
-							[
-								0.725097,
-								42.843751
-							],
-							[
-								1.120605,
-								42.763145
-							],
-							[
-								1.340332,
-								42.698585
-							],
-							[
-								1.450195,
-								42.423456
-							],
-							[
-								1.801757,
-								42.504502
-							],
-							[
-								1.977539,
-								42.358543
-							],
-							[
-								2.263183,
-								42.439674
-							],
-							[
-								2.504882,
-								42.342305
-							],
-							[
-								2.746582,
-								42.423456
-							],
-							[
-								3.010253,
-								42.472096
-							],
-							[
-								3.142089,
-								42.407234
-							],
-							[
-								3.010253,
-								42.650121
-							],
-							[
-								3.010253,
-								42.988576
-							],
-							[
-								2.988281,
-								43.117024
-							],
-							[
-								3.383789,
-								43.325177
-							],
-							[
-								3.713378,
-								43.405047
-							],
-							[
-								3.955078,
-								43.564471
-							],
-							[
-								4.086914,
-								43.484812
-							],
-							[
-								4.460449,
-								43.500752
-							],
-							[
-								4.526367,
-								43.628123
-							],
-							[
-								4.614257,
-								43.373112
-							],
-							[
-								4.768066,
-								43.373112
-							],
-							[
-								4.943847,
-								43.421008
-							],
-							[
-								5.05371,
-								43.516688
-							],
-							[
-								5.119628,
-								43.357138
-							],
-							[
-								5.405273,
-								43.229195
-							],
-							[
-								5.800781,
-								43.117024
-							],
-							[
-								6.306152,
-								43.165122
-							],
-							[
-								6.613769,
-								43.197167
-							],
-							[
-								6.877441,
-								43.452918
-							],
-							[
-								7.141113,
-								43.58039
-							],
-							[
-								7.558593,
-								43.771093
-							],
-							[
-								7.668457,
-								44.0718
-							],
-							[
-								7.602539,
-								44.150681
-							],
-							[
-								7.382812,
-								44.134913
-							],
-							[
-								7.141113,
-								44.197959
-							],
-							[
-								6.877441,
-								44.292401
-							],
-							[
-								6.833496,
-								44.465151
-							],
-							[
-								6.943359,
-								44.637391
-							],
-							[
-								6.943359,
-								44.824708
-							],
-							[
-								6.657714,
-								45.042478
-							],
-							[
-								6.899414,
-								45.197522
-							],
-							[
-								7.163085,
-								45.429298
-							],
-							[
-								6.877441,
-								45.583289
-							],
-							[
-								6.855468,
-								45.767522
-							],
-							[
-								6.987304,
-								45.920587
-							],
-							[
-								6.877441,
-								46.118941
-							],
-							[
-								6.745605,
-								46.331758
-							],
-							[
-								6.745605,
-								46.452997
-							],
-							[
-								6.481933,
-								46.437856
-							],
-							[
-								6.240234,
-								46.377254
-							],
-							[
-								6.284179,
-								46.286223
-							],
-							[
-								6.086425,
-								46.195042
-							],
-							[
-								6.064453,
-								46.407563
-							],
-							[
-								6.130371,
-								46.604167
-							],
-							[
-								6.45996,
-								46.815098
-							],
-							[
-								6.45996,
-								46.965259
-							],
-							[
-								6.855468,
-								47.189712
-							],
-							[
-								7.009277,
-								47.35371
-							],
-							[
-								6.965332,
-								47.502358
-							],
-							[
-								7.141113,
-								47.502358
-							],
-							[
-								7.360839,
-								47.472662
-							],
-							[
-								7.602539,
-								47.620975
-							],
-							[
-								7.602539,
-								47.960502
-							],
-							[
-								7.558593,
-								48.151428
-							],
-							[
-								7.800292,
-								48.574789
-							],
-							[
-								8.239746,
-								49.00905
-							],
-							[
-								7.844238,
-								49.05227
-							],
-							[
-								7.382812,
-								49.196064
-							],
-							[
-								7.053222,
-								49.124219
-							],
-							[
-								6.899414,
-								49.224772
-							],
-							[
-								6.481933,
-								49.453842
-							],
-							[
-								5.910644,
-								49.510943
-							],
-							[
-								5.449218,
-								49.553725
-							],
-							[
-								5.141601,
-								49.710272
-							],
-							[
-								4.812011,
-								49.809631
-							],
-							[
-								4.855957,
-								50.176898
-							],
-							[
-								4.658203,
-								50.078294
-							],
-							[
-								4.614257,
-								50.021858
-							],
-							[
-								4.350585,
-								49.965355
-							],
-							[
-								4.152832,
-								50.092393
-							],
-							[
-								4.196777,
-								50.275298
-							],
-							[
-								4.064941,
-								50.401515
-							],
-							[
-								3.669433,
-								50.35948
-							],
-							[
-								3.537597,
-								50.513426
-							],
-							[
-								3.251953,
-								50.555324
-							],
-							[
-								3.208007,
-								50.722546
-							],
-							[
-								2.592773,
-								50.819818
-							],
-							[
-								2.504882,
-								51.124212
-							],
-							[
-								1.977539,
-								51.013754
-							],
-							[
-								1.669921,
-								50.847572
-							],
-							[
-								1.49414,
-								50.457504
-							],
-							[
-								1.472167,
-								50.219094
-							],
-							[
-								1.208496,
-								49.937079
-							],
-							[
-								0.856933,
-								49.894634
-							],
-							[
-								0.549316,
-								49.880477
-							],
-							[
-								0.263671,
-								49.738681
-							],
-							[
-								0.065917,
-								49.59647
-							],
-							[
-								0.175781,
-								49.453842
-							],
-							[
-								-0.197753,
-								49.310798
-							],
-							[
-								-0.461425,
-								49.353755
-							],
-							[
-								-1.142578,
-								49.368066
-							],
-							[
-								-1.252441,
-								49.639177
-							],
-							[
-								-1.604003,
-								49.639177
-							],
-							[
-								-1.999511,
-								49.724479
-							],
-							[
-								-1.889648,
-								49.525208
-							],
-							[
-								-1.647949,
-								49.152969
-							],
-							[
-								-1.560058,
-								48.965793
-							],
-							[
-								-1.582031,
-								48.835797
-							],
-							[
-								-1.428222,
-								48.647427
-							],
-							[
-								-1.889648,
-								48.618385
-							],
-							[
-								-1.889648,
-								48.719961
-							],
-							[
-								-2.065429,
-								48.661942
-							],
-							[
-								-2.219238,
-								48.618385
-							],
-							[
-								-2.395019,
-								48.676453
-							],
-							[
-								-2.746582,
-								48.516604
-							],
-							[
-								-3.164062,
-								48.850258
-							],
-							[
-								-3.427734,
-								48.821332
-							],
-							[
-								-3.55957,
-								48.893615
-							],
-							[
-								-3.603515,
-								48.719961
-							],
-							[
-								-3.823242,
-								48.719961
-							],
-							[
-								-3.911132,
-								48.647427
-							],
-							[
-								-4.108886,
-								48.719961
-							],
-							[
-								-4.460449,
-								48.69096
-							],
-							[
-								-4.658203,
-								48.603857
-							],
-							[
-								-4.833984,
-								48.516604
-							]
-						]
-					],
-					"type": "Polygon"
-				},
-				"id": "165717b547eceacf30a7e7ed7f53ca1f"
-			},
-			{
-				"type": "Feature",
-				"properties": {
-					"title": "United States of America",
-					"description": "United States of America Area",
-					"stroke": "#677da7",
-					"stroke-width": 4,
-					"stroke-opacity": 1,
-					"fill": "#9c89cc",
-					"fill-opacity": 0.2
-				},
-				"geometry": {
-					"coordinates": [
-						[
-							[
-								-124.716796,
-								48.400032
-							],
-							[
-								-124.628906,
-								42.875964
-							],
-							[
-								-120.673828,
-								34.524661
-							],
-							[
-								-118.300781,
-								34.089061
-							],
-							[
-								-117.421875,
-								32.694865
-							],
-							[
-								-114.960937,
-								32.620869
-							],
-							[
-								-111.093749,
-								31.503629
-							],
-							[
-								-108.457031,
-								31.428663
-							],
-							[
-								-106.611328,
-								31.802892
-							],
-							[
-								-105.029296,
-								30.751277
-							],
-							[
-								-104.501953,
-								29.688052
-							],
-							[
-								-103.359374,
-								28.921631
-							],
-							[
-								-102.65625,
-								29.61167
-							],
-							[
-								-101.865234,
-								29.688052
-							],
-							[
-								-100.898437,
-								28.921631
-							],
-							[
-								-100.195312,
-								28.149503
-							],
-							[
-								-99.316406,
-								26.667095
-							],
-							[
-								-97.646484,
-								26.115985
-							],
-							[
-								-97.558593,
-								27.44979
-							],
-							[
-								-96.591796,
-								28.22697
-							],
-							[
-								-94.833984,
-								29.22889
-							],
-							[
-								-93.691406,
-								29.458731
-							],
-							[
-								-89.912109,
-								29.382175
-							],
-							[
-								-89.384765,
-								29.840643
-							],
-							[
-								-88.505859,
-								30.448673
-							],
-							[
-								-86.044921,
-								30.372875
-							],
-							[
-								-85.253906,
-								29.688052
-							],
-							[
-								-84.023437,
-								30.297017
-							],
-							[
-								-82.353515,
-								28.690587
-							],
-							[
-								-82.880859,
-								27.839076
-							],
-							[
-								-81.035156,
-								25.244695
-							],
-							[
-								-80.507812,
-								25.244695
-							],
-							[
-								-80.068359,
-								26.509904
-							],
-							[
-								-81.65039,
-								31.203404
-							],
-							[
-								-80.683593,
-								32.7688
-							],
-							[
-								-75.849609,
-								35.317366
-							],
-							[
-								-76.02539,
-								37.509725
-							],
-							[
-								-73.916015,
-								39.909736
-							],
-							[
-								-74.267578,
-								40.780541
-							],
-							[
-								-72.509765,
-								40.780541
-							],
-							[
-								-70.3125,
-								41.705728
-							],
-							[
-								-71.191406,
-								42.293564
-							],
-							[
-								-70.40039,
-								43.58039
-							],
-							[
-								-68.730468,
-								44.276671
-							],
-							[
-								-67.236328,
-								44.777935
-							],
-							[
-								-67.851562,
-								45.767522
-							],
-							[
-								-67.851562,
-								47.100044
-							],
-							[
-								-69.257812,
-								47.398349
-							],
-							[
-								-71.191406,
-								45.02695
-							],
-							[
-								-75.058593,
-								44.84029
-							],
-							[
-								-76.552734,
-								43.96119
-							],
-							[
-								-78.83789,
-								43.771093
-							],
-							[
-								-78.83789,
-								43.133061
-							],
-							[
-								-82.792968,
-								41.771311
-							],
-							[
-								-83.496093,
-								42.098222
-							],
-							[
-								-82.353515,
-								43.389081
-							],
-							[
-								-82.617187,
-								45.336701
-							],
-							[
-								-84.814453,
-								46.800059
-							],
-							[
-								-88.330078,
-								48.516604
-							],
-							[
-								-89.560546,
-								48.107431
-							],
-							[
-								-91.142578,
-								48.107431
-							],
-							[
-								-92.460937,
-								48.574789
-							],
-							[
-								-93.955078,
-								48.574789
-							],
-							[
-								-94.833984,
-								49.267804
-							],
-							[
-								-95.449218,
-								48.980216
-							],
-							[
-								-123.134765,
-								49.439556
-							],
-							[
-								-123.486328,
-								48.632908
-							],
-							[
-								-124.716796,
-								48.400032
-							]
-						]
-					],
-					"type": "Polygon"
-				},
-				"id": "59fa8a5ff2330a1381a13ac2d071c4f2"
-			},
-			{
-				"type": "Feature",
-				"properties": {
-					"title": "China",
-					"description": "China area",
-					"stroke": "#fa946e",
-					"stroke-width": 4,
-					"stroke-opacity": 1,
-					"fill": "#f86767",
-					"fill-opacity": 0.2
-				},
-				"geometry": {
-					"coordinates": [
-						[
-							[
-								91.625976,
-								27.839076
-							],
-							[
-								92.109374,
-								27.916766
-							],
-							[
-								92.680664,
-								27.994401
-							],
-							[
-								93.295898,
-								28.574874
-							],
-							[
-								94.30664,
-								28.960088
-							],
-							[
-								94.702148,
-								29.382175
-							],
-							[
-								95.141601,
-								29.113775
-							],
-							[
-								96.108398,
-								29.382175
-							],
-							[
-								96.679687,
-								28.574874
-							],
-							[
-								97.382812,
-								28.22697
-							],
-							[
-								97.734375,
-								28.536274
-							],
-							[
-								98.217773,
-								28.07198
-							],
-							[
-								98.349609,
-								27.60567
-							],
-							[
-								98.613281,
-								27.527758
-							],
-							[
-								98.569335,
-								26.07652
-							],
-							[
-								97.822265,
-								25.244695
-							],
-							[
-								97.602539,
-								24.766784
-							],
-							[
-								97.646484,
-								24.246964
-							],
-							[
-								97.646484,
-								24.006326
-							],
-							[
-								98.876953,
-								24.126701
-							],
-							[
-								98.833007,
-								23.4834
-							],
-							[
-								99.448242,
-								23.079731
-							],
-							[
-								98.920898,
-								23.160563
-							],
-							[
-								99.316406,
-								22.71539
-							],
-							[
-								99.18457,
-								22.105998
-							],
-							[
-								100.019531,
-								21.983801
-							],
-							[
-								100.151367,
-								21.575718
-							],
-							[
-								100.59082,
-								21.453068
-							],
-							[
-								101.074218,
-								21.739091
-							],
-							[
-								101.293945,
-								21.289374
-							],
-							[
-								101.777343,
-								21.166483
-							],
-							[
-								101.777343,
-								21.739091
-							],
-							[
-								101.645507,
-								22.43134
-							],
-							[
-								102.172851,
-								22.471954
-							],
-							[
-								102.612304,
-								22.836945
-							],
-							[
-								103.227539,
-								22.471954
-							],
-							[
-								103.315429,
-								22.796439
-							],
-							[
-								103.623046,
-								22.71539
-							],
-							[
-								104.370117,
-								22.75592
-							],
-							[
-								104.0625,
-								22.674847
-							],
-							[
-								104.853515,
-								23.079731
-							],
-							[
-								105.46875,
-								23.32208
-							],
-							[
-								105.864257,
-								22.998851
-							],
-							[
-								107.006835,
-								22.836945
-							],
-							[
-								106.743164,
-								22.065278
-							],
-							[
-								108.061523,
-								21.534847
-							],
-							[
-								108.588867,
-								21.739091
-							],
-							[
-								109.907226,
-								21.493963
-							],
-							[
-								109.907226,
-								20.344626
-							],
-							[
-								110.346679,
-								20.385825
-							],
-							[
-								110.214843,
-								20.797201
-							],
-							[
-								110.830078,
-								21.412162
-							],
-							[
-								112.939453,
-								22.065278
-							],
-							[
-								113.642578,
-								22.22809
-							],
-							[
-								113.642578,
-								22.71539
-							],
-							[
-								114.125976,
-								22.309425
-							],
-							[
-								116.367187,
-								23.079731
-							],
-							[
-								117.861328,
-								24.126701
-							],
-							[
-								119.575195,
-								25.482951
-							],
-							[
-								119.61914,
-								26.82407
-							],
-							[
-								121.508789,
-								28.381735
-							],
-							[
-								122.255859,
-								29.954934
-							],
-							[
-								122.167968,
-								30.183121
-							],
-							[
-								121.464843,
-								30.221101
-							],
-							[
-								120.981445,
-								30.448673
-							],
-							[
-								121.860351,
-								30.789036
-							],
-							[
-								121.02539,
-								31.765537
-							],
-							[
-								122.036132,
-								31.428663
-							],
-							[
-								121.904296,
-								31.840232
-							],
-							[
-								121.420898,
-								32.175612
-							],
-							[
-								120.981445,
-								32.620869
-							],
-							[
-								120.190429,
-								34.234512
-							],
-							[
-								119.223632,
-								34.777715
-							],
-							[
-								120.190429,
-								36.173356
-							],
-							[
-								120.981445,
-								36.668418
-							],
-							[
-								120.498046,
-								36.208823
-							],
-							[
-								121.948242,
-								36.985003
-							],
-							[
-								122.475585,
-								36.949891
-							],
-							[
-								122.475585,
-								37.405073
-							],
-							[
-								122.036132,
-								37.544577
-							],
-							[
-								121.508789,
-								37.544577
-							],
-							[
-								120.893554,
-								37.71859
-							],
-							[
-								120.27832,
-								37.68382
-							],
-							[
-								120.014648,
-								37.405073
-							],
-							[
-								119.53125,
-								37.055177
-							],
-							[
-								118.87207,
-								37.300275
-							],
-							[
-								118.95996,
-								37.649034
-							],
-							[
-								119.223632,
-								37.753344
-							],
-							[
-								118.87207,
-								38.065392
-							],
-							[
-								117.817382,
-								38.30718
-							],
-							[
-								117.597656,
-								39.027718
-							],
-							[
-								118.037109,
-								39.198205
-							],
-							[
-								118.432617,
-								38.959408
-							],
-							[
-								118.95996,
-								39.266284
-							],
-							[
-								119.443359,
-								39.808536
-							],
-							[
-								120.322265,
-								40.279525
-							],
-							[
-								121.02539,
-								40.946713
-							],
-							[
-								121.992187,
-								40.880294
-							],
-							[
-								122.124023,
-								40.446947
-							],
-							[
-								121.68457,
-								39.808536
-							],
-							[
-								121.201171,
-								39.50404
-							],
-							[
-								121.596679,
-								39.198205
-							],
-							[
-								121.333007,
-								38.891032
-							],
-							[
-								121.860351,
-								38.891032
-							],
-							[
-								122.343749,
-								39.436192
-							],
-							[
-								124.189453,
-								39.842286
-							],
-							[
-								124.409179,
-								40.178873
-							],
-							[
-								125.288085,
-								40.680638
-							],
-							[
-								126.079101,
-								41.079351
-							],
-							[
-								126.694335,
-								41.738528
-							],
-							[
-								128.100585,
-								41.409775
-							],
-							[
-								128.276367,
-								41.771311
-							],
-							[
-								128.100585,
-								42.065606
-							],
-							[
-								129.067382,
-								42.065606
-							],
-							[
-								129.418945,
-								42.455887
-							],
-							[
-								129.902343,
-								42.90816
-							],
-							[
-								130.605468,
-								42.488301
-							],
-							[
-								131.000976,
-								43.036775
-							],
-							[
-								131.264648,
-								43.992814
-							],
-							[
-								131.000976,
-								44.84029
-							],
-							[
-								131.660156,
-								45.089035
-							],
-							[
-								132.099608,
-								45.398449
-							],
-							[
-								133.110351,
-								45.02695
-							],
-							[
-								134.472656,
-								48.107431
-							],
-							[
-								132.1875,
-								47.989921
-							],
-							[
-								130.429687,
-								48.224672
-							],
-							[
-								129.375,
-								49.382372
-							],
-							[
-								127.441406,
-								49.610709
-							],
-							[
-								125.507812,
-								52.908902
-							],
-							[
-								123.222656,
-								53.540307
-							],
-							[
-								121.640625,
-								53.330872
-							],
-							[
-								119.882812,
-								52.696361
-							],
-							[
-								120.410156,
-								52.160454
-							],
-							[
-								119.355468,
-								50.401515
-							],
-							[
-								117.597656,
-								49.610709
-							],
-							[
-								116.718749,
-								50.064191
-							],
-							[
-								115.664062,
-								47.989921
-							],
-							[
-								117.421875,
-								47.635783
-							],
-							[
-								118.476562,
-								48.224672
-							],
-							[
-								120.058593,
-								46.679594
-							],
-							[
-								118.828125,
-								46.679594
-							],
-							[
-								117.421875,
-								46.437856
-							],
-							[
-								116.015624,
-								45.828799
-							],
-							[
-								114.609374,
-								45.583289
-							],
-							[
-								113.730468,
-								45.089035
-							],
-							[
-								111.621093,
-								44.964797
-							],
-							[
-								111.796875,
-								44.087585
-							],
-							[
-								110.214843,
-								43.197167
-							],
-							[
-								109.160156,
-								42.423456
-							],
-							[
-								107.578124,
-								42.423456
-							],
-							[
-								105.46875,
-								42.032974
-							],
-							[
-								104.0625,
-								41.771311
-							],
-							[
-								101.953125,
-								42.423456
-							],
-							[
-								100.546875,
-								42.940339
-							],
-							[
-								99.492187,
-								42.682435
-							],
-							[
-								97.207031,
-								42.682435
-							],
-							[
-								96.328125,
-								42.779275
-							],
-							[
-								95.800781,
-								43.2932
-							],
-							[
-								95.581054,
-								43.929549
-							],
-							[
-								95.229492,
-								44.245199
-							],
-							[
-								94.350585,
-								44.527842
-							],
-							[
-								93.383789,
-								44.933696
-							],
-							[
-								90.878906,
-								45.274886
-							],
-							[
-								90.659179,
-								45.798169
-							],
-							[
-								90.966796,
-								46.07323
-							],
-							[
-								90.878906,
-								46.286223
-							],
-							[
-								90.791015,
-								46.980252
-							],
-							[
-								89.912109,
-								47.813154
-							],
-							[
-								89.208984,
-								48.107431
-							],
-							[
-								87.890625,
-								48.69096
-							],
-							[
-								87.714843,
-								49.152969
-							],
-							[
-								86.660156,
-								49.267804
-							],
-							[
-								86.835937,
-								48.748945
-							],
-							[
-								85.605468,
-								48.516604
-							],
-							[
-								85.517578,
-								47.279229
-							],
-							[
-								84.550781,
-								46.980252
-							],
-							[
-								83.408203,
-								47.15984
-							],
-							[
-								82.265625,
-								45.890008
-							],
-							[
-								82.353515,
-								45.151053
-							],
-							[
-								81.5625,
-								45.274886
-							],
-							[
-								80.15625,
-								44.902577
-							],
-							[
-								80.683593,
-								43.004647
-							],
-							[
-								80.24414,
-								42.098222
-							],
-							[
-								78.486328,
-								41.442726
-							],
-							[
-								77.255859,
-								41.046216
-							],
-							[
-								76.464843,
-								40.580584
-							],
-							[
-								75.9375,
-								40.380028
-							],
-							[
-								75.498046,
-								40.513799
-							],
-							[
-								74.443359,
-								40.313043
-							],
-							[
-								74.003906,
-								39.909736
-							],
-							[
-								73.740234,
-								39.571822
-							],
-							[
-								73.388671,
-								39.300299
-							],
-							[
-								75.058593,
-								37.439974
-							],
-							[
-								74.53125,
-								37.020098
-							],
-							[
-								75.322265,
-								36.809284
-							],
-							[
-								75.9375,
-								36.102376
-							],
-							[
-								76.640625,
-								35.603718
-							],
-							[
-								78.046875,
-								35.460669
-							],
-							[
-								79.453125,
-								35.88905
-							],
-							[
-								80.419921,
-								35.460669
-							],
-							[
-								79.980468,
-								34.957995
-							],
-							[
-								79.453125,
-								34.452218
-							],
-							[
-								78.75,
-								34.016241
-							],
-							[
-								79.189453,
-								32.916485
-							],
-							[
-								79.013671,
-								32.324275
-							],
-							[
-								78.574218,
-								32.546813
-							],
-							[
-								78.83789,
-								31.353636
-							],
-							[
-								79.892578,
-								30.902224
-							],
-							[
-								81.210937,
-								30.145127
-							],
-							[
-								81.826171,
-								30.372875
-							],
-							[
-								83.583984,
-								29.152161
-							],
-							[
-								84.902343,
-								28.536274
-							],
-							[
-								86.044921,
-								27.994401
-							],
-							[
-								88.066406,
-								27.839076
-							],
-							[
-								88.68164,
-								28.149503
-							],
-							[
-								89.384765,
-								27.761329
-							],
-							[
-								90.175781,
-								28.30438
-							],
-							[
-								91.054687,
-								28.07198
-							],
-							[
-								91.340332,
-								28.0235
-							],
-							[
-								91.505126,
-								27.9847
-							],
-							[
-								91.625976,
-								27.839076
-							]
-						]
-					],
-					"type": "Polygon"
-				},
-				"id": "8ef11e86df4b0768046bf5ad28b0d537"
-			},
-			{
-				"type": "Feature",
-				"properties": {
-					"title": "Korea",
-					"description": "Republic of Korea",
-					"stroke": "#f86767",
-					"stroke-width": 4,
-					"stroke-opacity": 1,
-					"fill": "#e7857f",
-					"fill-opacity": 0.2
-				},
-				"geometry": {
-					"coordinates": [
-						[
-							[
-								126.386718,
-								37.874853
-							],
-							[
-								126.606445,
-								37.788081
-							],
-							[
-								126.716308,
-								37.840156
-							],
-							[
-								126.760253,
-								38.030785
-							],
-							[
-								127.155761,
-								38.341656
-							],
-							[
-								127.39746,
-								38.358887
-							],
-							[
-								127.880859,
-								38.358887
-							],
-							[
-								128.254394,
-								38.444984
-							],
-							[
-								128.364257,
-								38.634036
-							],
-							[
-								128.627929,
-								38.117271
-							],
-							[
-								128.847656,
-								37.840156
-							],
-							[
-								129.111328,
-								37.544577
-							],
-							[
-								129.309082,
-								37.125286
-							],
-							[
-								129.46289,
-								36.79169
-							],
-							[
-								129.418945,
-								36.456636
-							],
-							[
-								129.396972,
-								36.191092
-							],
-							[
-								129.353027,
-								36.01356
-							],
-							[
-								129.506835,
-								36.066862
-							],
-							[
-								129.550781,
-								35.942435
-							],
-							[
-								129.484863,
-								35.692994
-							],
-							[
-								129.440917,
-								35.424867
-							],
-							[
-								129.265136,
-								35.173808
-							],
-							[
-								129.089355,
-								35.083955
-							],
-							[
-								129.506835,
-								34.705493
-							],
-							[
-								129.528808,
-								34.524661
-							],
-							[
-								129.375,
-								34.379712
-							],
-							[
-								129.331054,
-								34.143634
-							],
-							[
-								129.243164,
-								34.089061
-							],
-							[
-								126.914062,
-								33.431441
-							],
-							[
-								126.760253,
-								33.321348
-							],
-							[
-								126.254882,
-								33.266249
-							],
-							[
-								126.23291,
-								33.394759
-							],
-							[
-								125.969238,
-								34.252676
-							],
-							[
-								126.035156,
-								34.560859
-							],
-							[
-								125.881347,
-								34.795761
-							],
-							[
-								126.101074,
-								35.101934
-							],
-							[
-								126.364746,
-								35.119908
-							],
-							[
-								126.364746,
-								35.299435
-							],
-							[
-								126.518554,
-								35.514343
-							],
-							[
-								126.65039,
-								35.585851
-							],
-							[
-								126.474609,
-								35.657296
-							],
-							[
-								126.628417,
-								35.764343
-							],
-							[
-								126.672363,
-								35.871246
-							],
-							[
-								126.584472,
-								35.978006
-							],
-							[
-								126.518554,
-								36.191092
-							],
-							[
-								126.430664,
-								36.491973
-							],
-							[
-								126.276855,
-								36.615527
-							],
-							[
-								126.079101,
-								36.809284
-							],
-							[
-								126.3208,
-								36.949891
-							],
-							[
-								126.452636,
-								37.020098
-							],
-							[
-								126.694335,
-								36.985003
-							],
-							[
-								126.694335,
-								37.160316
-							],
-							[
-								126.452636,
-								37.247821
-							],
-							[
-								126.342773,
-								37.457418
-							],
-							[
-								126.298828,
-								37.649034
-							],
-							[
-								126.276855,
-								37.840156
-							],
-							[
-								126.386718,
-								37.874853
-							]
-						]
-					],
-					"type": "Polygon"
-				},
-				"id": "aca6b90e5578a6e6d1c3c54d6bc9faa5"
-			},
-			{
-				"type": "Feature",
-				"properties": {
-					"title": "Spain",
-					"description": "Spain Area",
-					"stroke": "#f5c272",
-					"stroke-width": 4,
-					"stroke-opacity": 1,
-					"fill": "#fa946e",
-					"fill-opacity": 0.2
-				},
-				"geometry": {
-					"coordinates": [
-						[
-							[
-								-8.591308,
-								42.049292
-							],
-							[
-								-8.173828,
-								42.147114
-							],
-							[
-								-8.217773,
-								41.885921
-							],
-							[
-								-8.129882,
-								41.86956
-							],
-							[
-								-7.954101,
-								41.934976
-							],
-							[
-								-7.668457,
-								41.885921
-							],
-							[
-								-7.426757,
-								41.885921
-							],
-							[
-								-7.11914,
-								41.934976
-							],
-							[
-								-6.877441,
-								41.967659
-							],
-							[
-								-6.657714,
-								41.951319
-							],
-							[
-								-6.547851,
-								41.771311
-							],
-							[
-								-6.416015,
-								41.672911
-							],
-							[
-								-6.240234,
-								41.574361
-							],
-							[
-								-6.45996,
-								41.294317
-							],
-							[
-								-6.70166,
-								41.178653
-							],
-							[
-								-6.921386,
-								41.046216
-							],
-							[
-								-6.811523,
-								40.863679
-							],
-							[
-								-6.855468,
-								40.296286
-							],
-							[
-								-6.987304,
-								40.162083
-							],
-							[
-								-6.899414,
-								39.791654
-							],
-							[
-								-7.03125,
-								39.67337
-							],
-							[
-								-7.624511,
-								39.69028
-							],
-							[
-								-7.44873,
-								39.470125
-							],
-							[
-								-7.075195,
-								39.078908
-							],
-							[
-								-7.11914,
-								38.85682
-							],
-							[
-								-7.229003,
-								38.685509
-							],
-							[
-								-7.338867,
-								38.427773
-							],
-							[
-								-7.11914,
-								38.169114
-							],
-							[
-								-6.921386,
-								38.220919
-							],
-							[
-								-7.009277,
-								38.065392
-							],
-							[
-								-7.185058,
-								37.926867
-							],
-							[
-								-7.382812,
-								37.770714
-							],
-							[
-								-7.514648,
-								37.509725
-							],
-							[
-								-7.426757,
-								37.19533
-							],
-							[
-								-6.965332,
-								37.247821
-							],
-							[
-								-6.416015,
-								36.93233
-							],
-							[
-								-6.328125,
-								36.75649
-							],
-							[
-								-6.350097,
-								36.615527
-							],
-							[
-								-6.218261,
-								36.403599
-							],
-							[
-								-6.020507,
-								36.137874
-							],
-							[
-								-5.866699,
-								36.173356
-							],
-							[
-								-5.625,
-								35.995785
-							],
-							[
-								-5.405273,
-								36.173356
-							],
-							[
-								-5.119628,
-								36.350527
-							],
-							[
-								-4.899902,
-								36.5626
-							],
-							[
-								-4.570312,
-								36.5626
-							],
-							[
-								-4.460449,
-								36.703659
-							],
-							[
-								-3.823242,
-								36.738884
-							],
-							[
-								-3.273925,
-								36.738884
-							],
-							[
-								-2.878417,
-								36.738884
-							],
-							[
-								-2.658691,
-								36.650792
-							],
-							[
-								-2.460937,
-								36.826874
-							],
-							[
-								-2.15332,
-								36.738884
-							],
-							[
-								-1.911621,
-								37.020098
-							],
-							[
-								-1.691894,
-								37.422525
-							],
-							[
-								-1.230468,
-								37.561996
-							],
-							[
-								-0.878906,
-								37.596824
-							],
-							[
-								-0.703125,
-								37.596824
-							],
-							[
-								-0.83496,
-								37.788081
-							],
-							[
-								-0.637207,
-								38.169114
-							],
-							[
-								-0.461425,
-								38.358887
-							],
-							[
-								0.219726,
-								38.736946
-							],
-							[
-								0.021972,
-								38.85682
-							],
-							[
-								-0.351562,
-								39.3173
-							],
-							[
-								-0.241699,
-								39.67337
-							],
-							[
-								0.109863,
-								40.094882
-							],
-							[
-								0.483398,
-								40.513799
-							],
-							[
-								0.593261,
-								40.663972
-							],
-							[
-								0.900878,
-								40.730608
-							],
-							[
-								0.791015,
-								40.896905
-							],
-							[
-								1.142578,
-								41.062786
-							],
-							[
-								1.647949,
-								41.195189
-							],
-							[
-								2.197265,
-								41.343824
-							],
-							[
-								2.24121,
-								41.47566
-							],
-							[
-								2.702636,
-								41.705728
-							],
-							[
-								3.098144,
-								41.804078
-							],
-							[
-								3.208007,
-								42.016651
-							],
-							[
-								3.120117,
-								42.244785
-							],
-							[
-								3.295898,
-								42.342305
-							],
-							[
-								3.032226,
-								42.472096
-							],
-							[
-								2.460937,
-								42.342305
-							],
-							[
-								2.24121,
-								42.423456
-							],
-							[
-								1.977539,
-								42.374778
-							],
-							[
-								1.801757,
-								42.488301
-							],
-							[
-								1.450195,
-								42.423456
-							],
-							[
-								1.318359,
-								42.714732
-							],
-							[
-								0.725097,
-								42.859859
-							],
-							[
-								0.659179,
-								42.698585
-							],
-							[
-								-0.021972,
-								42.714732
-							],
-							[
-								-0.395507,
-								42.843751
-							],
-							[
-								-0.505371,
-								42.811521
-							],
-							[
-								-0.812988,
-								42.940339
-							],
-							[
-								-1.49414,
-								43.084937
-							],
-							[
-								-1.450195,
-								43.197167
-							],
-							[
-								-1.82373,
-								43.373112
-							],
-							[
-								-2.438964,
-								43.309191
-							],
-							[
-								-2.636718,
-								43.389081
-							],
-							[
-								-2.834472,
-								43.436965
-							],
-							[
-								-3.032226,
-								43.373112
-							],
-							[
-								-3.295898,
-								43.357138
-							],
-							[
-								-3.515625,
-								43.436965
-							],
-							[
-								-3.55957,
-								43.516688
-							],
-							[
-								-3.779296,
-								43.452918
-							],
-							[
-								-3.933105,
-								43.500752
-							],
-							[
-								-4.262695,
-								43.421008
-							],
-							[
-								-4.526367,
-								43.357138
-							],
-							[
-								-5.207519,
-								43.484812
-							],
-							[
-								-5.559082,
-								43.548548
-							],
-							[
-								-5.778808,
-								43.612216
-							],
-							[
-								-6.020507,
-								43.548548
-							],
-							[
-								-6.306152,
-								43.596305
-							],
-							[
-								-7.250976,
-								43.548548
-							],
-							[
-								-7.602539,
-								43.739352
-							],
-							[
-								-7.86621,
-								43.723474
-							],
-							[
-								-8.129882,
-								43.723474
-							],
-							[
-								-8.239746,
-								43.548548
-							],
-							[
-								-8.349609,
-								43.373112
-							],
-							[
-								-8.547363,
-								43.34116
-							],
-							[
-								-8.85498,
-								43.325177
-							],
-							[
-								-9.162597,
-								43.245202
-							],
-							[
-								-9.27246,
-								43.100982
-							],
-							[
-								-9.360351,
-								42.875964
-							],
-							[
-								-9.096679,
-								42.7954
-							],
-							[
-								-8.964843,
-								42.730874
-							],
-							[
-								-9.052734,
-								42.601619
-							],
-							[
-								-8.811035,
-								42.617791
-							],
-							[
-								-8.811035,
-								42.472096
-							],
-							[
-								-8.723144,
-								42.374778
-							],
-							[
-								-8.833007,
-								42.228517
-							],
-							[
-								-8.898925,
-								41.934976
-							],
-							[
-								-8.591308,
-								42.049292
-							]
-						]
-					],
-					"type": "Polygon"
-				},
-				"id": "d6bff2b506695c50f0e72c8eaa5b496a"
-			}
-		]
-	};
-
-/***/ },
-/* 689 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(87);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-	
-	var _reactModal = __webpack_require__(632);
-	
-	var _reactModal2 = _interopRequireDefault(_reactModal);
-	
-	var _sweetalert = __webpack_require__(642);
-	
-	var _sweetalert2 = _interopRequireDefault(_sweetalert);
-	
-	var _user = __webpack_require__(613);
-	
-	var _store = __webpack_require__(261);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactSimpleDropdown = __webpack_require__(651);
-	
-	var _reactSimpleDropdown2 = _interopRequireDefault(_reactSimpleDropdown);
-	
-	var _reactRouter = __webpack_require__(32);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var customStyles = {
-	  content: {
-	    top: '50%',
-	    left: '50%',
-	    right: 'auto',
-	    bottom: 'auto',
-	    marginRight: '-50%',
-	    transform: 'translate(-50%, -50%)',
-	    width: '600px',
-	    textAlign: 'center'
-	  }
-	};
-	
-	var LanguageMessage = function (_React$Component) {
-	  _inherits(LanguageMessage, _React$Component);
-	
-	  function LanguageMessage() {
-	    _classCallCheck(this, LanguageMessage);
-	
-	    var _this = _possibleConstructorReturn(this, (LanguageMessage.__proto__ || Object.getPrototypeOf(LanguageMessage)).call(this));
-	
-	    _this.state = {
-	      modalIsOpen: true
-	    };
-	
-	    _this.openModal = _this.openModal.bind(_this);
-	    _this.closeModal = _this.closeModal.bind(_this);
-	    _this.selectLanguage = _this.selectLanguage.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(LanguageMessage, [{
-	    key: 'openModal',
-	    value: function openModal() {
-	      this.setState({ modalIsOpen: true });
-	    }
-	  }, {
-	    key: 'closeModal',
-	    value: function closeModal() {
-	      this.setState({ modalIsOpen: false });
-	    }
-	  }, {
-	    key: 'selectLanguage',
-	    value: function selectLanguage(event, language, country) {
-	      event.preventDefault();
-	      if (!_store2.default.user) {
-	        _store2.default.dispatch((0, _user.setUser)({
-	          firstName: 'Guest',
-	          lastName: (Math.random() * 10000).toString(),
-	          email: 'guest@guestmail.com',
-	          primaryLanguage: language,
-	          country: country
-	        }));
-	      }
-	      this.setState({ modalIsOpen: false });
-	      swal("Welcome to AutoLingo!", "Website will be translated into your default language.", "success");
-	      _reactRouter.browserHistory.push('/');
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { id: 'language-message' },
-	        _react2.default.createElement(
-	          _reactModal2.default,
-	          {
-	            isOpen: this.state.modalIsOpen,
-	            onAfterOpen: this.afterOpenModal,
-	            onRequestClose: this.closeModal,
-	            style: customStyles,
-	            contentLabel: 'Example Modal',
-	            selectLanguage: this.selectLanguage
-	          },
-	          _react2.default.createElement(
-	            'h1',
-	            { style: { color: 'linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5)' } },
-	            'Choose Default Language'
-	          ),
-	          _react2.default.createElement(
-	            _reactSimpleDropdown2.default,
-	            null,
-	            _react2.default.createElement(
-	              _reactSimpleDropdown.DropdownTrigger,
-	              { id: 'dropDown-title' },
-	              'Click to select language'
-	            ),
-	            _react2.default.createElement(
-	              _reactSimpleDropdown.DropdownContent,
-	              { id: 'dropDown-content' },
-	              _react2.default.createElement(
-	                'ul',
-	                null,
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'en', 'America');
-	                      } },
-	                    'English'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'zh-CN', 'China');
-	                      } },
-	                    'Chinese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'es', 'Spain');
-	                      } },
-	                    'Spanish'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'fr', 'France');
-	                      } },
-	                    'French'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ko', 'Korea');
-	                      } },
-	                    'Korean'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ru', 'Russia');
-	                      } },
-	                    'Russian'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'tl', 'Philippines');
-	                      } },
-	                    'Filipino'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'el', 'Greece');
-	                      } },
-	                    'Greek'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'iw', 'Israel');
-	                      } },
-	                    'Hebrew'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'it', 'Italy');
-	                      } },
-	                    'Italian'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'ja', 'Japan');
-	                      } },
-	                    'Japanese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'sw', 'Tanzania');
-	                      } },
-	                    'Swahili'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'vi', 'Vietnam');
-	                      } },
-	                    'Vietnamese'
-	                  )
-	                ),
-	                _react2.default.createElement(
-	                  'li',
-	                  null,
-	                  _react2.default.createElement(
-	                    'a',
-	                    { onClick: function onClick(event) {
-	                        return _this2.selectLanguage(event, 'pl', 'Poland');
-	                      } },
-	                    'Polish'
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return LanguageMessage;
-	}(_react2.default.Component);
-	
-	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'ar', 'Saudi Arabia')}>Arabic</button></div>
-	// <div><button style={{width: '300px', marginBottom: '20px'}} onClick={(event)=>this.selectLanguage(event, 'eo', 'World')}>Esperanto</button></div>
-	// ReactDOM.render(<App />, appElement);
-	
-	exports.default = LanguageMessage;
-
-/***/ },
-/* 690 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _mapbox = __webpack_require__(658);
-	
-	var _mapbox2 = _interopRequireDefault(_mapbox);
-	
-	var _countryCoordinates = __webpack_require__(688);
-	
-	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
-	
-	var _LanguageMessage = __webpack_require__(689);
-	
-	var _LanguageMessage2 = _interopRequireDefault(_LanguageMessage);
-	
-	var _reactRouter = __webpack_require__(32);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function repositionMap(country, map) {
-	  var _this = this;
-	
-	  return function (event) {
-	    _this.map.fitBounds([country.fitBounds], { maxZoom: country.zoomNum });
-	    _this.map.dragging.disable();
-	    _this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
-	
-	    if (country.name === 'globe') {
-	      //then put them back to right coordinates
-	      _this.usaMarker = _mapbox2.default.marker([45.6981, -104.36035], { icon: _this.usaIcon }).addTo(_this.map);
-	      _this.chinaMarker = _mapbox2.default.marker([42.23727, 98.84277], { icon: _this.chinaIcon }).addTo(_this.map);
-	      _this.franceMarker = _mapbox2.default.marker([52.69116, -2.43896], { icon: _this.franceIcon }).addTo(_this.map);
-	      _this.spainMarker = _mapbox2.default.marker([47.54952, -8.69141], { icon: _this.spainIcon }).addTo(_this.map);
-	      _this.koreaMarker = _mapbox2.default.marker([45.07518, 122.11494], { icon: _this.koreaIcon }).addTo(_this.map);
-	    }
-	
-	    if (country.name === 'america' || country.name === "china" || country.name === "spain" || country.name === "france" || country.name === "korea") {
-	      _this.map.removeLayer(_this.usaMarker);
-	      _this.map.removeLayer(_this.spainMarker);
-	      _this.map.removeLayer(_this.chinaMarker);
-	      _this.map.removeLayer(_this.koreaMarker);
-	      _this.map.removeLayer(_this.franceMarker);
-	      // console.log(this.map)
-	    }
-	  };
-	}
-	
-	exports.default = repositionMap;
-
-/***/ },
-/* 691 */
-=======
 	function repositionMap(country, map) {
 	  var _this = this;
 	
@@ -88746,7 +79532,6 @@
 
 /***/ },
 /* 700 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88759,11 +79544,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _VideoChat = __webpack_require__(692);
-=======
 	var _VideoChat = __webpack_require__(701);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _VideoChat2 = _interopRequireDefault(_VideoChat);
 	
@@ -88789,11 +79570,7 @@
 	exports.default = LiveChat;
 
 /***/ },
-<<<<<<< HEAD
-/* 692 */
-=======
 /* 701 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88808,11 +79585,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _LiveChatExternals = __webpack_require__(693);
-=======
 	var _LiveChatExternals = __webpack_require__(702);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _LiveChatExternals2 = _interopRequireDefault(_LiveChatExternals);
 	
@@ -88879,11 +79652,7 @@
 	exports.default = VideoChat;
 
 /***/ },
-<<<<<<< HEAD
-/* 693 */
-=======
 /* 702 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88892,19 +79661,11 @@
 	    value: true
 	});
 	
-<<<<<<< HEAD
-	var _sockets = __webpack_require__(694);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _ChatAppVideo = __webpack_require__(746);
-=======
 	var _sockets = __webpack_require__(703);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
 	var _ChatAppVideo = __webpack_require__(756);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -89061,11 +79822,7 @@
 	exports.default = LiveChatExternals;
 
 /***/ },
-<<<<<<< HEAD
-/* 694 */
-=======
 /* 703 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89074,11 +79831,7 @@
 	  value: true
 	});
 	
-<<<<<<< HEAD
-	var _socket = __webpack_require__(695);
-=======
 	var _socket = __webpack_require__(704);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _socket2 = _interopRequireDefault(_socket);
 
@@ -89087,11 +79840,7 @@
 	exports.default = _socket2.default;
 
 /***/ },
-<<<<<<< HEAD
-/* 695 */
-=======
 /* 704 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -89099,17 +79848,10 @@
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var url = __webpack_require__(696);
-	var parser = __webpack_require__(701);
-	var Manager = __webpack_require__(711);
-	var debug = __webpack_require__(698)('socket.io-client');
-=======
 	var url = __webpack_require__(705);
 	var parser = __webpack_require__(710);
 	var Manager = __webpack_require__(720);
 	var debug = __webpack_require__(707)('socket.io-client');
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -89208,21 +79950,12 @@
 	 * @api public
 	 */
 	
-<<<<<<< HEAD
-	exports.Manager = __webpack_require__(711);
-	exports.Socket = __webpack_require__(741);
-
-
-/***/ },
-/* 696 */
-=======
 	exports.Manager = __webpack_require__(720);
 	exports.Socket = __webpack_require__(751);
 
 
 /***/ },
 /* 705 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -89230,13 +79963,8 @@
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var parseuri = __webpack_require__(697);
-	var debug = __webpack_require__(698)('socket.io-client:url');
-=======
 	var parseuri = __webpack_require__(706);
 	var debug = __webpack_require__(707)('socket.io-client:url');
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -89309,11 +80037,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 697 */
-=======
 /* 706 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -89358,11 +80082,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 698 */
-=======
 /* 707 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -89372,11 +80092,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-<<<<<<< HEAD
-	exports = module.exports = __webpack_require__(699);
-=======
 	exports = module.exports = __webpack_require__(708);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -89550,11 +80266,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
-/* 699 */
-=======
 /* 708 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -89570,11 +80282,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-<<<<<<< HEAD
-	exports.humanize = __webpack_require__(700);
-=======
 	exports.humanize = __webpack_require__(709);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -89764,11 +80472,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 700 */
-=======
 /* 709 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -89923,11 +80627,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 701 */
-=======
 /* 710 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -89935,19 +80635,11 @@
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var debug = __webpack_require__(702)('socket.io-parser');
-	var json = __webpack_require__(705);
-	var Emitter = __webpack_require__(707);
-	var binary = __webpack_require__(708);
-	var isBuf = __webpack_require__(710);
-=======
 	var debug = __webpack_require__(711)('socket.io-parser');
 	var json = __webpack_require__(714);
 	var Emitter = __webpack_require__(716);
 	var binary = __webpack_require__(717);
 	var isBuf = __webpack_require__(719);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Protocol version.
@@ -90345,11 +81037,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 702 */
-=======
 /* 711 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -90359,11 +81047,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-<<<<<<< HEAD
-	exports = module.exports = __webpack_require__(703);
-=======
 	exports = module.exports = __webpack_require__(712);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -90527,11 +81211,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 703 */
-=======
 /* 712 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -90547,11 +81227,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-<<<<<<< HEAD
-	exports.humanize = __webpack_require__(704);
-=======
 	exports.humanize = __webpack_require__(713);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -90738,11 +81414,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 704 */
-=======
 /* 713 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -90873,22 +81545,14 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 705 */
-=======
 /* 714 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! JSON v3.3.2 | http://bestiejs.github.io/json3 | Copyright 2012-2014, Kit Cambridge | http://kit.mit-license.org */
 	;(function () {
 	  // Detect the `define` function exposed by asynchronous module loaders. The
 	  // strict `define` check is necessary for compatibility with `r.js`.
-<<<<<<< HEAD
-	  var isLoader = "function" === "function" && __webpack_require__(706);
-=======
 	  var isLoader = "function" === "function" && __webpack_require__(715);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	  // A set of types used to distinguish objects from primitives.
 	  var objectTypes = {
@@ -91790,11 +82454,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 706 */
-=======
 /* 715 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -91802,11 +82462,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-<<<<<<< HEAD
-/* 707 */
-=======
 /* 716 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -91976,11 +82632,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 708 */
-=======
 /* 717 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
@@ -91989,13 +82641,8 @@
 	 * Module requirements
 	 */
 	
-<<<<<<< HEAD
-	var isArray = __webpack_require__(709);
-	var isBuf = __webpack_require__(710);
-=======
 	var isArray = __webpack_require__(718);
 	var isBuf = __webpack_require__(719);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -92133,11 +82780,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 709 */
-=======
 /* 718 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -92146,11 +82789,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 710 */
-=======
 /* 719 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -92170,11 +82809,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 711 */
-=======
 /* 720 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -92182,17 +82817,6 @@
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var eio = __webpack_require__(712);
-	var Socket = __webpack_require__(741);
-	var Emitter = __webpack_require__(730);
-	var parser = __webpack_require__(701);
-	var on = __webpack_require__(743);
-	var bind = __webpack_require__(744);
-	var debug = __webpack_require__(698)('socket.io-client:manager');
-	var indexOf = __webpack_require__(739);
-	var Backoff = __webpack_require__(745);
-=======
 	var eio = __webpack_require__(721);
 	var Socket = __webpack_require__(751);
 	var Emitter = __webpack_require__(739);
@@ -92202,7 +82826,6 @@
 	var debug = __webpack_require__(707)('socket.io-client:manager');
 	var indexOf = __webpack_require__(749);
 	var Backoff = __webpack_require__(755);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * IE6+ hasOwnProperty
@@ -92752,21 +83375,6 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 712 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	module.exports = __webpack_require__(713);
-
-
-/***/ },
-/* 713 */
-/***/ function(module, exports, __webpack_require__) {
-
-	
-	module.exports = __webpack_require__(714);
-=======
 /* 721 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -92780,7 +83388,6 @@
 
 	
 	module.exports = __webpack_require__(723);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Exports parser
@@ -92788,35 +83395,17 @@
 	 * @api public
 	 *
 	 */
-<<<<<<< HEAD
-	module.exports.parser = __webpack_require__(721);
-
-
-/***/ },
-/* 714 */
-=======
 	module.exports.parser = __webpack_require__(730);
 
 
 /***/ },
 /* 723 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var transports = __webpack_require__(715);
-	var Emitter = __webpack_require__(730);
-	var debug = __webpack_require__(734)('engine.io-client:socket');
-	var index = __webpack_require__(739);
-	var parser = __webpack_require__(721);
-	var parseuri = __webpack_require__(697);
-	var parsejson = __webpack_require__(740);
-	var parseqs = __webpack_require__(731);
-=======
 	var transports = __webpack_require__(724);
 	var Emitter = __webpack_require__(739);
 	var debug = __webpack_require__(743)('engine.io-client:socket');
@@ -92825,7 +83414,6 @@
 	var parseuri = __webpack_require__(706);
 	var parsejson = __webpack_require__(750);
 	var parseqs = __webpack_require__(740);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -92957,15 +83545,9 @@
 	 */
 	
 	Socket.Socket = Socket;
-<<<<<<< HEAD
-	Socket.Transport = __webpack_require__(720);
-	Socket.transports = __webpack_require__(715);
-	Socket.parser = __webpack_require__(721);
-=======
 	Socket.Transport = __webpack_require__(729);
 	Socket.transports = __webpack_require__(724);
 	Socket.parser = __webpack_require__(730);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Creates transport of the given type.
@@ -93562,28 +84144,17 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 715 */
-=======
 /* 724 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies
 	 */
 	
-<<<<<<< HEAD
-	var XMLHttpRequest = __webpack_require__(716);
-	var XHR = __webpack_require__(718);
-	var JSONP = __webpack_require__(736);
-	var websocket = __webpack_require__(737);
-=======
 	var XMLHttpRequest = __webpack_require__(725);
 	var XHR = __webpack_require__(727);
 	var JSONP = __webpack_require__(746);
 	var websocket = __webpack_require__(747);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Export transports.
@@ -93633,20 +84204,12 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 716 */
-=======
 /* 725 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
 	
-<<<<<<< HEAD
-	var hasCORS = __webpack_require__(717);
-=======
 	var hasCORS = __webpack_require__(726);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	module.exports = function (opts) {
 	  var xdomain = opts.xdomain;
@@ -93685,11 +84248,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 717 */
-=======
 /* 726 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -93712,30 +84271,18 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 718 */
-=======
 /* 727 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module requirements.
 	 */
 	
-<<<<<<< HEAD
-	var XMLHttpRequest = __webpack_require__(716);
-	var Polling = __webpack_require__(719);
-	var Emitter = __webpack_require__(730);
-	var inherit = __webpack_require__(732);
-	var debug = __webpack_require__(734)('engine.io-client:polling-xhr');
-=======
 	var XMLHttpRequest = __webpack_require__(725);
 	var Polling = __webpack_require__(728);
 	var Emitter = __webpack_require__(739);
 	var inherit = __webpack_require__(741);
 	var debug = __webpack_require__(743)('engine.io-client:polling-xhr');
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -94155,32 +84702,19 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 719 */
-=======
 /* 728 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var Transport = __webpack_require__(720);
-	var parseqs = __webpack_require__(731);
-	var parser = __webpack_require__(721);
-	var inherit = __webpack_require__(732);
-	var yeast = __webpack_require__(733);
-	var debug = __webpack_require__(734)('engine.io-client:polling');
-=======
 	var Transport = __webpack_require__(729);
 	var parseqs = __webpack_require__(740);
 	var parser = __webpack_require__(730);
 	var inherit = __webpack_require__(741);
 	var yeast = __webpack_require__(742);
 	var debug = __webpack_require__(743)('engine.io-client:polling');
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -94193,11 +84727,7 @@
 	 */
 	
 	var hasXHR2 = (function () {
-<<<<<<< HEAD
-	  var XMLHttpRequest = __webpack_require__(716);
-=======
 	  var XMLHttpRequest = __webpack_require__(725);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	  var xhr = new XMLHttpRequest({ xdomain: false });
 	  return null != xhr.responseType;
 	})();
@@ -94423,24 +84953,15 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 720 */
-=======
 /* 729 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var parser = __webpack_require__(721);
-	var Emitter = __webpack_require__(730);
-=======
 	var parser = __webpack_require__(730);
 	var Emitter = __webpack_require__(739);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -94595,28 +85116,13 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 721 */
-=======
 /* 730 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var keys = __webpack_require__(722);
-	var hasBinary = __webpack_require__(723);
-	var sliceBuffer = __webpack_require__(725);
-	var after = __webpack_require__(726);
-	var utf8 = __webpack_require__(727);
-	
-	var base64encoder;
-	if (global && global.ArrayBuffer) {
-	  base64encoder = __webpack_require__(728);
-=======
 	var keys = __webpack_require__(731);
 	var hasBinary = __webpack_require__(732);
 	var sliceBuffer = __webpack_require__(734);
@@ -94626,7 +85132,6 @@
 	var base64encoder;
 	if (global && global.ArrayBuffer) {
 	  base64encoder = __webpack_require__(737);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	}
 	
 	/**
@@ -94684,11 +85189,7 @@
 	 * Create a blob api even for blob builder when vendor prefixes exist
 	 */
 	
-<<<<<<< HEAD
-	var Blob = __webpack_require__(729);
-=======
 	var Blob = __webpack_require__(738);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Encodes a packet.
@@ -95231,11 +85732,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 722 */
-=======
 /* 731 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -95260,11 +85757,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 723 */
-=======
 /* 732 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -95272,11 +85765,7 @@
 	 * Module requirements.
 	 */
 	
-<<<<<<< HEAD
-	var isArray = __webpack_require__(724);
-=======
 	var isArray = __webpack_require__(733);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -95334,11 +85823,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 724 */
-=======
 /* 733 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = Array.isArray || function (arr) {
@@ -95347,11 +85832,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 725 */
-=======
 /* 734 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -95386,11 +85867,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 726 */
-=======
 /* 735 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = after
@@ -95424,11 +85901,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 727 */
-=======
 /* 736 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! https://mths.be/wtf8 v1.0.0 by @mathias */
@@ -95667,11 +86140,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(254)(module), (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 728 */
-=======
 /* 737 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/*
@@ -95744,11 +86213,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 729 */
-=======
 /* 738 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -95851,11 +86316,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 730 */
-=======
 /* 739 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -96024,11 +86485,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 731 */
-=======
 /* 740 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -96071,11 +86528,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 732 */
-=======
 /* 741 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -96087,11 +86540,7 @@
 	};
 
 /***/ },
-<<<<<<< HEAD
-/* 733 */
-=======
 /* 742 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	'use strict';
@@ -96165,11 +86614,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 734 */
-=======
 /* 743 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {
@@ -96179,11 +86624,7 @@
 	 * Expose `debug()` as the module.
 	 */
 	
-<<<<<<< HEAD
-	exports = module.exports = __webpack_require__(735);
-=======
 	exports = module.exports = __webpack_require__(744);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	exports.log = log;
 	exports.formatArgs = formatArgs;
 	exports.save = save;
@@ -96357,11 +86798,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
-/* 735 */
-=======
 /* 744 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -96377,11 +86814,7 @@
 	exports.disable = disable;
 	exports.enable = enable;
 	exports.enabled = enabled;
-<<<<<<< HEAD
-	exports.humanize = __webpack_require__(700);
-=======
 	exports.humanize = __webpack_require__(745);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * The currently active debug mode names, and names to skip.
@@ -96571,9 +87004,6 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 736 */
-=======
 /* 745 */
 /***/ function(module, exports) {
 
@@ -96730,7 +87160,6 @@
 
 /***/ },
 /* 746 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {
@@ -96738,13 +87167,8 @@
 	 * Module requirements.
 	 */
 	
-<<<<<<< HEAD
-	var Polling = __webpack_require__(719);
-	var inherit = __webpack_require__(732);
-=======
 	var Polling = __webpack_require__(728);
 	var inherit = __webpack_require__(741);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -96973,41 +87397,24 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 737 */
-=======
 /* 747 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var Transport = __webpack_require__(720);
-	var parser = __webpack_require__(721);
-	var parseqs = __webpack_require__(731);
-	var inherit = __webpack_require__(732);
-	var yeast = __webpack_require__(733);
-	var debug = __webpack_require__(734)('engine.io-client:websocket');
-=======
 	var Transport = __webpack_require__(729);
 	var parser = __webpack_require__(730);
 	var parseqs = __webpack_require__(740);
 	var inherit = __webpack_require__(741);
 	var yeast = __webpack_require__(742);
 	var debug = __webpack_require__(743)('engine.io-client:websocket');
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 	var NodeWebSocket;
 	if (typeof window === 'undefined') {
 	  try {
-<<<<<<< HEAD
-	    NodeWebSocket = __webpack_require__(738);
-=======
 	    NodeWebSocket = __webpack_require__(748);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	  } catch (e) { }
 	}
 	
@@ -97282,21 +87689,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 738 */
-=======
 /* 748 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/* (ignored) */
 
 /***/ },
-<<<<<<< HEAD
-/* 739 */
-=======
 /* 749 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -97311,11 +87710,7 @@
 	};
 
 /***/ },
-<<<<<<< HEAD
-/* 740 */
-=======
 /* 750 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
@@ -97353,11 +87748,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< HEAD
-/* 741 */
-=======
 /* 751 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -97365,15 +87756,6 @@
 	 * Module dependencies.
 	 */
 	
-<<<<<<< HEAD
-	var parser = __webpack_require__(701);
-	var Emitter = __webpack_require__(730);
-	var toArray = __webpack_require__(742);
-	var on = __webpack_require__(743);
-	var bind = __webpack_require__(744);
-	var debug = __webpack_require__(698)('socket.io-client:socket');
-	var hasBin = __webpack_require__(723);
-=======
 	var parser = __webpack_require__(710);
 	var Emitter = __webpack_require__(739);
 	var toArray = __webpack_require__(752);
@@ -97381,7 +87763,6 @@
 	var bind = __webpack_require__(754);
 	var debug = __webpack_require__(707)('socket.io-client:socket');
 	var hasBin = __webpack_require__(732);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	/**
 	 * Module exports.
@@ -97792,11 +88173,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 742 */
-=======
 /* 752 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -97815,11 +88192,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 743 */
-=======
 /* 753 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -97849,11 +88222,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 744 */
-=======
 /* 754 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	/**
@@ -97882,11 +88251,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 745 */
-=======
 /* 755 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports) {
 
 	
@@ -97977,11 +88342,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
-/* 746 */
-=======
 /* 756 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -97997,33 +88358,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _sockets = __webpack_require__(694);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(747);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(748);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(750);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(751);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _VoiceRecognitionContainer = __webpack_require__(752);
-	
-	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
-	
-	var _VideoChat = __webpack_require__(692);
-=======
 	var _sockets = __webpack_require__(703);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
@@ -98049,7 +88383,6 @@
 	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
 	
 	var _VideoChat = __webpack_require__(701);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _VideoChat2 = _interopRequireDefault(_VideoChat);
 	
@@ -98057,11 +88390,7 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
-<<<<<<< HEAD
-	var _languages = __webpack_require__(655);
-=======
 	var _languages = __webpack_require__(665);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _languages2 = _interopRequireDefault(_languages);
 	
@@ -98373,11 +88702,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ },
-<<<<<<< HEAD
-/* 747 */
-=======
 /* 757 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98393,37 +88718,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	//renderUser function that return the li tag for each of the users
-<<<<<<< HEAD
-	var UsersList = _react2.default.createClass({
-		displayName: "UsersList",
-		render: function render() {
-			return _react2.default.createElement(
-				"div",
-				{ className: "users" },
-				_react2.default.createElement(
-					"h3",
-					null,
-					"Current Online Users"
-				),
-				_react2.default.createElement(
-					"ul",
-					null,
-	
-					//Need to have users information in the database
-					this.props.users.map(function (user, i) {
-						return _react2.default.createElement(
-							"li",
-							{ key: i },
-							_react2.default.createElement("img", { src: "APP/public/img/videocam.png", height: "25", width: "25" }),
-							" ",
-							user
-						);
-					})
-				)
-			);
-		}
-	});
-=======
 	var UsersList = function UsersList(props) {
 		return _react2.default.createElement(
 			"div",
@@ -98444,22 +88738,18 @@
 						{ key: i, onClick: function onClick() {
 								return props.joinVideoChat(user);
 							} },
+						_react2.default.createElement("img", { src: "APP/public/img/videocam.png", height: "25", width: "25" }),
 						user
 					);
 				})
 			)
 		);
 	};
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	exports.default = UsersList;
 
 /***/ },
-<<<<<<< HEAD
-/* 748 */
-=======
 /* 758 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98472,11 +88762,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _Message = __webpack_require__(749);
-=======
 	var _Message = __webpack_require__(759);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -98529,11 +88815,7 @@
 	exports.default = MessageList;
 
 /***/ },
-<<<<<<< HEAD
-/* 749 */
-=======
 /* 759 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -98573,11 +88855,7 @@
 	exports.default = Message;
 
 /***/ },
-<<<<<<< HEAD
-/* 750 */
-=======
 /* 760 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98674,11 +88952,7 @@
 	exports.default = MessageForm;
 
 /***/ },
-<<<<<<< HEAD
-/* 751 */
-=======
 /* 761 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98740,11 +89014,7 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-<<<<<<< HEAD
-/* 752 */
-=======
 /* 762 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98759,11 +89029,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _VoiceRecognition = __webpack_require__(753);
-=======
 	var _VoiceRecognition = __webpack_require__(763);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
 	
@@ -98945,11 +89211,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
 
 /***/ },
-<<<<<<< HEAD
-/* 753 */
-=======
 /* 763 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -98964,11 +89226,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _languages = __webpack_require__(655);
-=======
 	var _languages = __webpack_require__(665);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -99094,11 +89352,7 @@
 	exports.default = VoiceRecognition;
 
 /***/ },
-<<<<<<< HEAD
-/* 754 */
-=======
 /* 764 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -99113,25 +89367,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
-	var _sockets = __webpack_require__(694);
-	
-	var _sockets2 = _interopRequireDefault(_sockets);
-	
-	var _UserList = __webpack_require__(747);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(748);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(750);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(751);
-=======
 	var _sockets = __webpack_require__(703);
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
@@ -99149,7 +89384,6 @@
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
 	var _ChangeNameForm = __webpack_require__(761);
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
@@ -99303,7 +89537,7 @@
 		}, {
 			key: 'joinVideoChat',
 			value: function joinVideoChat(selectedUser) {
-				_reactRouter.browserHistory.push('/live-chat');
+				_reactRouter.browserHistory.push('/video-chat');
 			}
 		}, {
 			key: 'render',
@@ -99383,11 +89617,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
 
 /***/ },
-<<<<<<< HEAD
-/* 755 */
-=======
 /* 765 */
->>>>>>> db3ab8734c15d0aebb33ce7c1a66ec527484f17b
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
