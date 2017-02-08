@@ -11,7 +11,7 @@ var UsersList = React.createClass({
 						//Need to have users information in the database
 						this.props.users.map((user, i) => {
 							return (
-								<li key={i}><img src="APP/public/img/videocam.png" height="25" width="25"/>   {user}</li>
+								<li key={i}><img src="APP/public/img/videocam.png" height="25" width="25"/> {user}</li>
 							)
 						})
 					}

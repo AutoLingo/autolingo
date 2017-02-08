@@ -331,7 +331,7 @@ nav {
 
 .users h3 {
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
   color: black;
 }
 
@@ -356,10 +356,13 @@ nav {
 .messages h2 {
   margin-top: -5px;
   font-size: 25px;
+  display: block;
+  /*margin-right: 49vw;*/
 }
 
 .message {
   font-size: 20px;
+  color: black;
 }
 
 .change_name_form {
@@ -378,10 +381,13 @@ nav {
   width: 100%;
   height: 5vh;
   border: 3px solid black;
+  color: black;
 }
 
 .message_form h3 {
   font-size: 25px;
+  font-weight: bold;
+  color: black;
 }
 
 .change_name_form input {
@@ -389,10 +395,13 @@ nav {
   height: 5vh;
   width: 100%;
   border: 3px solid black;
+  color: black;
 }
 
 .change_name_form h3 {
   font-size: 25px;
+  font-weight: bold;
+  color: black;
 }
 
 // ***************** end of chat box (socket) styling *****************
@@ -433,11 +442,7 @@ main {
 
 
 .ReactModal__Overlay {
-  z-index: 1;
-}
-
-.ReactModal__Overlay {
-  z-index: 1;
+  z-index: 100;
 }
 
 /***************** end of LanguageMessage modal styling *****************
