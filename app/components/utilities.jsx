@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import L from 'mapbox.js';
 import countriesLayer from '../data/countryCoordinates.json'
-import LanguageMessage from './LanguageMessage';
 import { Link } from 'react-router'
 
 function repositionMap (country, map) {

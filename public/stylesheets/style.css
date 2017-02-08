@@ -32,10 +32,10 @@ nav {
 
 #language-list {
   margin-bottom: 20px; }
+  #language-list a {
+    cursor: pointer; }
   #language-list .dropdown-menu {
     margin-bottom: 20px; }
-  #language-list .dropdown-submenu a {
-    cursor: pointer; }
 
 .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
   font-size: 35px; }
@@ -177,14 +177,13 @@ nav {
 /***************** start of chat box (socket) styling *****************/
 #chatbox-body {
   width: 90%;
-  /*height: 900px;*/
+  height: auto;
   margin: 0 auto 20px;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   position: relative;
   z-index: 99;
-  height: 80vh;
   background-color: white;
   padding: 20px; }
   #chatbox-body h2 {
@@ -197,13 +196,15 @@ nav {
   padding-bottom: 10px; }
 
 #conversation-container {
+  overflow-y: scroll;
   border: 1px solid #ddd;
-  min-height: 400px;
-  height: auto;
-  max-height: 500px;
+  height: 300px;
   border-radius: 5px;
   padding: 30px;
   font-size: 1.4em; }
+  #conversation-container ul {
+    list-style-type: none;
+    padding: 0; }
 
 #buttons-wrapper {
   position: relative; }
@@ -235,9 +236,11 @@ nav {
 
 #videochat-wrapper {
   position: relative;
-  padding-bottom: 75%; }
+  padding-bottom: 75%;
+  margin-top: 37px; }
 
 #videos-container-wrapper {
+  overflow: hidden;
   position: absolute;
   top: 0;
   /*padding-bottom: 75%;*/
@@ -256,6 +259,13 @@ nav {
     z-index: 52;
     left: 0;
     bottom: 1px; }
+
+#subtitles {
+  text-align: center;
+  margin: auto;
+  font-weight: 600;
+  font-size: 1.6em;
+  display: block; }
 
 .users {
   float: right;
@@ -486,7 +496,6 @@ a:hover {
   padding: 20px;
   text-align: left;
   min-height: 100px;
-  margin-bottom: 20px;
   border-radius: 5px; }
 
 #start_button {

@@ -148,7 +148,7 @@ class ChatApp extends Component {
 			language: this.props.userLanguage,
 			id: 1
 		});
-		
+
 		this.props.addToMessages(message.text)
 	}
 
@@ -158,44 +158,44 @@ class ChatApp extends Component {
 		let userLanguage = this.props.userLanguage
 		let text = messageObject && messageObject.text
 
-		if (originalLanguage === userLanguage) { 
+		if (originalLanguage === userLanguage) {
 			this.props.addToMessages(text)
 		} else {
 			this.props.translateActionCreator(id, originalLanguage, userLanguage, text)
 		}
 
-		
+
 	}
 
 // ************************************************************
-	
+
 	render() {
-		
+
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
 
-		let userFullLanguage = languages.filter( (lang) => { 
+		let userFullLanguage = languages.filter( (lang) => {
 								   return userLanguage === lang[1][0].split('-')[0]
 								 })[0][0]
-console.log(finalTranscripts);
 		return (
 			<div id="chatbox-body" className="container">
-				<h2>Live Translation</h2>
+				<h2>Video Chat</h2>
 
 				<div className="col-sm-6">
-					<h3 className="text-center">Video Chat</h3>
 					<div>
 						<VideoChat />
+						<ul id="subtitles" className="lingo-blue breadcrumb"><li>{interimTranscript}</li></ul>
 					</div>
-					<div>
-						<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
-					</div>
+
 
 				</div>
 
 				<div className="col-sm-6">
-					<h3 className="text-center">Conversation</h3>
+					<div>
+						<VoiceRecognitionContainer emitFinalTranscript={this.emitFinalTranscript} emitInterimTranscript={this.emitInterimTranscript} userLanguage={userLanguage} />
+					</div>
+					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 					<div id="conversation-container">
 						<ul>
 						{
@@ -205,11 +205,10 @@ console.log(finalTranscripts);
 										{transcript}
 									</li>
 								)
-							})
+							}).reverse()
 						}
 						</ul>
 					</div>
-					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 				</div>
 
 			</div>
@@ -224,11 +223,11 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
-	let userLanguage = state.user.selectedUser.primaryLanguage
+	let userLanguage = state.user.primaryUser.primaryLanguage
 	let finalTranscripts = state.speech.finalTranscripts
 	let interimTranscript = state.speech.interimTranscript
 
-	return { 
+	return {
 		translation,
 		userLanguage,
 		finalTranscripts,
@@ -239,13 +238,3 @@ const mapStateToProps = state => {
 // const mapDispatchToProps = dispatch => ({translateActionCreator})
 
 export default connect(mapStateToProps, {translateActionCreator, translateInterimActionCreator, translateFinalActionCreator, setInterimTranscript, addFinalTranscript})(ChatApp);
-
-
-
-
-
-
-
-
-
-
