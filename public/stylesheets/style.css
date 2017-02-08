@@ -286,6 +286,13 @@ nav {
   color: black;
   list-style: none; }
 
+.users li:hover {
+  font-size: 200%;
+  cursor: pointer; }
+
+.users img {
+  margin-right: 20px; }
+
 .messages {
   width: 100%;
   /*margin: 1em;*/

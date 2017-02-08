@@ -54327,7 +54327,7 @@
 	              _react2.default.createElement('span', { className: 'icon-bar' })
 	            ),
 	            _react2.default.createElement(
-	              'a',
+	              _reactRouter.Link,
 	              { className: 'navbar-brand', href: '/' },
 	              'Auto',
 	              _react2.default.createElement(
