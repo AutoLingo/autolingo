@@ -178,7 +178,6 @@ class ChatApp extends Component {
 		let userFullLanguage = languages.filter( (lang) => {
 								   return userLanguage === lang[1][0].split('-')[0]
 								 })[0][0]
-console.log(finalTranscripts);
 		return (
 			<div id="chatbox-body" className="container">
 				<h2>Video Chat</h2>
