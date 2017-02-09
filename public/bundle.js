@@ -78,19 +78,11 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-<<<<<<< HEAD
 	var _ChatAppGroup = __webpack_require__(754);
 	
 	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
 	var _ChatAppVideo = __webpack_require__(746);
-=======
-	var _ChatAppGroup = __webpack_require__(753);
-	
-	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
-	
-	var _ChatAppVideo = __webpack_require__(745);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
@@ -98,11 +90,7 @@
 	
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 	
-<<<<<<< HEAD
 	var _CountryTransition = __webpack_require__(755);
-=======
-	var _CountryTransition = __webpack_require__(754);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _CountryTransition2 = _interopRequireDefault(_CountryTransition);
 	
@@ -28420,10 +28408,7 @@
 	      user: action.user,
 	      text: translatedText,
 	      language: action.userLanguage,
-<<<<<<< HEAD
-=======
 	      originalLanguage: action.originalLanguage,
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	      id: action.id
 	    };
 	    console.log('translatedMsg', translatedMsg);
@@ -38287,10 +38272,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
-<<<<<<< HEAD
 	var isFunction_1 = __webpack_require__(273);
-=======
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var Observable_1 = __webpack_require__(269);
 	var Subscription_1 = __webpack_require__(274);
 	/**
@@ -71928,11 +71910,7 @@
 					"spec": ">=3.0.1 <4.0.0",
 					"type": "range"
 				},
-<<<<<<< HEAD
 				"/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo"
-=======
-				"/Users/Adam/Development/Fullstack/Capstone/autolingo"
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 			]
 		],
 		"_from": "mapbox.js@>=3.0.1 <4.0.0",
@@ -71967,11 +71945,7 @@
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
 		"_spec": "mapbox.js@^3.0.1",
-<<<<<<< HEAD
 		"_where": "/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo",
-=======
-		"_where": "/Users/Adam/Development/Fullstack/Capstone/autolingo",
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 		"author": {
 			"name": "Mapbox"
 		},
@@ -79748,11 +79722,7 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-<<<<<<< HEAD
 	var _ChatAppVideo = __webpack_require__(746);
-=======
-	var _ChatAppVideo = __webpack_require__(745);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -82906,7 +82876,6 @@
 	
 	var eio = __webpack_require__(711);
 	var Socket = __webpack_require__(740);
-<<<<<<< HEAD
 	var Emitter = __webpack_require__(741);
 	var parser = __webpack_require__(700);
 	var on = __webpack_require__(743);
@@ -82914,15 +82883,6 @@
 	var debug = __webpack_require__(697)('socket.io-client:manager');
 	var indexOf = __webpack_require__(738);
 	var Backoff = __webpack_require__(745);
-=======
-	var Emitter = __webpack_require__(729);
-	var parser = __webpack_require__(700);
-	var on = __webpack_require__(742);
-	var bind = __webpack_require__(743);
-	var debug = __webpack_require__(697)('socket.io-client:manager');
-	var indexOf = __webpack_require__(738);
-	var Backoff = __webpack_require__(744);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	/**
 	 * IE6+ hasOwnProperty
@@ -87699,17 +87659,10 @@
 	 */
 	
 	var parser = __webpack_require__(700);
-<<<<<<< HEAD
 	var Emitter = __webpack_require__(741);
 	var toArray = __webpack_require__(742);
 	var on = __webpack_require__(743);
 	var bind = __webpack_require__(744);
-=======
-	var Emitter = __webpack_require__(729);
-	var toArray = __webpack_require__(741);
-	var on = __webpack_require__(742);
-	var bind = __webpack_require__(743);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var debug = __webpack_require__(697)('socket.io-client:socket');
 	var hasBin = __webpack_require__(722);
 	
@@ -88123,7 +88076,6 @@
 
 /***/ },
 /* 741 */
-<<<<<<< HEAD
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -88293,8 +88245,6 @@
 
 /***/ },
 /* 742 */
-=======
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -88313,11 +88263,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
 /* 743 */
-=======
-/* 742 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	
@@ -88347,11 +88293,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
 /* 744 */
-=======
-/* 743 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	/**
@@ -88380,11 +88322,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
 /* 745 */
-=======
-/* 744 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	
@@ -88475,11 +88413,7 @@
 
 
 /***/ },
-<<<<<<< HEAD
 /* 746 */
-=======
-/* 745 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88499,7 +88433,6 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-<<<<<<< HEAD
 	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
@@ -88517,25 +88450,6 @@
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
 	var _VoiceRecognitionContainer = __webpack_require__(752);
-=======
-	var _UserList = __webpack_require__(746);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(747);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(749);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(750);
-	
-	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
-	
-	var _VoiceRecognitionContainer = __webpack_require__(751);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
 	
@@ -88875,11 +88789,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ },
-<<<<<<< HEAD
 /* 747 */
-=======
-/* 746 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -88926,11 +88836,7 @@
 	exports.default = UsersList;
 
 /***/ },
-<<<<<<< HEAD
 /* 748 */
-=======
-/* 747 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88943,11 +88849,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
 	var _Message = __webpack_require__(749);
-=======
-	var _Message = __webpack_require__(748);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -89002,11 +88904,7 @@
 	exports.default = MessageList;
 
 /***/ },
-<<<<<<< HEAD
 /* 749 */
-=======
-/* 748 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -89046,11 +88944,7 @@
 	exports.default = Message;
 
 /***/ },
-<<<<<<< HEAD
 /* 750 */
-=======
-/* 749 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89147,11 +89041,7 @@
 	exports.default = MessageForm;
 
 /***/ },
-<<<<<<< HEAD
 /* 751 */
-=======
-/* 750 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89213,11 +89103,7 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-<<<<<<< HEAD
 /* 752 */
-=======
-/* 751 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89232,11 +89118,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-<<<<<<< HEAD
 	var _VoiceRecognition = __webpack_require__(753);
-=======
-	var _VoiceRecognition = __webpack_require__(752);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
 	
@@ -89418,11 +89300,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
 
 /***/ },
-<<<<<<< HEAD
 /* 753 */
-=======
-/* 752 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89563,11 +89441,7 @@
 	exports.default = VoiceRecognition;
 
 /***/ },
-<<<<<<< HEAD
 /* 754 */
-=======
-/* 753 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89586,7 +89460,6 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-<<<<<<< HEAD
 	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
@@ -89600,34 +89473,14 @@
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
 	var _ChangeNameForm = __webpack_require__(751);
-=======
-	var _UserList = __webpack_require__(746);
-	
-	var _UserList2 = _interopRequireDefault(_UserList);
-	
-	var _MessageList = __webpack_require__(747);
-	
-	var _MessageList2 = _interopRequireDefault(_MessageList);
-	
-	var _MessageForm = __webpack_require__(749);
-	
-	var _MessageForm2 = _interopRequireDefault(_MessageForm);
-	
-	var _ChangeNameForm = __webpack_require__(750);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
 	var _groupMessage = __webpack_require__(609);
-<<<<<<< HEAD
 	
 	var _translate = __webpack_require__(263);
 	
 	var _user = __webpack_require__(613);
-=======
-	
-	var _translate = __webpack_require__(263);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _reactRedux = __webpack_require__(233);
 	
@@ -89864,11 +89717,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
 
 /***/ },
-<<<<<<< HEAD
 /* 755 */
-=======
-/* 754 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89885,11 +89734,7 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
-<<<<<<< HEAD
 	var _reactAddonsCssTransitionGroup = __webpack_require__(756);
-=======
-	var _reactAddonsCssTransitionGroup = __webpack_require__(755);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
@@ -89950,7 +89795,6 @@
 	exports.default = CountryTransition;
 
 /***/ },
-<<<<<<< HEAD
 /* 756 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -89958,15 +89802,6 @@
 
 /***/ },
 /* 757 */
-=======
-/* 755 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(756);
-
-/***/ },
-/* 756 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89991,13 +89826,8 @@
 	
 	var React = __webpack_require__(2);
 	
-<<<<<<< HEAD
 	var ReactTransitionGroup = __webpack_require__(758);
 	var ReactCSSTransitionGroupChild = __webpack_require__(761);
-=======
-	var ReactTransitionGroup = __webpack_require__(757);
-	var ReactCSSTransitionGroupChild = __webpack_require__(760);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -90080,11 +89910,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-<<<<<<< HEAD
 /* 758 */
-=======
-/* 757 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -90108,11 +89934,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var React = __webpack_require__(2);
-<<<<<<< HEAD
 	var ReactTransitionChildMapping = __webpack_require__(759);
-=======
-	var ReactTransitionChildMapping = __webpack_require__(758);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var emptyFunction = __webpack_require__(12);
 	
@@ -90321,11 +90143,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-<<<<<<< HEAD
 /* 759 */
-=======
-/* 758 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90340,11 +90158,7 @@
 	
 	'use strict';
 	
-<<<<<<< HEAD
 	var flattenChildren = __webpack_require__(760);
-=======
-	var flattenChildren = __webpack_require__(759);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var ReactTransitionChildMapping = {
 	  /**
@@ -90437,11 +90251,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 760 */
-=======
-/* 759 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90522,11 +90332,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 761 */
-=======
-/* 760 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -90542,17 +90348,10 @@
 	'use strict';
 	
 	var React = __webpack_require__(2);
-<<<<<<< HEAD
 	var ReactAddonsDOMDependencies = __webpack_require__(762);
 	
 	var CSSCore = __webpack_require__(767);
 	var ReactTransitionEvents = __webpack_require__(768);
-=======
-	var ReactAddonsDOMDependencies = __webpack_require__(761);
-	
-	var CSSCore = __webpack_require__(766);
-	var ReactTransitionEvents = __webpack_require__(767);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var onlyChild = __webpack_require__(31);
 	
@@ -90704,11 +90503,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-<<<<<<< HEAD
 /* 762 */
-=======
-/* 761 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90735,22 +90530,14 @@
 	
 	  exports.getReactPerf = function () {
 	    if (!ReactPerf) {
-<<<<<<< HEAD
 	      ReactPerf = __webpack_require__(763);
-=======
-	      ReactPerf = __webpack_require__(762);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	    }
 	    return ReactPerf;
 	  };
 	
 	  exports.getReactTestUtils = function () {
 	    if (!ReactTestUtils) {
-<<<<<<< HEAD
 	      ReactTestUtils = __webpack_require__(764);
-=======
-	      ReactTestUtils = __webpack_require__(763);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	    }
 	    return ReactTestUtils;
 	  };
@@ -90758,11 +90545,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 763 */
-=======
-/* 762 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91268,11 +91051,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 764 */
-=======
-/* 763 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91290,11 +91069,7 @@
 	var _prodInvariant = __webpack_require__(90),
 	    _assign = __webpack_require__(4);
 	
-<<<<<<< HEAD
 	var EventConstants = __webpack_require__(765);
-=======
-	var EventConstants = __webpack_require__(764);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var EventPluginHub = __webpack_require__(97);
 	var EventPluginRegistry = __webpack_require__(98);
 	var EventPropagators = __webpack_require__(96);
@@ -91305,11 +91080,7 @@
 	var ReactInstanceMap = __webpack_require__(171);
 	var ReactUpdates = __webpack_require__(111);
 	var SyntheticEvent = __webpack_require__(108);
-<<<<<<< HEAD
 	var ReactShallowRenderer = __webpack_require__(766);
-=======
-	var ReactShallowRenderer = __webpack_require__(765);
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var findDOMNode = __webpack_require__(227);
 	var invariant = __webpack_require__(8);
@@ -91697,11 +91468,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 765 */
-=======
-/* 764 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	/**
@@ -91797,11 +91564,7 @@
 	module.exports = EventConstants;
 
 /***/ },
-<<<<<<< HEAD
 /* 766 */
-=======
-/* 765 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91941,11 +91704,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 767 */
-=======
-/* 766 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -92072,11 +91831,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-<<<<<<< HEAD
 /* 768 */
-=======
-/* 767 */
->>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
