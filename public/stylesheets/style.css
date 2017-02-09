@@ -55,7 +55,8 @@ nav {
   position: absolute;
   right: 5vw;
   bottom: 12vh;
-  z-index: 99; }
+  z-index: 99;
+  line-height: 15px; }
 
 #fit-america:hover {
   -webkit-transform: scale(1.3);
@@ -64,8 +65,7 @@ nav {
 
 #fit-america {
   display: inline-block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -82,8 +82,7 @@ nav {
 
 #fit-spain {
   display: block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -100,8 +99,7 @@ nav {
 
 #fit-china {
   display: block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -118,8 +116,7 @@ nav {
 
 #fit-france {
   display: block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -136,8 +133,7 @@ nav {
 
 #fit-korea {
   display: block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -154,8 +150,7 @@ nav {
 
 #zoomout {
   display: block;
-  /*margin: 0px auto;*/
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -243,7 +238,6 @@ nav {
   overflow: hidden;
   position: absolute;
   top: 0;
-  /*padding-bottom: 75%;*/
   width: 100%; }
 
 #videos-container {
@@ -269,9 +263,7 @@ nav {
 
 .users {
   float: right;
-  /*margin-right: 50px;*/
   border: 3px solid black;
-  /*margin-top: 14px;*/
   width: 100%;
   height: 50vh; }
 
@@ -295,10 +287,8 @@ nav {
 
 .messages {
   width: 100%;
-  /*margin: 1em;*/
   border: 5px solid black;
   padding: 1em;
-  /*margin-left: 80px;*/
   height: 50vh;
   overflow: scroll;
   background-color: #F0F8FF; }
@@ -306,21 +296,17 @@ nav {
 .messages h2 {
   margin-top: -5px;
   font-size: 25px;
-  display: block;
-  /*margin-right: 49vw;*/ }
+  display: block; }
 
 .message {
   font-size: 20px;
   color: black; }
 
 .change_name_form {
-  /*margin-top: 0px;*/
-  width: 100%;
-  /*margin-left: -8px;*/ }
+  width: 100%; }
 
 .message_form {
-  width: 100%;
-  /*margin-left: 80px;*/ }
+  width: 100%; }
 
 .message_form input {
   font-size: 20px;
@@ -529,14 +515,12 @@ a:hover {
 
 .countryTransitionMsg {
   position: absolute;
-  top: 50vh;
-  left: 40vw;
+  top: 40%;
+  left: 32%;
   z-index: 99; }
 
 .countryTransitionMsg h1 {
-  color: #1E90FF;
-  font-weight: bold;
-  font-family: Helvetica;
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); }
+  color: #0082e6;
+  font-family: 'Lato', sans-serif; }
 
 /***************************** end of country transition *********************/

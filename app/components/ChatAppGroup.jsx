@@ -60,7 +60,8 @@ class ChatAppGroup extends React.Component {
 			const id = 1;
 			const originalLanguage = message.language;
 			const originalText = message.text;
-			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText))
+			const user = message.user
+			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText, user))
 		}
 	}
 
