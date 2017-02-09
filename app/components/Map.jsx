@@ -32,11 +32,11 @@ export default class Map extends Component {
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
 
-    map.dragging.enable();
+    map.dragging.disable();
     map.touchZoom.disable();
     map.doubleClickZoom.disable();
-    map.scrollWheelZoom.enable();
-    map.zoomControl.enable();
+    map.scrollWheelZoom.disable();
+    map.zoomControl.remove();
 
     geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {
@@ -69,12 +69,12 @@ export default class Map extends Component {
     //Don't erase this function, we might need this for future modification
     // var popup = L.popup();
 
-    function onMapClick(e) {
-      var features = map.queryRenderedFeatures(e.point, { layers: ['symbols'] });
-      console.log('features: ', features);
-    //    
-    
-    }
+    // function onMapClick(e) {
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("You clicked the map at " + e.latlng.toString())
+    //         .openOn(map);
+    // }
 
     //Need to change below click event when refactoring into react component
     // map.on('click', onMapClick);
@@ -172,7 +172,7 @@ export default class Map extends Component {
       this.map.dragging.enable();
       this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
 
-      if (country.name === 'globe') {
+      if (country.name === 'Globe') {
         //then put them back to right coordinates
         this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(this.map);
         this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(this.map);
@@ -182,7 +182,7 @@ export default class Map extends Component {
 
       }
 
-      if(country.name=== 'america' || country.name==="china" || country.name==="spain" || country.name==="france" || country.name==="korea") {
+      if(country.name=== 'USA' || country.name==="China" || country.name==="Spain" || country.name==="France" || country.name==="Korea") {
         this.map.removeLayer(this.usaMarker)
         this.map.removeLayer(this.spainMarker)
         this.map.removeLayer(this.chinaMarker)
