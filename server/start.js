@@ -12,55 +12,59 @@ const chalk = require('chalk');
 let IO = null;
   var names = {};
 
-function getAllRoomMembers(room, namespace, io) {
-        const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
+// function getAllRoomMembers(room, namespace, io) {
+//         const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
         
-        const sockets = socketIds.map(id => {
-          const idSplit = id.split('#')[1]
-          return io.sockets.connected[idSplit];
-        })
-          return sockets;
-  }
+//         const sockets = socketIds.map(id => {
+//           const idSplit = id.split('#')[1]
+//           return io.sockets.connected[idSplit];
+//         })
+//           return sockets;
+//   }
 
 var userNames = (function() {
 
   //check if the given name exists in the names object
-  var claim = function(name) {
-    if(!name || names[name]) {
+  var claim = function(name, room) {
+    if(!name || names[room] && names[room][name]) {
       return false;
     } else {
-    names[name] = true;
+    console.log('names', names)
+    console.log('room', room)
+    console.log('name', name)
+    
+    names[room][name] = true;
       return true;
     }
   }
 
   //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
   //The number will only increase if the guest username does not already exist in the names object.
-  var getGuestName = function() {
+  var getGuestName = function(room) {
    var name,
      nextUserId = 1;
 
      do {
        name = 'Guest ' + nextUserId;
        nextUserId += 1;
-     } while (!claim(name));
+     } while (!claim(name, room));
 
      return name
  }
 
   //serialize claimed names as an array
-  var get = function() {
+  var get = function(room) {
     var res = [];
-    for(let user in names) {
+    for(let user in names[room]) {
       res.push(user)
     }
     
     return res;
   }
 
-  var free = function (name) {
-    if (names[name]) {
-      delete names[name];
+  var free = function (name, room) {
+    if (names[room] && names[room][name]) {
+      delete names[room][name];
     }
   }
 
@@ -157,16 +161,21 @@ function socketInit (server) {
 
 //**********GROUP CHAT ************
   groupChat.on('connection', function(socket) {
-    var name = userNames.getGuestName();
-    socket.name = name
 
     socket.on('join_room', function(data) {
+      console.log('data', data)
+      if (!names[data.room]) {
+        names[data.room] = {};
+      }
+
+      let name = userNames.getGuestName(data.room);
+      socket.name = name;
       socket.currentRoom = data.room
       socket.join(data.room)
 
       groupChat.to(data.room).emit('init', {
           name: name,
-          users: userNames.get()
+          users: userNames.get(data.room)
         });
       // const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
       socket.to(data.room).broadcast.emit('user:join', {
@@ -175,8 +184,8 @@ function socketInit (server) {
     })
 
     socket.on('send:message', function(data) {
-      socket.broadcast.emit('send:message', {
-        user: name,
+      groupChat.to(data.room).emit('send:message', {
+        user: socket.name,
         text: data.text,
         language: data.language,
         id: data.id
@@ -185,16 +194,18 @@ function socketInit (server) {
 
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
-      if(userNames.claim(data.name)) {
-        var oldName = name;
-        userNames.free(oldName);
+      console.log(socket.currentRoom)
+      if(userNames.claim(data.name, socket.currentRoom)) {
 
-        name = data.name;
-        socket.name = name;
+        var oldName = socket.name;
+        userNames.free(oldName, socket.currentRoom);
+
+        let newName = data.name;
+        socket.name = newName;
 
         socket.broadcast.to(socket.currentRoom).emit('change:name', {
-          oldName: oldName,
-          newName: name
+          oldName,
+          newName
         });
 
         fn(true)
@@ -203,11 +214,22 @@ function socketInit (server) {
       }
     });
 
-    socket.on('disconnect', function(){
+    socket.on('room_exit', function() {
+      console.log(`${socket.name} is disconnecting`)
       groupChat.to(socket.currentRoom).emit('user:left', {
         name: socket.name
       })
-      userNames.free(socket.name);
+      userNames.free(socket.name, socket.currentRoom);
+        console.log('USERS LEFT IN ROOM: ', names);
+      })
+    
+    socket.on('disconnect', function(){
+        console.log(`${socket.name} is disconnecting`)
+      groupChat.to(socket.currentRoom).emit('user:left', {
+        name: socket.name
+      })
+      userNames.free(socket.name, socket.currentRoom);
+        console.log('USERS LEFT IN ROOM: ', names);
     })
 
   })
