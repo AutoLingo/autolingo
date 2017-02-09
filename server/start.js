@@ -278,37 +278,15 @@ console.log('SEND VIDEO INVITATION DATA', data)
       const userObject = userObjects.filter((userObject) => {
         return userObject[data.name]
       })[0]
-console.log('USEROBJECTS', userObjects)
-console.log('FILTERED USEROBJECT', userObject)
+        console.log('USEROBJECTS', userObjects)
+        console.log('FILTERED USEROBJECT', userObject)
 
       const userSocketId = userObject[data.name]
-console.log('SOCKETID', userSocketId);
+      console.log('SOCKETID', userSocketId);
 
-      // socket.broadcast.to(userSocketId).emit('video_invitation', {
-      //   link: data.link
-      // })
-
-      // socket.broadcast.to(userSocketId.split('#')[1]).emit('video_invitation', {
-      //   link: data.link
-      // })
-
-      // groupChat.broadcast.to(userSocketId.split('#')[1]).emit('video_invitation', {
-      //   link: data.link
-      // })
-
-      // groupChat.to(userSocketId.split('#')[1]).emit('video_invitation', {
-      //   link: data.link
-      // })
-
-      IO.to(userSocketId).emit('video_invitation', {
+      groupChat.to(userSocketId).emit('video_invitation', {
         link: data.link
       })
-
-      IO.to(userSocketId.split('#')[1]).emit('video_invitation', {
-        link: data.link
-      })
-
-
     })
 
     socket.on('interim_transcript', function(data) {

@@ -8,7 +8,7 @@ import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupU
 import { translateActionCreator } from '../reducers/translate';
 import { setSelectedUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 let socket = io.connect('/group-chat');
 
@@ -31,6 +31,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentDidMount() {
+		console.log('groupchat id', socket)
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -132,10 +133,10 @@ class ChatAppGroup extends React.Component {
 
 	showInvitation(data) {
 		// alert('INVITATION')
-console.log('INVITATION', data)
+		console.log('INVITATION', data)
 		var invitationMessage = {
 			user: "LingoBot",
-			text: data.link
+			text: <Link to={data.link}> Click here to accept video chat invitation </Link> 
 		};
 		this.dispatch(addGroupMessage(invitationMessage))
 	}
