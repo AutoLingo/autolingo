@@ -78,11 +78,19 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
+<<<<<<< HEAD
 	var _ChatAppGroup = __webpack_require__(754);
 	
 	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
 	var _ChatAppVideo = __webpack_require__(746);
+=======
+	var _ChatAppGroup = __webpack_require__(753);
+	
+	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
+	
+	var _ChatAppVideo = __webpack_require__(745);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
@@ -90,7 +98,11 @@
 	
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 	
+<<<<<<< HEAD
 	var _CountryTransition = __webpack_require__(755);
+=======
+	var _CountryTransition = __webpack_require__(754);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _CountryTransition2 = _interopRequireDefault(_CountryTransition);
 	
@@ -28341,13 +28353,14 @@
 	
 	// Action creators
 	// Fed into the googleTranslateEpic
-	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, originalLanguage, userLanguage, originalText) {
+	var translateActionCreator = exports.translateActionCreator = function translateActionCreator(id, originalLanguage, userLanguage, originalText, user) {
 	  return {
 	    type: TRANSLATE,
 	    id: id,
 	    originalLanguage: originalLanguage,
 	    userLanguage: userLanguage,
-	    originalText: originalText
+	    originalText: originalText,
+	    user: user
 	  };
 	};
 	var translateInterimActionCreator = exports.translateInterimActionCreator = function translateInterimActionCreator(id, originalLanguage, userLanguage, originalText) {
@@ -28402,12 +28415,18 @@
 	    var singleTranslation = combineArray[0];
 	    var translatedText = singleTranslation.response ? singleTranslation.response.data.translations[0].translatedText : singleTranslation;
 	    console.log('ACTION', action);
+	
 	    var translatedMsg = {
 	      user: action.user,
 	      text: translatedText,
 	      language: action.userLanguage,
+<<<<<<< HEAD
+=======
+	      originalLanguage: action.originalLanguage,
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	      id: action.id
 	    };
+	    console.log('translatedMsg', translatedMsg);
 	    return (0, _groupMessage.addGroupMessage)(translatedMsg);
 	  });
 	};
@@ -38268,7 +38287,10 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+<<<<<<< HEAD
 	var isFunction_1 = __webpack_require__(273);
+=======
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var Observable_1 = __webpack_require__(269);
 	var Subscription_1 = __webpack_require__(274);
 	/**
@@ -54518,8 +54540,8 @@
 	              _react2.default.createElement('span', { className: 'icon-bar' })
 	            ),
 	            _react2.default.createElement(
-	              'a',
-	              { className: 'navbar-brand', href: '/' },
+	              _reactRouter.Link,
+	              { to: '/', className: 'navbar-brand' },
 	              'Auto',
 	              _react2.default.createElement(
 	                'span',
@@ -54550,6 +54572,7 @@
 	                    if (language.length > 2) {
 	                      //if there is more than 1 dialect
 	                      var dialects = language.slice(1, language.length); //we don't want to iterate over the main language
+	
 	                      return _react2.default.createElement(
 	                        'li',
 	                        { key: language, className: 'dropdown-submenu' },
@@ -54573,7 +54596,7 @@
 	                              _react2.default.createElement(
 	                                'a',
 	                                { onClick: function onClick() {
-	                                    _this2.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]);
+	                                    dialect[0].split('-')[0] !== 'zh' ? _this2.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]) : _this2.props.setUserLanguage(dialect[0], dialect[0]);
 	                                  }, 'data-langcode': dialect[0], tabIndex: '0' },
 	                                dialect[1]
 	                              )
@@ -57729,7 +57752,21 @@
 	Object.defineProperty(exports, "__esModule", {
 	                    value: true
 	});
-	var languages = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']], ['Català', ['ca-ES']], ['Čeština', ['cs-CZ']], ['Dansk', ['da-DK']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']], ['Filipino', ['fil-PH']], ['Français', ['fr-FR']], ['Galego', ['gl-ES']], ['Hrvatski', ['hr_HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Lietuvių', ['lt-LT']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']], ['Norsk bokmål', ['nb-NO']], ['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenščina', ['sl-SI']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Tiếng Việt', ['vi-VN']], ['Türkçe', ['tr-TR']], ['Ελληνικά', ['el-GR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['Українська', ['uk-UA']], ['한국어', ['ko-KR']], ['中文', ['cmn-Hans-CN', '普通话 (中国大陆)'], ['cmn-Hans-HK', '普通话 (香港)'], ['cmn-Hant-TW', '中文 (台灣)'], ['yue-Hant-HK', '粵語 (香港)']], ['日本語', ['ja-JP']], ['हिन्दी', ['hi-IN']], ['ภาษาไทย', ['th-TH']]];
+	var languages = [['Afrikaans', ['af-ZA']], ['Bahasa Indonesia', ['id-ID']], ['Bahasa Melayu', ['ms-MY']],
+	// ['Català',          ['ca-ES']],
+	['Čeština', ['cs-CZ']], ['Dansk', ['da-DK']], ['Deutsch', ['de-DE']], ['English', ['en-AU', 'Australia'], ['en-CA', 'Canada'], ['en-IN', 'India'], ['en-NZ', 'New Zealand'], ['en-ZA', 'South Africa'], ['en-GB', 'United Kingdom'], ['en-US', 'United States']], ['Español', ['es-AR', 'Argentina'], ['es-BO', 'Bolivia'], ['es-CL', 'Chile'], ['es-CO', 'Colombia'], ['es-CR', 'Costa Rica'], ['es-EC', 'Ecuador'], ['es-SV', 'El Salvador'], ['es-ES', 'España'], ['es-US', 'Estados Unidos'], ['es-GT', 'Guatemala'], ['es-HN', 'Honduras'], ['es-MX', 'México'], ['es-NI', 'Nicaragua'], ['es-PA', 'Panamá'], ['es-PY', 'Paraguay'], ['es-PE', 'Perú'], ['es-PR', 'Puerto Rico'], ['es-DO', 'República Dominicana'], ['es-UY', 'Uruguay'], ['es-VE', 'Venezuela']], ['Euskara', ['eu-ES']],
+	// ['Filipino',        ['fil-PH']],
+	['Filipino', ['tl']], ['Français', ['fr-FR']],
+	// ['Galego',          ['gl-ES']],
+	// ['Hrvatski',        ['hr_HR']],
+	['Hrvatski', ['hr-HR']], ['IsiZulu', ['zu-ZA']], ['Íslenska', ['is-IS']], ['Italiano', ['it-IT', 'Italia'], ['it-CH', 'Svizzera']], ['Lietuvių', ['lt-LT']], ['Magyar', ['hu-HU']], ['Nederlands', ['nl-NL']],
+	// ['Norsk bokmål',    ['nb-NO']],
+	['Polski', ['pl-PL']], ['Português', ['pt-BR', 'Brasil'], ['pt-PT', 'Portugal']], ['Română', ['ro-RO']], ['Slovenščina', ['sl-SI']], ['Slovenčina', ['sk-SK']], ['Suomi', ['fi-FI']], ['Svenska', ['sv-SE']], ['Tiếng Việt', ['vi-VN']], ['Türkçe', ['tr-TR']], ['Ελληνικά', ['el-GR']], ['български', ['bg-BG']], ['Pусский', ['ru-RU']], ['Српски', ['sr-RS']], ['Українська', ['uk-UA']], ['한국어', ['ko-KR']],
+	// ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],
+	//                     ['cmn-Hans-HK', '普通话 (香港)'],
+	//                     ['cmn-Hant-TW', '中文 (台灣)'],
+	//                     ['yue-Hant-HK', '粵語 (香港)']],
+	['中文', ['zh-CN', '普通话 (中国大陆)'], ['zh-TW', '中文 (台灣)']], ['日本語', ['ja-JP']], ['हिन्दी', ['hi-IN']], ['ภาษาไทย', ['th-TH']]];
 	
 	exports.default = languages;
 
@@ -57754,12 +57791,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function mapStateToProps(state, ownProps) {
-	  var america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
-	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
-	  var spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
-	  var france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
-	  var korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
-	  var zoomOut = { name: 'globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 };
+	  var america = { name: 'USA', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
+	  var china = { name: 'China', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
+	  var spain = { name: 'Spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
+	  var france = { name: 'France', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
+	  var korea = { name: 'Korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
+	  var zoomOut = { name: 'Globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 };
 	
 	  function findCountry(bounds) {
 	    var country = {};
@@ -57976,6 +58013,7 @@
 	  }, {
 	    key: 'countriesOnEachFeature',
 	    value: function countriesOnEachFeature(feature, layer) {
+	
 	      layer.on({
 	        mouseover: this.highlightFeature,
 	        mouseout: this.resetHighlight,
@@ -58012,7 +58050,7 @@
 	      this.map.dragging.enable();
 	      this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
 	
-	      if (country.name === 'globe') {
+	      if (country.name === 'Globe') {
 	        //then put them back to right coordinates
 	        this.usaMarker = _mapbox2.default.marker([45.6981, -104.36035], { icon: this.usaIcon }).addTo(this.map);
 	        this.chinaMarker = _mapbox2.default.marker([42.23727, 98.84277], { icon: this.chinaIcon }).addTo(this.map);
@@ -58021,7 +58059,7 @@
 	        this.koreaMarker = _mapbox2.default.marker([45.07518, 122.11494], { icon: this.koreaIcon }).addTo(this.map);
 	      }
 	
-	      if (country.name === 'america' || country.name === "china" || country.name === "spain" || country.name === "france" || country.name === "korea") {
+	      if (country.name === 'USA' || country.name === "China" || country.name === "Spain" || country.name === "France" || country.name === "Korea") {
 	        this.map.removeLayer(this.usaMarker);
 	        this.map.removeLayer(this.spainMarker);
 	        this.map.removeLayer(this.chinaMarker);
@@ -71890,7 +71928,11 @@
 					"spec": ">=3.0.1 <4.0.0",
 					"type": "range"
 				},
+<<<<<<< HEAD
 				"/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo"
+=======
+				"/Users/Adam/Development/Fullstack/Capstone/autolingo"
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 			]
 		],
 		"_from": "mapbox.js@>=3.0.1 <4.0.0",
@@ -71925,7 +71967,11 @@
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
 		"_spec": "mapbox.js@^3.0.1",
+<<<<<<< HEAD
 		"_where": "/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo",
+=======
+		"_where": "/Users/Adam/Development/Fullstack/Capstone/autolingo",
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 		"author": {
 			"name": "Mapbox"
 		},
@@ -79702,7 +79748,11 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
+<<<<<<< HEAD
 	var _ChatAppVideo = __webpack_require__(746);
+=======
+	var _ChatAppVideo = __webpack_require__(745);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -82856,6 +82906,7 @@
 	
 	var eio = __webpack_require__(711);
 	var Socket = __webpack_require__(740);
+<<<<<<< HEAD
 	var Emitter = __webpack_require__(741);
 	var parser = __webpack_require__(700);
 	var on = __webpack_require__(743);
@@ -82863,6 +82914,15 @@
 	var debug = __webpack_require__(697)('socket.io-client:manager');
 	var indexOf = __webpack_require__(738);
 	var Backoff = __webpack_require__(745);
+=======
+	var Emitter = __webpack_require__(729);
+	var parser = __webpack_require__(700);
+	var on = __webpack_require__(742);
+	var bind = __webpack_require__(743);
+	var debug = __webpack_require__(697)('socket.io-client:manager');
+	var indexOf = __webpack_require__(738);
+	var Backoff = __webpack_require__(744);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	/**
 	 * IE6+ hasOwnProperty
@@ -87639,10 +87699,17 @@
 	 */
 	
 	var parser = __webpack_require__(700);
+<<<<<<< HEAD
 	var Emitter = __webpack_require__(741);
 	var toArray = __webpack_require__(742);
 	var on = __webpack_require__(743);
 	var bind = __webpack_require__(744);
+=======
+	var Emitter = __webpack_require__(729);
+	var toArray = __webpack_require__(741);
+	var on = __webpack_require__(742);
+	var bind = __webpack_require__(743);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var debug = __webpack_require__(697)('socket.io-client:socket');
 	var hasBin = __webpack_require__(722);
 	
@@ -88056,6 +88123,7 @@
 
 /***/ },
 /* 741 */
+<<<<<<< HEAD
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -88225,6 +88293,8 @@
 
 /***/ },
 /* 742 */
+=======
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -88243,7 +88313,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 743 */
+=======
+/* 742 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	
@@ -88273,7 +88347,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 744 */
+=======
+/* 743 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	/**
@@ -88302,7 +88380,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 745 */
+=======
+/* 744 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	
@@ -88393,7 +88475,11 @@
 
 
 /***/ },
+<<<<<<< HEAD
 /* 746 */
+=======
+/* 745 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88413,6 +88499,7 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
+<<<<<<< HEAD
 	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
@@ -88430,6 +88517,25 @@
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
 	var _VoiceRecognitionContainer = __webpack_require__(752);
+=======
+	var _UserList = __webpack_require__(746);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(747);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(749);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(750);
+	
+	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
+	
+	var _VoiceRecognitionContainer = __webpack_require__(751);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
 	
@@ -88475,6 +88581,7 @@
 			_this.interimTranscript = _this.interimTranscript.bind(_this);
 			_this.finalTranscript = _this.finalTranscript.bind(_this);
 			_this.joinVideo = _this.joinVideo.bind(_this);
+			_this.htmlDecode = _this.htmlDecode.bind(_this);
 			return _this;
 		}
 	
@@ -88645,20 +88752,35 @@
 					this.props.translateActionCreator(id, originalLanguage, userLanguage, text);
 				}
 			}
+		}, {
+			key: 'htmlDecode',
+			value: function htmlDecode(input) {
+				var e = document.createElement('div');
+				e.innerHTML = input;
+				return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+			}
 	
 			// ************************************************************
 	
 		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
 	
 				var finalTranscripts = this.props.finalTranscripts;
 				var interimTranscript = this.props.interimTranscript;
 				var userLanguage = this.props.userLanguage || 'nada';
 	
-				var userFullLanguage = _languages2.default.filter(function (lang) {
-					return userLanguage === lang[1][0].split('-')[0];
-				})[0][0];
+				var userFullLanguage = '';
+	
+				if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
+					userFullLanguage = '中文';
+				} else {
+					userFullLanguage = _languages2.default.filter(function (lang) {
+						return userLanguage === lang[1][0].split('-')[0];
+					})[0][0];
+				}
+	
 				return _react2.default.createElement(
 					'div',
 					{ id: 'chatbox-body', className: 'container' },
@@ -88680,7 +88802,7 @@
 								_react2.default.createElement(
 									'li',
 									null,
-									interimTranscript
+									this.htmlDecode(interimTranscript)
 								)
 							)
 						)
@@ -88718,7 +88840,7 @@
 									return _react2.default.createElement(
 										'li',
 										{ key: i },
-										transcript
+										_this2.htmlDecode(transcript)
 									);
 								}).reverse()
 							)
@@ -88753,7 +88875,11 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ },
+<<<<<<< HEAD
 /* 747 */
+=======
+/* 746 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -88800,7 +88926,11 @@
 	exports.default = UsersList;
 
 /***/ },
+<<<<<<< HEAD
 /* 748 */
+=======
+/* 747 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88813,7 +88943,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+<<<<<<< HEAD
 	var _Message = __webpack_require__(749);
+=======
+	var _Message = __webpack_require__(748);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -88868,7 +89002,11 @@
 	exports.default = MessageList;
 
 /***/ },
+<<<<<<< HEAD
 /* 749 */
+=======
+/* 748 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -88908,7 +89046,11 @@
 	exports.default = Message;
 
 /***/ },
+<<<<<<< HEAD
 /* 750 */
+=======
+/* 749 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89005,7 +89147,11 @@
 	exports.default = MessageForm;
 
 /***/ },
+<<<<<<< HEAD
 /* 751 */
+=======
+/* 750 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89067,7 +89213,11 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
+<<<<<<< HEAD
 /* 752 */
+=======
+/* 751 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89082,7 +89232,11 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+<<<<<<< HEAD
 	var _VoiceRecognition = __webpack_require__(753);
+=======
+	var _VoiceRecognition = __webpack_require__(752);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
 	
@@ -89264,7 +89418,11 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
 
 /***/ },
+<<<<<<< HEAD
 /* 753 */
+=======
+/* 752 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89405,7 +89563,11 @@
 	exports.default = VoiceRecognition;
 
 /***/ },
+<<<<<<< HEAD
 /* 754 */
+=======
+/* 753 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89424,6 +89586,7 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
+<<<<<<< HEAD
 	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
@@ -89437,14 +89600,34 @@
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
 	var _ChangeNameForm = __webpack_require__(751);
+=======
+	var _UserList = __webpack_require__(746);
+	
+	var _UserList2 = _interopRequireDefault(_UserList);
+	
+	var _MessageList = __webpack_require__(747);
+	
+	var _MessageList2 = _interopRequireDefault(_MessageList);
+	
+	var _MessageForm = __webpack_require__(749);
+	
+	var _MessageForm2 = _interopRequireDefault(_MessageForm);
+	
+	var _ChangeNameForm = __webpack_require__(750);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
 	var _groupMessage = __webpack_require__(609);
+<<<<<<< HEAD
 	
 	var _translate = __webpack_require__(263);
 	
 	var _user = __webpack_require__(613);
+=======
+	
+	var _translate = __webpack_require__(263);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _reactRedux = __webpack_require__(233);
 	
@@ -89458,7 +89641,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var socket = void 0;
+	var socket = _sockets2.default.connect('/group-chat');
 	
 	var ChatAppGroup = function (_React$Component) {
 		_inherits(ChatAppGroup, _React$Component);
@@ -89486,8 +89669,6 @@
 		_createClass(ChatAppGroup, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				socket = _sockets2.default.connect('/group-chat');
-	
 				socket.on('init', this._initialize);
 				socket.on('send:message', this._messageReceive);
 				socket.on('user:join', this._userJoined);
@@ -89495,6 +89676,12 @@
 				socket.on('change:name', this._userChangedName);
 				socket.on('disconnect', this._disconnectUser);
 				socket.emit('join_room', { room: this.props.selectedCountry });
+			}
+		}, {
+			key: 'componentWillUnmount',
+			value: function componentWillUnmount() {
+				console.log('COMPONENT IS UNMOUNTING');
+				socket.emit('room_exit');
 			}
 	
 			//set user with given name
@@ -89522,7 +89709,8 @@
 					var id = 1;
 					var originalLanguage = message.language;
 					var originalText = message.text;
-					this.dispatch((0, _translate.translateActionCreator)(id, originalLanguage, userLanguage, originalText));
+					var user = message.user;
+					this.dispatch((0, _translate.translateActionCreator)(id, originalLanguage, userLanguage, originalText, user));
 				}
 			}
 		}, {
@@ -89550,6 +89738,7 @@
 					user: 'LingoBot',
 					text: name + ' Left'
 				};
+				console.log(data.name + ' is about to be removed from state through dispatch');
 				this.dispatch((0, _groupMessage.addGroupMessage)(userLeftMsg));
 				this.dispatch((0, _groupMessage.removeGroupUser)(name));
 			}
@@ -89605,13 +89794,15 @@
 				var handleChangeName = this.handleChangeName;
 				var language = this.props.state.user.primaryUser.primaryLanguage;
 				var joinVideoChat = this.joinVideoChat;
+				var selectedCountry = this.props.selectedCountry;
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container', id: 'chatbox-body' },
 					_react2.default.createElement(
 						'h1',
 						null,
-						'Live Group Chat'
+						'Live Group Chat: ',
+						selectedCountry
 					),
 					_react2.default.createElement(
 						'div',
@@ -89661,7 +89852,7 @@
 	
 	function mapStateToProps(state, ownProps) {
 		var userLanguage = state.user.primaryUser.primaryLanguage;
-		var selectedCountry = state.user.primaryUser.country;
+		var selectedCountry = state.map.selectedCountry;
 		var userName = state.groupMessage.user;
 		return { state: state, userLanguage: userLanguage, selectedCountry: selectedCountry, userName: userName };
 	}
@@ -89673,7 +89864,11 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
 
 /***/ },
+<<<<<<< HEAD
 /* 755 */
+=======
+/* 754 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89690,7 +89885,11 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
+<<<<<<< HEAD
 	var _reactAddonsCssTransitionGroup = __webpack_require__(756);
+=======
+	var _reactAddonsCssTransitionGroup = __webpack_require__(755);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
@@ -89751,6 +89950,7 @@
 	exports.default = CountryTransition;
 
 /***/ },
+<<<<<<< HEAD
 /* 756 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -89758,6 +89958,15 @@
 
 /***/ },
 /* 757 */
+=======
+/* 755 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(756);
+
+/***/ },
+/* 756 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89782,8 +89991,13 @@
 	
 	var React = __webpack_require__(2);
 	
+<<<<<<< HEAD
 	var ReactTransitionGroup = __webpack_require__(758);
 	var ReactCSSTransitionGroupChild = __webpack_require__(761);
+=======
+	var ReactTransitionGroup = __webpack_require__(757);
+	var ReactCSSTransitionGroupChild = __webpack_require__(760);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -89866,7 +90080,11 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
+<<<<<<< HEAD
 /* 758 */
+=======
+/* 757 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89890,7 +90108,11 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var React = __webpack_require__(2);
+<<<<<<< HEAD
 	var ReactTransitionChildMapping = __webpack_require__(759);
+=======
+	var ReactTransitionChildMapping = __webpack_require__(758);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var emptyFunction = __webpack_require__(12);
 	
@@ -90099,7 +90321,11 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
+<<<<<<< HEAD
 /* 759 */
+=======
+/* 758 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90114,7 +90340,11 @@
 	
 	'use strict';
 	
+<<<<<<< HEAD
 	var flattenChildren = __webpack_require__(760);
+=======
+	var flattenChildren = __webpack_require__(759);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var ReactTransitionChildMapping = {
 	  /**
@@ -90207,7 +90437,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 760 */
+=======
+/* 759 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90288,7 +90522,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 761 */
+=======
+/* 760 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -90304,10 +90542,17 @@
 	'use strict';
 	
 	var React = __webpack_require__(2);
+<<<<<<< HEAD
 	var ReactAddonsDOMDependencies = __webpack_require__(762);
 	
 	var CSSCore = __webpack_require__(767);
 	var ReactTransitionEvents = __webpack_require__(768);
+=======
+	var ReactAddonsDOMDependencies = __webpack_require__(761);
+	
+	var CSSCore = __webpack_require__(766);
+	var ReactTransitionEvents = __webpack_require__(767);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var onlyChild = __webpack_require__(31);
 	
@@ -90459,7 +90704,11 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
+<<<<<<< HEAD
 /* 762 */
+=======
+/* 761 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90486,14 +90735,22 @@
 	
 	  exports.getReactPerf = function () {
 	    if (!ReactPerf) {
+<<<<<<< HEAD
 	      ReactPerf = __webpack_require__(763);
+=======
+	      ReactPerf = __webpack_require__(762);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	    }
 	    return ReactPerf;
 	  };
 	
 	  exports.getReactTestUtils = function () {
 	    if (!ReactTestUtils) {
+<<<<<<< HEAD
 	      ReactTestUtils = __webpack_require__(764);
+=======
+	      ReactTestUtils = __webpack_require__(763);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	    }
 	    return ReactTestUtils;
 	  };
@@ -90501,7 +90758,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 763 */
+=======
+/* 762 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91007,7 +91268,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 764 */
+=======
+/* 763 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91025,7 +91290,11 @@
 	var _prodInvariant = __webpack_require__(90),
 	    _assign = __webpack_require__(4);
 	
+<<<<<<< HEAD
 	var EventConstants = __webpack_require__(765);
+=======
+	var EventConstants = __webpack_require__(764);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	var EventPluginHub = __webpack_require__(97);
 	var EventPluginRegistry = __webpack_require__(98);
 	var EventPropagators = __webpack_require__(96);
@@ -91036,7 +91305,11 @@
 	var ReactInstanceMap = __webpack_require__(171);
 	var ReactUpdates = __webpack_require__(111);
 	var SyntheticEvent = __webpack_require__(108);
+<<<<<<< HEAD
 	var ReactShallowRenderer = __webpack_require__(766);
+=======
+	var ReactShallowRenderer = __webpack_require__(765);
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 	
 	var findDOMNode = __webpack_require__(227);
 	var invariant = __webpack_require__(8);
@@ -91424,7 +91697,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 765 */
+=======
+/* 764 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports) {
 
 	/**
@@ -91520,7 +91797,11 @@
 	module.exports = EventConstants;
 
 /***/ },
+<<<<<<< HEAD
 /* 766 */
+=======
+/* 765 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91660,7 +91941,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 767 */
+=======
+/* 766 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -91787,7 +92072,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
+<<<<<<< HEAD
 /* 768 */
+=======
+/* 767 */
+>>>>>>> 3f9b6a2076663b5034ada3f34affacedfa6f1908
 /***/ function(module, exports, __webpack_require__) {
 
 	/**

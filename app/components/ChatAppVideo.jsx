@@ -23,6 +23,7 @@ class ChatApp extends Component {
 		this.interimTranscript = this.interimTranscript.bind(this)
 		this.finalTranscript = this.finalTranscript.bind(this)
 		this.joinVideo = this.joinVideo.bind(this)
+		this.htmlDecode = this.htmlDecode.bind(this)
 	}
 
 
@@ -167,6 +168,12 @@ class ChatApp extends Component {
 
 	}
 
+	htmlDecode(input){
+	  var e = document.createElement('div');
+	  e.innerHTML = input;
+	  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+	}
+
 // ************************************************************
 
 	render() {
@@ -175,9 +182,16 @@ class ChatApp extends Component {
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
 
-		let userFullLanguage = languages.filter( (lang) => {
-								   return userLanguage === lang[1][0].split('-')[0]
-								 })[0][0]
+		let userFullLanguage = ''
+
+		if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
+			userFullLanguage = '中文'
+		} else {
+			userFullLanguage = languages.filter( (lang) => {
+				return userLanguage === lang[1][0].split('-')[0]
+			})[0][0]
+		}
+
 		return (
 			<div id="chatbox-body" className="container">
 				<h2>Video Chat</h2>
@@ -185,7 +199,7 @@ class ChatApp extends Component {
 				<div className="col-sm-6">
 					<div>
 						<VideoChat />
-						<ul id="subtitles" className="lingo-blue breadcrumb"><li>{interimTranscript}</li></ul>
+						<ul id="subtitles" className="lingo-blue breadcrumb"><li>{this.htmlDecode(interimTranscript)}</li></ul>
 					</div>
 
 
@@ -202,7 +216,7 @@ class ChatApp extends Component {
 							finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
 								return (
 									<li key={i}>
-										{transcript}
+										{this.htmlDecode(transcript)}
 									</li>
 								)
 							}).reverse()

@@ -17,14 +17,15 @@ const TRANSLATE_GROUP_MESSAGE = "TRANSLATE_GROUP_MESSAGE"
 
 // Action creators
 // Fed into the googleTranslateEpic
-export const translateActionCreator = (id, originalLanguage, userLanguage, originalText) => {
+export const translateActionCreator = (id, originalLanguage, userLanguage, originalText, user) => {
   return (
     {
       type: TRANSLATE,
       id,
       originalLanguage,
       userLanguage,
-      originalText
+      originalText,
+      user
     }
   )
 }
@@ -88,12 +89,15 @@ export const googleTranslateEpic = (action$) => {
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
         console.log('ACTION', action)
+
       const translatedMsg = {
           user: action.user,
           text: translatedText,
           language: action.userLanguage,
+          originalLanguage: action.originalLanguage,
           id: action.id
       }
+      console.log('translatedMsg', translatedMsg)
       return addGroupMessage(translatedMsg)
     })
 }

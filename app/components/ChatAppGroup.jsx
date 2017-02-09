@@ -10,8 +10,7 @@ import { setSelectedUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
-
-let socket;
+let socket = io.connect('/group-chat');
 
 class ChatAppGroup extends React.Component {
 	//set empty array/string for users, messages, text
@@ -31,8 +30,6 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentDidMount() {
-		socket = io.connect('/group-chat');
-
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -41,6 +38,12 @@ class ChatAppGroup extends React.Component {
 		socket.on('disconnect', this._disconnectUser)
 		socket.emit('join_room', { room: this.props.selectedCountry})
 	}
+
+	componentWillUnmount() {
+		console.log('COMPONENT IS UNMOUNTING')
+		socket.emit('room_exit')
+	}
+	
 
 	//set user with given name
 	_initialize(data) {
@@ -61,7 +64,8 @@ class ChatAppGroup extends React.Component {
 			const id = 1;
 			const originalLanguage = message.language;
 			const originalText = message.text;
-			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText))
+			const user = message.user
+			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText, user))
 		}
 	}
 
@@ -84,6 +88,7 @@ class ChatAppGroup extends React.Component {
 			user: 'LingoBot',
 			text: name + ' Left'
 		}
+		console.log(`${data.name} is about to be removed from state through dispatch`)
 		this.dispatch(addGroupMessage(userLeftMsg))
 		this.dispatch(removeGroupUser(name))
 	}
@@ -130,9 +135,10 @@ class ChatAppGroup extends React.Component {
 		const handleChangeName = this.handleChangeName;
 		const language = this.props.state.user.primaryUser.primaryLanguage;
 		const joinVideoChat = this.joinVideoChat
+		const selectedCountry = this.props.selectedCountry
 		return (
 			<div className="container" id="chatbox-body">
-				<h1>Live Group Chat</h1>
+				<h1>Live Group Chat: { selectedCountry }</h1>
 				<div className="row">
 					<div className="col-sm-9">
 						<MessageList
@@ -169,7 +175,7 @@ class ChatAppGroup extends React.Component {
 
 function mapStateToProps (state, ownProps) {
 	const userLanguage = state.user.primaryUser.primaryLanguage;
-	const selectedCountry = state.user.primaryUser.country;
+	const selectedCountry = state.map.selectedCountry;
 	const userName = state.groupMessage.user;
   return { state, userLanguage, selectedCountry, userName };
 }
