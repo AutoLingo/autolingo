@@ -78,11 +78,11 @@
 	
 	var _NavbarContainer2 = _interopRequireDefault(_NavbarContainer);
 	
-	var _ChatAppGroup = __webpack_require__(753);
+	var _ChatAppGroup = __webpack_require__(754);
 	
 	var _ChatAppGroup2 = _interopRequireDefault(_ChatAppGroup);
 	
-	var _ChatAppVideo = __webpack_require__(745);
+	var _ChatAppVideo = __webpack_require__(746);
 	
 	var _ChatAppVideo2 = _interopRequireDefault(_ChatAppVideo);
 	
@@ -90,7 +90,7 @@
 	
 	var _Instructions2 = _interopRequireDefault(_Instructions);
 	
-	var _CountryTransition = __webpack_require__(754);
+	var _CountryTransition = __webpack_require__(755);
 	
 	var _CountryTransition2 = _interopRequireDefault(_CountryTransition);
 	
@@ -34686,6 +34686,14 @@
 	        this.closed = true;
 	        this.observers = null;
 	    };
+	    Subject.prototype._trySubscribe = function (subscriber) {
+	        if (this.closed) {
+	            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
+	        }
+	        else {
+	            return _super.prototype._trySubscribe.call(this, subscriber);
+	        }
+	    };
 	    Subject.prototype._subscribe = function (subscriber) {
 	        if (this.closed) {
 	            throw new ObjectUnsubscribedError_1.ObjectUnsubscribedError();
@@ -34804,7 +34812,7 @@
 	            operator.call(sink, this.source);
 	        }
 	        else {
-	            sink.add(this._subscribe(sink));
+	            sink.add(this._trySubscribe(sink));
 	        }
 	        if (sink.syncErrorThrowable) {
 	            sink.syncErrorThrowable = false;
@@ -34813,6 +34821,16 @@
 	            }
 	        }
 	        return sink;
+	    };
+	    Observable.prototype._trySubscribe = function (sink) {
+	        try {
+	            return this._subscribe(sink);
+	        }
+	        catch (err) {
+	            sink.syncErrorThrown = true;
+	            sink.syncErrorValue = err;
+	            sink.error(err);
+	        }
 	    };
 	    /**
 	     * @method forEach
@@ -35804,13 +35822,13 @@
 	        this.hasCompleted = false;
 	    }
 	    AsyncSubject.prototype._subscribe = function (subscriber) {
-	        if (this.hasCompleted && this.hasNext) {
-	            subscriber.next(this.value);
-	            subscriber.complete();
+	        if (this.hasError) {
+	            subscriber.error(this.thrownError);
 	            return Subscription_1.Subscription.EMPTY;
 	        }
-	        else if (this.hasError) {
-	            subscriber.error(this.thrownError);
+	        else if (this.hasCompleted && this.hasNext) {
+	            subscriber.next(this.value);
+	            subscriber.complete();
 	            return Subscription_1.Subscription.EMPTY;
 	        }
 	        return _super.prototype._subscribe.call(this, subscriber);
@@ -35819,6 +35837,11 @@
 	        if (!this.hasCompleted) {
 	            this.value = value;
 	            this.hasNext = true;
+	        }
+	    };
+	    AsyncSubject.prototype.error = function (error) {
+	        if (!this.hasCompleted) {
+	            _super.prototype.error.call(this, error);
 	        }
 	    };
 	    AsyncSubject.prototype.complete = function () {
@@ -36482,7 +36505,7 @@
 	    // if the first and only other argument besides the resultSelector is an array
 	    // assume it's been called with `combineLatest([obs1, obs2, obs3], project)`
 	    if (observables.length === 1 && isArray_1.isArray(observables[0])) {
-	        observables = observables[0];
+	        observables = observables[0].slice();
 	    }
 	    observables.unshift(this);
 	    return this.lift.call(new ArrayObservable_1.ArrayObservable(observables), new CombineLatestOperator(project));
@@ -38091,7 +38114,7 @@
 	var errorObject_1 = __webpack_require__(278);
 	var Subscription_1 = __webpack_require__(274);
 	var toString = Object.prototype.toString;
-	function isNodeStyleEventEmmitter(sourceObj) {
+	function isNodeStyleEventEmitter(sourceObj) {
 	    return !!sourceObj && typeof sourceObj.addListener === 'function' && typeof sourceObj.removeListener === 'function';
 	}
 	function isJQueryStyleEventEmitter(sourceObj) {
@@ -38185,7 +38208,7 @@
 	            sourceObj.on(eventName, handler);
 	            unsubscribe = function () { return source_2.off(eventName, handler); };
 	        }
-	        else if (isNodeStyleEventEmmitter(sourceObj)) {
+	        else if (isNodeStyleEventEmitter(sourceObj)) {
 	            var source_3 = sourceObj;
 	            sourceObj.addListener(eventName, handler);
 	            unsubscribe = function () { return source_3.removeListener(eventName, handler); };
@@ -38249,6 +38272,7 @@
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var isFunction_1 = __webpack_require__(273);
 	var Observable_1 = __webpack_require__(269);
 	var Subscription_1 = __webpack_require__(274);
 	/**
@@ -38300,9 +38324,10 @@
 	     * @param {function(handler: Function): any} addHandler A function that takes
 	     * a `handler` function as argument and attaches it somehow to the actual
 	     * source of events.
-	     * @param {function(handler: Function): void} removeHandler A function that
+	     * @param {function(handler: Function, signal?: any): void} [removeHandler] An optional function that
 	     * takes a `handler` function as argument and removes it in case it was
-	     * previously attached using `addHandler`.
+	     * previously attached using `addHandler`. if addHandler returns signal to teardown when remove,
+	     * removeHandler function will forward it.
 	     * @param {function(...args: any): T} [selector] An optional function to
 	     * post-process results. It takes the arguments from the event handler and
 	     * should return a single value.
@@ -38324,10 +38349,13 @@
 	            }
 	            _this._callSelector(subscriber, args);
 	        } : function (e) { subscriber.next(e); };
-	        this._callAddHandler(handler, subscriber);
+	        var retValue = this._callAddHandler(handler, subscriber);
+	        if (!isFunction_1.isFunction(removeHandler)) {
+	            return;
+	        }
 	        subscriber.add(new Subscription_1.Subscription(function () {
 	            //TODO: determine whether or not to forward to error handler
-	            removeHandler(handler);
+	            removeHandler(handler, retValue);
 	        }));
 	    };
 	    FromEventPatternObservable.prototype._callSelector = function (subscriber, args) {
@@ -38341,7 +38369,7 @@
 	    };
 	    FromEventPatternObservable.prototype._callAddHandler = function (handler, errorSubscriber) {
 	        try {
-	            this.addHandler(handler);
+	            return this.addHandler(handler) || null;
 	        }
 	        catch (e) {
 	            errorSubscriber.error(e);
@@ -41003,7 +41031,36 @@
 	        return JSON.parse(e.data);
 	    };
 	    /**
-	     * @param urlConfigOrSource
+	     * Wrapper around the w3c-compatible WebSocket object provided by the browser.
+	     *
+	     * @example <caption>Wraps browser WebSocket</caption>
+	     *
+	     * let subject = Observable.webSocket('ws://localhost:8081');
+	     * subject.subscribe(
+	     *    (msg) => console.log('message received: ' + msg),
+	     *    (err) => console.log(err),
+	     *    () => console.log('complete')
+	     *  );
+	     * subject.next(JSON.stringify({ op: 'hello' }));
+	     *
+	     * @example <caption>Wraps WebSocket from nodejs-websocket (using node.js)</caption>
+	     *
+	     * import { w3cwebsocket } from 'websocket';
+	     *
+	     * let socket = new WebSocketSubject({
+	     *   url: 'ws://localhost:8081',
+	     *   WebSocketCtor: w3cwebsocket
+	     * });
+	     *
+	     * let subject = Observable.webSocket('ws://localhost:8081');
+	     * subject.subscribe(
+	     *    (msg) => console.log('message received: ' + msg),
+	     *    (err) => console.log(err),
+	     *    () => console.log('complete')
+	     *  );
+	     * subject.next(JSON.stringify({ op: 'hello' }));
+	     *
+	     * @param {string | WebSocketSubjectConfig} urlConfigOrSource the source of the websocket as an url or a structure defining the websocket object
 	     * @return {WebSocketSubject}
 	     * @static true
 	     * @name webSocket
@@ -42152,6 +42209,54 @@
 	var subscribeToResult_1 = __webpack_require__(300);
 	/**
 	 * Catches errors on the observable to be handled by returning a new observable or throwing an error.
+	 *
+	 * <img src="./img/catch.png" width="100%">
+	 *
+	 * @example <caption>Continues with a different Observable when there's an error</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 * 	   if (n == 4) {
+	 * 	     throw 'four!';
+	 *     }
+	 *	   return n;
+	 *   })
+	 *   .catch(err => Observable.of('I', 'II', 'III', 'IV', 'V'))
+	 *   .subscribe(x => console.log(x));
+	 *   // 1, 2, 3, I, II, III, IV, V
+	 *
+	 * @example <caption>Retries the caught source Observable again in case of error, similar to retry() operator</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 * 	   if (n === 4) {
+	 * 	     throw 'four!';
+	 *     }
+	 * 	   return n;
+	 *   })
+	 *   .catch((err, caught) => caught)
+	 *   .take(30)
+	 *   .subscribe(x => console.log(x));
+	 *   // 1, 2, 3, 1, 2, 3, ...
+	 *
+	 * @example <caption>Throws a new error when the source Observable throws an error</caption>
+	 *
+	 * Observable.of(1, 2, 3, 4, 5)
+	 *   .map(n => {
+	 *     if (n == 4) {
+	 *       throw 'four!';
+	 *     }
+	 *     return n;
+	 *   })
+	 *   .catch(err => {
+	 *     throw 'error in source. Details: ' + err;
+	 *   })
+	 *   .subscribe(
+	 *     x => console.log(x),
+	 *     err => console.log(err)
+	 *   );
+	 *   // 1, 2, 3, error in source. Details: four!
+	 *
 	 * @param {function} selector a function that takes as arguments `err`, which is the error, and `caught`, which
 	 *  is the source observable, in case you'd like to "retry" that observable by returning it again. Whatever observable
 	 *  is returned by the `selector` will be used to continue the observable chain.
@@ -42189,20 +42294,24 @@
 	        this.caught = caught;
 	    }
 	    // NOTE: overriding `error` instead of `_error` because we don't want
-	    // to have this flag this subscriber as `isStopped`.
+	    // to have this flag this subscriber as `isStopped`. We can mimic the
+	    // behavior of the RetrySubscriber (from the `retry` operator), where
+	    // we unsubscribe from our source chain, reset our Subscriber flags,
+	    // then subscribe to the selector result.
 	    CatchSubscriber.prototype.error = function (err) {
 	        if (!this.isStopped) {
 	            var result = void 0;
 	            try {
 	                result = this.selector(err, this.caught);
 	            }
-	            catch (err) {
-	                this.destination.error(err);
+	            catch (err2) {
+	                _super.prototype.error.call(this, err2);
 	                return;
 	            }
 	            this.unsubscribe();
-	            this.destination.remove(this);
-	            subscribeToResult_1.subscribeToResult(this, result);
+	            this.closed = false;
+	            this.isStopped = false;
+	            this.add(subscribeToResult_1.subscribeToResult(this, result));
 	        }
 	    };
 	    return CatchSubscriber;
@@ -42895,7 +43004,7 @@
 	 * `count` transforms an Observable that emits values into an Observable that
 	 * emits a single value that represents the number of values emitted by the
 	 * source Observable. If the source Observable terminates with an error, `count`
-	 * will pass this error notification along without emitting an value first. If
+	 * will pass this error notification along without emitting a value first. If
 	 * the source Observable does not terminate at all, `count` will neither emit
 	 * a value nor terminate. This operator takes an optional `predicate` function
 	 * as argument, in which case the output emission will represent the number of
@@ -46688,7 +46797,7 @@
 	 * @see {@link mergeScan}
 	 * @see {@link scan}
 	 *
-	 * @param {function(acc: R, value: T): R} accumulator The accumulator function
+	 * @param {function(acc: R, value: T, index: number): R} accumulator The accumulator function
 	 * called on each source value.
 	 * @param {R} [seed] The initial accumulation value.
 	 * @return {Observable<R>} An observable of the accumulated values.
@@ -46734,8 +46843,12 @@
 	        _super.call(this, destination);
 	        this.accumulator = accumulator;
 	        this.hasSeed = hasSeed;
+	        this.index = 0;
 	        this.hasValue = false;
 	        this.acc = seed;
+	        if (!this.hasSeed) {
+	            this.index++;
+	        }
 	    }
 	    ReduceSubscriber.prototype._next = function (value) {
 	        if (this.hasValue || (this.hasValue = this.hasSeed)) {
@@ -46749,7 +46862,7 @@
 	    ReduceSubscriber.prototype._tryReduce = function (value) {
 	        var result;
 	        try {
-	            result = this.accumulator(this.acc, value);
+	            result = this.accumulator(this.acc, value, this.index++);
 	        }
 	        catch (err) {
 	            this.destination.error(err);
@@ -46835,26 +46948,49 @@
 	var subscribeToResult_1 = __webpack_require__(300);
 	var OuterSubscriber_1 = __webpack_require__(299);
 	/**
-	 * @param project
-	 * @param seed
-	 * @param concurrent
-	 * @return {Observable<R>|WebSocketSubject<T>|Observable<T>}
+	 * Applies an accumulator function over the source Observable where the
+	 * accumulator function itself returns an Observable, then each intermediate
+	 * Observable returned is merged into the output Observable.
+	 *
+	 * <span class="informal">It's like {@link scan}, but the Observables returned
+	 * by the accumulator are merged into the outer Observable.</span>
+	 *
+	 * @example <caption>Count the number of click events</caption>
+	 * const click$ = Rx.Observable.fromEvent(document, 'click');
+	 * const one$ = click$.mapTo(1);
+	 * const seed = 0;
+	 * const count$ = one$.mergeScan((acc, one) => Rx.Observable.of(acc + one), seed);
+	 * count$.subscribe(x => console.log(x));
+	 *
+	 * // Results:
+	 * 1
+	 * 2
+	 * 3
+	 * 4
+	 * // ...and so on for each click
+	 *
+	 * @param {function(acc: R, value: T): Observable<R>} accumulator
+	 * The accumulator function called on each source value.
+	 * @param seed The initial accumulation value.
+	 * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of
+	 * input Observables being subscribed to concurrently.
+	 * @return {Observable<R>} An observable of the accumulated values.
 	 * @method mergeScan
 	 * @owner Observable
 	 */
-	function mergeScan(project, seed, concurrent) {
+	function mergeScan(accumulator, seed, concurrent) {
 	    if (concurrent === void 0) { concurrent = Number.POSITIVE_INFINITY; }
-	    return this.lift(new MergeScanOperator(project, seed, concurrent));
+	    return this.lift(new MergeScanOperator(accumulator, seed, concurrent));
 	}
 	exports.mergeScan = mergeScan;
 	var MergeScanOperator = (function () {
-	    function MergeScanOperator(project, seed, concurrent) {
-	        this.project = project;
+	    function MergeScanOperator(accumulator, seed, concurrent) {
+	        this.accumulator = accumulator;
 	        this.seed = seed;
 	        this.concurrent = concurrent;
 	    }
 	    MergeScanOperator.prototype.call = function (subscriber, source) {
-	        return source.subscribe(new MergeScanSubscriber(subscriber, this.project, this.seed, this.concurrent));
+	        return source.subscribe(new MergeScanSubscriber(subscriber, this.accumulator, this.seed, this.concurrent));
 	    };
 	    return MergeScanOperator;
 	}());
@@ -46866,9 +47002,9 @@
 	 */
 	var MergeScanSubscriber = (function (_super) {
 	    __extends(MergeScanSubscriber, _super);
-	    function MergeScanSubscriber(destination, project, acc, concurrent) {
+	    function MergeScanSubscriber(destination, accumulator, acc, concurrent) {
 	        _super.call(this, destination);
-	        this.project = project;
+	        this.accumulator = accumulator;
 	        this.acc = acc;
 	        this.concurrent = concurrent;
 	        this.hasValue = false;
@@ -46880,7 +47016,7 @@
 	    MergeScanSubscriber.prototype._next = function (value) {
 	        if (this.active < this.concurrent) {
 	            var index = this.index++;
-	            var ish = tryCatch_1.tryCatch(this.project)(this.acc, value);
+	            var ish = tryCatch_1.tryCatch(this.accumulator)(this.acc, value);
 	            var destination = this.destination;
 	            if (ish === errorObject_1.errorObject) {
 	                destination.error(errorObject_1.errorObject.e);
@@ -47827,16 +47963,15 @@
 	 * @owner Observable
 	 */
 	function repeatWhen(notifier) {
-	    return this.lift(new RepeatWhenOperator(notifier, this));
+	    return this.lift(new RepeatWhenOperator(notifier));
 	}
 	exports.repeatWhen = repeatWhen;
 	var RepeatWhenOperator = (function () {
-	    function RepeatWhenOperator(notifier, source) {
+	    function RepeatWhenOperator(notifier) {
 	        this.notifier = notifier;
-	        this.source = source;
 	    }
 	    RepeatWhenOperator.prototype.call = function (subscriber, source) {
-	        return source.subscribe(new RepeatWhenSubscriber(subscriber, this.notifier, this.source));
+	        return source.subscribe(new RepeatWhenSubscriber(subscriber, this.notifier, source));
 	    };
 	    return RepeatWhenOperator;
 	}());
@@ -47851,30 +47986,28 @@
 	        _super.call(this, destination);
 	        this.notifier = notifier;
 	        this.source = source;
+	        this.sourceIsBeingSubscribedTo = true;
 	    }
+	    RepeatWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+	        this.source.subscribe(this);
+	        this.sourceIsBeingSubscribedTo = true;
+	    };
+	    RepeatWhenSubscriber.prototype.notifyComplete = function (innerSub) {
+	        if (this.sourceIsBeingSubscribedTo === false) {
+	            return _super.prototype.complete.call(this);
+	        }
+	    };
 	    RepeatWhenSubscriber.prototype.complete = function () {
+	        this.sourceIsBeingSubscribedTo = false;
 	        if (!this.isStopped) {
-	            var notifications = this.notifications;
-	            var retries = this.retries;
-	            var retriesSubscription = this.retriesSubscription;
-	            if (!retries) {
-	                notifications = new Subject_1.Subject();
-	                retries = tryCatch_1.tryCatch(this.notifier)(notifications);
-	                if (retries === errorObject_1.errorObject) {
-	                    return _super.prototype.complete.call(this);
-	                }
-	                retriesSubscription = subscribeToResult_1.subscribeToResult(this, retries);
+	            if (!this.retries) {
+	                this.subscribeToRetries();
 	            }
-	            else {
-	                this.notifications = null;
-	                this.retriesSubscription = null;
+	            else if (this.retriesSubscription.closed) {
+	                return _super.prototype.complete.call(this);
 	            }
-	            this.unsubscribe();
-	            this.closed = false;
-	            this.notifications = notifications;
-	            this.retries = retries;
-	            this.retriesSubscription = retriesSubscription;
-	            notifications.next();
+	            this.temporarilyUnsubscribe();
+	            this.notifications.next();
 	        }
 	    };
 	    RepeatWhenSubscriber.prototype._unsubscribe = function () {
@@ -47889,7 +48022,16 @@
 	        }
 	        this.retries = null;
 	    };
-	    RepeatWhenSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+	    RepeatWhenSubscriber.prototype.subscribeToRetries = function () {
+	        this.notifications = new Subject_1.Subject();
+	        var retries = tryCatch_1.tryCatch(this.notifier)(this.notifications);
+	        if (retries === errorObject_1.errorObject) {
+	            return _super.prototype.complete.call(this);
+	        }
+	        this.retries = retries;
+	        this.retriesSubscription = subscribeToResult_1.subscribeToResult(this, retries);
+	    };
+	    RepeatWhenSubscriber.prototype.temporarilyUnsubscribe = function () {
 	        var _a = this, notifications = _a.notifications, retries = _a.retries, retriesSubscription = _a.retriesSubscription;
 	        this.notifications = null;
 	        this.retries = null;
@@ -47900,7 +48042,6 @@
 	        this.notifications = notifications;
 	        this.retries = retries;
 	        this.retriesSubscription = retriesSubscription;
-	        this.source.subscribe(this);
 	    };
 	    return RepeatWhenSubscriber;
 	}(OuterSubscriber_1.OuterSubscriber));
@@ -51067,8 +51208,51 @@
 	var root_1 = __webpack_require__(270);
 	/* tslint:disable:max-line-length */
 	/**
-	 * @param PromiseCtor
-	 * @return {Promise<T>}
+	 * Converts an Observable sequence to a ES2015 compliant promise.
+	 *
+	 * @example
+	 * // Using normal ES2015
+	 * let source = Rx.Observable
+	 *   .just(42)
+	 *   .toPromise();
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * // Rejected Promise
+	 * // Using normal ES2015
+	 * let source = Rx.Observable
+	 *   .throw(new Error('woops'))
+	 *   .toPromise();
+	 *
+	 * source
+	 *   .then((value) => console.log('Value: %s', value))
+	 *   .catch((err) => console.log('Error: %s', err));
+	 * // => Error: Error: woops
+	 *
+	 * // Setting via the config
+	 * Rx.config.Promise = RSVP.Promise;
+	 *
+	 * let source = Rx.Observable
+	 *   .of(42)
+	 *   .toPromise();
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * // Setting via the method
+	 * let source = Rx.Observable
+	 *   .just(42)
+	 *   .toPromise(RSVP.Promise);
+	 *
+	 * source.then((value) => console.log('Value: %s', value));
+	 * // => Value: 42
+	 *
+	 * @param PromiseCtor promise The constructor of the promise. If not provided,
+	 * it will look for a constructor first in Rx.config.Promise then fall back to
+	 * the native Promise constructor if available.
+	 * @return {Promise<T>} An ES2015 compatible promise with the last value from
+	 * the observable sequence.
 	 * @method toPromise
 	 * @owner Observable
 	 */
@@ -51467,16 +51651,15 @@
 	        this.windowCreationInterval = windowCreationInterval;
 	        this.scheduler = scheduler;
 	        this.windows = [];
+	        var window = this.openWindow();
 	        if (windowCreationInterval !== null && windowCreationInterval >= 0) {
-	            var window_1 = this.openWindow();
-	            var closeState = { subscriber: this, window: window_1, context: null };
+	            var closeState = { subscriber: this, window: window, context: null };
 	            var creationState = { windowTimeSpan: windowTimeSpan, windowCreationInterval: windowCreationInterval, subscriber: this, scheduler: scheduler };
 	            this.add(scheduler.schedule(dispatchWindowClose, windowTimeSpan, closeState));
 	            this.add(scheduler.schedule(dispatchWindowCreation, windowCreationInterval, creationState));
 	        }
 	        else {
-	            var window_2 = this.openWindow();
-	            var timeSpanOnlyState = { subscriber: this, window: window_2, windowTimeSpan: windowTimeSpan };
+	            var timeSpanOnlyState = { subscriber: this, window: window, windowTimeSpan: windowTimeSpan };
 	            this.add(scheduler.schedule(dispatchWindowTimeSpanOnly, windowTimeSpan, timeSpanOnlyState));
 	        }
 	    }
@@ -51484,9 +51667,9 @@
 	        var windows = this.windows;
 	        var len = windows.length;
 	        for (var i = 0; i < len; i++) {
-	            var window_3 = windows[i];
-	            if (!window_3.closed) {
-	                window_3.next(value);
+	            var window_1 = windows[i];
+	            if (!window_1.closed) {
+	                window_1.next(value);
 	            }
 	        }
 	    };
@@ -51500,9 +51683,9 @@
 	    WindowTimeSubscriber.prototype._complete = function () {
 	        var windows = this.windows;
 	        while (windows.length > 0) {
-	            var window_4 = windows.shift();
-	            if (!window_4.closed) {
-	                window_4.complete();
+	            var window_2 = windows.shift();
+	            if (!window_2.closed) {
+	                window_2.complete();
 	            }
 	        }
 	        this.destination.complete();
@@ -51524,7 +51707,7 @@
 	function dispatchWindowTimeSpanOnly(state) {
 	    var subscriber = state.subscriber, windowTimeSpan = state.windowTimeSpan, window = state.window;
 	    if (window) {
-	        window.complete();
+	        subscriber.closeWindow(window);
 	    }
 	    state.window = subscriber.openWindow();
 	    this.schedule(state, windowTimeSpan);
@@ -51539,8 +51722,8 @@
 	    action.add(context.subscription);
 	    action.schedule(state, windowCreationInterval);
 	}
-	function dispatchWindowClose(arg) {
-	    var subscriber = arg.subscriber, window = arg.window, context = arg.context;
+	function dispatchWindowClose(state) {
+	    var subscriber = state.subscriber, window = state.window, context = state.context;
 	    if (context && context.action && context.subscription) {
 	        context.action.remove(context.subscription);
 	    }
@@ -52886,8 +53069,11 @@
 	
 	  var newState = Object.assign({}, state);
 	  switch (action.type) {
-	    case _user.SET_USER_NAME:
+	    case _user.SET_PRIMARY_USER_NAME:
 	      newState.primaryUser.name = action.name;
+	      break;
+	    case _user.SET_SELECTED_USER_NAME:
+	      newState.selectedUser.name = action.name;
 	      break;
 	    case _user.SET_DIALECT:
 	      newState.primaryUser.dialect = action.dialect;
@@ -52908,13 +53094,16 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SET_USER_NAME = exports.SET_USER_NAME = 'SET_USER_NAME';
-	var ADD_USER = exports.ADD_USER = 'ADD_USER';
-	var REMOVE_USER = exports.REMOVE_USER = 'REMOVE_USER';
+	var SET_PRIMARY_USER_NAME = exports.SET_PRIMARY_USER_NAME = 'SET_USER_NAME';
+	var SET_SELECTED_USER_NAME = exports.SET_SELECTED_USER_NAME = 'SET_DIALECT';
 	var SET_DIALECT = exports.SET_DIALECT = 'SET_DIALECT';
 	
-	var setUserName = exports.setUserName = function setUserName(name) {
-	  return { type: SET_USER_NAME, name: name };
+	var setPrimaryUserName = exports.setPrimaryUserName = function setPrimaryUserName(name) {
+	  return { type: SET_PRIMARY_USER_NAME, name: name };
+	};
+	
+	var setSelectedUserName = exports.setSelectedUserName = function setSelectedUserName(name) {
+	  return { type: SET_SELECTED_USER_NAME, name: name };
 	};
 	
 	var setUserLanguage = exports.setUserLanguage = function setUserLanguage(primaryLanguage, dialect) {
@@ -53216,7 +53405,7 @@
 	    var formattedAction = actionTransformer(action);
 	    var isCollapsed = typeof collapsed === 'function' ? collapsed(function () {
 	      return nextState;
-	    }, action) : collapsed;
+	    }, action, logEntry) : collapsed;
 	
 	    var formattedTime = (0, _helpers.formatTime)(startedTime);
 	    var titleCSS = colors.title ? 'color: ' + colors.title(formattedAction) + ';' : null;
@@ -53307,6 +53496,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	// https://github.com/flitbit/diff#differences
 	var dictionary = {
 	  'E': {
@@ -53341,15 +53532,15 @@
 	
 	  switch (kind) {
 	    case 'E':
-	      return path.join('.') + ' ' + lhs + ' → ' + rhs;
+	      return [path.join('.'), lhs, '→', rhs];
 	    case 'N':
-	      return path.join('.') + ' ' + rhs;
+	      return [path.join('.'), rhs];
 	    case 'D':
-	      return '' + path.join('.');
+	      return [path.join('.')];
 	    case 'A':
 	      return [path.join('.') + '[' + index + ']', item];
 	    default:
-	      return null;
+	      return [];
 	  }
 	}
 	
@@ -53372,7 +53563,7 @@
 	
 	      var output = render(elem);
 	
-	      logger.log('%c ' + dictionary[kind].text, style(kind), output);
+	      logger.log.apply(logger, ['%c ' + dictionary[kind].text, style(kind)].concat(_toConsumableArray(output)));
 	    });
 	  } else {
 	    logger.log('—— no diff ——');
@@ -71719,7 +71910,7 @@
 					"spec": ">=3.0.1 <4.0.0",
 					"type": "range"
 				},
-				"/Users/Adam/Development/Fullstack/Capstone/autolingo"
+				"/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo"
 			]
 		],
 		"_from": "mapbox.js@>=3.0.1 <4.0.0",
@@ -71754,7 +71945,7 @@
 		"_shasum": "630a97d1c5aac1fd8dc77f5eef250bf9522aba04",
 		"_shrinkwrap": null,
 		"_spec": "mapbox.js@^3.0.1",
-		"_where": "/Users/Adam/Development/Fullstack/Capstone/autolingo",
+		"_where": "/Users/Sean/Documents/FullStackAcademy/Capstone/autolingo",
 		"author": {
 			"name": "Mapbox"
 		},
@@ -79531,7 +79722,7 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-	var _ChatAppVideo = __webpack_require__(745);
+	var _ChatAppVideo = __webpack_require__(746);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -82685,13 +82876,13 @@
 	
 	var eio = __webpack_require__(711);
 	var Socket = __webpack_require__(740);
-	var Emitter = __webpack_require__(729);
+	var Emitter = __webpack_require__(741);
 	var parser = __webpack_require__(700);
-	var on = __webpack_require__(742);
-	var bind = __webpack_require__(743);
+	var on = __webpack_require__(743);
+	var bind = __webpack_require__(744);
 	var debug = __webpack_require__(697)('socket.io-client:manager');
 	var indexOf = __webpack_require__(738);
-	var Backoff = __webpack_require__(744);
+	var Backoff = __webpack_require__(745);
 	
 	/**
 	 * IE6+ hasOwnProperty
@@ -87468,10 +87659,10 @@
 	 */
 	
 	var parser = __webpack_require__(700);
-	var Emitter = __webpack_require__(729);
-	var toArray = __webpack_require__(741);
-	var on = __webpack_require__(742);
-	var bind = __webpack_require__(743);
+	var Emitter = __webpack_require__(741);
+	var toArray = __webpack_require__(742);
+	var on = __webpack_require__(743);
+	var bind = __webpack_require__(744);
 	var debug = __webpack_require__(697)('socket.io-client:socket');
 	var hasBin = __webpack_require__(722);
 	
@@ -87885,6 +88076,175 @@
 
 /***/ },
 /* 741 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+	
+	if (true) {
+	  module.exports = Emitter;
+	}
+	
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+	
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+	
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+	
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+	
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks['$' + event] = this._callbacks['$' + event] || [])
+	    .push(fn);
+	  return this;
+	};
+	
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.once = function(event, fn){
+	  function on() {
+	    this.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+	
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+	
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+	
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+	
+	  // specific event
+	  var callbacks = this._callbacks['$' + event];
+	  if (!callbacks) return this;
+	
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks['$' + event];
+	    return this;
+	  }
+	
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+	
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+	
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks['$' + event];
+	
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+	
+	  return this;
+	};
+	
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+	
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks['$' + event] || [];
+	};
+	
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+	
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 742 */
 /***/ function(module, exports) {
 
 	module.exports = toArray
@@ -87903,7 +88263,7 @@
 
 
 /***/ },
-/* 742 */
+/* 743 */
 /***/ function(module, exports) {
 
 	
@@ -87933,7 +88293,7 @@
 
 
 /***/ },
-/* 743 */
+/* 744 */
 /***/ function(module, exports) {
 
 	/**
@@ -87962,7 +88322,7 @@
 
 
 /***/ },
-/* 744 */
+/* 745 */
 /***/ function(module, exports) {
 
 	
@@ -88053,7 +88413,7 @@
 
 
 /***/ },
-/* 745 */
+/* 746 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88073,23 +88433,23 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-	var _UserList = __webpack_require__(746);
+	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
 	
-	var _MessageList = __webpack_require__(747);
+	var _MessageList = __webpack_require__(748);
 	
 	var _MessageList2 = _interopRequireDefault(_MessageList);
 	
-	var _MessageForm = __webpack_require__(749);
+	var _MessageForm = __webpack_require__(750);
 	
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
-	var _ChangeNameForm = __webpack_require__(750);
+	var _ChangeNameForm = __webpack_require__(751);
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
-	var _VoiceRecognitionContainer = __webpack_require__(751);
+	var _VoiceRecognitionContainer = __webpack_require__(752);
 	
 	var _VoiceRecognitionContainer2 = _interopRequireDefault(_VoiceRecognitionContainer);
 	
@@ -88429,7 +88789,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { translateActionCreator: _translate.translateActionCreator, translateInterimActionCreator: _translate.translateInterimActionCreator, translateFinalActionCreator: _translate.translateFinalActionCreator, setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(ChatApp);
 
 /***/ },
-/* 746 */
+/* 747 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -88476,7 +88836,7 @@
 	exports.default = UsersList;
 
 /***/ },
-/* 747 */
+/* 748 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88489,7 +88849,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Message = __webpack_require__(748);
+	var _Message = __webpack_require__(749);
 	
 	var _Message2 = _interopRequireDefault(_Message);
 	
@@ -88544,7 +88904,7 @@
 	exports.default = MessageList;
 
 /***/ },
-/* 748 */
+/* 749 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -88584,7 +88944,7 @@
 	exports.default = Message;
 
 /***/ },
-/* 749 */
+/* 750 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88681,7 +89041,7 @@
 	exports.default = MessageForm;
 
 /***/ },
-/* 750 */
+/* 751 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88743,7 +89103,7 @@
 	exports.default = ChangeNameForm;
 
 /***/ },
-/* 751 */
+/* 752 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -88758,7 +89118,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _VoiceRecognition = __webpack_require__(752);
+	var _VoiceRecognition = __webpack_require__(753);
 	
 	var _VoiceRecognition2 = _interopRequireDefault(_VoiceRecognition);
 	
@@ -88940,7 +89300,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, { setInterimTranscript: _speech.setInterimTranscript, addFinalTranscript: _speech.addFinalTranscript })(VoiceRecognitionContainer);
 
 /***/ },
-/* 752 */
+/* 753 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89081,7 +89441,7 @@
 	exports.default = VoiceRecognition;
 
 /***/ },
-/* 753 */
+/* 754 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89100,25 +89460,27 @@
 	
 	var _sockets2 = _interopRequireDefault(_sockets);
 	
-	var _UserList = __webpack_require__(746);
+	var _UserList = __webpack_require__(747);
 	
 	var _UserList2 = _interopRequireDefault(_UserList);
 	
-	var _MessageList = __webpack_require__(747);
+	var _MessageList = __webpack_require__(748);
 	
 	var _MessageList2 = _interopRequireDefault(_MessageList);
 	
-	var _MessageForm = __webpack_require__(749);
+	var _MessageForm = __webpack_require__(750);
 	
 	var _MessageForm2 = _interopRequireDefault(_MessageForm);
 	
-	var _ChangeNameForm = __webpack_require__(750);
+	var _ChangeNameForm = __webpack_require__(751);
 	
 	var _ChangeNameForm2 = _interopRequireDefault(_ChangeNameForm);
 	
 	var _groupMessage = __webpack_require__(609);
 	
 	var _translate = __webpack_require__(263);
+	
+	var _user = __webpack_require__(613);
 	
 	var _reactRedux = __webpack_require__(233);
 	
@@ -89250,7 +89612,7 @@
 		}, {
 			key: 'handleMessageSubmit',
 			value: function handleMessageSubmit(message) {
-	
+				console.log('message', message);
 				this.dispatch((0, _groupMessage.addGroupMessage)(message));
 				socket.emit('send:message', message);
 			}
@@ -89271,7 +89633,8 @@
 			}
 		}, {
 			key: 'joinVideoChat',
-			value: function joinVideoChat(selectedUser) {
+			value: function joinVideoChat(name) {
+				this.dispatch((0, _user.setSelectedUserName)(name));
 				_reactRouter.browserHistory.push('/video-chat');
 			}
 		}, {
@@ -89354,7 +89717,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChatAppGroup);
 
 /***/ },
-/* 754 */
+/* 755 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -89371,7 +89734,7 @@
 	
 	var _reactRouter = __webpack_require__(32);
 	
-	var _reactAddonsCssTransitionGroup = __webpack_require__(755);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(756);
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
@@ -89432,13 +89795,13 @@
 	exports.default = CountryTransition;
 
 /***/ },
-/* 755 */
+/* 756 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(756);
+	module.exports = __webpack_require__(757);
 
 /***/ },
-/* 756 */
+/* 757 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89463,8 +89826,8 @@
 	
 	var React = __webpack_require__(2);
 	
-	var ReactTransitionGroup = __webpack_require__(757);
-	var ReactCSSTransitionGroupChild = __webpack_require__(760);
+	var ReactTransitionGroup = __webpack_require__(758);
+	var ReactCSSTransitionGroupChild = __webpack_require__(761);
 	
 	function createTransitionTimeoutPropValidator(transitionType) {
 	  var timeoutPropName = 'transition' + transitionType + 'Timeout';
@@ -89547,7 +89910,7 @@
 	module.exports = ReactCSSTransitionGroup;
 
 /***/ },
-/* 757 */
+/* 758 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89571,7 +89934,7 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var React = __webpack_require__(2);
-	var ReactTransitionChildMapping = __webpack_require__(758);
+	var ReactTransitionChildMapping = __webpack_require__(759);
 	
 	var emptyFunction = __webpack_require__(12);
 	
@@ -89780,7 +90143,7 @@
 	module.exports = ReactTransitionGroup;
 
 /***/ },
-/* 758 */
+/* 759 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -89795,7 +90158,7 @@
 	
 	'use strict';
 	
-	var flattenChildren = __webpack_require__(759);
+	var flattenChildren = __webpack_require__(760);
 	
 	var ReactTransitionChildMapping = {
 	  /**
@@ -89888,7 +90251,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 759 */
+/* 760 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -89969,7 +90332,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 760 */
+/* 761 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -89985,10 +90348,10 @@
 	'use strict';
 	
 	var React = __webpack_require__(2);
-	var ReactAddonsDOMDependencies = __webpack_require__(761);
+	var ReactAddonsDOMDependencies = __webpack_require__(762);
 	
-	var CSSCore = __webpack_require__(766);
-	var ReactTransitionEvents = __webpack_require__(767);
+	var CSSCore = __webpack_require__(767);
+	var ReactTransitionEvents = __webpack_require__(768);
 	
 	var onlyChild = __webpack_require__(31);
 	
@@ -90140,7 +90503,7 @@
 	module.exports = ReactCSSTransitionGroupChild;
 
 /***/ },
-/* 761 */
+/* 762 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90167,14 +90530,14 @@
 	
 	  exports.getReactPerf = function () {
 	    if (!ReactPerf) {
-	      ReactPerf = __webpack_require__(762);
+	      ReactPerf = __webpack_require__(763);
 	    }
 	    return ReactPerf;
 	  };
 	
 	  exports.getReactTestUtils = function () {
 	    if (!ReactTestUtils) {
-	      ReactTestUtils = __webpack_require__(763);
+	      ReactTestUtils = __webpack_require__(764);
 	    }
 	    return ReactTestUtils;
 	  };
@@ -90182,7 +90545,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 762 */
+/* 763 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90688,7 +91051,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 763 */
+/* 764 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -90706,7 +91069,7 @@
 	var _prodInvariant = __webpack_require__(90),
 	    _assign = __webpack_require__(4);
 	
-	var EventConstants = __webpack_require__(764);
+	var EventConstants = __webpack_require__(765);
 	var EventPluginHub = __webpack_require__(97);
 	var EventPluginRegistry = __webpack_require__(98);
 	var EventPropagators = __webpack_require__(96);
@@ -90717,7 +91080,7 @@
 	var ReactInstanceMap = __webpack_require__(171);
 	var ReactUpdates = __webpack_require__(111);
 	var SyntheticEvent = __webpack_require__(108);
-	var ReactShallowRenderer = __webpack_require__(765);
+	var ReactShallowRenderer = __webpack_require__(766);
 	
 	var findDOMNode = __webpack_require__(227);
 	var invariant = __webpack_require__(8);
@@ -91105,7 +91468,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 764 */
+/* 765 */
 /***/ function(module, exports) {
 
 	/**
@@ -91201,7 +91564,7 @@
 	module.exports = EventConstants;
 
 /***/ },
-/* 765 */
+/* 766 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -91341,7 +91704,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 766 */
+/* 767 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -91468,7 +91831,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 767 */
+/* 768 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**

@@ -6,6 +6,7 @@ import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
 import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage';
 import { translateActionCreator } from '../reducers/translate';
+import { setSelectedUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
@@ -104,7 +105,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	handleMessageSubmit(message) {
-
+		console.log('message', message)
 		this.dispatch(addGroupMessage(message))
 		socket.emit('send:message', message);
 	}
@@ -121,7 +122,8 @@ class ChatAppGroup extends React.Component {
 		})
 	}
 
-	joinVideoChat(selectedUser) {
+	joinVideoChat(name) {
+		this.dispatch(setSelectedUserName(name))
 		browserHistory.push('/video-chat');
 	}
 
