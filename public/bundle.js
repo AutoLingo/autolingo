@@ -54332,7 +54332,7 @@
 	            ),
 	            _react2.default.createElement(
 	              _reactRouter.Link,
-	              { className: 'navbar-brand', href: '/' },
+	              { to: '/', className: 'navbar-brand' },
 	              'Auto',
 	              _react2.default.createElement(
 	                'span',
@@ -57582,12 +57582,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function mapStateToProps(state, ownProps) {
-	  var america = { name: 'america', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
-	  var china = { name: 'china', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
-	  var spain = { name: 'spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
-	  var france = { name: 'france', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
-	  var korea = { name: 'korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
-	  var zoomOut = { name: 'globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 };
+	  var america = { name: 'USA', fitBounds: [38.68551, -99.49219], zoomNum: 5 };
+	  var china = { name: 'China', fitBounds: [37.23033, 105.77637], zoomNum: 3 };
+	  var spain = { name: 'Spain', fitBounds: [40.66397, -3.40576], zoomNum: 6 };
+	  var france = { name: 'France', fitBounds: [46.83013, 2.59277], zoomNum: 6 };
+	  var korea = { name: 'Korea', fitBounds: [35.88015, 127.97974], zoomNum: 7 };
+	  var zoomOut = { name: 'Globe', fitBounds: [16.541430, 7.558594], zoomNum: 3 };
 	
 	  function findCountry(bounds) {
 	    var country = {};
@@ -57841,7 +57841,7 @@
 	      this.map.dragging.enable();
 	      this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
 	
-	      if (country.name === 'globe') {
+	      if (country.name === 'Globe') {
 	        //then put them back to right coordinates
 	        this.usaMarker = _mapbox2.default.marker([45.6981, -104.36035], { icon: this.usaIcon }).addTo(this.map);
 	        this.chinaMarker = _mapbox2.default.marker([42.23727, 98.84277], { icon: this.chinaIcon }).addTo(this.map);
@@ -57850,7 +57850,7 @@
 	        this.koreaMarker = _mapbox2.default.marker([45.07518, 122.11494], { icon: this.koreaIcon }).addTo(this.map);
 	      }
 	
-	      if (country.name === 'america' || country.name === "china" || country.name === "spain" || country.name === "france" || country.name === "korea") {
+	      if (country.name === 'USA' || country.name === "China" || country.name === "Spain" || country.name === "France" || country.name === "Korea") {
 	        this.map.removeLayer(this.usaMarker);
 	        this.map.removeLayer(this.spainMarker);
 	        this.map.removeLayer(this.chinaMarker);
@@ -89132,7 +89132,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var socket = void 0;
+	var socket = _sockets2.default.connect('/group-chat');
 	
 	var ChatAppGroup = function (_React$Component) {
 		_inherits(ChatAppGroup, _React$Component);
@@ -89160,8 +89160,6 @@
 		_createClass(ChatAppGroup, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				socket = _sockets2.default.connect('/group-chat');
-	
 				socket.on('init', this._initialize);
 				socket.on('send:message', this._messageReceive);
 				socket.on('user:join', this._userJoined);
@@ -89169,6 +89167,12 @@
 				socket.on('change:name', this._userChangedName);
 				socket.on('disconnect', this._disconnectUser);
 				socket.emit('join_room', { room: this.props.selectedCountry });
+			}
+		}, {
+			key: 'componentWillUnmount',
+			value: function componentWillUnmount() {
+				console.log('COMPONENT IS UNMOUNTING');
+				socket.emit('room_exit');
 			}
 	
 			//set user with given name
@@ -89225,6 +89229,7 @@
 					user: 'LingoBot',
 					text: name + ' Left'
 				};
+				console.log(data.name + ' is about to be removed from state through dispatch');
 				this.dispatch((0, _groupMessage.addGroupMessage)(userLeftMsg));
 				this.dispatch((0, _groupMessage.removeGroupUser)(name));
 			}
@@ -89279,13 +89284,15 @@
 				var handleChangeName = this.handleChangeName;
 				var language = this.props.state.user.primaryUser.primaryLanguage;
 				var joinVideoChat = this.joinVideoChat;
+				var selectedCountry = this.props.selectedCountry;
 				return _react2.default.createElement(
 					'div',
 					{ className: 'container', id: 'chatbox-body' },
 					_react2.default.createElement(
 						'h1',
 						null,
-						'Live Group Chat'
+						'Live Group Chat: ',
+						selectedCountry
 					),
 					_react2.default.createElement(
 						'div',
@@ -89335,7 +89342,7 @@
 	
 	function mapStateToProps(state, ownProps) {
 		var userLanguage = state.user.primaryUser.primaryLanguage;
-		var selectedCountry = state.user.primaryUser.country;
+		var selectedCountry = state.map.selectedCountry;
 		var userName = state.groupMessage.user;
 		return { state: state, userLanguage: userLanguage, selectedCountry: selectedCountry, userName: userName };
 	}

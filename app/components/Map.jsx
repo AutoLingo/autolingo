@@ -172,7 +172,7 @@ export default class Map extends Component {
       this.map.dragging.enable();
       this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
 
-      if (country.name === 'globe') {
+      if (country.name === 'Globe') {
         //then put them back to right coordinates
         this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(this.map);
         this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(this.map);
@@ -182,7 +182,7 @@ export default class Map extends Component {
 
       }
 
-      if(country.name=== 'america' || country.name==="china" || country.name==="spain" || country.name==="france" || country.name==="korea") {
+      if(country.name=== 'USA' || country.name==="China" || country.name==="Spain" || country.name==="France" || country.name==="Korea") {
         this.map.removeLayer(this.usaMarker)
         this.map.removeLayer(this.spainMarker)
         this.map.removeLayer(this.chinaMarker)

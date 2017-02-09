@@ -33,7 +33,7 @@ export default class Navbar extends Component {
               <span className="icon-bar"></span>
             </button>
 
-            <Link className="navbar-brand" href="/">Auto<span className="lingo-blue">Lingo</span></Link>
+            <Link to="/" className="navbar-brand" >Auto<span className="lingo-blue">Lingo</span></Link>
           </div>
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
