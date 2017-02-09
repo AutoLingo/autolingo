@@ -12,42 +12,55 @@ const chalk = require('chalk');
 let IO = null;
   var names = {};
 
-// function getAllRoomMembers(room, namespace, io) {
-//         const socketIds = Object.keys(io.nsps[namespace].adapter.rooms[room].sockets);
+// function getUserSocketId(name, room, io) {
+//         // let socketIds = Object.keys(io.nsps['/group-chat'].adapter.rooms[room].sockets)
+//         let socketsObj = io.nsps['/group-chat'].adapter.rooms[room].sockets
+//         let socketIds = Object.keys(socketsObj);
+
+// console.log('SOCKETIDS', socketIds)
+// // console.log('SOCKETS OBJECT', socketsObj)
+// // console.log(io.sockets.connected)
+//         // let userSocketId = socketIds.filter(socketId => {
+//         //   return socketIds[socketId].name === name
+//         // })
         
-//         const sockets = socketIds.map(id => {
-//           const idSplit = id.split('#')[1]
-//           return io.sockets.connected[idSplit];
-//         })
-//           return sockets;
+//             // const sockets = socketIds.map(id => {
+//             //   const idSplit = id.split('#')[1]
+//             //   return io.sockets.connected[idSplit];
+//             // })
+//             //   return sockets;
+//         let userSocketId = socketIds[1].split('#')[1]
+// console.log('USERSOCKETID', userSocketId)
+//         return userSocketId
 //   }
 
 var userNames = (function() {
 
   //check if the given name exists in the names object
-  var claim = function(name, room) {
+  var claim = function(name, room, socketId) {
     if(!name || names[room] && names[room][name]) {
       return false;
     } else {
     console.log('names', names)
     console.log('room', room)
     console.log('name', name)
+    console.log('socketId', socketId)
     
-    names[room][name] = true;
-      return true;
+    names[room][name] = socketId;
+    return true;
     }
   }
 
   //Set Guest Username to be "Guest 1" and the number will increase depending on whether that guest username already exists
   //The number will only increase if the guest username does not already exist in the names object.
-  var getGuestName = function(room) {
+  var getGuestName = function(room, socketId) {
    var name,
      nextUserId = 1;
 
      do {
        name = 'Guest ' + nextUserId;
        nextUserId += 1;
-     } while (!claim(name, room));
+     } while (!claim(name, room, socketId));
 
      return name
  }
@@ -58,9 +71,19 @@ var userNames = (function() {
     for(let user in names[room]) {
       res.push(user)
     }
-    
     return res;
   }
+
+  var getNameObjects = function(room) {
+    var res = [];
+    for(let user in names[room]) {
+      res.push({
+        [user]: names[room][user]
+      })
+    }
+    return res;
+  }
+
 
   var free = function (name, room) {
     if (names[room] && names[room][name]) {
@@ -72,6 +95,7 @@ var userNames = (function() {
     claim: claim,
     free: free,
     get: get,
+    getNameObjects: getNameObjects,
     getGuestName: getGuestName
   }
 }())
@@ -168,7 +192,7 @@ function socketInit (server) {
         names[data.room] = {};
       }
 
-      let name = userNames.getGuestName(data.room);
+      let name = userNames.getGuestName(data.room, socket.id);
       socket.name = name;
       socket.room = data.room
       socket.join(data.room)
@@ -195,7 +219,7 @@ function socketInit (server) {
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
       console.log(socket.room)
-      if(userNames.claim(data.name, socket.room)) {
+      if(userNames.claim(data.name, socket.room, socket.id)) {
 
         var oldName = socket.name;
         userNames.free(oldName, socket.room);
@@ -241,9 +265,27 @@ function socketInit (server) {
       socket.join(room)
     })
 
-    socket.on('broadcast_video_room', function(data) {
-      socket.broadcast.emit('broadcast_video_room', {
-        room: data.room
+    // socket.on('broadcast_video_room', function(data) {
+    //   socket.broadcast.emit('broadcast_video_room', {
+    //     room: data.room
+    //   })
+    // })
+
+    socket.on('send_video_invitation', function(data) {
+console.log('SEND VIDEO INVITATION DATA', data)
+      // const userSocketId = getUserSocketId(data.name, data.room, IO)
+      const userObjects = userNames.getNameObjects(data.room)
+      const userObject = userObjects.filter((userObject) => {
+        return userObject[data.name]
+      })[0]
+        console.log('USEROBJECTS', userObjects)
+        console.log('FILTERED USEROBJECT', userObject)
+
+      const userSocketId = userObject[data.name]
+      console.log('SOCKETID', userSocketId);
+
+      groupChat.to(userSocketId).emit('video_invitation', {
+        link: data.link
       })
     })
 

@@ -161,13 +161,15 @@ nav {
   background: grey; }
 
 /*************************map marker styling************************/
-.leaflet-container img.leaflet-marker-icon {
-  -webkit-animation-name: hvr-icon-down;
-  animation-name: hvr-icon-down;
-  -webkit-animation-duration: 0.75s;
-  animation-duration: 0.75s;
-  -webkit-animation-timing-function: ease-out;
-  animation-timing-function: ease-out; }
+.leaflet-container {
+  background-color: #cad2d3; }
+  .leaflet-container img.leaflet-marker-icon {
+    -webkit-animation-name: hvr-icon-down;
+    animation-name: hvr-icon-down;
+    -webkit-animation-duration: 0.75s;
+    animation-duration: 0.75s;
+    -webkit-animation-timing-function: ease-out;
+    animation-timing-function: ease-out; }
 
 /***************** start of chat box (socket) styling *****************/
 #chatbox-body {
@@ -275,7 +277,7 @@ nav {
 .users li {
   font-size: 20px;
   border: none;
-  color: black;
+  /*color: black;*/
   list-style: none; }
 
 .users li:hover {

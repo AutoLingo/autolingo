@@ -9,11 +9,15 @@ const UsersList = function (props) {
 					{
 						//Need to have users information in the database
 						props.users.map((user, i) => {
-							return (
-
-								<li key={i} onClick={()=>props.joinVideoChat(user)}><img src="APP/public/img/videocam.png" height="25" width="25"/>{user}</li>
-
-							)
+							if ( user === props.userName) {
+								return (
+									<li className="lingo-blue" key={i} onClick={()=>props.joinVideoChat(user, props.room)}><img src="APP/public/img/videocam.png" height="25" width="25"/>{user}</li>
+								)
+							} else {
+								return (						
+									<li key={i} onClick={()=>props.joinVideoChat(user, props.room)}><img src="APP/public/img/videocam.png" height="25" width="25"/>{user}</li>
+								)
+							}
 						})
 					}
 				</ul>
