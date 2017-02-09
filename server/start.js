@@ -284,19 +284,27 @@ console.log('FILTERED USEROBJECT', userObject)
       const userSocketId = userObject[data.name]
 console.log('SOCKETID', userSocketId);
 
-      socket.broadcast.to(userSocketId).emit('video_invitation', {
-        link: data.link
-      })
+      // socket.broadcast.to(userSocketId).emit('video_invitation', {
+      //   link: data.link
+      // })
 
-      socket.broadcast.to(userSocketId.split('#')[1]).emit('video_invitation', {
-        link: data.link
-      })
+      // socket.broadcast.to(userSocketId.split('#')[1]).emit('video_invitation', {
+      //   link: data.link
+      // })
 
       // groupChat.broadcast.to(userSocketId.split('#')[1]).emit('video_invitation', {
       //   link: data.link
       // })
 
-      groupChat.to(userSocketId.split('#')[1]).emit('video_invitation', {
+      // groupChat.to(userSocketId.split('#')[1]).emit('video_invitation', {
+      //   link: data.link
+      // })
+
+      IO.to(userSocketId).emit('video_invitation', {
+        link: data.link
+      })
+
+      IO.to(userSocketId.split('#')[1]).emit('video_invitation', {
         link: data.link
       })
 
