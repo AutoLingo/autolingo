@@ -21,6 +21,7 @@ class ChatAppGroup extends React.Component {
 		this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
 		this.handleChangeName = this.handleChangeName.bind(this)
 		this.joinVideoChat = this.joinVideoChat.bind(this)
+		this.showInvitation = this.showInvitation.bind(this)
 		this._initialize = this._initialize.bind(this)
 		this._messageReceive = this._messageReceive.bind(this)
 		this._userJoined = this._userJoined.bind(this)
@@ -36,7 +37,9 @@ class ChatAppGroup extends React.Component {
 		socket.on('user:left', this._userLeft);
 		socket.on('change:name', this._userChangedName);
 		socket.on('disconnect', this._disconnectUser)
-		socket.emit('join_room', { room: this.props.selectedCountry})
+		socket.on('video_invitation', this.showInvitation);
+
+		socket.emit('join_room', { room: this.props.selectedCountry});
 	}
 
 	componentWillUnmount() {
@@ -122,20 +125,33 @@ class ChatAppGroup extends React.Component {
 		})
 	}
 
-	joinVideoChat(name) {
-		this.dispatch(setSelectedUserName(name))
+	joinVideoChat(name, room) {
+		this.dispatch(setSelectedUserName(name, room))
 		browserHistory.push('/video-chat');
 	}
 
+	showInvitation(data) {
+		// alert('INVITATION')
+console.log('INVITATION', data)
+		var invitationMessage = {
+			user: "LingoBot",
+			text: data.link
+		};
+		this.dispatch(addGroupMessage(invitationMessage))
+	}
+
 	render() {
-		const users = this.props.state.groupMessage.users;
-		const messages = this.props.state.groupMessage.messages;
-		const user = this.props.state.groupMessage.user;
+
+		const users = this.props.users;
+		const messages = this.props.messages;
+		const user = this.props.userName
+		const language = this.props.userLanguage;
+		const selectedCountry = this.props.selectedCountry
+		
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
-		const language = this.props.state.user.primaryUser.primaryLanguage;
 		const joinVideoChat = this.joinVideoChat
-		const selectedCountry = this.props.selectedCountry
+		
 		return (
 			<div className="container" id="chatbox-body">
 				<h1>Live Group Chat: { selectedCountry }</h1>
@@ -150,6 +166,8 @@ class ChatAppGroup extends React.Component {
 						<UsersList
 							users={users}
 							joinVideoChat={joinVideoChat}
+							userName = {this.props.userName}
+							room = {this.props.selectedCountry}
 						/>
 					</div>
 				</div>
@@ -177,7 +195,10 @@ function mapStateToProps (state, ownProps) {
 	const userLanguage = state.user.primaryUser.primaryLanguage;
 	const selectedCountry = state.map.selectedCountry;
 	const userName = state.groupMessage.user;
-  return { state, userLanguage, selectedCountry, userName };
+	const users = state.groupMessage.users;
+	const messages = state.groupMessage.messages;
+	
+  return { state, userLanguage, selectedCountry, userName, users, messages };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {

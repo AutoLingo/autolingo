@@ -38,6 +38,15 @@ class ChatApp extends Component {
 		socket.on('final_transcript', this.finalTranscript)
 		socket.on('interim_transcript', this.interimTranscript)
 		socket.on('broadcast_video_room', this.joinVideo)
+console.log(this.props.selectedUser)
+		if (this.props.selectedUser.name) {
+console.log('ABOUT TO EMIT VIDEO INVITIATION');
+			socket.emit('send_video_invitation', {
+				name: this.props.selectedUser.name,
+				room: this.props.selectedUser.room,
+				link: window.location.pathname + window.location.hash
+			})
+		}
 	}
 
 	//**Helper emit methods for child "voicerecognitioncontainer" child component (remove/refactor?) **************************
@@ -240,12 +249,14 @@ const mapStateToProps = state => {
 	let userLanguage = state.user.primaryUser.primaryLanguage
 	let finalTranscripts = state.speech.finalTranscripts
 	let interimTranscript = state.speech.interimTranscript
+	let selectedUser = state.user.selectedUser
 
 	return {
 		translation,
 		userLanguage,
 		finalTranscripts,
-		interimTranscript
+		interimTranscript,
+		selectedUser
  	}
 }
 

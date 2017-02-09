@@ -32,11 +32,11 @@ export default class Map extends Component {
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
 
-    map.dragging.disable();
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.zoomControl.remove();
+    // map.dragging.disable();
+    // map.touchZoom.disable();
+    // map.doubleClickZoom.disable();
+    // map.scrollWheelZoom.disable();
+    // map.zoomControl.remove();
 
     geojson = L.geoJSON(countriesLayer, {
       style: function(feature) {

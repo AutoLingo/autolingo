@@ -8,8 +8,8 @@ export const setPrimaryUserName = (name) => {
   return { type: SET_PRIMARY_USER_NAME, name }
 }
 
-export const setSelectedUserName = (name) => {
-  return { type: SET_SELECTED_USER_NAME, name }
+export const setSelectedUserName = (name, room) => {
+  return { type: SET_SELECTED_USER_NAME, name, room }
 }
 
 export const setUserLanguage = (primaryLanguage, dialect) => {

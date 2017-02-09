@@ -29,9 +29,7 @@ render (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="/group-chat" component={ChatAppGroup} />
-        <Route path="/video-chat" component={ChatAppVideo} onEnter={generateHash}>
-          <Route path="/video-chat/:hash"  component={ChatAppVideo}/>
-        </Route>
+        <Route path="/video-chat" component={ChatAppVideo} onEnter={generateHash} />
         <Route path="/livechat" component={LiveChat} />
         <Route path="/instructions" component={InstructionMessage} />
         <Route path="/country-transition" component={CountryTransition} />
