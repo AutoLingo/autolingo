@@ -170,7 +170,7 @@ function socketInit (server) {
 
       let name = userNames.getGuestName(data.room);
       socket.name = name;
-      socket.currentRoom = data.room
+      socket.room = data.room
       socket.join(data.room)
 
       groupChat.to(data.room).emit('init', {
@@ -184,7 +184,7 @@ function socketInit (server) {
     })
 
     socket.on('send:message', function(data) {
-      groupChat.to(data.room).emit('send:message', {
+      socket.broadcast.to(socket.room).emit('send:message', {
         user: socket.name,
         text: data.text,
         language: data.language,
@@ -194,16 +194,16 @@ function socketInit (server) {
 
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
-      console.log(socket.currentRoom)
-      if(userNames.claim(data.name, socket.currentRoom)) {
+      console.log(socket.room)
+      if(userNames.claim(data.name, socket.room)) {
 
         var oldName = socket.name;
-        userNames.free(oldName, socket.currentRoom);
+        userNames.free(oldName, socket.room);
 
         let newName = data.name;
         socket.name = newName;
 
-        socket.broadcast.to(socket.currentRoom).emit('change:name', {
+        socket.broadcast.to(socket.room).emit('change:name', {
           oldName,
           newName
         });
@@ -216,19 +216,19 @@ function socketInit (server) {
 
     socket.on('room_exit', function() {
       console.log(`${socket.name} is disconnecting`)
-      groupChat.to(socket.currentRoom).emit('user:left', {
+      groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
-      userNames.free(socket.name, socket.currentRoom);
+      userNames.free(socket.name, socket.room);
         console.log('USERS LEFT IN ROOM: ', names);
       })
     
     socket.on('disconnect', function(){
         console.log(`${socket.name} is disconnecting`)
-      groupChat.to(socket.currentRoom).emit('user:left', {
+      groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
-      userNames.free(socket.name, socket.currentRoom);
+      userNames.free(socket.name, socket.room);
         console.log('USERS LEFT IN ROOM: ', names);
     })
 
