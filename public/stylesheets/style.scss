@@ -81,6 +81,7 @@ nav {
   right: 5vw;
   bottom: 12vh;
   z-index: 99;
+  line-height: 15px;
 }
 
 #fit-america:hover {
@@ -91,7 +92,7 @@ nav {
 
 #fit-america {
   display: inline-block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -110,7 +111,7 @@ nav {
 
 #fit-spain {
   display: block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -129,7 +130,7 @@ nav {
 
 #fit-china {
   display: block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -148,7 +149,7 @@ nav {
 
 #fit-france {
   display: block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -167,7 +168,7 @@ nav {
 
 #fit-korea {
   display: block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -186,7 +187,7 @@ nav {
 
 #zoomout {
   display: block;
-  width: 10vw;
+  width: 160px;
   height: 40px;
   padding: 10px;
   border: none;
@@ -618,10 +619,10 @@ a:hover {
 }
 
 .countryTransitionMsg {
- position: absolute;
- top: 50vh;
- left: 40vw;
- z-index: 99;
+  position: absolute;
+  top: 40%;
+  left: 32%;
+  z-index: 99;
 }
 
 .countryTransitionMsg h1 {
