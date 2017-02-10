@@ -22,7 +22,7 @@ class CountryTransition extends React.Component {
         transitionAppearTimeout={500}
         transitionEnter={false}
         transitionLeave={false}>
-        <h1>Entering {selectedCountry} Chat Room...</h1>
+        <h1 className="lingo-blue">Entering {selectedCountry} Chat Room...</h1>
       </ReactCSSTransitionGroup>
     </div>
     );
