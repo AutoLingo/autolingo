@@ -1,4 +1,4 @@
-var statesData = 
+export default 
 {
 "type": "FeatureCollection",
 "features": [

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import L from 'mapbox.js';
-import countriesLayer from '../data/world.json'
+import countriesLayer from '../data/world'
 import { Link } from 'react-router';
 import repositionMap from './utilities.jsx';
 import {browserHistory} from 'react-router'
@@ -28,7 +28,6 @@ export default class Map extends Component {
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
-    console.log('Original map: ', map);
     this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
@@ -40,29 +39,10 @@ export default class Map extends Component {
     // map.zoomControl.remove();
 
     geojson = L.geoJSON(countriesLayer, {
-      style: function(feature) {
-        switch(feature.properties.title) {
-          case 'France': return {
-            color: "#3ca0d3"
-          };
-          case 'China': return {
-            color: "#f86767"
-          };
-          case "Korea": return {
-            // color: "#e7857f"
-            color: "red"
-          };
-          case "Spain": return {
-            color: "#fa946e"
-          };
-          case "United States of America": return {
-            color: "#9c89cc"
-          }
-        }
-      },
 
       onEachFeature: this.countriesOnEachFeature
     }).addTo(map);
+  
 
     
 
@@ -148,14 +128,10 @@ export default class Map extends Component {
 
     zoomToFeature(e) {
       let clickEvent = e
-      console.log('clickEvent: ', clickEvent);
       let objectThatFiredEvent = clickEvent.target
-      console.log('objectThatFiredEvent: ', objectThatFiredEvent);
       let objectBounds = (objectThatFiredEvent.getBounds())
-      console.log('objectBounds: ', objectBounds);
 
       this.map.fitBounds(e.target.getBounds())
-      console.log('this.map: ', this.map);
       // const country = this.props.findCountry(e.target.getBounds());
       // this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
       // this.props.removeLayer(this.usaMarker);
