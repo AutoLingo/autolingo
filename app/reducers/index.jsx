@@ -5,7 +5,6 @@ const rootReducer = combineReducers({
   map: require('./map').default,
   user: require('./user').default,
   speech: require('./speech').default,
-  messages: require('./messagesReducer').default,
   groupMessage: require('./groupMessage').default
 })
 
