@@ -1,6 +1,7 @@
 import React from 'react';
-import {browserHistory} from 'react-router'
+import { browserHistory } from 'react-router'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { connect } from 'react-redux'
 
 class CountryTransition extends React.Component {
   componentDidMount() {
@@ -12,6 +13,8 @@ class CountryTransition extends React.Component {
     }
   }
   render() {
+    let selectedCountry = this.props.selectedCountry
+
     return (<div className="countryTransitionMsg">
       <ReactCSSTransitionGroup
         transitionName="countryTransition"
@@ -19,11 +22,17 @@ class CountryTransition extends React.Component {
         transitionAppearTimeout={500}
         transitionEnter={false}
         transitionLeave={false}>
-        <h1>Entering Chat Room...</h1>
+        <h1>Entering {selectedCountry} Chat Room...</h1>
       </ReactCSSTransitionGroup>
     </div>
     );
   }
 }
 
-export default CountryTransition
+const mapStateToProps = state => {
+  const selectedCountry = state.map.selectedCountry
+  return {
+    selectedCountry
+  }
+}
+export default connect(mapStateToProps) (CountryTransition)
