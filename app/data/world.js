@@ -1,4 +1,5 @@
-export default 
+const world =
+
 {
 "type": "FeatureCollection",
 "features": [
@@ -514,3 +515,6 @@ export default
 
 ]
 }
+
+export default world
+export const countries = world.features.map(feature => feature.properties.name)
