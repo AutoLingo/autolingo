@@ -37,8 +37,9 @@ nav {
   #language-list .dropdown-menu {
     margin-bottom: 20px; }
 
-.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
-  font-size: 35px; }
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand .navbar-brand:hover {
+  font-size: 35px;
+  color: #6e6e6e; }
 
 /*End of nav bar styling*/
 /***************** Start of map styling *****************/
@@ -522,7 +523,7 @@ a:hover {
   z-index: 99; }
 
 .countryTransitionMsg h1 {
-  color: #0082e6;
+  color: #a8a8a8;
   font-family: 'Lato', sans-serif; }
 
 /***************************** end of country transition *********************/
