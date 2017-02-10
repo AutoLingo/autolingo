@@ -3,6 +3,8 @@
 import { connect } from 'react-redux';
 import Map from '../components/Map';
 import { setCountry } from '../actionCreators/map';
+import newCountriesLayer from '../data/newCountryCoordinates.json';
+
 
 function mapStateToProps (state, ownProps) {
   const america = { name: 'USA', fitBounds: [38.68551, -99.49219], zoomNum: 5 }
