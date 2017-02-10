@@ -187,7 +187,6 @@ function socketInit (server) {
   groupChat.on('connection', function(socket) {
 
     socket.on('join_room', function(data) {
-      console.log('data', data)
       if (!names[data.room]) {
         names[data.room] = {};
       }
@@ -218,7 +217,6 @@ function socketInit (server) {
 
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
-      console.log(socket.room)
       if(userNames.claim(data.name, socket.room, socket.id)) {
 
         var oldName = socket.name;
@@ -239,50 +237,40 @@ function socketInit (server) {
     });
 
     socket.on('room_exit', function() {
-      console.log(`${socket.name} is disconnecting`)
+      socket.leave(socket.room)
+
       groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
+
       userNames.free(socket.name, socket.room);
-        console.log('USERS LEFT IN ROOM: ', names);
-      })
+    });
     
     socket.on('disconnect', function(){
-        console.log(`${socket.name} is disconnecting`)
       groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
+
       userNames.free(socket.name, socket.room);
-        console.log('USERS LEFT IN ROOM: ', names);
-    })
+    });
 
   })
 // *********VIDEO CHAT********************
   videoChat.on('connection', function(socket) {
-    
+
     socket.on('join_room', function(data) {
       let room = data.room
       socket.join(room)
+      socket.room = room
     })
 
-    // socket.on('broadcast_video_room', function(data) {
-    //   socket.broadcast.emit('broadcast_video_room', {
-    //     room: data.room
-    //   })
-    // })
-
     socket.on('send_video_invitation', function(data) {
-console.log('SEND VIDEO INVITATION DATA', data)
-      // const userSocketId = getUserSocketId(data.name, data.room, IO)
       const userObjects = userNames.getNameObjects(data.room)
       const userObject = userObjects.filter((userObject) => {
         return userObject[data.name]
       })[0]
-        console.log('USEROBJECTS', userObjects)
-        console.log('FILTERED USEROBJECT', userObject)
 
       const userSocketId = userObject[data.name]
-      console.log('SOCKETID', userSocketId);
 
       groupChat.to(userSocketId).emit('video_invitation', {
         link: data.link
@@ -290,16 +278,14 @@ console.log('SEND VIDEO INVITATION DATA', data)
     })
 
     socket.on('interim_transcript', function(data) {
-      let room = data.room
-
-      socket.broadcast.emit('interim_transcript', {
+      videoChat.to(socket.room).emit('interim_transcript', {
        interimTranscript: data.interimTranscript,
        userLanguage: data.userLanguage
       })
     })
 
     socket.on('final_transcript', function(data) {
-      socket.broadcast.emit('final_transcript', {
+      videoChat.to(socket.room).emit('final_transcript', {
        finalTranscript: data.finalTranscript,
        userLanguage: data.userLanguage
       })
