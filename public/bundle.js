@@ -57644,9 +57644,9 @@
 	
 	var _mapbox2 = _interopRequireDefault(_mapbox);
 	
-	var _countryCoordinates = __webpack_require__(688);
+	var _world = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../data/world.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
-	var _countryCoordinates2 = _interopRequireDefault(_countryCoordinates);
+	var _world2 = _interopRequireDefault(_world);
 	
 	var _reactRouter = __webpack_require__(32);
 	
@@ -57673,7 +57673,7 @@
 	    var _this = _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).call(this, props));
 	
 	    _this.map;
-	    _this.repositionMap = _this.repositionMap.bind(_this);
+	    // this.repositionMap = this.repositionMap.bind(this);
 	    _this.zoomToFeature = _this.zoomToFeature.bind(_this);
 	    _this.countriesOnEachFeature = _this.countriesOnEachFeature.bind(_this);
 	    _this.usaMarker;
@@ -57690,6 +57690,7 @@
 	      // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
 	      _mapbox2.default.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA';
 	      var map = _mapbox2.default.mapbox.map('map').setView([16.541430, 7.558594], 3);
+	      console.log('Original map: ', map);
 	      this.map = map;
 	      // Use styleLayer to add a Mapbox style created in Mapbox Studio
 	      _mapbox2.default.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
@@ -57700,7 +57701,7 @@
 	      // map.scrollWheelZoom.disable();
 	      // map.zoomControl.remove();
 	
-	      geojson = _mapbox2.default.geoJSON(_countryCoordinates2.default, {
+	      geojson = _mapbox2.default.geoJSON(_world2.default, {
 	        style: function style(feature) {
 	          switch (feature.properties.title) {
 	            case 'France':
@@ -57745,31 +57746,31 @@
 	      // map.on('click', onMapClick);
 	
 	      //Add country markers
-	      this.usaIcon = _mapbox2.default.icon({
-	        iconUrl: 'APP/public/img/united-states.png'
-	      });
+	      // this.usaIcon = L.icon({
+	      //   iconUrl: 'APP/public/img/united-states.png'
+	      // });
 	
-	      this.chinaIcon = _mapbox2.default.icon({
-	        iconUrl: 'APP/public/img/china.png'
-	      });
+	      // this.chinaIcon = L.icon({
+	      //   iconUrl: 'APP/public/img/china.png'
+	      // });
 	
-	      this.franceIcon = _mapbox2.default.icon({
-	        iconUrl: 'APP/public/img/france.png'
-	      });
+	      // this.franceIcon = L.icon({
+	      //   iconUrl: 'APP/public/img/france.png'
+	      // });
 	
-	      this.spainIcon = _mapbox2.default.icon({
-	        iconUrl: 'APP/public/img/spain.png'
-	      });
+	      // this.spainIcon = L.icon({
+	      //   iconUrl: 'APP/public/img/spain.png'
+	      // });
 	
-	      this.koreaIcon = _mapbox2.default.icon({
-	        iconUrl: 'APP/public/img/south-korea.png'
-	      });
+	      // this.koreaIcon = L.icon({
+	      //   iconUrl: 'APP/public/img/south-korea.png'
+	      // })
 	
-	      this.usaMarker = _mapbox2.default.marker([45.6981, -104.36035], { icon: this.usaIcon }).addTo(map);
-	      this.chinaMarker = _mapbox2.default.marker([42.23727, 98.84277], { icon: this.chinaIcon }).addTo(map);
-	      this.franceMarker = _mapbox2.default.marker([52.69116, -2.43896], { icon: this.franceIcon }).addTo(map);
-	      this.spainMarker = _mapbox2.default.marker([47.54952, -8.69141], { icon: this.spainIcon }).addTo(map);
-	      this.koreaMarker = _mapbox2.default.marker([45.07518, 122.11494], { icon: this.koreaIcon }).addTo(map);
+	      // this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(map);
+	      // this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(map);
+	      // this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(map);
+	      // this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(map);
+	      // this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(map);
 	
 	      //*****************************************
 	
@@ -57824,7 +57825,6 @@
 	      // const country = this.props.findCountry(e.target.getBounds());
 	      // this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
 	      // this.props.removeLayer(this.usaMarker);
-	      console.log(this);
 	      // this.removeLayer(this.usaMarker);
 	
 	      // this.map.removeLayer(this.usaMarker)
