@@ -146,51 +146,58 @@ export default class Map extends Component {
     }
 
     zoomToFeature(e) {
+      let clickEvent = e
+      console.log('clickEvent: ', clickEvent);
+      let objectThatFiredEvent = clickEvent.target
+      console.log('objectThatFiredEvent: ', objectThatFiredEvent);
+      let objectBounds = (objectThatFiredEvent.getBounds())
+      console.log('objectBounds: ', objectBounds);
+
       this.map.fitBounds(e.target.getBounds())
-      const country = this.props.findCountry(e.target.getBounds());
-      this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
+      console.log('this.map: ', this.map);
+      // const country = this.props.findCountry(e.target.getBounds());
+      // this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
       // this.props.removeLayer(this.usaMarker);
-      console.log(this);
       // this.removeLayer(this.usaMarker);
 
-      this.map.removeLayer(this.usaMarker)
-      this.map.removeLayer(this.spainMarker)
-      this.map.removeLayer(this.chinaMarker)
-      this.map.removeLayer(this.koreaMarker)
-      this.map.removeLayer(this.franceMarker)
-      browserHistory.push('/country-transition')
+      // this.map.removeLayer(this.usaMarker)
+      // this.map.removeLayer(this.spainMarker)
+      // this.map.removeLayer(this.chinaMarker)
+      // this.map.removeLayer(this.koreaMarker)
+      // this.map.removeLayer(this.franceMarker)
+      // browserHistory.push('/country-transition')
     }
 
-  repositionMap(country, map) {
-    // console.log('map', map)
-    // return (event) => {
-      // console.log('this', this)
-      // console.log('this.map', this.map);
-      // if(!this.map) return "";
-      console.log(this);
-      this.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
-      this.map.dragging.enable();
-      this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
+  // repositionMap(country, map) {
+  //   // console.log('map', map)
+  //   // return (event) => {
+  //     // console.log('this', this)
+  //     // console.log('this.map', this.map);
+  //     // if(!this.map) return "";
+  //     console.log(this);
+  //     this.map.fitBounds([country.fitBounds], {maxZoom: country.zoomNum});
+  //     this.map.dragging.enable();
+  //     this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum)
 
-      if (country.name === 'Globe') {
-        //then put them back to right coordinates
-        this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(this.map);
-        this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(this.map);
-        this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(this.map);
-        this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(this.map);
-        this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(this.map);
+  //     if (country.name === 'Globe') {
+  //       //then put them back to right coordinates
+  //       this.usaMarker = L.marker([45.6981, -104.36035], {icon: this.usaIcon}).addTo(this.map);
+  //       this.chinaMarker = L.marker([42.23727, 98.84277], {icon: this.chinaIcon}).addTo(this.map);
+  //       this.franceMarker = L.marker([52.69116, -2.43896], {icon: this.franceIcon}).addTo(this.map);
+  //       this.spainMarker = L.marker([47.54952, -8.69141], {icon: this.spainIcon}).addTo(this.map);
+  //       this.koreaMarker = L.marker([45.07518, 122.11494], {icon: this.koreaIcon}).addTo(this.map);
 
-      }
+  //     }
 
-      if(country.name=== 'USA' || country.name==="China" || country.name==="Spain" || country.name==="France" || country.name==="Korea") {
-        this.map.removeLayer(this.usaMarker)
-        this.map.removeLayer(this.spainMarker)
-        this.map.removeLayer(this.chinaMarker)
-        this.map.removeLayer(this.koreaMarker)
-        this.map.removeLayer(this.franceMarker)
-        // console.log(this.map)
-    }
-  }
+  //     if(country.name=== 'USA' || country.name==="China" || country.name==="Spain" || country.name==="France" || country.name==="Korea") {
+  //       this.map.removeLayer(this.usaMarker)
+  //       this.map.removeLayer(this.spainMarker)
+  //       this.map.removeLayer(this.chinaMarker)
+  //       this.map.removeLayer(this.koreaMarker)
+  //       this.map.removeLayer(this.franceMarker)
+  //       // console.log(this.map)
+  //   }
+  // }
 
   render() {
 
