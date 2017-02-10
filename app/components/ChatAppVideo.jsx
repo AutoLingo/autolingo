@@ -38,9 +38,9 @@ class ChatApp extends Component {
 		socket.on('final_transcript', this.finalTranscript)
 		socket.on('interim_transcript', this.interimTranscript)
 		socket.on('broadcast_video_room', this.joinVideo)
-console.log(this.props.selectedUser)
+
+		socket.emit('join_room', {room: window.location.hash})
 		if (this.props.selectedUser.name) {
-console.log('ABOUT TO EMIT VIDEO INVITIATION');
 			socket.emit('send_video_invitation', {
 				name: this.props.selectedUser.name,
 				room: this.props.selectedUser.room,
