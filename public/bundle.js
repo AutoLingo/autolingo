@@ -88451,10 +88451,7 @@
 					if (user === props.userName) {
 						return _react2.default.createElement(
 							"li",
-							{ className: "lingo-blue", key: i, onClick: function onClick() {
-									return props.joinVideoChat(user, props.room);
-								} },
-							_react2.default.createElement("img", { src: "APP/public/img/videocam.png", height: "25", width: "25" }),
+							{ className: "lingo-blue", key: i },
 							user
 						);
 					} else {
