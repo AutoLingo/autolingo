@@ -187,6 +187,7 @@ function socketInit (server) {
   groupChat.on('connection', function(socket) {
 
     socket.on('join_room', function(data) {
+      console.log('data', data)
       if (!names[data.room]) {
         names[data.room] = {};
       }
@@ -258,20 +259,30 @@ function socketInit (server) {
   })
 // *********VIDEO CHAT********************
   videoChat.on('connection', function(socket) {
-
+    
     socket.on('join_room', function(data) {
       let room = data.room
       socket.join(room)
-      socket.room = room
     })
 
+    // socket.on('broadcast_video_room', function(data) {
+    //   socket.broadcast.emit('broadcast_video_room', {
+    //     room: data.room
+    //   })
+    // })
+
     socket.on('send_video_invitation', function(data) {
+console.log('SEND VIDEO INVITATION DATA', data)
+      // const userSocketId = getUserSocketId(data.name, data.room, IO)
       const userObjects = userNames.getNameObjects(data.room)
       const userObject = userObjects.filter((userObject) => {
         return userObject[data.name]
       })[0]
+        console.log('USEROBJECTS', userObjects)
+        console.log('FILTERED USEROBJECT', userObject)
 
       const userSocketId = userObject[data.name]
+      console.log('SOCKETID', userSocketId);
 
       groupChat.to(userSocketId).emit('video_invitation', {
         link: data.link
@@ -279,14 +290,16 @@ function socketInit (server) {
     })
 
     socket.on('interim_transcript', function(data) {
-      videoChat.to(socket.room).emit('interim_transcript', {
+      let room = data.room
+
+      socket.broadcast.emit('interim_transcript', {
        interimTranscript: data.interimTranscript,
        userLanguage: data.userLanguage
       })
     })
 
     socket.on('final_transcript', function(data) {
-      videoChat.to(socket.room).emit('final_transcript', {
+      socket.broadcast.emit('final_transcript', {
        finalTranscript: data.finalTranscript,
        userLanguage: data.userLanguage
       })

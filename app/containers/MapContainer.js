@@ -40,8 +40,8 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  function selectCountry(selectedCountry, mapFitBounds, zoomNum) {
-    dispatch(setCountry(selectedCountry, mapFitBounds, zoomNum))
+  function selectCountry(selectedCountry) {
+    dispatch(setCountry(selectedCountry))
   }
 
   return { selectCountry };

@@ -126,14 +126,14 @@ export default class Map extends Component {
       )
     }
 
-    zoomToFeature(e) {
-      let clickEvent = e
-      let objectThatFiredEvent = clickEvent.target
-      let objectBounds = (objectThatFiredEvent.getBounds())
+    zoomToFeature(clickEvent) {
+      let countryObject = clickEvent.target
+      let countryName = countryObject.feature.properties.name
+      let countryBounds = (countryObject.getBounds())
 
-      this.map.fitBounds(e.target.getBounds())
-      // const country = this.props.findCountry(e.target.getBounds());
-      // this.props.selectCountry(country.name, [country.fitBounds], country.zoomNum);
+      this.map.fitBounds(countryBounds)
+      this.props.selectCountry(countryName)
+      
       // this.props.removeLayer(this.usaMarker);
       // this.removeLayer(this.usaMarker);
 
@@ -142,7 +142,7 @@ export default class Map extends Component {
       // this.map.removeLayer(this.chinaMarker)
       // this.map.removeLayer(this.koreaMarker)
       // this.map.removeLayer(this.franceMarker)
-      // browserHistory.push('/country-transition')
+      browserHistory.push('/country-transition')
     }
 
   // repositionMap(country, map) {
