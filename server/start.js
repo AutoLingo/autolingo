@@ -217,7 +217,6 @@ function socketInit (server) {
 
     //validate user's new name and show success message
     socket.on('change:name', function(data, fn) {
-      console.log(socket.room)
       if(userNames.claim(data.name, socket.room, socket.id)) {
 
         var oldName = socket.name;
@@ -238,22 +237,22 @@ function socketInit (server) {
     });
 
     socket.on('room_exit', function() {
-      console.log(`${socket.name} is disconnecting`)
+      socket.leave(socket.room)
+
       groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
+
       userNames.free(socket.name, socket.room);
-        console.log('USERS LEFT IN ROOM: ', names);
-      })
+    });
     
     socket.on('disconnect', function(){
-        console.log(`${socket.name} is disconnecting`)
       groupChat.to(socket.room).emit('user:left', {
         name: socket.name
       })
+
       userNames.free(socket.name, socket.room);
-        console.log('USERS LEFT IN ROOM: ', names);
-    })
+    });
 
   })
 // *********VIDEO CHAT********************
