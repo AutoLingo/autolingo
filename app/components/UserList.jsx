@@ -4,7 +4,18 @@ import React from 'react';
 const UsersList = function (props) {
 		return (
 			<div className="users">
-				<h3>Current Online Users</h3>
+
+
+				<div className="panel panel-default">
+				  <div className="panel-heading">
+				    <h3 className="panel-title">Panel primary</h3>
+				  </div>
+				  <div className="panel-body">
+				    Panel content
+				  </div>
+				</div>
+
+				{/*<h3>Current Online Users</h3>
 				<ul>
 					{
 						//Need to have users information in the database
@@ -20,7 +31,7 @@ const UsersList = function (props) {
 							}
 						})
 					}
-				</ul>
+				</ul>*/}
 			</div>
 		)
 }

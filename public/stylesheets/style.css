@@ -263,84 +263,109 @@ nav {
   font-size: 1.6em;
   display: block; }
 
-.users {
-  float: right;
+.help-block {
+  padding: 0; }
+
+.message_form .btn-wrapper {
+  padding: 0; }
+
+.message_form .btn {
+  width: 100%;
+  margin-top: 10px; }
+
+/*.users {
+  float : right;
   border: 3px solid black;
   width: 100%;
-  height: 50vh; }
+  height: 50vh;
+}
 
 .users h3 {
   text-align: center;
   font-size: 25px;
-  color: black; }
+  color: black;
+}
 
 .users li {
   font-size: 20px;
   border: none;
-  /*color: black;*/
-  list-style: none; }
+  list-style: none;
+}
 
 .users li:hover {
   font-size: 200%;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .users img {
-  margin-right: 20px; }
+  margin-right: 20px;
+}
 
 .messages {
   width: 100%;
-  border: 5px solid black;
+  border : 5px solid black;
   padding: 1em;
   height: 50vh;
   overflow: scroll;
-  background-color: #F0F8FF; }
+  background-color: #F0F8FF;
+}
 
 .messages h2 {
   margin-top: -5px;
   font-size: 25px;
-  display: block; }
+  display: block;
+}
 
 .message {
   font-size: 20px;
-  color: black; }
+  color: black;
+}
 
 .change_name_form {
-  width: 100%; }
+  width: 100%;
+}
 
 .message_form {
-  width: 100%; }
+  width: 100%;
+}
 
 .message_form input {
   font-size: 20px;
   width: 100%;
   height: 5vh;
   border: 3px solid black;
-  color: black; }
+  color: black;
+}
 
 .message_form h3 {
   font-size: 25px;
   font-weight: bold;
-  color: black; }
+  color: black;
+}
 
 .change_name_form input {
   font-size: 20px;
   height: 5vh;
   width: 100%;
   border: 3px solid black;
-  color: black; }
+  color: black;
+}
 
 .change_name_form h3 {
   font-size: 25px;
   font-weight: bold;
-  color: black; }
-
-main {
+  color: black;
+}
+*/
+/*main {
   position: absolute;
   top: 10vh;
   width: 100vw;
   height: 90vh;
-  z-index: 1; }
-
+  // background-color: lightgray;
+  z-index: 1;
+}
+*/
 #language-message {
   z-index: 100; }
 

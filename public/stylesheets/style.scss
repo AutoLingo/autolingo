@@ -324,7 +324,22 @@ nav {
   font-size: 1.6em;
   display: block;
 }
-.users {
+
+.help-block {
+  padding: 0;
+}
+
+.message_form {
+  .btn-wrapper {
+    padding: 0;
+  }
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/*.users {
   float : right;
   border: 3px solid black;
   width: 100%;
@@ -340,7 +355,6 @@ nav {
 .users li {
   font-size: 20px;
   border: none;
-  /*color: black;*/
   list-style: none;
 }
 
@@ -408,13 +422,13 @@ nav {
   font-weight: bold;
   color: black;
 }
-
+*/
 // ***************** end of chat box (socket) styling *****************
 
 
 // ***************** start of main styling *****************
 
-main {
+/*main {
   position: absolute;
   top: 10vh;
   width: 100vw;
@@ -422,7 +436,7 @@ main {
   // background-color: lightgray;
   z-index: 1;
 }
-
+*/
 // ***************** end of main styling *****************
 
 

@@ -155,7 +155,7 @@ class ChatAppGroup extends React.Component {
 		
 		return (
 			<div className="container" id="chatbox-body">
-				<h1>Live Group Chat: { selectedCountry }</h1>
+				<h2>FLAG ICON Group Chat: { selectedCountry }</h2>
 				<div className="row">
 					<div className="col-sm-9">
 						<MessageList

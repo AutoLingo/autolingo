@@ -13,7 +13,18 @@ var MessageList = React.createClass({
 
 		return (
 			<div className="messages">
-				<h2><strong>Live Conversation: </strong></h2>
+
+				<div className="panel panel-default">
+				  <div className="panel-heading">
+				    <h3 className="panel-title">Panel primary</h3>
+				  </div>
+				  <div className="panel-body">
+				    Panel content
+				  </div>
+				</div>
+
+
+				{/*<h2><strong>Live Conversation: </strong></h2>
 				{
 					//Need to have messages container/array in the database
 					this.props.messages.map((message, i) => {
@@ -28,9 +39,11 @@ var MessageList = React.createClass({
 					})
 				}
 
-				{/* Dummy div component */}
 				<div style={ {float: "left", clear: "both"} }
-					ref={(el) => { this.messagesEnd = el; }}></div>
+					ref={(el) => { this.messagesEnd = el; }}>
+				</div>*/}
+
+
 			</div>
 		)
 	}
