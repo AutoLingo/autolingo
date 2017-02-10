@@ -22,6 +22,7 @@ export default function userReducer(state = initialState, action) {
 	    break;
     case SET_SELECTED_USER_NAME:
       newState.selectedUser.name = action.name;
+      newState.selectedUser.room = action.room;
       break;
     case SET_DIALECT:
       newState.primaryUser.dialect = action.dialect
