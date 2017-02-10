@@ -32,16 +32,17 @@ export default class Map extends Component {
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
 
-    // map.dragging.disable();
-    // map.touchZoom.disable();
-    // map.doubleClickZoom.disable();
-    // map.scrollWheelZoom.disable();
-    // map.zoomControl.remove();
+    map.dragging.disable();
+    map.touchZoom.disable();
+    map.doubleClickZoom.disable();
+    map.scrollWheelZoom.disable();
+    map.zoomControl.remove();
 
     geojson = L.geoJSON(countriesLayer, {
-
       onEachFeature: this.countriesOnEachFeature
     }).addTo(map);
+
+    geojson.setStyle({color: '#404040', fillColor: '#eee'})
   
 
     
@@ -96,10 +97,10 @@ export default class Map extends Component {
       var layer = e.target;
       layer.setStyle(
         {
-          weight: 5,
+          weight: 3,
           color: 'yellow',
-          fillColor: 'grey',
-          fillOpacity: 0.2
+          fillColor: '#00BFFF',
+          fillOpacity: 0.8
         }
       )
 
@@ -109,7 +110,8 @@ export default class Map extends Component {
     }
 
     resetHighlight(e) {
-      geojson.resetStyle(e.target)
+      console.log('Hello~~~~~~~!~!')
+      geojson.setStyle({color: '#404040', fillColor: '#eee'})
     }
 
     // let mapThis = this;
@@ -130,6 +132,16 @@ export default class Map extends Component {
       let countryObject = clickEvent.target
       let countryName = countryObject.feature.properties.name
       let countryBounds = (countryObject.getBounds())
+
+      // var layer = clickEvent.target;
+      // layer.setStyle(
+      //   {
+      //     weight: 3,
+      //     color: 'yellow',
+      //     fillColor: '#3bb2d0',
+      //     fillOpacity: 1.5
+      //   }
+      // )
 
       this.map.fitBounds(countryBounds)
       this.props.selectCountry(countryName)
@@ -182,36 +194,14 @@ export default class Map extends Component {
    //  const zoomIn = this.repositionMap(this.props.country, this.map);
    //  zoomIn();
     return (
-      <div>
         <div className="container" id='map'></div>
-        <div id="country-buttons">
-          <Link to={"/country-transition"}>
-            <button id="fit-america" onClick={ ()=>this.repositionMap(this.props.america, this.map) }>Go to U.S.A</button>
-          </Link>
-
-          <Link to={"/country-transition"}>
-            <button id='fit-china' onClick={ ()=>this.repositionMap(this.props.china, this.map) }>Go to China</button>
-          </Link>
-
-          <Link to={"/country-transition"}>
-            <button id='fit-spain' onClick={ ()=>this.repositionMap(this.props.spain, this.map) }>Go to Spain</button>
-          </Link>
-
-          <Link to={"/country-transition"}>
-            <button id='fit-france' onClick={ ()=>this.repositionMap(this.props.france, this.map) }>Go to France</button>
-          </Link>
-
-          <Link to={"/country-transition"}>
-            <button id='fit-korea' onClick={ ()=>this.repositionMap(this.props.korea, this.map) }>Go to Korea</button>
-          </Link>
-
-          <Link to={"/country-transition"}>
-            <button id='zoomout' onClick={ ()=>this.repositionMap(this.props.zoomOut, this.map) }>Zoom out</button>
-          </Link>
-        </div>
-      </div>
     )
   }
 }
 
           // <Link to={"/video-chat"}><button id="fit-america">Go to U.S.A</button></Link>
+
+
+
+
+

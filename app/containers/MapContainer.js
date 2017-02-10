@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 import Map from '../components/Map';
-import { setCountry } from '../actionCreators/map';
+// import { setCountry } from '../actionCreators/map';
 
 function mapStateToProps (state, ownProps) {
   const america = { name: 'USA', fitBounds: [38.68551, -99.49219], zoomNum: 5 }
@@ -36,12 +36,12 @@ function mapStateToProps (state, ownProps) {
     return country
   }
 
-  return { setCountry, america, china, spain, france, korea, zoomOut, findCountry };
+  return { america, china, spain, france, korea, zoomOut, findCountry };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
   function selectCountry(selectedCountry) {
-    dispatch(setCountry(selectedCountry))
+    // dispatch(setCountry(selectedCountry))
   }
 
   return { selectCountry };
