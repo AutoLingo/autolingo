@@ -11,7 +11,7 @@ const UsersList = function (props) {
 						props.users.map((user, i) => {
 							if ( user === props.userName) {
 								return (
-									<li className="lingo-blue" key={i} onClick={()=>props.joinVideoChat(user, props.room)}><img src="APP/public/img/videocam.png" height="25" width="25"/>{user}</li>
+									<li className="lingo-blue" key={i}>{user}</li>
 								)
 							} else {
 								return (						
