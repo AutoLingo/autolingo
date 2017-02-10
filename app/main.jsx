@@ -3,11 +3,10 @@ import React from 'react'
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router'
 import {render} from 'react-dom'
 import {connect, Provider} from 'react-redux'
+import 'rxjs';
 
 import store from './store'
 import App from './components/App'
-import LiveChat from './components/LiveChat'
-import 'rxjs';
 // import Login from './components/Login'
 // import WhoAmI from './components/WhoAmI'
 import MapContainer from './containers/MapContainer'
@@ -30,7 +29,6 @@ render (
       <Route path="/" component={App}>
         <Route path="/group-chat" component={ChatAppGroup} />
         <Route path="/video-chat" component={ChatAppVideo} onEnter={generateHash} />
-        <Route path="/livechat" component={LiveChat} />
         <Route path="/instructions" component={InstructionMessage} />
         <Route path="/country-transition" component={CountryTransition} />
       </Route>
