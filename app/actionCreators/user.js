@@ -1,7 +1,7 @@
 'use strict';
 
-export const SET_PRIMARY_USER_NAME = 'SET_USER_NAME';
-export const SET_SELECTED_USER_NAME = 'SET_DIALECT';
+export const SET_PRIMARY_USER_NAME = 'SET_PRIMARY_USER_NAME';
+export const SET_SELECTED_USER_NAME = 'SET_SELECTED_USER_NAME';
 export const SET_DIALECT = 'SET_DIALECT';
 
 export const setPrimaryUserName = (name) => {
