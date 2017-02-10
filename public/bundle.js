@@ -53065,7 +53065,6 @@
 	      break;
 	    case _user.SET_SELECTED_USER_NAME:
 	      newState.selectedUser.name = action.name;
-	      newState.selectedUser.room = action.room;
 	      break;
 	    case _user.SET_DIALECT:
 	      newState.primaryUser.dialect = action.dialect;
@@ -53086,8 +53085,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var SET_PRIMARY_USER_NAME = exports.SET_PRIMARY_USER_NAME = 'SET_USER_NAME';
-	var SET_SELECTED_USER_NAME = exports.SET_SELECTED_USER_NAME = 'SET_DIALECT';
+	var SET_PRIMARY_USER_NAME = exports.SET_PRIMARY_USER_NAME = 'SET_PRIMARY_USER_NAME';
+	var SET_SELECTED_USER_NAME = exports.SET_SELECTED_USER_NAME = 'SET_SELECTED_USER_NAME';
 	var SET_DIALECT = exports.SET_DIALECT = 'SET_DIALECT';
 	
 	var setPrimaryUserName = exports.setPrimaryUserName = function setPrimaryUserName(name) {

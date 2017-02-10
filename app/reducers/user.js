@@ -1,6 +1,6 @@
 'use strict'
 
-import { SET_PRIMARY_USER_NAME, SET_SELECTED_USER_NAME, SET_DIALECT,  } from '../actionCreators/user';
+import { SET_PRIMARY_USER_NAME, SET_SELECTED_USER_NAME, SET_DIALECT } from '../actionCreators/user';
 
 const initialState = {
   primaryUser: {
@@ -19,11 +19,10 @@ export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case SET_PRIMARY_USER_NAME:
 		  newState.primaryUser.name = action.name;
-		break;
+	    break;
     case SET_SELECTED_USER_NAME:
       newState.selectedUser.name = action.name;
-      newState.selectedUser.room = action.room;
-    break;
+      break;
     case SET_DIALECT:
       newState.primaryUser.dialect = action.dialect
       newState.primaryUser.primaryLanguage = action.primaryLanguage
