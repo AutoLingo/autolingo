@@ -129,16 +129,7 @@ class ChatApp extends Component {
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
-
-		let userFullLanguage = ''
-
-		if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
-			userFullLanguage = '中文'
-		} else {
-			userFullLanguage = languages.filter( (lang) => {
-				return userLanguage === lang[1][0].split('-')[0]
-			})[0][0]
-		}
+		let userFullLanguage = this.props.userFullLanguage
 
 		return (
 			<div id="chatbox-body" className="container">
@@ -186,6 +177,7 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
 	let userLanguage = state.user.primaryUser.primaryLanguage
+	let userFullLanguage = state.user.primaryUser.primaryLanguageFullName
 	let finalTranscripts = state.speech.finalTranscripts
 	let interimTranscript = state.speech.interimTranscript
 	let selectedUser = state.user.selectedUser
@@ -193,6 +185,7 @@ const mapStateToProps = state => {
 	return {
 		translation,
 		userLanguage,
+		userFullLanguage,
 		finalTranscripts,
 		interimTranscript,
 		selectedUser
