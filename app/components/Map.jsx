@@ -12,10 +12,14 @@ var geojson;
 export default class Map extends Component {
   constructor (props) {
     super(props);
+    this.state = {
+      highlightedCountry: ""
+    }
     this.map;
     // this.repositionMap = this.repositionMap.bind(this);
     this.zoomToFeature = this.zoomToFeature.bind(this);
     this.countriesOnEachFeature = this.countriesOnEachFeature.bind(this);
+    this.highlightFeature = this.highlightFeature.bind(this)
     this.usaMarker;
     this.chinaMarker;
     this.franceMarker;
@@ -28,6 +32,12 @@ export default class Map extends Component {
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA'
     var map = L.mapbox.map('map').setView([16.541430, 7.558594], 3);
+    // map.setMaxBounds([
+    //     [83, 190],
+    //     [-83, -210]
+    //   ])
+      
+    
     this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
@@ -38,26 +48,19 @@ export default class Map extends Component {
     // map.scrollWheelZoom.disable();
     // map.zoomControl.remove();
 
-    geojson = L.geoJSON(countriesLayer, {
+     geojson = L.geoJSON(countriesLayer, {
       onEachFeature: this.countriesOnEachFeature
     }).addTo(map);
+      
 
     geojson.setStyle({opacity: 0, fillOpacity: 0})
   
 
     
 
-    //Map click function to show coordinates of the place when the mpa is clicked
-    //Don't erase this function, we might need this for future modification
-    // var popup = L.popup();
-
-    // function onMapClick(e) {
-    //     popup
-    //         .setLatLng(e.latlng)
-    //         .setContent("You clicked the map at " + e.latlng.toString())
-    //         .openOn(map);
-    // }
-
+    // Map click function to show coordinates of the place when the mpa is clicked
+    // Don't erase this function, we might need this for future modification
+   
     //Need to change below click event when refactoring into react component
     // map.on('click', onMapClick);
 
@@ -95,6 +98,12 @@ export default class Map extends Component {
 
     highlightFeature(e) {
       var layer = e.target;
+      let country = layer.feature.properties.name
+
+      this.setState({
+        highlightedCountry: country
+      })
+
       layer.setStyle(
         {
           weight: 3,
@@ -103,19 +112,19 @@ export default class Map extends Component {
           fillOpacity: 0.8
         }
       )
-
+      
+      layer.bindPopup('Hello')
       if(!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
       }
     }
 
     resetHighlight(e) {
-      console.log('Hello~~~~~~~!~!')
+      
       geojson.setStyle({color: '#404040', fillColor: '#eee'})
     }
 
     countriesOnEachFeature(feature, layer) {
-     
       layer.on(
         {
           mouseover: this.highlightFeature,
@@ -137,9 +146,11 @@ export default class Map extends Component {
 
   
   render() {
-
     return (
+      <div>
+        <div className="countryName lingo-blue">{this.state.highlightedCountry}</div>
         <div className="container" id='map'></div>
+      </div>
     )
   }
 }
