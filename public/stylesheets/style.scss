@@ -58,8 +58,9 @@ nav {
   }
 }
 
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand .navbar-brand:hover{
   font-size: 35px;
+  color: #6e6e6e;
 }
 
 /*End of nav bar styling*/
@@ -630,7 +631,7 @@ a:hover {
 }
 
 .countryTransitionMsg h1 {
-  color: #0082e6;
+  color: #a8a8a8;
   font-family: 'Lato', sans-serif;
 }
 

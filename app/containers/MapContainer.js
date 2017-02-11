@@ -36,12 +36,12 @@ function mapStateToProps (state, ownProps) {
     return country
   }
 
-  return { setCountry, america, china, spain, france, korea, zoomOut, findCountry };
+  return { america, china, spain, france, korea, zoomOut, findCountry };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  function selectCountry(selectedCountry, mapFitBounds, zoomNum) {
-    dispatch(setCountry(selectedCountry, mapFitBounds, zoomNum))
+  function selectCountry(selectedCountry) {
+    dispatch(setCountry(selectedCountry))
   }
 
   return { selectCountry };
