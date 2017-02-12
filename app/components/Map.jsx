@@ -107,7 +107,6 @@ export default class Map extends Component {
       layer.setStyle(
         {
           weight: 3,
-          color: 'yellow',
           fillColor: '#0082E6',
           fillOpacity: 0.8
         }
@@ -119,7 +118,7 @@ export default class Map extends Component {
 
     resetHighlight(e) {
       
-      geojson.setStyle({color: '#404040', fillColor: '#eee'})
+      geojson.setStyle({ fillOpacity: 0 })
     }
 
     countriesOnEachFeature(feature, layer) {
