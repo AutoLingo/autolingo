@@ -583,10 +583,14 @@ a:hover {
   transition: opacity .5s ease-in; }
 
 .countryTransitionMsg {
-  position: absolute;
-  top: 40%;
-  left: 32%;
-  z-index: 99; }
+  position: relative;
+  z-index: 99;
+  text-align: center; }
+  .countryTransitionMsg .progress {
+    height: 15px; }
+  .countryTransitionMsg .progress-bar {
+    width: 100%;
+    height: 20px; }
 
 .countryTransitionMsg h1 {
   color: #a8a8a8;

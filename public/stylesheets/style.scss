@@ -701,10 +701,19 @@ a:hover {
 }
 
 .countryTransitionMsg {
-  position: absolute;
-  top: 40%;
-  left: 32%;
+  position: relative;
   z-index: 99;
+  text-align: center;
+
+  .progress {
+    height: 15px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+  }
+
 }
 
 .countryTransitionMsg h1 {

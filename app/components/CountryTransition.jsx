@@ -15,16 +15,22 @@ class CountryTransition extends React.Component {
   render() {
     let selectedCountry = this.props.selectedCountry
 
-    return (<div className="countryTransitionMsg">
-      <ReactCSSTransitionGroup
-        transitionName="countryTransition"
-        transitionAppear={true}
-        transitionAppearTimeout={500}
-        transitionEnter={false}
-        transitionLeave={false}>
-        <h1 className="lingo-grey">Entering {selectedCountry} Chat Room...</h1>
-      </ReactCSSTransitionGroup>
-    </div>
+    return (
+      <div className="countryTransitionMsg">
+
+        <div className="progress progress-striped active">
+          <div className="progress-bar"></div>
+        </div>
+
+        <ReactCSSTransitionGroup
+          transitionName="countryTransition"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnter={false}
+          transitionLeave={false}>
+          <h1 className="lingo-grey">Entering {selectedCountry}</h1>
+        </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }
