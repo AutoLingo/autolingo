@@ -589,7 +589,7 @@ a:hover {
   z-index: 99;
   text-align: center; }
   .countryTransitionMsg img {
-    clip-path: circle(88px at center);
+    clip-path: circle(92px at center);
     width: 400px; }
 
 .countryTransitionMsg h1 {
