@@ -81,7 +81,7 @@ class ChatAppGroup extends React.Component {
 		var {name} = data;
 		var userJoinMsg = {
 			user: "LingoBot",
-			text: name + ' Joined'
+			text: name + ' joined'
 		};
 		this.dispatch(addMessage(userJoinMsg))
 	}
@@ -90,7 +90,7 @@ class ChatAppGroup extends React.Component {
 		var {name} = data;
 		var userLeftMsg = {
 			user: 'LingoBot',
-			text: name + ' Left'
+			text: name + ' left'
 		}
 		console.log(`${data.name} is about to be removed from state through dispatch`)
 		this.dispatch(addMessage(userLeftMsg))
@@ -101,8 +101,9 @@ class ChatAppGroup extends React.Component {
 		var {oldName, newName} = data;
 
 		var nameChangeMsg = {
-			user: 'APPLICATION BOT',
-			text: 'Change Name : ' + oldName + ' ==> ' + newName
+			user: 'LingoBot',
+			// text: 'Change Name : ' + oldName + ' ==> ' + newName
+			text: oldName + "'s new username is " + newName
 		};
 		this.dispatch(addMessage(nameChangeMsg))
 		this.dispatch(changeUserName(oldName, newName))
@@ -134,9 +135,12 @@ class ChatAppGroup extends React.Component {
 	showInvitation(data) {
 		// alert('INVITATION')
 		console.log('INVITATION', data)
+
+
+
 		var invitationMessage = {
 			user: "LingoBot",
-			text: <Link to={data.link}> Click here to accept video chat invitation </Link>
+			text: <Link className="invitation btn btn-warning" to={data.link}> {data.user} would like to Video Chat! Click here to accept invitation. </Link>
 		};
 		this.dispatch(addMessage(invitationMessage))
 	}

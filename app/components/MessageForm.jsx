@@ -40,11 +40,14 @@ class MessageForm extends React.Component {
 		return (
 			<div className="message_form well bs-component">
 
-				<form className="form-horizontal">
+				<form onSubmit={this.handleSubmit} className="form-horizontal">
 				  <fieldset>
 				    <div className="form-group">
 				      <div className="col-md-12">
-				        <textarea className="form-control" rows="1" id="textArea" placeholder="Enter New Message"></textarea>
+				        <input type="text"
+				        	onChange={this.changeHandler}
+							value={this.state.text}
+							className="form-control" placeholder="Enter New Message" />
 				      </div>
 				      <div className="col-md-12">
 				            <span className="help-block col-md-10">Your message will be translated for all users to their selected language.</span>

@@ -42,7 +42,8 @@ class ChatApp extends Component {
 		socket.emit('join_room', {room: location.hash})
 		if (this.props.selectedUser.name) {
 			socket.emit('send_video_invitation', {
-				name: this.props.selectedUser.name,
+				user: this.props.user, //sender's username
+				name: this.props.selectedUser.name, //recipient's username
 				room: this.props.selectedUser.room,
 				link: window.location.pathname + window.location.hash
 			})
@@ -176,6 +177,7 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
+	let user = state.user.primaryUser.name
 	let userLanguage = state.user.primaryUser.primaryLanguage
 	let userFullLanguage = state.user.primaryUser.primaryLanguageFullName
 	let finalTranscripts = state.speech.finalTranscripts
@@ -184,7 +186,7 @@ const mapStateToProps = state => {
 
 	return {
 		translation,
-		userLanguage,
+		user,
 		userFullLanguage,
 		finalTranscripts,
 		interimTranscript,
