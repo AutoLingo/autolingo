@@ -60,9 +60,7 @@ export default function userReducer(state = initialState, action) {
     case CHANGE_USER_NAME:
       const usersList = newState.userList.slice();
       const userIdx = usersList.indexOf(action.oldName);
-      if (userIndex !== -1) {
-        usersList[userIdx] = action.newName
-      }
+      usersList[userIdx] = action.newName
       newState.userList = usersList;
       break;
     default:
