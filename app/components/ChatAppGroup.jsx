@@ -4,7 +4,7 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import { addMessage } from '../actionCreators/groupMessage';
+import { addMessage, clearMessages } from '../actionCreators/groupMessage';
 import { translateActionCreator } from '../reducers/translate';
 import { setPrimaryUserName, setSelectedUserName, addToUserList, removeFromUserList, changeUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';

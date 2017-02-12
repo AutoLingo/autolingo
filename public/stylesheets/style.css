@@ -165,7 +165,7 @@ nav {
   position: absolute;
   bottom: 5vh;
   left: 5vw;
-  z-index: 150;
+  z-index: 50;
   font-size: 25px; }
 
 /*************************map marker styling************************/
