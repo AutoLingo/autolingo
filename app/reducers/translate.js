@@ -3,9 +3,8 @@ import Promise  from 'bluebird'
 const API_KEY = 'AIzaSyC3kdlSGExiXj_bLAuDKXiNMeNciZuLE7w'
 import { Observable } from 'rxjs'
 import { ajax } from 'rxjs/observable/dom/ajax';
-import { addToMessages } from './messagesReducer'
 import { setInterimTranscript, addFinalTranscript } from '../actionCreators/speech'
-import { addGroupMessage } from '../actionCreators/groupMessage'
+import { addMessage } from '../actionCreators/groupMessage'
 
 // **************************************************
 // Actions
@@ -98,7 +97,7 @@ export const googleTranslateEpic = (action$) => {
           id: action.id
       }
       console.log('translatedMsg', translatedMsg)
-      return addGroupMessage(translatedMsg)
+      return addMessage(translatedMsg)
     })
 }
 // **************************************************

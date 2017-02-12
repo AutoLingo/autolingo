@@ -1,14 +1,23 @@
 
 import React, {Component} from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import Instructions from './Instructions.jsx';
 import languages from '../data/languages'
+import { countries } from '../data/world'
+import store from '../store'
+import { setCountry } from '../actionCreators/map'
 
 export default class Navbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {show: false};
+    this.state = {
+      show: false,
+      input: '',
+      suggestions: []
+    };
     this.showInstruction = this.showInstruction.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
       
   componentDidMount() {
@@ -21,7 +30,29 @@ export default class Navbar extends Component {
     this.setState({show});
   }
 
+  handleChange(event) {
+    event.preventDefault()
+    const input = event.target.value
+    let suggestions = countries.filter(country => {
+      return country.toLowerCase().match(input.toLowerCase())
+    })
+    this.setState({input, suggestions})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    const countryName = this.state.input
+    console.log('countryName: ', countryName);
+    store.dispatch(setCountry(countryName))
+    browserHistory.push('/country-transition')
+  }
+
   render() {
+    let handleChange = this.handleChange
+    let handleSubmit = this.handleSubmit
+    let input = this.state.input
+    let suggestions = this.state.suggestions
+
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -39,13 +70,29 @@ export default class Navbar extends Component {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
 
-              <form className="navbar-form navbar-left" role="search">
-                <div className="form-group">
-                  <input type="text" className="form-control" placeholder="Enter Country" />
-                </div>
-                <button type="submit" className="btn btn-default">Go</button>
-              </form>
+          {/**************************SEARCH**********************************/}
+              <form className="navbar-form navbar-left" role="search" onSubmit={handleSubmit}>
+               <div className="form-group">
+                 <input type="text" 
+                    className="form-control" 
+                    value={input} 
+                    list="countries" 
+                    placeholder="Enter Country" 
+                    onChange={handleChange}
+                 />
+                  <datalist id="countries">
+                    <option value={suggestions[0]}></option>
+                    <option value={suggestions[1]}></option>
+                    <option value={suggestions[2]}></option>
+                    <option value={suggestions[3]}></option>
+                    <option value={suggestions[4]}></option>
+                  </datalist>
 
+               </div>
+               <button type="submit" className="btn btn-default">Go</button>
+             </form>
+        {/****************************************************************/}
+        
               <li className="dropdown">
                 <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
                 <ul id="language-list" className="dropdown-menu">

@@ -38,8 +38,8 @@ class ChatApp extends Component {
 		socket.on('final_transcript', this.finalTranscript)
 		socket.on('interim_transcript', this.interimTranscript)
 		socket.on('broadcast_video_room', this.joinVideo)
-
-		socket.emit('join_room', {room: window.location.hash})
+		
+		socket.emit('join_room', {room: location.hash})
 		if (this.props.selectedUser.name) {
 			socket.emit('send_video_invitation', {
 				name: this.props.selectedUser.name,
@@ -90,68 +90,7 @@ class ChatApp extends Component {
 	}
 	//*******************************************************
 
-	//set user with given name
-	_initialize(data) {
-		var {users, name} = data;
-		// this.setState({users, user: name});
-	}
 
-
-	//when the user joins the chat box, it will push the name of the user to the users array
-	//message, "name of user" joined will rendered on the chat box
-	_userJoined(data) {
-	// 	var {users, messages} = this.state;
-	// 	var {name} = data;
-	// 	users.push(name);
-	// 	messages.push({
-	// 		user: "LingoBo",
-	// 		text: name + ' Joined'
-	// 	});
-	// 	this.setState({users, messages})
-	}
-
-	//when the user leaves the chat box, it will push the name of the user to the users array
-	//message, "name of user" left will rendered on the chat box
-	_userLeft(data) {
-	// 	var {users, messages} = this.state;
-	// 	var {name} = data;
-	// 	var index = users.indexOf(name);
-	// 	users.splice(index, 1);
-	// 	messages.push({
-	// 		user: 'LingoBot',
-	// 		text: name + ' Left'
-	// 	})
-	// 	this.setState({users, messages})
-	}
-
-	//Are we going to allow users to change name in the chat window? Need to discuss about this.
-	_userChangedName(data) {
-	// 	var {oldName, newName} = data;
-	// 	var {users, messages} = this.state;
-	// 	var index = users.indexOf(oldName);
-	// 	//find the oldName with the index and replace it with newName
-	// 	users.splice(index, 1, newName);
-	// 	message.push({
-	// 		user: 'APPLICATION BOT',
-	// 		text: 'Change Name : ' + oldName + ' ==> ' + newName
-	// 	});
-	// 	this.setState({users, messages})
-	}
-
-
-	handleChangeName(newName) {
-	// 	var oldName = this.state.user;
-	// 	socket.emit('change:name', { name: newName }, (result) => {
-	// 		if(!result) {
-	// 			return alert('There was an error changing your name');
-	// 		}
-	// 		var {users} = this.state;
-	// 		var index = users.indexOf(oldName);
-	// 		users.splice(index, 1, newName);
-	// 		this.setState({users, user: newName})
-	// 	})
-	}
-// ************************************************************
 	handleMessageSubmit(message) {
 		socket.emit('send:message', {
 			text: message.text,
@@ -190,16 +129,7 @@ class ChatApp extends Component {
 		let finalTranscripts = this.props.finalTranscripts
 		let interimTranscript = this.props.interimTranscript
 		let userLanguage = this.props.userLanguage || 'nada'
-
-		let userFullLanguage = ''
-
-		if (userLanguage === 'zh-CN' || userLanguage === 'zh-TW') {
-			userFullLanguage = '中文'
-		} else {
-			userFullLanguage = languages.filter( (lang) => {
-				return userLanguage === lang[1][0].split('-')[0]
-			})[0][0]
-		}
+		let userFullLanguage = this.props.userFullLanguage
 
 		return (
 			<div id="chatbox-body" className="container">
@@ -247,6 +177,7 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
 	let userLanguage = state.user.primaryUser.primaryLanguage
+	let userFullLanguage = state.user.primaryUser.primaryLanguageFullName
 	let finalTranscripts = state.speech.finalTranscripts
 	let interimTranscript = state.speech.interimTranscript
 	let selectedUser = state.user.selectedUser
@@ -254,6 +185,7 @@ const mapStateToProps = state => {
 	return {
 		translation,
 		userLanguage,
+		userFullLanguage,
 		finalTranscripts,
 		interimTranscript,
 		selectedUser

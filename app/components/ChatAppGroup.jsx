@@ -4,9 +4,9 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import { addGroupMessage, setGroupUser, addToGroupUsers, removeGroupUser, groupUserNameChange } from '../actionCreators/groupMessage';
+import { addMessage } from '../actionCreators/groupMessage';
 import { translateActionCreator } from '../reducers/translate';
-import { setSelectedUserName } from '../actionCreators/user';
+import { setPrimaryUserName, setSelectedUserName, addToUserList, removeFromUserList, changeUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
 
@@ -47,15 +47,15 @@ class ChatAppGroup extends React.Component {
 		console.log('COMPONENT IS UNMOUNTING')
 		socket.emit('room_exit')
 	}
-	
+
 
 	//set user with given name
 	_initialize(data) {
 		let users = data.users;
 		let name = this.props.userName ? this.props.userName : data.name
 
-		this.dispatch(setGroupUser(name));
-		this.dispatch(addToGroupUsers(users));
+		this.dispatch(setPrimaryUserName(name));
+		this.dispatch(addToUserList(users));
 	}
 
 	//push the given message into messages array
@@ -63,7 +63,7 @@ class ChatAppGroup extends React.Component {
 		const userLanguage = this.props.userLanguage
 
 		if (userLanguage === message.language) {
-			this.dispatch(addGroupMessage(message))
+			this.dispatch(addMessage(message))
 		} else {
 			const id = 1;
 			const originalLanguage = message.language;
@@ -83,7 +83,7 @@ class ChatAppGroup extends React.Component {
 			user: "LingoBot",
 			text: name + ' Joined'
 		};
-		this.dispatch(addGroupMessage(userJoinMsg))
+		this.dispatch(addMessage(userJoinMsg))
 	}
 
 	_userLeft(data) {
@@ -93,8 +93,8 @@ class ChatAppGroup extends React.Component {
 			text: name + ' Left'
 		}
 		console.log(`${data.name} is about to be removed from state through dispatch`)
-		this.dispatch(addGroupMessage(userLeftMsg))
-		this.dispatch(removeGroupUser(name))
+		this.dispatch(addMessage(userLeftMsg))
+		this.dispatch(removeFromUserList(name))
 	}
 
 	_userChangedName(data) {
@@ -104,25 +104,25 @@ class ChatAppGroup extends React.Component {
 			user: 'APPLICATION BOT',
 			text: 'Change Name : ' + oldName + ' ==> ' + newName
 		};
-		this.dispatch(addGroupMessage(nameChangeMsg))
-		this.dispatch(groupUserNameChange(oldName, newName))
+		this.dispatch(addMessage(nameChangeMsg))
+		this.dispatch(changeUserName(oldName, newName))
 	}
 
 	handleMessageSubmit(message) {
 		console.log('message', message)
-		this.dispatch(addGroupMessage(message))
+		this.dispatch(addMessage(message))
 		socket.emit('send:message', message);
 	}
 
 	handleChangeName(newName) {
-		var oldName = this.props.state.groupMessage.user
+		var oldName = this.props.userName
 
 		socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
 				return alert('There was an error changing your name');
 			}
-			this.dispatch(setGroupUser(newName))
-			this.dispatch(groupUserNameChange(oldName, newName))
+			this.dispatch(setPrimaryUserName(newName))
+			this.dispatch(changeUserName(oldName, newName))
 		})
 	}
 
@@ -136,9 +136,9 @@ class ChatAppGroup extends React.Component {
 		console.log('INVITATION', data)
 		var invitationMessage = {
 			user: "LingoBot",
-			text: <Link to={data.link}> Click here to accept video chat invitation </Link> 
+			text: <Link to={data.link}> Click here to accept video chat invitation </Link>
 		};
-		this.dispatch(addGroupMessage(invitationMessage))
+		this.dispatch(addMessage(invitationMessage))
 	}
 
 	render() {
@@ -148,11 +148,11 @@ class ChatAppGroup extends React.Component {
 		const user = this.props.userName
 		const language = this.props.userLanguage;
 		const selectedCountry = this.props.selectedCountry
-		
+
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
 		const joinVideoChat = this.joinVideoChat
-		
+
 		return (
 			<div className="container" id="chatbox-body">
 				<h2>FLAG ICON Group Chat: { selectedCountry }</h2>
@@ -195,11 +195,11 @@ class ChatAppGroup extends React.Component {
 function mapStateToProps (state, ownProps) {
 	const userLanguage = state.user.primaryUser.primaryLanguage;
 	const selectedCountry = state.map.selectedCountry;
-	const userName = state.groupMessage.user;
-	const users = state.groupMessage.users;
+	const userName = state.user.primaryUser.name;
+	const users = state.user.userList;
 	const messages = state.groupMessage.messages;
-	
-  return { state, userLanguage, selectedCountry, userName, users, messages };
+
+  return { userLanguage, selectedCountry, userName, users, messages };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {

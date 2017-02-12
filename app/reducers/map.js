@@ -9,8 +9,6 @@ export default function mapReducer(state = initialState, action) {
   switch (action.type) {
     case SET_COUNTRY:
       newState.selectedCountry = action.selectedCountry;
-      newState.mapFitBounds = action.mapFitBounds;
-      newState.zoomNum = action.zoomNum;
       break;
     default:
       return state;
