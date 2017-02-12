@@ -4,7 +4,7 @@ import languageList from '../data/languages'
 import {
   SET_PRIMARY_USER_NAME,
   SET_SELECTED_USER_NAME,
-  SET_DIALECT,
+  SET_USER_LANGUAGE,
   SET_GROUP_USER,
   ADD_TO_USER_LIST,
   REMOVE_FROM_USER_LIST,
@@ -21,7 +21,6 @@ const initialState = {
   selectedUser: {
     name: ''
   },
-  // user: '',
   userList: []
  };
 
@@ -35,7 +34,7 @@ export default function userReducer(state = initialState, action) {
       newState.selectedUser.name = action.name;
       newState.selectedUser.room = action.room;
       break;
-    case SET_DIALECT:
+    case SET_USER_LANGUAGE:
       newState.primaryUser.primaryLanguage = action.primaryLanguage;
       newState.primaryUser.dialect = action.dialect;
 
@@ -47,9 +46,6 @@ export default function userReducer(state = initialState, action) {
   			})[0][0]
   		}
       break;
-    // case SET_GROUP_USER:
-    //   newState.user = action.user;
-    //   break;
     case ADD_TO_USER_LIST:
       newState.userList = action.users;
       break;
