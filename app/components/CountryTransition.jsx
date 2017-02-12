@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class CountryTransition extends React.Component {
   componentDidMount() {
-    const timeoutID = window.setTimeout(changeReactComponent, 2000);
+    const timeoutID = window.setTimeout(changeReactComponent, 4000);
 
     function changeReactComponent() {
       browserHistory.push('/group-chat');
@@ -18,16 +18,13 @@ class CountryTransition extends React.Component {
     return (
       <div className="countryTransitionMsg">
 
-        <div className="progress progress-striped active">
-          <div className="progress-bar"></div>
-        </div>
-
         <ReactCSSTransitionGroup
           transitionName="countryTransition"
           transitionAppear={true}
           transitionAppearTimeout={500}
           transitionEnter={false}
           transitionLeave={false}>
+          <img src={`img/paperplane.gif?a=` + Math.random()} />
           <h1 className="lingo-grey">Entering {selectedCountry}</h1>
         </ReactCSSTransitionGroup>
       </div>

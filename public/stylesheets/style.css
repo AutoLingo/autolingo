@@ -583,17 +583,23 @@ a:hover {
   transition: opacity .5s ease-in; }
 
 .countryTransitionMsg {
-  position: relative;
+  position: absolute;
+  top: 25vh;
+  width: 100%;
   z-index: 99;
   text-align: center; }
-  .countryTransitionMsg .progress {
-    height: 15px; }
-  .countryTransitionMsg .progress-bar {
-    width: 100%;
-    height: 20px; }
+  .countryTransitionMsg img {
+    clip-path: circle(88px at center);
+    width: 400px; }
 
 .countryTransitionMsg h1 {
-  color: #a8a8a8;
-  font-family: 'Lato', sans-serif; }
+  text-transform: uppercase;
+  font-size: 3em;
+  letter-spacing: 0.4em;
+  font-weight: bold;
+  margin-top: -30px;
+  text-shadow: 0px 0px 30px white;
+  color: gray;
+  /*font-family: 'Lato', sans-serif;*/ }
 
 /***************************** end of country transition *********************/
