@@ -112,8 +112,6 @@ export default class Map extends Component {
           fillOpacity: 0.8
         }
       )
-      
-      layer.bindPopup('Hello')
       if(!L.Browser.ie && !L.Browser.opera) {
         layer.bringToFront();
       }
