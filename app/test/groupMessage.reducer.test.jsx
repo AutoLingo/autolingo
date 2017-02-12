@@ -2,8 +2,10 @@ import React from 'react';
 import chai, {expect} from 'chai';
 import faker from 'faker';
 
-import messageReducer from '../reducers/groupMessage';
 import { createStore } from 'redux'
+import messageReducer from '../reducers/groupMessage';
+import { addMessage, ADD_MESSAGE } from '../actionCreators/groupMessage';
+
 
 const createRandomMessage = () => {
   return {
@@ -25,15 +27,15 @@ describe('Group Message Redux reducer', () => {
   });
 
   it('add message action appends a message to the message arrary', () => {
-    testingStore.dispatch({ type: 'ADD_MESSAGE', message: messageOne })
-    testingStore.dispatch({ type: 'ADD_MESSAGE', message: messageTwo })
+    testingStore.dispatch(addMessage(messageOne))
+    testingStore.dispatch(addMessage(messageTwo))
     const newState = testingStore.getState();
     expect(newState.messages).to.be.deep.equal([messageOne, messageTwo]);
   });
 
-  it('creates a NEW state object on any dispatched action', () => {
+  it('creates a new state object when any action is dispatched', () => {
     const currentStoreState = testingStore.getState();
-    testingStore.dispatch({ type: 'ADD_MESSAGE', message: messageOne })
+    testingStore.dispatch(addMessage(messageOne))
     const subsequentStoreState = testingStore.getState();
     expect(currentStoreState).to.not.be.equal(subsequentStoreState);
   });

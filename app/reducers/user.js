@@ -47,18 +47,22 @@ export default function userReducer(state = initialState, action) {
   		}
       break;
     case ADD_TO_USER_LIST:
-      newState.userList = action.users;
+      newState.userList = action.users.slice();
       break;
     case REMOVE_FROM_USER_LIST:
-      const users = newState.userList.slice(0);
+      const users = newState.userList.slice();
       const userIndex = users.indexOf(action.user);
-      users.splice(userIndex, 1);
+      if (userIndex !== -1) {
+        users.splice(userIndex, 1);
+      }
       newState.userList = users;
       break;
     case CHANGE_USER_NAME:
-      const usersList = newState.userList.slice(0);
+      const usersList = newState.userList.slice();
       const userIdx = usersList.indexOf(action.oldName);
-      usersList[userIdx] = action.newName
+      if (userIndex !== -1) {
+        usersList[userIdx] = action.newName
+      }
       newState.userList = usersList;
       break;
     default:
