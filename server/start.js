@@ -12,27 +12,6 @@ const chalk = require('chalk');
 let IO = null;
   var names = {};
 
-// function getUserSocketId(name, room, io) {
-//         // let socketIds = Object.keys(io.nsps['/group-chat'].adapter.rooms[room].sockets)
-//         let socketsObj = io.nsps['/group-chat'].adapter.rooms[room].sockets
-//         let socketIds = Object.keys(socketsObj);
-
-// console.log('SOCKETIDS', socketIds)
-// // console.log('SOCKETS OBJECT', socketsObj)
-// // console.log(io.sockets.connected)
-//         // let userSocketId = socketIds.filter(socketId => {
-//         //   return socketIds[socketId].name === name
-//         // })
-        
-//             // const sockets = socketIds.map(id => {
-//             //   const idSplit = id.split('#')[1]
-//             //   return io.sockets.connected[idSplit];
-//             // })
-//             //   return sockets;
-//         let userSocketId = socketIds[1].split('#')[1]
-// console.log('USERSOCKETID', userSocketId)
-//         return userSocketId
-//   }
 
 var userNames = (function() {
 
@@ -41,11 +20,6 @@ var userNames = (function() {
     if(!name || names[room] && names[room][name]) {
       return false;
     } else {
-    console.log('names', names)
-    console.log('room', room)
-    console.log('name', name)
-    console.log('socketId', socketId)
-    
     names[room][name] = socketId;
     return true;
     }
@@ -187,23 +161,31 @@ function socketInit (server) {
   groupChat.on('connection', function(socket) {
 
     socket.on('join_room', function(data) {
-      if (!names[data.room]) {
-        names[data.room] = {};
+      console.log('data: ', data);
+      let room = data.room
+      let id = socket.id
+
+      if (!names[room]) {
+        names[room] = {};
       }
+      console.log('data.userName: ', data.userName);
 
-      let name = userNames.getGuestName(data.room, socket.id);
+      let name = data.userName && userNames.claim(data.userName, room, id) ? data.userName : userNames.getGuestName(room, id);
+      console.log('name: ', name);
+        
       socket.name = name;
-      socket.room = data.room
-      socket.join(data.room)
+      socket.room = room
+      socket.join(room)
 
-      groupChat.to(data.room).emit('init', {
+      groupChat.to(room).emit('init', {
           name: name,
-          users: userNames.get(data.room)
+          users: userNames.get(room)
         });
-      // const roomMembers = getAllRoomMembers(data.room, '/group-chat', IO)
-      socket.to(data.room).broadcast.emit('user:join', {
+      // const roomMembers = getAllRoomMembers(room, '/group-chat', IO)
+      socket.to(room).broadcast.emit('user:join', {
         name: name
       });
+        console.log('name: TO BE EMITTED', name);
     })
 
     socket.on('send:message', function(data) {

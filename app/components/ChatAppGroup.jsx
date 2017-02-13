@@ -41,7 +41,7 @@ class ChatAppGroup extends React.Component {
 		socket.on('disconnect', this._disconnectUser)
 		socket.on('video_invitation', this.showInvitation);
 
-		socket.emit('join_room', { room: this.props.selectedCountry});
+		socket.emit('join_room', { room: this.props.selectedCountry, userName: this.props.userName });
 	}
 
 	componentWillUnmount() {
