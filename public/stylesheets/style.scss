@@ -26,6 +26,11 @@ nav {
   z-index: 999;
 }
 
+.navbar-brand {
+  font-size: 2.3em;
+  font-weight: 500;
+}
+
 .navbar-default .navbar-nav>li>a {
   font-size: 20px;
 }
@@ -64,6 +69,24 @@ nav {
 }
 
 /*End of nav bar styling*/
+
+
+/*Transitions*/
+
+.fallingFadeIn-enter {
+  opacity: 0.01;
+  top: -20px;
+  position: relative;
+}
+
+.fallingFadeIn-enter.fallingFadeIn-enter-active {
+  opacity: 1;
+  top: 0;
+  position: relative;
+  transition: opacity 500ms ease-in, top 500ms linear;
+}
+
+/*Transitions End*/
 
 
 /***************** Start of map styling *****************/
@@ -203,7 +226,7 @@ nav {
   position: absolute;
   bottom: 5vh;
   left: 5vw;
-  z-index: 150;
+  z-index: 50;
   font-size: 25px;
 
 }
@@ -237,17 +260,33 @@ nav {
   background-color: white;
   padding: 20px;
 
-    h2 {
+    h3 {
       display: block;
       text-align: center;
     }
+
+    .flag {
+      max-width: 75px;
+      display: inline;
+      vertical-align: bottom;
+
+      -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+      -moz-box-shadow:    0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+      box-shadow:         0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+    }
 }
 
-#chatbox-body h1 {
+.close {
+  a:hover {
+    color: black;
+  }
+}
+
+/*#chatbox-body h1 {
   font-size: 50px;
   text-align: center;
   padding-bottom: 10px;
-}
+}*/
 
 #conversation-container {
   overflow-y: scroll;
@@ -334,7 +373,88 @@ nav {
   font-size: 1.6em;
   display: block;
 }
+
+.help-block {
+  padding: 0;
+}
+
+.message_form {
+  .btn-wrapper {
+    padding: 0;
+  }
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+.messages {
+  .panel-title {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .panel-body {
+    height: 250px;
+    overflow-y: auto;
+    font-size: 1.2em;
+  }
+
+  .message {
+    img {
+      width: 21px;
+      opacity: 0.9;
+    }
+
+    .invitation {
+      color: white;
+      text-transform: none;
+      font-weight: bold;
+    }
+  }
+}
+
 .users {
+  .panel-title {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
+  .panel-body {
+    font-size: 1.2em;
+    height: 250px;
+    overflow-y: auto;
+    padding: 0;
+
+    .list-group {
+      cursor: pointer;
+    }
+
+    .list-group-item {
+      padding: 5px 15px;
+      border-left: 0;
+      border-right: 0;
+
+      img {
+        width: 25px;
+        float: right;
+        opacity: 0.7;
+      }
+    }
+
+    .list-group-item:first-child {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .list-group-item:last-child {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+  }
+}
+/*.users {
   float : right;
   border: 3px solid black;
   width: 100%;
@@ -350,7 +470,6 @@ nav {
 .users li {
   font-size: 20px;
   border: none;
-  /*color: black;*/
   list-style: none;
 }
 
@@ -418,13 +537,13 @@ nav {
   font-weight: bold;
   color: black;
 }
-
+*/
 // ***************** end of chat box (socket) styling *****************
 
 
 // ***************** start of main styling *****************
 
-main {
+/*main {
   position: absolute;
   top: 10vh;
   width: 100vw;
@@ -432,7 +551,7 @@ main {
   // background-color: lightgray;
   z-index: 1;
 }
-
+*/
 // ***************** end of main styling *****************
 
 
@@ -634,14 +753,27 @@ a:hover {
 
 .countryTransitionMsg {
   position: absolute;
-  top: 40%;
-  left: 32%;
+  top: 25vh;
+  width: 100%;
   z-index: 99;
+  text-align: center;
+
+  img {
+    clip-path: circle(92px at center);
+    width: 400px;
+  }
+
 }
 
 .countryTransitionMsg h1 {
-  color: #a8a8a8;
-  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  font-size: 3em;
+  letter-spacing: 0.4em;
+  font-weight: bold;
+  margin-top: -30px;
+  text-shadow: 0px 0px 30px rgba(255, 255, 255, 1);
+  /*color: gray; */
+  /*font-family: 'Lato', sans-serif;*/
 }
 
 /***************************** end of country transition *********************/

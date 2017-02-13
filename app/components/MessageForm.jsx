@@ -38,15 +38,35 @@ class MessageForm extends React.Component {
 
 	render() {
 		return (
-			<div className="message_form">
-				<h3>Write New Message</h3>
+			<div className="message_form well bs-component">
+
+				<form onSubmit={this.handleSubmit} className="form-horizontal">
+				  <fieldset>
+				    <div className="form-group">
+				      <div className="col-md-12">
+				        <input type="text"
+				        	onChange={this.changeHandler}
+							value={this.state.text}
+							className="form-control" placeholder="Enter New Message" />
+				      </div>
+				      <div className="col-md-12">
+				            <span className="help-block col-md-10">Your message will be translated for all users to their selected language.</span>
+				      		<div className="col-md-2 btn-wrapper">
+				      			<button type="submit" className="btn btn-primary">Send</button>
+				      		</div>
+				      </div>
+				    </div>
+				  </fieldset>
+				</form>
+
+				{/*<h3>Write New Message</h3>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						onChange={this.changeHandler}
 						value={this.state.text}
 						placeholder='Write new message'
 					/>
-				</form>
+				</form>*/}
 			</div>
 		)
 	}

@@ -1,6 +1,6 @@
 'use strict'
 
-import { ADD_MESSAGE } from '../actionCreators/groupMessage';
+import { ADD_MESSAGE, CLEAR_MESSAGES } from '../actionCreators/groupMessage';
 
 const initialState = { messages: [] };
 

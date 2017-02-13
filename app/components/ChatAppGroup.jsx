@@ -4,11 +4,12 @@ import UsersList from './UserList.jsx';
 import MessageList from './MessageList.jsx';
 import MessageForm from './MessageForm.jsx';
 import ChangeNameForm from './ChangeNameForm.jsx';
-import { addMessage } from '../actionCreators/groupMessage';
+import { addMessage, clearMessages } from '../actionCreators/groupMessage';
 import { translateActionCreator } from '../reducers/translate';
 import { setPrimaryUserName, setSelectedUserName, addToUserList, removeFromUserList, changeUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import flagCodes from '../data/flagCodes';
 
 let socket = io.connect('/group-chat');
 
@@ -84,7 +85,7 @@ class ChatAppGroup extends React.Component {
 
 		let userJoinMsg = {
 			user: "LingoBot",
-			text: name + ' Joined'
+			text: name + ' joined'
 		};
 		this.dispatch(addMessage(userJoinMsg, room))
 	}
@@ -94,7 +95,7 @@ class ChatAppGroup extends React.Component {
 		let room = this.props.selectedCountry
 		let userLeftMsg = {
 			user: 'LingoBot',
-			text: name + ' Left'
+			text: name + ' left'
 		}
 		this.dispatch(addMessage(userLeftMsg, room))
 		this.dispatch(removeFromUserList(name))
@@ -102,12 +103,13 @@ class ChatAppGroup extends React.Component {
 
 	_userChangedName(data) {
 		let {oldName, newName} = data;
-
+		let room = this.props.selectedCountry
 		let nameChangeMsg = {
-			user: 'APPLICATION BOT',
-			text: 'Change Name : ' + oldName + ' ==> ' + newName
+			user: 'LingoBot',
+			text: oldName + "'s new username is " + newName
 		};
-		this.dispatch(addMessage(nameChangeMsg))
+
+		this.dispatch(addMessage(nameChangeMsg, room))
 		this.dispatch(changeUserName(oldName, newName))
 	}
 
@@ -138,11 +140,21 @@ class ChatAppGroup extends React.Component {
 	showInvitation(data) {
 		let room = this.props.selectedCountry
 		let invitationMessage = {
+
 			user: "LingoBot",
-			text: <Link to={data.link}> Click here to accept video chat invitation </Link>
+			text: <Link className="invitation btn btn-warning" to={data.link}> {data.user} would like to Video Chat! Click here to accept invitation. </Link>
 		};
 		
 		this.dispatch(addMessage(invitationMessage, room))
+	}
+
+	getFlagCode(country) {
+		for (let key in flagCodes) {
+			if (flagCodes[key] === country) {
+				return key
+			}
+		}
+		return null
 	}
 
 	render() {
@@ -158,16 +170,39 @@ class ChatAppGroup extends React.Component {
 		const handleChangeName = this.handleChangeName;
 		const joinVideoChat = this.joinVideoChat
 
+		const selectedFlag = this.getFlagCode(selectedCountry)
+
 		return (
 			<div className="container" id="chatbox-body">
-				<h1>Live Group Chat: { selectedCountry }</h1>
-				<div className="row">
-					<div className="col-sm-9">
-						<MessageList
-							messages={roomMessages}
-						/>
-					</div>
+				<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+					<Link to="/">&times;</Link>
+				</button>
 
+				<h3>{ selectedCountry } {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} Group Chat</h3>
+				
+				<div>
+					<div className="col-sm-9">
+
+						<div className="messages panel panel-default">
+							<div className="panel-heading">
+								<h3 className="panel-title">Live Conversation</h3>
+							</div>
+							<div className="panel-body">
+
+								<MessageList
+									messages={roomMessages}
+								/>
+
+							</div>
+
+							<MessageForm
+								onMessageSubmit={handleMessageSubmit}
+								user={user}
+								language={language}
+							/>
+							
+						</div>
+					</div>
 					<div className="col-sm-3">
 						<UsersList
 							users={users}
@@ -177,15 +212,7 @@ class ChatAppGroup extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="row">
-					<div className="col-sm-9">
-						<MessageForm
-							onMessageSubmit={handleMessageSubmit}
-							user={user}
-							language={language}
-						/>
-					</div>
-
+				<div>
 					<div className="col-sm-3">
 						<ChangeNameForm
 							onChangeName={handleChangeName}

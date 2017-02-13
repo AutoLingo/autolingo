@@ -11,6 +11,10 @@ class VideoChat extends Component {
 		LiveChatExternals()
 	}
 
+	// componentWillUnmount() {
+	// 	MediaStreamTrack.stop()
+	// }
+
 	render() {
 		return (
 			<section id="videochat-wrapper">

@@ -5,8 +5,11 @@ var Message = React.createClass({
 	render() {
 		return (
 			<div className="message">
-				<strong>{this.props.user}: </strong>
-				
+				{
+					this.props.user === 'LingoBot' ? 
+						<strong>{this.props.user} <img src="img/lingo-bot-icon.png" /> : </strong> :
+						<strong>{this.props.user}: </strong>
+				}
 				<span>{this.props.text}</span>
 			</div>
 		)
