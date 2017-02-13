@@ -10,13 +10,6 @@ class MessageForm extends React.Component {
 		this.state = {text: ''}
 	}
 
-	//start with empty text
-	// getInitialState() {
-	// 	return {
-	// 		text: ''
-	// 	}
-	// }
-
 	handleSubmit(e) {
 		e.preventDefault();
 		var message = {

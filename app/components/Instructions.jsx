@@ -56,6 +56,14 @@ class InstructionMessage extends React.Component {
 	          <h1 id="instruction-title" style={{color: '#6495ED'}}>How to use AutoLingo</h1>
 	          <hr style={{border: '1px solid black'}}></hr>
 	          <form style={{color: 'black', paddingTop: '5px'}}>
+	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>AutoLingo Map</h3>
+	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
+	          		<li style={{border: 'none'}}>Select the country that you want to participate group chat.</li>
+	          		<li style={{border: 'none'}}>When hover over the countries, you will see the names of the countries in left hand side bottom corner.</li>
+	          		<li style={{border: 'none'}}>You can also search countries through "Search" section in the navigation bar.</li>
+	          		<li style={{border: 'none'}}>Once the country is selected, you will be directed to selected country's group chat.</li>
+	          	</ol>
+
 	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>Country Group Chat</h3>
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
 	          		<li style={{border: 'none'}}>Write your message in the message input box and hit enter.</li>
