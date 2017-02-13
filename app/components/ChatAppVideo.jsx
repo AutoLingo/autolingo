@@ -159,8 +159,7 @@ class ChatApp extends Component {
 						<ul>
 							<ReactCSSTransitionGroup
 								transitionName="fallingFadeIn"
-								transitionEnterTimeout={500}
-								transitionLeaveTimeout={300}>
+								transitionEnterTimeout={500}>
 							{
 								finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
 									return (
@@ -197,6 +196,7 @@ const mapStateToProps = state => {
 	return {
 		translation,
 		user,
+		userLanguage,
 		userFullLanguage,
 		finalTranscripts,
 		interimTranscript,

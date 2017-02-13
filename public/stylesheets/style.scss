@@ -83,16 +83,7 @@ nav {
   opacity: 1;
   top: 0;
   position: relative;
-  transition: opacity 500ms ease-in, top 500ms ease-in;
-}
-
-.fallingFadeIn-leave {
-  opacity: 1;
-}
-
-.fallingFadeIn-leave.fallingFadeIn-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  transition: opacity 500ms ease-in, top 500ms linear;
 }
 
 /*Transitions End*/
