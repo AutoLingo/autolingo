@@ -175,7 +175,7 @@ class ChatAppGroup extends React.Component {
 					<Link to="/">&times;</Link>
 				</button>
 
-				<h3>{ selectedCountry } {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} Group Chat</h3>
+				<h3> {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} { selectedCountry }  Group Chat</h3>
 				
 				<div>
 					<div className="col-sm-9">
