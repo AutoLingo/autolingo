@@ -26,14 +26,27 @@ var ChangeNameForm = React.createClass({
 	render() {
 		return (
 			<div className="change_name_form">
-				<h3>Change Guest User Name</h3>
+
+				<div className="form-group">
+					<form onSubmit={this.handleSubmit}>
+						<input
+							onChange={this.onKey}
+							value={this.state.newName}
+							placeholder="Change User Name"
+							className="form-control input-lg" type="text" id="inputLarge" 
+						/>
+					</form>
+				</div>
+
+				{/*<h3>Change Guest User Name</h3>
 				<form onSubmit={this.handleSubmit}>
 					<input
 						onChange={this.onKey}
 						value={this.state.newName}
 						placeholder= 'Type new user name'
 					/>
-				</form>
+				</form>*/}
+
 			</div>
 		)
 	}
