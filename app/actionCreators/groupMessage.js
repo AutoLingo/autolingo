@@ -9,3 +9,6 @@ export const addMessage = (message, room) => {
 export const clearMessages = (messages) => {
 	return { type: CLEAR_MESSAGES, messages }
 }
+export const clearMessages = (messages) => {
+	return { type: CLEAR_MESSAGES, messages }
+}

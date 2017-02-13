@@ -106,6 +106,7 @@ class ChatAppGroup extends React.Component {
 		let room = this.props.selectedCountry
 		let nameChangeMsg = {
 			user: 'LingoBot',
+
 			text: oldName + "'s new username is " + newName
 		};
 
@@ -138,14 +139,28 @@ class ChatAppGroup extends React.Component {
 	}
 
 	showInvitation(data) {
+
+		// alert('INVITATION')
+		console.log('INVITATION', data)
+
+
+
 		let room = this.props.selectedCountry
 		let invitationMessage = {
-
 			user: "LingoBot",
 			text: <Link className="invitation btn btn-warning" to={data.link}> {data.user} would like to Video Chat! Click here to accept invitation. </Link>
 		};
 		
 		this.dispatch(addMessage(invitationMessage, room))
+	}
+
+	getFlagCode(country) {
+		for (let key in flagCodes) {
+			if (flagCodes[key] === country) {
+				return key
+			}
+		}
+		return null
 	}
 
 	getFlagCode(country) {
@@ -178,11 +193,11 @@ class ChatAppGroup extends React.Component {
 					<Link to="/">&times;</Link>
 				</button>
 
-				<h3>{ selectedCountry } {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} Group Chat</h3>
+
+				<h3> {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} { selectedCountry }  Group Chat</h3>
 				
 				<div>
 					<div className="col-sm-9">
-
 						<div className="messages panel panel-default">
 							<div className="panel-heading">
 								<h3 className="panel-title">Live Conversation</h3>

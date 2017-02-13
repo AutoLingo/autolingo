@@ -215,6 +215,7 @@ nav {
     max-width: 75px;
     display: inline;
     vertical-align: bottom;
+    margin-right: 10px;
     -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
     -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
     box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3); }
@@ -445,20 +446,6 @@ nav {
   z-index: 1;
 }
 */
-#language-message {
-  z-index: 100; }
-
-.ReactModal__Content--after-open {
-  z-index: 99; }
-
-.ReactModal__Content {
-  height: 500px; }
-
-.ReactModal__Overlay {
-  z-index: 100; }
-
-/***************** end of LanguageMessage modal styling *****************
-
 /**************************************************Drop down menu start*****/
 /*.dropdown {
     position: absolute;
@@ -602,15 +589,28 @@ a:hover {
   background-color: transparent;
   padding: 25px 15px; }
 
-/************************* start fo Speech recognition *************************
+/************************* start of Speech recognition *************************
 
-/************************** start fo Instruction Message **************************/
+/************************** start of Instruction Message **************************/
 .swal-div {
   color: black; }
 
-#instruction-submit-button:hover {
-  background-color: white; }
+#instruction-submit-button:hover, #instruction-submit-button:focus {
+  background-color: #2098D1; }
 
+#instruction-title {
+  font-size: 40px; }
+
+.ReactModal__Content--after-open {
+  z-index: 99; }
+
+.ReactModal__Content {
+  height: 500px; }
+
+.ReactModal__Overlay {
+  z-index: 100; }
+
+/************************** end of Instruction Message **************************/
 /************************** start of country transition ***********************/
 .countryTransition-appear {
   opacity: 0.01; }

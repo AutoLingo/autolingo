@@ -58,7 +58,6 @@ const VoiceRecognitionContainer = (props) => {
         }
       };
       recognition.onresult = function(event) {
-        console.log('ONRESULT FOR VOICE RECOGNITION FIRING');
         let emitFinalTranscript = props.emitFinalTranscript
         let emitInterimTranscript = props.emitInterimTranscript
         let setInterimTranscript = props.setInterimTranscript
@@ -69,16 +68,10 @@ const VoiceRecognitionContainer = (props) => {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             final_transcript = event.results[i][0].transcript;
-
             emitFinalTranscript(final_transcript, userLanguage)
-            addFinalTranscript(final_transcript)
           } else {
             interim_transcript += event.results[i][0].transcript;
-
-
             emitInterimTranscript(interim_transcript, userLanguage)
-            setInterimTranscript(interim_transcript)
-            // socket.emit('interim_transcript', {interim_transcript})
           }
         }
         final_transcript = capitalize(final_transcript);
@@ -126,12 +119,10 @@ const VoiceRecognitionContainer = (props) => {
     // **********************SELECTING LANGUAGE FOR SPEECH RECOGNITION *****************************
     // GETTING DIALECT STRAIGHT FROM THE STORE BECAUSE THIS IS A STATELESS COMPONENT THAT REDUX CAN'T RERENDER
     recognition.lang = store.getState().user.primaryUser.dialect
-    console.log('recognition.lang: ', recognition.lang);
 
     // *****************************
 
     recognition.start();
-    console.log('recognition: ', recognition);
     ignore_onend = false;
     final_span.innerHTML = '';
     interim_span.innerHTML = '';

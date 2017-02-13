@@ -44,7 +44,7 @@ class InstructionMessage extends React.Component {
 
 	render() {
 		return (
-			<Modal
+			<Modal id="instruction-box"
 	          isOpen={this.state.modalIsOpen}
 	          onAfterOpen={this.afterOpenModal}
 	          onRequestClose={this.closeModal}
@@ -52,10 +52,18 @@ class InstructionMessage extends React.Component {
 	          contentLabel="Example Modal"
 	          selectLanguage={this.selectLanguage}
 	        >
-
+	      
 	          <h1 id="instruction-title" style={{color: '#6495ED'}}>How to use AutoLingo</h1>
 	          <hr style={{border: '1px solid black'}}></hr>
 	          <form style={{color: 'black', paddingTop: '5px'}}>
+	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>AutoLingo Map</h3>
+	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
+	          		<li style={{border: 'none'}}>Select the country that you want to participate group chat.</li>
+	          		<li style={{border: 'none'}}>When hover over the countries, you will see the names of the countries in left hand side bottom corner.</li>
+	          		<li style={{border: 'none'}}>You can also search countries through "Search" section in the navigation bar.</li>
+	          		<li style={{border: 'none'}}>Once the country is selected, you will be directed to selected country's group chat.</li>
+	          	</ol>
+
 	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>Country Group Chat</h3>
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
 	          		<li style={{border: 'none'}}>Write your message in the message input box and hit enter.</li>
@@ -72,7 +80,7 @@ class InstructionMessage extends React.Component {
 	          		<li style={{border: 'none'}}>You will be able to see the entire conversation on the 'Live Conversation' box.</li>
 	          	</ol>
 	          	
-	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', hover: {backgroundColor: 'black'}}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
+	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', cursor: 'pointer'}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
 	          </form>
 	        </Modal>
 	    )
