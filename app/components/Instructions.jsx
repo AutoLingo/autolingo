@@ -68,7 +68,7 @@ class InstructionMessage extends React.Component {
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
 	          		<li style={{border: 'none'}}>Write your message in the message input box and hit enter.</li>
 	          		<li style={{border: 'none'}}>Your messages will be rendered in the 'Live Conversation' box on your screen in your own language, and will be translated for other users into their own language on their screens.</li>
-	          		<li style={{border: 'none'}}>Other user's speech will be translated into your default language and shown on the 'Live Conversation' box on your screen.</li>
+	          		<li style={{border: 'none'}}>Other users' speech will be translated into your default language and shown in the 'Live Conversation' box on your screen.</li>
 	          		<li style={{border: 'none'}}>Click on a user in the user list to invite them to video chat.</li>
 	          	</ol>
 
@@ -78,8 +78,7 @@ class InstructionMessage extends React.Component {
 	          		<li style={{border: 'none'}}>Click on "Join video chat"</li>
 
 	          		<li style={{border: 'none'}}>Click on the microphone to start speaking.</li>
-	          		<li style={{border: 'none'}}>The conversation will be rendered within the 'Live Conversation' box on each user's screen in their respective languages .</li>
-	          		<li style={{border: 'none'}}>A</li>
+	          		<li style={{border: 'none'}}>The conversation will be rendered within the 'Live Conversation' box on each user's screen in their respective languages.</li>
 	          	</ol>
 	          	
 	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', cursor: 'pointer'}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
