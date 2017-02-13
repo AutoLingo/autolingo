@@ -92,6 +92,7 @@ export default class Navbar extends Component {
                <button type="submit" className="btn btn-default">Go</button>
              </form>
         {/****************************************************************/}
+        
               <li className="dropdown">
                 <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
                 <ul id="language-list" className="dropdown-menu">
@@ -143,29 +144,6 @@ export default class Navbar extends Component {
 
                 </ul>
               </li>
-
-              {/*<li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Select Country <span className="caret"></span></a>
-                <ul id="country-list" className="dropdown-menu" role="menu">
-                  <li><a onClick={()=> this.props.zoomInCountry(america)}>Go to U.S.A</a></li>
-                  <li><a onClick={repositionMap(this.props.china, this.map)}>Go to China</a></li>
-                  <li><a onClick={repositionMap(this.props.spain, this.map)}>Go to Spain</a></li>
-                  <li><a onClick={repositionMap(this.props.france, this.map)}>Go to France</a></li>
-                  <li><a onClick={repositionMap(this.props.korea, this.map)}>Go to Korea</a></li>
-                </ul>
-              </li>*/}
-
-              {/*<li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Change Username <span className="caret"></span></a>
-                <ul id="change-username-form" className="dropdown-menu" role="menu">
-                  <form className="navbar-form navbar-left" role="search">
-                    <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Search" />
-                    </div>
-                    <button type="submit" className="btn btn-default">Submit</button>
-                  </form>
-                </ul>
-              </li>*/}
               
               {this.state.show && <Instructions showInstruction={this.showInstruction}/>}
               

@@ -18,6 +18,10 @@ body {
 nav {
   z-index: 999; }
 
+.navbar-brand {
+  font-size: 2.3em;
+  font-weight: 500; }
+
 .navbar-default .navbar-nav > li > a {
   font-size: 20px; }
 
@@ -42,6 +46,19 @@ nav {
   color: #6e6e6e; }
 
 /*End of nav bar styling*/
+/*Transitions*/
+.fallingFadeIn-enter {
+  opacity: 0.01;
+  top: -20px;
+  position: relative; }
+
+.fallingFadeIn-enter.fallingFadeIn-enter-active {
+  opacity: 1;
+  top: 0;
+  position: relative;
+  transition: opacity 500ms ease-in, top 500ms linear; }
+
+/*Transitions End*/
 /***************** Start of map styling *****************/
 #map {
   position: absolute;
@@ -165,7 +182,7 @@ nav {
   position: absolute;
   bottom: 5vh;
   left: 5vw;
-  z-index: 150;
+  z-index: 50;
   font-size: 25px; }
 
 /*************************map marker styling************************/
@@ -191,15 +208,25 @@ nav {
   z-index: 99;
   background-color: white;
   padding: 20px; }
-  #chatbox-body h2 {
+  #chatbox-body h3 {
     display: block;
     text-align: center; }
+  #chatbox-body .flag {
+    max-width: 75px;
+    display: inline;
+    vertical-align: bottom;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3); }
 
-#chatbox-body h1 {
+.close a:hover {
+  color: black; }
+
+/*#chatbox-body h1 {
   font-size: 50px;
   text-align: center;
-  padding-bottom: 10px; }
-
+  padding-bottom: 10px;
+}*/
 #conversation-container {
   overflow-y: scroll;
   border: 1px solid #ddd;
@@ -271,84 +298,153 @@ nav {
   font-size: 1.6em;
   display: block; }
 
-.users {
-  float: right;
+.help-block {
+  padding: 0; }
+
+.message_form .btn-wrapper {
+  padding: 0; }
+
+.message_form .btn {
+  width: 100%;
+  margin-top: 10px; }
+
+.messages .panel-title {
+  text-transform: uppercase;
+  letter-spacing: 0.2em; }
+
+.messages .panel-body {
+  height: 250px;
+  overflow-y: auto;
+  font-size: 1.2em; }
+
+.messages .message img {
+  width: 21px;
+  opacity: 0.9; }
+
+.messages .message .invitation {
+  color: white;
+  text-transform: none;
+  font-weight: bold; }
+
+.users .panel-title {
+  text-transform: uppercase;
+  letter-spacing: 0.2em; }
+
+.users .panel-body {
+  font-size: 1.2em;
+  height: 250px;
+  overflow-y: auto;
+  padding: 0; }
+  .users .panel-body .list-group {
+    cursor: pointer; }
+  .users .panel-body .list-group-item {
+    padding: 5px 15px;
+    border-left: 0;
+    border-right: 0; }
+    .users .panel-body .list-group-item img {
+      width: 25px;
+      float: right;
+      opacity: 0.7; }
+  .users .panel-body .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0; }
+  .users .panel-body .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0; }
+
+/*.users {
+  float : right;
   border: 3px solid black;
   width: 100%;
-  height: 50vh; }
+  height: 50vh;
+}
 
 .users h3 {
   text-align: center;
   font-size: 25px;
-  color: black; }
+  color: black;
+}
 
 .users li {
   font-size: 20px;
   border: none;
-  /*color: black;*/
-  list-style: none; }
+  list-style: none;
+}
 
 .users li:hover {
   font-size: 200%;
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 .users img {
-  margin-right: 20px; }
+  margin-right: 20px;
+}
 
 .messages {
   width: 100%;
-  border: 5px solid black;
+  border : 5px solid black;
   padding: 1em;
   height: 50vh;
   overflow: scroll;
-  background-color: #F0F8FF; }
+  background-color: #F0F8FF;
+}
 
 .messages h2 {
   margin-top: -5px;
   font-size: 25px;
-  display: block; }
+  display: block;
+}
 
 .message {
   font-size: 20px;
-  color: black; }
+  color: black;
+}
 
 .change_name_form {
-  width: 100%; }
+  width: 100%;
+}
 
 .message_form {
-  width: 100%; }
+  width: 100%;
+}
 
 .message_form input {
   font-size: 20px;
   width: 100%;
   height: 5vh;
   border: 3px solid black;
-  color: black; }
+  color: black;
+}
 
 .message_form h3 {
   font-size: 25px;
   font-weight: bold;
-  color: black; }
+  color: black;
+}
 
 .change_name_form input {
   font-size: 20px;
   height: 5vh;
   width: 100%;
   border: 3px solid black;
-  color: black; }
+  color: black;
+}
 
 .change_name_form h3 {
   font-size: 25px;
   font-weight: bold;
-  color: black; }
-
-main {
+  color: black;
+}
+*/
+/*main {
   position: absolute;
   top: 10vh;
   width: 100vw;
   height: 90vh;
-  z-index: 1; }
-
+  // background-color: lightgray;
+  z-index: 1;
+}
+*/
 #language-message {
   z-index: 100; }
 
@@ -525,12 +621,22 @@ a:hover {
 
 .countryTransitionMsg {
   position: absolute;
-  top: 40%;
-  left: 32%;
-  z-index: 99; }
+  top: 25vh;
+  width: 100%;
+  z-index: 99;
+  text-align: center; }
+  .countryTransitionMsg img {
+    clip-path: circle(92px at center);
+    width: 400px; }
 
 .countryTransitionMsg h1 {
-  color: #a8a8a8;
-  font-family: 'Lato', sans-serif; }
+  text-transform: uppercase;
+  font-size: 3em;
+  letter-spacing: 0.4em;
+  font-weight: bold;
+  margin-top: -30px;
+  text-shadow: 0px 0px 30px white;
+  /*color: gray; */
+  /*font-family: 'Lato', sans-serif;*/ }
 
 /***************************** end of country transition *********************/

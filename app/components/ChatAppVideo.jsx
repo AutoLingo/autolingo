@@ -7,8 +7,9 @@ import ChangeNameForm from './ChangeNameForm.jsx';
 import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer';
 import VideoChat from './VideoChat';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router'
-import languages from '../data/languages'
+import { Link, browserHistory } from 'react-router';
+import languages from '../data/languages';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export const socket = io.connect('/video-chat');
 
@@ -42,7 +43,8 @@ class ChatApp extends Component {
 		socket.emit('join_room', {room: location.hash})
 		if (this.props.selectedUser.name) {
 			socket.emit('send_video_invitation', {
-				name: this.props.selectedUser.name,
+				user: this.props.user, //sender's username
+				name: this.props.selectedUser.name, //recipient's username
 				room: this.props.selectedUser.room,
 				link: window.location.pathname + window.location.hash
 			})
@@ -133,7 +135,11 @@ class ChatApp extends Component {
 
 		return (
 			<div id="chatbox-body" className="container">
-				<h2>Video Chat</h2>
+				<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+					<Link to="/">&times;</Link>
+				</button>
+
+				<h3>Video Chat</h3>
 
 				<div className="col-sm-6">
 					<div>
@@ -151,15 +157,19 @@ class ChatApp extends Component {
 					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 					<div id="conversation-container">
 						<ul>
-						{
-							finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
-								return (
-									<li key={i}>
-										{this.htmlDecode(transcript)}
-									</li>
-								)
-							}).reverse()
-						}
+							<ReactCSSTransitionGroup
+								transitionName="fallingFadeIn"
+								transitionEnterTimeout={500}>
+							{
+								finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
+									return (
+										<li key={i}>
+											{this.htmlDecode(transcript)}
+										</li>
+									)
+								}).reverse()
+							}
+							</ReactCSSTransitionGroup>
 						</ul>
 					</div>
 				</div>
@@ -176,6 +186,7 @@ import { setInterimTranscript, addFinalTranscript } from '../actionCreators/spee
 
 const mapStateToProps = state => {
 	let translation = state.translations[1] && state.translations[1]
+	let user = state.user.primaryUser.name
 	let userLanguage = state.user.primaryUser.primaryLanguage
 	let userFullLanguage = state.user.primaryUser.primaryLanguageFullName
 	let finalTranscripts = state.speech.finalTranscripts
@@ -184,6 +195,7 @@ const mapStateToProps = state => {
 
 	return {
 		translation,
+		user,
 		userLanguage,
 		userFullLanguage,
 		finalTranscripts,
