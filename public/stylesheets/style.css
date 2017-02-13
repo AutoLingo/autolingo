@@ -191,15 +191,22 @@ nav {
   z-index: 99;
   background-color: white;
   padding: 20px; }
-  #chatbox-body h2 {
+  #chatbox-body h3 {
     display: block;
     text-align: center; }
+  #chatbox-body .flag {
+    max-width: 75px;
+    display: inline;
+    vertical-align: bottom;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3);
+    box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.3); }
 
-#chatbox-body h1 {
+/*#chatbox-body h1 {
   font-size: 50px;
   text-align: center;
-  padding-bottom: 10px; }
-
+  padding-bottom: 10px;
+}*/
 #conversation-container {
   overflow-y: scroll;
   border: 1px solid #ddd;

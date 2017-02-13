@@ -9,6 +9,7 @@ import { translateActionCreator } from '../reducers/translate';
 import { setPrimaryUserName, setSelectedUserName, addToUserList, removeFromUserList, changeUserName } from '../actionCreators/user';
 import { connect } from 'react-redux';
 import { browserHistory, Link } from 'react-router';
+import flagCodes from '../data/flagCodes';
 
 let socket = io.connect('/group-chat');
 
@@ -145,6 +146,15 @@ class ChatAppGroup extends React.Component {
 		this.dispatch(addMessage(invitationMessage))
 	}
 
+	getFlagCode(country) {
+		for (let key in flagCodes) {
+			if (flagCodes[key] === country) {
+				return key
+			}
+		}
+		return null
+	}
+
 	render() {
 
 		const users = this.props.users;
@@ -157,9 +167,12 @@ class ChatAppGroup extends React.Component {
 		const handleChangeName = this.handleChangeName;
 		const joinVideoChat = this.joinVideoChat
 
+		const selectedFlag = this.getFlagCode(selectedCountry)
+
 		return (
 			<div className="container" id="chatbox-body">
-				<h2>FLAG ICON Group Chat: { selectedCountry }</h2>
+				<h3>{ selectedCountry } {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} Group Chat</h3>
+				
 				<div className="row">
 					<div className="col-sm-9">
 						<MessageList
