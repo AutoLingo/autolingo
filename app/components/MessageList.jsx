@@ -25,13 +25,8 @@ class MessageList extends Component {
 		// this.scrollToBottom && this.scrollToBottom()
 
 		return (
-			<div className="messages">
+			<div>
 
-				<div className="panel panel-default">
-				  <div className="panel-heading">
-				    <h3 className="panel-title">Live Conversation</h3>
-				  </div>
-				  <div className="panel-body">
 					  {
 					  	//Need to have messages container/array in the database
 					  	this.props.messages.map((message, i) => {
@@ -50,8 +45,6 @@ class MessageList extends Component {
 					  	ref={(el) => { this.messagesEnd = el; }}>
 					  </div>
 
-				  </div>
-				</div>
 
 
 				{/*<h2><strong>Live Conversation: </strong></h2>

@@ -171,15 +171,34 @@ class ChatAppGroup extends React.Component {
 
 		return (
 			<div className="container" id="chatbox-body">
+				<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+					<Link to="/">&times;</Link>
+				</button>
+
 				<h3>{ selectedCountry } {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} Group Chat</h3>
 				
-				<div className="row">
+				<div>
 					<div className="col-sm-9">
-						<MessageList
-							messages={messages}
-						/>
-					</div>
+						<div className="messages panel panel-default">
+							<div className="panel-heading">
+								<h3 className="panel-title">Live Conversation</h3>
+							</div>
+							<div className="panel-body">
 
+								<MessageList
+									messages={messages}
+								/>
+
+							</div>
+
+							<MessageForm
+								onMessageSubmit={handleMessageSubmit}
+								user={user}
+								language={language}
+							/>
+							
+						</div>
+					</div>
 					<div className="col-sm-3">
 						<UsersList
 							users={users}
@@ -189,15 +208,7 @@ class ChatAppGroup extends React.Component {
 						/>
 					</div>
 				</div>
-				<div className="row">
-					<div className="col-sm-9">
-						<MessageForm
-							onMessageSubmit={handleMessageSubmit}
-							user={user}
-							language={language}
-						/>
-					</div>
-
+				<div>
 					<div className="col-sm-3">
 						<ChangeNameForm
 							onChangeName={handleChangeName}

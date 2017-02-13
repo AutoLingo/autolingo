@@ -26,6 +26,11 @@ nav {
   z-index: 999;
 }
 
+.navbar-brand {
+  font-size: 2.3em;
+  font-weight: 700;
+}
+
 .navbar-default .navbar-nav>li>a {
   font-size: 20px;
 }
@@ -64,6 +69,33 @@ nav {
 }
 
 /*End of nav bar styling*/
+
+
+/*Transitions*/
+
+.fallingFadeIn-enter {
+  opacity: 0.01;
+  top: -20px;
+  position: relative;
+}
+
+.fallingFadeIn-enter.fallingFadeIn-enter-active {
+  opacity: 1;
+  top: 0;
+  position: relative;
+  transition: opacity 500ms ease-in, top 500ms ease-in;
+}
+
+.fallingFadeIn-leave {
+  opacity: 1;
+}
+
+.fallingFadeIn-leave.fallingFadeIn-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+/*Transitions End*/
 
 
 /***************** Start of map styling *****************/
@@ -253,6 +285,12 @@ nav {
     }
 }
 
+.close {
+  a:hover {
+    color: black;
+  }
+}
+
 /*#chatbox-body h1 {
   font-size: 50px;
   text-align: center;
@@ -360,9 +398,15 @@ nav {
 }
 
 .messages {
+  .panel-title {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
   .panel-body {
     height: 250px;
     overflow-y: auto;
+    font-size: 1.2em;
   }
 
   .message {
@@ -380,7 +424,13 @@ nav {
 }
 
 .users {
+  .panel-title {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+  }
+
   .panel-body {
+    font-size: 1.2em;
     height: 250px;
     overflow-y: auto;
     padding: 0;
@@ -731,7 +781,7 @@ a:hover {
   font-weight: bold;
   margin-top: -30px;
   text-shadow: 0px 0px 30px rgba(255, 255, 255, 1);
-  color: gray;
+  /*color: gray; */
   /*font-family: 'Lato', sans-serif;*/
 }
 

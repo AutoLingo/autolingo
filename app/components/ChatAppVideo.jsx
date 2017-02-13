@@ -7,8 +7,9 @@ import ChangeNameForm from './ChangeNameForm.jsx';
 import VoiceRecognitionContainer from '../containers/VoiceRecognitionContainer';
 import VideoChat from './VideoChat';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router'
-import languages from '../data/languages'
+import { Link, browserHistory } from 'react-router';
+import languages from '../data/languages';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export const socket = io.connect('/video-chat');
 
@@ -134,6 +135,10 @@ class ChatApp extends Component {
 
 		return (
 			<div id="chatbox-body" className="container">
+				<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+					<Link to="/">&times;</Link>
+				</button>
+
 				<h2>Video Chat</h2>
 
 				<div className="col-sm-6">
@@ -152,15 +157,20 @@ class ChatApp extends Component {
 					<ul className="breadcrumb"><li>Current language is <b>{userFullLanguage}</b>. Change language from navigation bar.</li></ul>
 					<div id="conversation-container">
 						<ul>
-						{
-							finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
-								return (
-									<li key={i}>
-										{this.htmlDecode(transcript)}
-									</li>
-								)
-							}).reverse()
-						}
+							<ReactCSSTransitionGroup
+								transitionName="fallingFadeIn"
+								transitionEnterTimeout={500}
+								transitionLeaveTimeout={300}>
+							{
+								finalTranscripts[0] && finalTranscripts.map((transcript, i) => {
+									return (
+										<li key={i}>
+											{this.htmlDecode(transcript)}
+										</li>
+									)
+								}).reverse()
+							}
+							</ReactCSSTransitionGroup>
 						</ul>
 					</div>
 				</div>
