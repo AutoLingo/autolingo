@@ -139,7 +139,7 @@ class ChatApp extends Component {
 					<Link to="/">&times;</Link>
 				</button>
 
-				<h2>Video Chat</h2>
+				<h3>Video Chat</h3>
 
 				<div className="col-sm-6">
 					<div>
