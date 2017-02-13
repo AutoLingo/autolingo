@@ -30,7 +30,7 @@ class MessageList extends Component {
 
 					  {
 					  	//Need to have messages container/array in the database
-					  	this.props.messages.map((message, i) => {
+					  	this.props.messages && this.props.messages.map((message, i) => {
 					  		return (
 					  			//render single message from Message.jsx component
 					  			<Message
