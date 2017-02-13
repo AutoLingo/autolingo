@@ -31,7 +31,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentDidMount() {
-		console.log('groupchat id', socket)
+		
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -44,7 +44,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log('COMPONENT IS UNMOUNTING')
+		
 		socket.emit('room_exit')
 	}
 
@@ -61,15 +61,16 @@ class ChatAppGroup extends React.Component {
 	//push the given message into messages array
 	_messageReceive(message) {
 		const userLanguage = this.props.userLanguage
+		const room  = this.props.selectedCountry
 
 		if (userLanguage === message.language) {
-			this.dispatch(addMessage(message))
+			this.dispatch(addMessage(message, room))
 		} else {
 			const id = 1;
 			const originalLanguage = message.language;
 			const originalText = message.text;
 			const user = message.user
-			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText, user))
+			this.dispatch(translateActionCreator(id, originalLanguage, userLanguage, originalText, user, room))
 		}
 	}
 
@@ -78,29 +79,31 @@ class ChatAppGroup extends React.Component {
 	}
 
 	_userJoined(data) {
-		var {name} = data;
-		var userJoinMsg = {
+		let {name} = data;
+		let room = this.props.selectedCountry
+
+		let userJoinMsg = {
 			user: "LingoBot",
 			text: name + ' Joined'
 		};
-		this.dispatch(addMessage(userJoinMsg))
+		this.dispatch(addMessage(userJoinMsg, room))
 	}
 
 	_userLeft(data) {
-		var {name} = data;
-		var userLeftMsg = {
+		let {name} = data;
+		let room = this.props.selectedCountry
+		let userLeftMsg = {
 			user: 'LingoBot',
 			text: name + ' Left'
 		}
-		console.log(`${data.name} is about to be removed from state through dispatch`)
-		this.dispatch(addMessage(userLeftMsg))
+		this.dispatch(addMessage(userLeftMsg, room))
 		this.dispatch(removeFromUserList(name))
 	}
 
 	_userChangedName(data) {
-		var {oldName, newName} = data;
+		let {oldName, newName} = data;
 
-		var nameChangeMsg = {
+		let nameChangeMsg = {
 			user: 'APPLICATION BOT',
 			text: 'Change Name : ' + oldName + ' ==> ' + newName
 		};
@@ -109,13 +112,14 @@ class ChatAppGroup extends React.Component {
 	}
 
 	handleMessageSubmit(message) {
-		console.log('message', message)
-		this.dispatch(addMessage(message))
+		let room = this.props.selectedCountry
+
+		this.dispatch(addMessage(message, room))
 		socket.emit('send:message', message);
 	}
 
 	handleChangeName(newName) {
-		var oldName = this.props.userName
+		let oldName = this.props.userName
 
 		socket.emit('change:name', { name: newName }, (result) => {
 			if(!result) {
@@ -132,22 +136,23 @@ class ChatAppGroup extends React.Component {
 	}
 
 	showInvitation(data) {
-		// alert('INVITATION')
-		console.log('INVITATION', data)
-		var invitationMessage = {
+		let room = this.props.selectedCountry
+		let invitationMessage = {
 			user: "LingoBot",
 			text: <Link to={data.link}> Click here to accept video chat invitation </Link>
 		};
-		this.dispatch(addMessage(invitationMessage))
+		
+		this.dispatch(addMessage(invitationMessage, room))
 	}
 
 	render() {
 
 		const users = this.props.users;
-		const messages = this.props.messages;
 		const user = this.props.userName
 		const language = this.props.userLanguage;
 		const selectedCountry = this.props.selectedCountry
+		const groupMessages = this.props.groupMessages;
+		const roomMessages = groupMessages[selectedCountry] && groupMessages[selectedCountry].messages
 
 		const handleMessageSubmit = this.handleMessageSubmit;
 		const handleChangeName = this.handleChangeName;
@@ -159,7 +164,7 @@ class ChatAppGroup extends React.Component {
 				<div className="row">
 					<div className="col-sm-9">
 						<MessageList
-							messages={messages}
+							messages={roomMessages}
 						/>
 					</div>
 
@@ -197,9 +202,9 @@ function mapStateToProps (state, ownProps) {
 	const selectedCountry = state.map.selectedCountry;
 	const userName = state.user.primaryUser.name;
 	const users = state.user.userList;
-	const messages = state.groupMessage.messages;
+	const groupMessages = state.groupMessage;
 
-  return { userLanguage, selectedCountry, userName, users, messages };
+  return { userLanguage, selectedCountry, userName, users, groupMessages };
 }
 
 function mapDispatchToProps (dispatch, ownProps) {

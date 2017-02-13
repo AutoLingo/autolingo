@@ -2,6 +2,6 @@
 
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 
-export const addMessage = (message) => {
-  return { type: ADD_MESSAGE, message }
+export const addMessage = (message, room) => {
+  return { type: ADD_MESSAGE, message, room }
 }
