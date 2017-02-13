@@ -58,26 +58,27 @@ class InstructionMessage extends React.Component {
 	          <form style={{color: 'black', paddingTop: '5px'}}>
 	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>AutoLingo Map</h3>
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
-	          		<li style={{border: 'none'}}>Select the country that you want to participate group chat.</li>
-	          		<li style={{border: 'none'}}>When hover over the countries, you will see the names of the countries in left hand side bottom corner.</li>
-	          		<li style={{border: 'none'}}>You can also search countries through "Search" section in the navigation bar.</li>
-	          		<li style={{border: 'none'}}>Once the country is selected, you will be directed to selected country's group chat.</li>
+	          		<li style={{border: 'none'}}>Click on the map or use the search bar to enter the group chat for a specific country.</li>
+	          		<li style={{border: 'none'}}>Select your preferred language using the dropdown menu at the top of the screen.</li>
+	          		<li style={{border: 'none'}}>All written messages and video-chat transcripts will be translated into this language.</li>
+	          		<li style={{border: 'none'}}>You can switch your preferred language at any point.</li>
 	          	</ol>
 
 	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>Country Group Chat</h3>
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
 	          		<li style={{border: 'none'}}>Write your message in the message input box and hit enter.</li>
-	          		<li style={{border: 'none'}}>Your messages will be rendered on 'Live Conversation' box.</li>
-	          		<li style={{border: 'none'}}>Other user's speech will be automatically translated into your default language and shown on the 'Live Conversation' box.</li>
-	          		<li style={{border: 'none'}}>Double click on the username of the user who you want to have private conversation.</li>
+	          		<li style={{border: 'none'}}>Your messages will be rendered in the 'Live Conversation' box on your screen in your own language, and will be translated for other users into their own language on their screens.</li>
+	          		<li style={{border: 'none'}}>Other users' speech will be translated into your default language and shown in the 'Live Conversation' box on your screen.</li>
+	          		<li style={{border: 'none'}}>Click on a user in the user list to invite them to video chat.</li>
 	          	</ol>
 
 	          	<h3 style={{fontSize: '30px', color: '#6495ED', fontWeight: 'bold'}}>Private Chat</h3>
 	          	<ol style={{'textAlign': 'left', fontSize: '20px'}}>
-	          		<li style={{border: 'none'}}>Click 'Start Video Chat' to start the video chat with other user.</li>
-	          		<li style={{border: 'none'}}>Click on the microphone and start speaking.</li>
-	          		<li style={{border: 'none'}}>Your conversation and other user's conversation will be shown on the 'Live Conversation' box.</li>
-	          		<li style={{border: 'none'}}>You will be able to see the entire conversation on the 'Live Conversation' box.</li>
+	          		<li style={{border: 'none'}}>When you are invited to chat, click on the invitation note to bring you to the video-chat screen.</li>
+	          		<li style={{border: 'none'}}>Click on "Join video chat"</li>
+
+	          		<li style={{border: 'none'}}>Click on the microphone to start speaking.</li>
+	          		<li style={{border: 'none'}}>The conversation will be rendered within the 'Live Conversation' box on each user's screen in their respective languages.</li>
 	          	</ol>
 	          	
 	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', cursor: 'pointer'}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>

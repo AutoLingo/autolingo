@@ -23,13 +23,15 @@ class MessageList extends Component {
 
 	render() {
 		// this.scrollToBottom && this.scrollToBottom()
+		let messages = this.props.messages
 
 		return (
 			<div>
 
 					  {
-					  	//Need to have messages container/array in the database
-					  	this.props.messages.map((message, i) => {
+
+					  	this.props.messages && this.props.messages.map((message, i) => {
+
 					  		return (
 					  			//render single message from Message.jsx component
 					  			<Message
@@ -49,10 +51,8 @@ class MessageList extends Component {
 
 				{/*<h2><strong>Live Conversation: </strong></h2>
 				{
-					//Need to have messages container/array in the database
-					this.props.messages.map((message, i) => {
+					messages && messages.map((message, i) => {
 						return (
-							//render single message from Message.jsx component
 							<Message
 								key={i}
 								user={message.user}

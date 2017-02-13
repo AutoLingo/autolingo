@@ -16,7 +16,7 @@ const TRANSLATE_GROUP_MESSAGE = "TRANSLATE_GROUP_MESSAGE"
 
 // Action creators
 // Fed into the googleTranslateEpic
-export const translateActionCreator = (id, originalLanguage, userLanguage, originalText, user) => {
+export const translateActionCreator = (id, originalLanguage, userLanguage, originalText, user, room) => {
   return (
     {
       type: TRANSLATE,
@@ -24,7 +24,8 @@ export const translateActionCreator = (id, originalLanguage, userLanguage, origi
       originalLanguage,
       userLanguage,
       originalText,
-      user
+      user,
+      room
     }
   )
 }
@@ -82,12 +83,10 @@ export const googleTranslateEpic = (action$) => {
         return Observable.combineLatest(request, actionObservable, (request, actionObservable) => [request, actionObservable])
     })
     .map(combineArray => {
-      console.log('COMBINEARRAY', combineArray)
       const action = combineArray[1]
       const singleTranslation = combineArray[0]
       let translatedText = singleTranslation.response ?
         singleTranslation.response.data.translations[0].translatedText : singleTranslation
-        console.log('ACTION', action)
 
       const translatedMsg = {
           user: action.user,
@@ -96,8 +95,8 @@ export const googleTranslateEpic = (action$) => {
           originalLanguage: action.originalLanguage,
           id: action.id
       }
-      console.log('translatedMsg', translatedMsg)
-      return addMessage(translatedMsg)
+      
+      return addMessage(translatedMsg, action.room)
     })
 }
 // **************************************************
