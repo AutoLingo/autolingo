@@ -1,28 +1,19 @@
 # AutoLingo
 
-Your World. Any Language. Live translation video chat. Works on Google Chrome and https://.
+AutoLingo is a real-time translation application that allows users to communicate in their own language with users around the world.
 
-## Goal for MVP
+Video chat features speech recognition and live translations. Group chatrooms feature live text translation into all users' respective languages.
 
-Build a one-on-one video chat component with following features: video chat, speech recognition, and translation capabilities.
+Supporting 37 languages, 67 dialects, and 255 countries, AutoLingo was built using React, Redux, RxJS, redux-observable, Google Translate API, Web Speech API, WebSockets, Socket.IO, and WebRTC.
 
-## Which parts work
+# Compatible browsers
+Works on Google Chrome and https://.
 
-Video streaming and speech recognition. Translation working on pending component.
-Replaced redux-thunk with redux-observables.  API dispatches are now in the form of an Observable stream. Still need to figure out how to throttle api requests, but the basic framework is working.
-
-## Which parts don't work yet
-
-Group chat rooms per available country. User management by redux.
-
-## Open / unresolved questions
-
-## Particular parts of the code you'd like us to look at
-
-## Instructions for building and using the project
+## run the following commands in the terminal to run this project
 ```
 npm install
 npm run build
 npm run build-css
 npm start
+
 ```
