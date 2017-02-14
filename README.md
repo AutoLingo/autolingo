@@ -9,7 +9,7 @@ Supporting 37 languages, 67 dialects, and 255 countries, AutoLingo was built usi
 # Compatible browsers
 Works on Google Chrome and https://.
 
-## Enter the following commands in your terminal to run this project.git
+## Enter the following commands in your terminal to run this project
 ```
 npm install
 npm run build
