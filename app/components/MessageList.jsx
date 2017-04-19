@@ -22,7 +22,6 @@ class MessageList extends Component {
 	// }
 
 	render() {
-		// this.scrollToBottom && this.scrollToBottom()
 		let messages = this.props.messages
 
 		return (
@@ -46,26 +45,6 @@ class MessageList extends Component {
 					  <div style={ {float: "left", clear: "both"} }
 					  	ref={(el) => { this.messagesEnd = el; }}>
 					  </div>
-
-
-
-				{/*<h2><strong>Live Conversation: </strong></h2>
-				{
-					messages && messages.map((message, i) => {
-						return (
-							<Message
-								key={i}
-								user={message.user}
-								text={message.text}
-							/>
-						)
-					})
-				}
-
-				<div style={ {float: "left", clear: "both"} }
-					ref={(el) => { this.messagesEnd = el; }}>
-				</div>*/}
-
 
 			</div>
 		)

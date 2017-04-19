@@ -29,7 +29,6 @@ class InstructionMessage extends React.Component {
 
 		this.openModal = this.openModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
-		// this.selectLanguage = this.selectLanguage.bind(this);
 	}
 
 	openModal() {
@@ -52,7 +51,7 @@ class InstructionMessage extends React.Component {
 	          contentLabel="Example Modal"
 	          selectLanguage={this.selectLanguage}
 	        >
-	      
+
 	          <h1 id="instruction-title" style={{color: '#6495ED'}}>How to use AutoLingo</h1>
 	          <hr style={{border: '1px solid black'}}></hr>
 	          <form style={{color: 'black', paddingTop: '5px'}}>
@@ -80,7 +79,7 @@ class InstructionMessage extends React.Component {
 	          		<li style={{border: 'none'}}>Click on the microphone to start speaking.</li>
 	          		<li style={{border: 'none'}}>The conversation will be rendered within the 'Live Conversation' box on each user's screen in their respective languages.</li>
 	          	</ol>
-	          	
+
 	          	<div><button id="instruction-submit-button" style={{width: '200px', fontSize: '20px', backgroundColor: '#1E90FF', borderRadius: '5%', cursor: 'pointer'}} onClick={(event)=>this.closeModal(event)}>Got It!</button></div>
 	          </form>
 	        </Modal>

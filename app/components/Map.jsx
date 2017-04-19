@@ -16,7 +16,6 @@ export default class Map extends Component {
       highlightedCountry: ""
     }
     this.map;
-    // this.repositionMap = this.repositionMap.bind(this);
     this.zoomToFeature = this.zoomToFeature.bind(this);
     this.countriesOnEachFeature = this.countriesOnEachFeature.bind(this);
     this.highlightFeature = this.highlightFeature.bind(this)
@@ -29,7 +28,6 @@ export default class Map extends Component {
 
 
   componentDidMount() {
-console.log(countriesLayer);
 
     // Since we are creating a new map instance, the code below within componentDidMount can only be run once. So, the code needs to remain here, and can't be in the MapContainer file (since each change in state would re-run the code).
     L.mapbox.accessToken = 'pk.eyJ1IjoiYWRhbTIyMjIiLCJhIjoiY2l5dGJhaW96MDAwcDJ3bzM0MXk2aTB0bSJ9.kgHNRDiGEmq12toljp2-kA'
@@ -38,8 +36,8 @@ console.log(countriesLayer);
     //     [83, 190],
     //     [-83, -210]
     //   ])
-      
-    
+
+
     this.map = map;
     // Use styleLayer to add a Mapbox style created in Mapbox Studio
     L.mapbox.styleLayer('mapbox://styles/adam2222/ciyucouor002e2rpl7gut7p81').addTo(map);
@@ -53,16 +51,16 @@ console.log(countriesLayer);
      geojson = L.geoJSON(countriesLayer, {
       onEachFeature: this.countriesOnEachFeature
     }).addTo(map);
-      
+
 
     geojson.setStyle({opacity: 0, fillOpacity: 0})
-  
 
-    
+
+
 
     // Map click function to show coordinates of the place when the mpa is clicked
     // Don't erase this function, we might need this for future modification
-   
+
     //Need to change below click event when refactoring into react component
     // map.on('click', onMapClick);
 
@@ -119,7 +117,7 @@ console.log(countriesLayer);
     }
 
     resetHighlight(e) {
-      
+
       geojson.setStyle({ fillOpacity: 0 })
     }
 
@@ -143,7 +141,7 @@ console.log(countriesLayer);
       browserHistory.push('/country-transition')
     }
 
-  
+
   render() {
     return (
       <div>
@@ -153,9 +151,3 @@ console.log(countriesLayer);
     )
   }
 }
-
-
-
-
-
-

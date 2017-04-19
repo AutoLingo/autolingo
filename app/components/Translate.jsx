@@ -19,7 +19,6 @@ class Translate extends Component {
   handleChange(e) {
     let input = e.target.value
     this.props.translateActionCreator(1, 'en', input)
-    // this.setState ({ text: input })
   }
 
 
@@ -28,7 +27,6 @@ class Translate extends Component {
   render () {
     let text = this.state.text
     let handleChange = this.handleChange
-    // let fr = this.props.translations[1] ? this.props.translations[1].fr : null
 
     return (
       <div>
@@ -50,7 +48,6 @@ class Translate extends Component {
 
 const mapStateToProps = (state) => {
   let translations = state.translations
-  console.log('TRANSLATIONS', translations)
 
   return {
     translations

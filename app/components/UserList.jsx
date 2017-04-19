@@ -24,11 +24,11 @@ const UsersList = function (props) {
 					    				</a>
 					    			)
 					    		} else {
-					    			return (		
+					    			return (
 						    			<a key={i} onClick={()=>props.joinVideoChat(user, props.room)} className="list-group-item">
 							    			{user}
 						    				<img src="img/video-chat-icon.png" />
-						    			</a>				
+						    			</a>
 					    			)
 					    		}
 					    	})
@@ -39,23 +39,6 @@ const UsersList = function (props) {
 				  </div>
 				</div>
 
-				{/*<h3>Current Online Users</h3>
-				<ul>
-					{
-						//Need to have users information in the database
-						props.users.map((user, i) => {
-							if ( user === props.userName) {
-								return (
-									<li className="lingo-blue" key={i}>{user}</li>
-								)
-							} else {
-								return (						
-									<li key={i} onClick={()=>props.joinVideoChat(user, props.room)}><img src="APP/public/img/videocam.png" height="25" width="25"/>{user}</li>
-								)
-							}
-						})
-					}
-				</ul>*/}
 			</div>
 		)
 }
