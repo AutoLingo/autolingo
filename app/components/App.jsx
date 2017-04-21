@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import NavbarContainer from '../containers/NavbarContainer';
 import Map from '../containers/MapContainer';
-// import InstructionMessage from '../components/Instructions.jsx';
 
 export default function (props) {
     return (
@@ -15,4 +14,3 @@ export default function (props) {
     	</div>
     )
 }
-        // <LanguageMessage />

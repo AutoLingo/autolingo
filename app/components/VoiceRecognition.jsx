@@ -9,7 +9,6 @@ export default class VoiceRecognition extends Component {
 
   componentDidMount() {
     const showInfo = this.props.showInfo;
-    // const final_transcript = this.props.final_transcript;
 
     showInfo('info_start');
   }

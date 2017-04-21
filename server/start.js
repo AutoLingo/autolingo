@@ -161,18 +161,15 @@ function socketInit (server) {
   groupChat.on('connection', function(socket) {
 
     socket.on('join_room', function(data) {
-      console.log('data: ', data);
       let room = data.room
       let id = socket.id
 
       if (!names[room]) {
         names[room] = {};
       }
-      console.log('data.userName: ', data.userName);
 
       let name = data.userName && userNames.claim(data.userName, room, id) ? data.userName : userNames.getGuestName(room, id);
-      console.log('name: ', name);
-        
+
       socket.name = name;
       socket.room = room
       socket.join(room)
@@ -185,7 +182,6 @@ function socketInit (server) {
       socket.to(room).broadcast.emit('user:join', {
         name: name
       });
-        console.log('name: TO BE EMITTED', name);
     })
 
     socket.on('send:message', function(data) {
@@ -227,7 +223,7 @@ function socketInit (server) {
 
       userNames.free(socket.name, socket.room);
     });
-    
+
     socket.on('disconnect', function(){
       groupChat.to(socket.room).emit('user:left', {
         name: socket.name
@@ -251,7 +247,6 @@ function socketInit (server) {
       const userObject = userObjects.filter((userObject) => {
         return userObject[data.name]
       })[0]
-console.log('INVITATION DATA', data)
       const userSocketId = userObject[data.name]
 
       groupChat.to(userSocketId).emit('video_invitation', {

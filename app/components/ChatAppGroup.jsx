@@ -32,7 +32,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentDidMount() {
-		
+
 		socket.on('init', this._initialize);
 		socket.on('send:message', this._messageReceive);
 		socket.on('user:join', this._userJoined);
@@ -45,7 +45,7 @@ class ChatAppGroup extends React.Component {
 	}
 
 	componentWillUnmount() {
-		
+
 		socket.emit('room_exit')
 	}
 
@@ -140,17 +140,12 @@ class ChatAppGroup extends React.Component {
 
 	showInvitation(data) {
 
-		// alert('INVITATION')
-		console.log('INVITATION', data)
-
-
-
 		let room = this.props.selectedCountry
 		let invitationMessage = {
 			user: "LingoBot",
 			text: <Link className="invitation btn btn-warning" to={data.link}> {data.user} would like to Video Chat! Click here to accept invitation. </Link>
 		};
-		
+
 		this.dispatch(addMessage(invitationMessage, room))
 	}
 
@@ -195,7 +190,7 @@ class ChatAppGroup extends React.Component {
 
 
 				<h3> {selectedFlag && <img className="flag" src={`img/flags/` + selectedFlag.toLowerCase() + `.png`} />} { selectedCountry }  Group Chat</h3>
-				
+
 				<div>
 					<div className="col-sm-9">
 						<div className="messages panel panel-default">
@@ -215,7 +210,7 @@ class ChatAppGroup extends React.Component {
 								user={user}
 								language={language}
 							/>
-							
+
 						</div>
 					</div>
 					<div className="col-sm-3">

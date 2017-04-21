@@ -19,14 +19,13 @@ export default class Navbar extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-      
+
   componentDidMount() {
     $('[data-submenu]').submenupicker();
   }
 
   showInstruction(event) {
     let show = !this.state.show;
-    console.log(show);
     this.setState({show});
   }
 
@@ -42,7 +41,6 @@ export default class Navbar extends Component {
   handleSubmit(event) {
     event.preventDefault()
     const countryName = this.state.input
-    console.log('countryName: ', countryName);
     store.dispatch(setCountry(countryName))
     browserHistory.push('/country-transition')
   }
@@ -73,11 +71,11 @@ export default class Navbar extends Component {
           {/**************************SEARCH**********************************/}
               <form className="navbar-form navbar-left" role="search" onSubmit={handleSubmit}>
                <div className="form-group">
-                 <input type="text" 
-                    className="form-control" 
-                    value={input} 
-                    list="countries" 
-                    placeholder="Enter Country" 
+                 <input type="text"
+                    className="form-control"
+                    value={input}
+                    list="countries"
+                    placeholder="Enter Country"
                     onChange={handleChange}
                  />
                   <datalist id="countries">
@@ -92,7 +90,7 @@ export default class Navbar extends Component {
                <button type="submit" className="btn btn-default">Go</button>
              </form>
         {/****************************************************************/}
-        
+
               <li className="dropdown">
                 <a data-submenu="" data-toggle="dropdown" className="dropdown-toggle" role="button" aria-expanded="false">Select Language <span className="caret"></span></a>
                 <ul id="language-list" className="dropdown-menu">
@@ -101,18 +99,18 @@ export default class Navbar extends Component {
                     languages.map( language => {
                         if ( language.length > 2 ) { //if there is more than 1 dialect
                           let dialects = language.slice(1,language.length) //we don't want to iterate over the main language
-                          
+
                           return (
                             <li key={language} className="dropdown-submenu">
                               <a tabIndex="0">{language[0]}</a>
                               <ul className="dropdown-menu">
                                 <li className="dropdown-header">Select Dialect</li>
-                                { 
+                                {
                                   dialects.map( dialect => {
                                     return (
                                     <li key={dialect}>
                                       <a onClick={()=>{
-                                        dialect[0].split('-')[0] !== 'zh' ? 
+                                        dialect[0].split('-')[0] !== 'zh' ?
                                           this.props.setUserLanguage(dialect[0].split('-')[0], dialect[0]) :
                                           this.props.setUserLanguage(dialect[0], dialect[0])
                                         }
@@ -122,8 +120,8 @@ export default class Navbar extends Component {
 
                                       } tabIndex="0">{dialect[1]}</a>
                                     </li>
-                                    )} 
-                                  ) 
+                                    )}
+                                  )
                                 }
                               </ul>
                             </li>
@@ -144,9 +142,9 @@ export default class Navbar extends Component {
 
                 </ul>
               </li>
-              
+
               {this.state.show && <Instructions showInstruction={this.showInstruction}/>}
-              
+
               <li><a href="#" onClick={this.showInstruction}>Instructions</a></li>
             </ul>
           </div>

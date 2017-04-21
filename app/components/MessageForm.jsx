@@ -10,12 +10,6 @@ class MessageForm extends React.Component {
 		this.state = {text: ''}
 	}
 
-	//start with empty text
-	// getInitialState() {
-	// 	return {
-	// 		text: ''
-	// 	}
-	// }
 
 	handleSubmit(e) {
 		e.preventDefault();
@@ -59,14 +53,6 @@ class MessageForm extends React.Component {
 				  </fieldset>
 				</form>
 
-				{/*<h3>Write New Message</h3>
-				<form onSubmit={this.handleSubmit}>
-					<input
-						onChange={this.changeHandler}
-						value={this.state.text}
-						placeholder='Write new message'
-					/>
-				</form>*/}
 			</div>
 		)
 	}

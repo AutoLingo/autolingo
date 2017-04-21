@@ -27,7 +27,6 @@ function repositionMap (country, map) {
         this.map.removeLayer(this.chinaMarker)
         this.map.removeLayer(this.koreaMarker)
         this.map.removeLayer(this.franceMarker)
-        // console.log(this.map)
       }
     }
   }

@@ -39,7 +39,7 @@ class ChatApp extends Component {
 		socket.on('final_transcript', this.finalTranscript)
 		socket.on('interim_transcript', this.interimTranscript)
 		socket.on('broadcast_video_room', this.joinVideo)
-		
+
 		socket.emit('join_room', {room: location.hash})
 		if (this.props.selectedUser.name) {
 			socket.emit('send_video_invitation', {
@@ -62,7 +62,6 @@ class ChatApp extends Component {
 	//*******************************************************
 
 	joinVideo(data) {
-		console.log('data: ', data);
 		browserHistory.push(`${data.room}`)
 	}
 
@@ -204,6 +203,5 @@ const mapStateToProps = state => {
  	}
 }
 
-// const mapDispatchToProps = dispatch => ({translateActionCreator})
 
 export default connect(mapStateToProps, {translateActionCreator, translateInterimActionCreator, translateFinalActionCreator, setInterimTranscript, addFinalTranscript})(ChatApp);

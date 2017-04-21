@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
-import LiveChatExternals from '../externals/LiveChatExternals' 
+import LiveChatExternals from '../externals/LiveChatExternals'
 
 class VideoChat extends Component {
 
 	componentDidMount() {
 		LiveChatExternals()
 	}
-	
+
 	componentDidUpdate() {
 		LiveChatExternals()
 	}
 
-	// componentWillUnmount() {
-	// 	MediaStreamTrack.stop()
-	// }
 
 	render() {
 		return (
@@ -26,7 +23,7 @@ class VideoChat extends Component {
                 <div id="videos-container-wrapper">
 	                <div id="videos-container"></div>
                 </div>
-				
+
 			</section>
 		)
 	}
