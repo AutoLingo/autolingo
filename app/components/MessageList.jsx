@@ -7,19 +7,6 @@ class MessageList extends Component {
 		// this.scrollToBottom = this.scrollToBottom.bind(this)
 	}
 
-	//scroll to the bottom of the chat box as the user types in new sentences
-	// scollToBottom() {
-	// 	const node = ReactDOM.findDOMNode(this.messagesEnd);
-	// 	node.scrollIntoView({behavior: "smooth"})
-	// }
-
-	// componentDidMount() {
-	//     this.scrollToBottom();
-	// }
-
-	// componentDidUpdate() {
-	//     this.scrollToBottom();
-	// }
 
 	render() {
 		let messages = this.props.messages

@@ -5,9 +5,6 @@ import {whoami} from './reducers/auth'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 import { googleTranslateEpic, googleTranslateEpic2, googleTranslateEpic3 } from './reducers/translate'
 
-// const rootEpic = combineEpics(
-//   googleTranslateEpic
-// );
 
 const rootEpic = combineEpics(
   googleTranslateEpic,
@@ -26,6 +23,3 @@ const composeEnhancers =
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(createLogger(), epicMiddleware)))
 
 export default store
-
-// Set the auth info at start
-// store.dispatch(whoami())
