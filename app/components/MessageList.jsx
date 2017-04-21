@@ -7,22 +7,8 @@ class MessageList extends Component {
 		// this.scrollToBottom = this.scrollToBottom.bind(this)
 	}
 
-	//scroll to the bottom of the chat box as the user types in new sentences
-	// scollToBottom() {
-	// 	const node = ReactDOM.findDOMNode(this.messagesEnd);
-	// 	node.scrollIntoView({behavior: "smooth"})
-	// }
-
-	// componentDidMount() {
-	//     this.scrollToBottom();
-	// }
-
-	// componentDidUpdate() {
-	//     this.scrollToBottom();
-	// }
 
 	render() {
-		// this.scrollToBottom && this.scrollToBottom()
 		let messages = this.props.messages
 
 		return (
@@ -46,26 +32,6 @@ class MessageList extends Component {
 					  <div style={ {float: "left", clear: "both"} }
 					  	ref={(el) => { this.messagesEnd = el; }}>
 					  </div>
-
-
-
-				{/*<h2><strong>Live Conversation: </strong></h2>
-				{
-					messages && messages.map((message, i) => {
-						return (
-							<Message
-								key={i}
-								user={message.user}
-								text={message.text}
-							/>
-						)
-					})
-				}
-
-				<div style={ {float: "left", clear: "both"} }
-					ref={(el) => { this.messagesEnd = el; }}>
-				</div>*/}
-
 
 			</div>
 		)
